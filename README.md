@@ -1,20 +1,26 @@
 シン・miyashita.com
 
+## Getting Started
 
-# コンポーネントの作成
+1. 任意の手段でNode.jsを入れる（v18以上）
+https://nodejs.org/ja/
+2. `$ git clone https://github.com/MiyashitaLab/shin-miyashita.com.git`
+3. `$ npm install`
 
-## パーツコンポーネント
+## コンポーネントの作成
+
+### パーツコンポーネント
 ページ内で使用するコンポーネントを作成する。
 
 `$ hygen component ui`
 
-## ページコンポーネント
+### ページコンポーネント
 ページコンポーネントを作成する。
 Next.jsの`/pages`ではルーティングとデータの取得のみを行い、表示はページコンポーネントに任せる。
 
 `$ hygen component page`
 
-# 依存関係
+## 依存関係
 
 何のためにパッケージを追加したのかを忘れないようにするためのメモ。
 package.jsonに追加したらここにも書く。
