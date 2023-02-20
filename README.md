@@ -9,3 +9,6 @@ package.jsonに追加したらここにも書く。
   - tailwindcssを使うために必要
 - eslint-plugin-tailwindcss
   - tailwindcssのクラス名をeslintでチェックするために必要
+- eslint-config-next
+  - next.jsのeslint設定
+  - @typescript-eslint/parserはこれに含まれている
