@@ -7,3 +7,5 @@ package.jsonに追加したらここにも書く。
 
 - tailwindcss, postcss, autoprefixer
   - tailwindcssを使うために必要
+- eslint-plugin-tailwindcss
+  - tailwindcssのクラス名をeslintでチェックするために必要
