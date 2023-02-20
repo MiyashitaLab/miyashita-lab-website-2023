@@ -12,3 +12,6 @@ package.jsonに追加したらここにも書く。
 - eslint-config-next
   - next.jsのeslint設定
   - @typescript-eslint/parserはこれに含まれている
+- @storybook/*, storybook
+  - storybookを使うために必要
+  - npx sb initで自動追加された
