@@ -1,5 +1,19 @@
 シン・miyashita.com
 
+
+# コンポーネントの作成
+
+## パーツコンポーネント
+ページ内で使用するコンポーネントを作成する。
+
+`$ hygen component ui`
+
+## ページコンポーネント
+ページコンポーネントを作成する。
+Next.jsの`/pages`ではルーティングとデータの取得のみを行い、表示はページコンポーネントに任せる。
+
+`$ hygen component page`
+
 # 依存関係
 
 何のためにパッケージを追加したのかを忘れないようにするためのメモ。
@@ -12,3 +26,8 @@ package.jsonに追加したらここにも書く。
 - eslint-config-next
   - next.jsのeslint設定
   - @typescript-eslint/parserはこれに含まれている
+- @storybook/*, storybook
+  - storybookを使うために必要
+  - npx sb initで自動追加された
+- hygen
+  - コンポーネントの雛形を作るために使う
