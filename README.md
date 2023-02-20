@@ -7,6 +7,10 @@ https://nodejs.org/ja/
 2. `$ git clone https://github.com/MiyashitaLab/shin-miyashita.com.git`
 3. `$ npm install`
 
+## Storybook
+
+https://miyashitalab.github.io/shin-miyashita.com/
+
 ## コンポーネントの作成
 
 ### パーツコンポーネント
