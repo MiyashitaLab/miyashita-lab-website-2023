@@ -14,10 +14,29 @@ export default meta;
 
 type Story = StoryObj<typeof ArticleCard>;
 
-export const Primary: Story = {
+export const Basic: Story = {
   args: {
     className: "w-96",
     date: new Date("2021-01-01"),
+    url: "#",
+    children: (
+      <>
+        <Image
+          src="https://raw.githubusercontent.com/MiyashitaLab/miyashita.com/master/public/assets/images/noimage.png"
+          alt={"test image"}
+          width={384}
+          height={216}
+        />
+      </>
+    ),
+    title: "News Title",
+  },
+};
+
+export const LongTitle: Story = {
+  args: {
+    className: "w-96",
+    date: new Date("2021-12-31"),
     url: "#",
     children: (
       <>
@@ -29,6 +48,6 @@ export const Primary: Story = {
         />
       </>
     ),
-    title: "News Title",
+    title: "オープンラボ・全方位進路相談会開催します！（2022年度）",
   },
 };
