@@ -41,3 +41,5 @@ package.jsonに追加したらここにも書く。
   - npx sb initで自動追加された
 - hygen
   - コンポーネントの雛形を作るために使う
+- @tailwindcss/line-clamp
+  - n行固定ではみ出したテキストを...で省略するために使う
