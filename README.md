@@ -9,7 +9,7 @@ https://nodejs.org/ja/
 
 ## Storybook
 
-https://miyashitalab.github.io/shin-miyashita.com/
+https://miyashitalab.github.io/miyashita-lab-website-2023/
 
 ## コンポーネントの作成
 
