@@ -28,7 +28,7 @@ export const ArticleCard: FC<ArticleCardProps> = ({
           <time className={"text-sm text-gray-600"}>
             {dateToYYYYMMDD(date)}
           </time>
-          <h3 className={"text-lg"}>{title}</h3>
+          <p className={"text-lg line-clamp-2"}>{title}</p>
         </div>
       </WrapLink>
     </div>
