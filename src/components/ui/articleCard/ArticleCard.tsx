@@ -1,5 +1,6 @@
 import { ComponentProps, FC, ReactNode } from "react";
 
+import { BeautifulBreak } from "@/components/feature/beautifulBreak";
 import { WrapLink } from "@/components/feature/wrapLink";
 import { dateToYYYYMMDD } from "@/lib/formatDate";
 
@@ -28,7 +29,9 @@ export const ArticleCard: FC<ArticleCardProps> = ({
           <time className={"text-sm text-gray-600"}>
             {dateToYYYYMMDD(date)}
           </time>
-          <p className={"text-lg line-clamp-2"}>{title}</p>
+          <p className={"text-lg line-clamp-2"}>
+            <BeautifulBreak>{title}</BeautifulBreak>
+          </p>
         </div>
       </WrapLink>
     </div>
