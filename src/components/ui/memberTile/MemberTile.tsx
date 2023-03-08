@@ -38,7 +38,7 @@ export const MemberTile: FC<MemberTileProps> = ({
                 isLongName ? "text-sm" : "text-xl"
               }`}
             >
-              <span className={"border-b border-gray-800 py-1"}>
+              <span className={"border-b border-gray-400 py-1"}>
                 <span>{name}</span>
                 <Icon
                   fontStyle={"solid"}
