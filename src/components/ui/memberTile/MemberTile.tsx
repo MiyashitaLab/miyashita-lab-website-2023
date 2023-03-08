@@ -20,23 +20,25 @@ export const MemberTile: FC<MemberTileProps> = ({
   isLongName = false,
 }) => {
   return (
-    <div
-      className={`overflow-hidden rounded-md border-2 border-transparent p-2 hover:border-gray-200 hover:shadow ${className}`}
-    >
+    <div className={`overflow-hidden ${className}`}>
       <WrapLink href={url}>
-        <div
-          className={"flex justify-center overflow-hidden rounded-md shadow-lg"}
-        >
-          {children}
-        </div>
-        <div className={"mt-2 py-2 text-gray-800"}>
-          <p className={"text-center text-sm"}>{role}</p>
+        <div className={"group p-2"}>
           <div
-            className={`mt-1 text-center text-gray-800 underline underline-offset-4 ${
-              isLongName ? "text-sm" : "text-xl"
-            }`}
+            className={
+              "flex justify-center overflow-hidden rounded-md shadow-lg transition group-hover:scale-105"
+            }
           >
-            {name}
+            {children}
+          </div>
+          <div className={"mt-2 py-2 text-gray-800"}>
+            <p className={"text-center text-sm"}>{role}</p>
+            <div
+              className={`mt-1 text-center text-gray-800 underline underline-offset-4 ${
+                isLongName ? "text-sm" : "text-xl"
+              }`}
+            >
+              {name}
+            </div>
           </div>
         </div>
       </WrapLink>
