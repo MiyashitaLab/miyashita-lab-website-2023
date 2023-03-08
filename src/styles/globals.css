@@ -1,3 +1,10 @@
+/* fontawesomeのフォント読み込みも@next/fontでできるかもしれない */
+
+@import "fontawesome/css/fontawesome.min.css";
+@import "fontawesome/css/solid.min.css";
+@import "fontawesome/css/brands.min.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
