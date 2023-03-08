@@ -3,7 +3,7 @@ import { ComponentProps, FC, ReactNode } from "react";
 import { WrapLink } from "@/components/feature/wrapLink";
 import { Icon } from "@/components/ui/icon";
 
-export type MemberTileProps = {
+export type MemberCardProps = {
   className?: ComponentProps<"div">["className"];
   url: string;
   role: string;
@@ -12,7 +12,7 @@ export type MemberTileProps = {
   children?: ReactNode;
 };
 
-export const MemberTile: FC<MemberTileProps> = ({
+export const MemberCard: FC<MemberCardProps> = ({
   className,
   url,
   role,

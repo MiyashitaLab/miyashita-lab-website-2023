@@ -1,18 +1,18 @@
 import { StoryObj } from "@storybook/react";
 import Image from "next/image";
 
-import { MemberTile } from "./MemberTile";
+import { MemberCard } from "./MemberCard";
 
 import type { Meta } from "@storybook/react";
 
-const meta: Meta<typeof MemberTile> = {
-  title: "MemberTile",
-  component: MemberTile,
+const meta: Meta<typeof MemberCard> = {
+  title: "MemberCard",
+  component: MemberCard,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof MemberTile>;
+type Story = StoryObj<typeof MemberCard>;
 
 export const Primary: Story = {
   args: {
