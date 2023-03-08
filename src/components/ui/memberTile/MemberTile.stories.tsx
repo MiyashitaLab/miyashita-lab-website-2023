@@ -37,7 +37,7 @@ export const Homei: Story = {
     className: "w-48",
     url: "#",
     role: "教員",
-    name: "宮下芳名",
+    name: "宮下芳明",
     children: (
       <Image
         src="https://i.gyazo.com/7a9e59db4794de41d8eedea10843e6cb.webp"

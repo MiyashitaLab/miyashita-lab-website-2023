@@ -1,6 +1,7 @@
 import { ComponentProps, FC, ReactNode } from "react";
 
 import { WrapLink } from "@/components/feature/wrapLink";
+import { Icon } from "@/components/ui/icon";
 
 export type MemberTileProps = {
   className?: ComponentProps<"div">["className"];
@@ -33,11 +34,19 @@ export const MemberTile: FC<MemberTileProps> = ({
           <div className={"mt-2 py-2 text-gray-800"}>
             <p className={"text-center text-sm"}>{role}</p>
             <div
-              className={`mt-1 text-center text-gray-800 underline underline-offset-4 ${
+              className={`mt-1 text-center text-gray-800 ${
                 isLongName ? "text-sm" : "text-xl"
               }`}
             >
-              {name}
+              <span className={"border-b border-gray-800 py-1"}>
+                <span>{name}</span>
+                <Icon
+                  fontStyle={"solid"}
+                  name={"angle-right"}
+                  size={"xs"}
+                  className={"p-2"}
+                />
+              </span>
             </div>
           </div>
         </div>
