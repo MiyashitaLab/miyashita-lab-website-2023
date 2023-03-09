@@ -18,7 +18,7 @@ export const Basic: Story = {
   args: {
     className: "w-96",
     date: new Date("2021-01-01"),
-    url: "#",
+    href: "#",
     children: (
       <>
         <Image
@@ -37,7 +37,7 @@ export const LongTitle: Story = {
   args: {
     className: "w-96",
     date: new Date("2021-12-31"),
-    url: "#",
+    href: "#",
     children: (
       <>
         <Image

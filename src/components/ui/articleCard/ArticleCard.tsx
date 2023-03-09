@@ -9,7 +9,7 @@ export type ArticleCardProps = {
   children?: ReactNode;
   date: Date;
   title: string;
-  url: string;
+  href: string;
 };
 
 export const ArticleCard: FC<ArticleCardProps> = ({
@@ -17,13 +17,13 @@ export const ArticleCard: FC<ArticleCardProps> = ({
   children,
   date,
   title,
-  url,
+  href,
 }) => {
   return (
     <div
       className={`overflow-hidden rounded-lg border border-gray-200 bg-white shadow ${className}`}
     >
-      <WrapLink href={url}>
+      <WrapLink href={href}>
         <div className={"flex justify-center"}>{children}</div>
         <div className="p-2">
           <time className={"text-sm text-gray-600"}>

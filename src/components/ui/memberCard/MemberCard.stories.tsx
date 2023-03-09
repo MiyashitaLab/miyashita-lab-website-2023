@@ -17,7 +17,7 @@ type Story = StoryObj<typeof MemberCard>;
 export const Primary: Story = {
   args: {
     className: "w-48",
-    url: "#",
+    href: "#",
     role: "role",
     name: "name",
     children: (
@@ -35,7 +35,7 @@ export const Primary: Story = {
 export const Homei: Story = {
   args: {
     className: "w-48",
-    url: "#",
+    href: "#",
     role: "教員",
     name: "宮下芳明",
     children: (
@@ -52,7 +52,7 @@ export const Homei: Story = {
 export const OB: Story = {
   args: {
     className: "w-48",
-    url: "#",
+    href: "#",
     role: "2021年度卒業",
     name: "dummy no nagainame",
     isLongName: true,
