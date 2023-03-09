@@ -5,7 +5,7 @@ import { Icon } from "@/components/ui/icon";
 
 export type MemberCardProps = {
   className?: ComponentProps<"div">["className"];
-  url: string;
+  href: string;
   role: string;
   name: string;
   isLongName?: boolean;
@@ -14,7 +14,7 @@ export type MemberCardProps = {
 
 export const MemberCard: FC<MemberCardProps> = ({
   className,
-  url,
+  href,
   role,
   name,
   children,
@@ -22,7 +22,7 @@ export const MemberCard: FC<MemberCardProps> = ({
 }) => {
   return (
     <div className={`overflow-hidden ${className}`}>
-      <WrapLink href={url}>
+      <WrapLink href={href}>
         <div className={"group p-2"}>
           <div
             className={
