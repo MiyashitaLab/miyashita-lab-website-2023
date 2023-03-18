@@ -17,7 +17,7 @@ const notoSansJp = Noto_Sans_JP({
 });
 
 export const AppWrapper: FC<{ children: ReactNode }> = ({ children }) => {
-  return <div className={notoSansJp.className}>{children}</div>;
+  return <div style={notoSansJp.style}>{children}</div>;
 };
 
 export default function App({ Component, pageProps }: AppProps) {
