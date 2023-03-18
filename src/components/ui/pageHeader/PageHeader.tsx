@@ -25,7 +25,7 @@ export const PageHeader: FC<PageHeaderProps> = ({ logo, logoHref, links }) => {
 
   return (
     <header className={"h-12"}>
-      <nav className="border-gray-200 bg-white px-2 md:pr-4">
+      <nav className="border-gray-200 bg-white px-4">
         <div className="mx-auto flex h-full max-w-screen-xl flex-wrap items-center justify-between bg-white py-1">
           <div className={"flex h-10 items-center"}>
             <WrapLink href={logoHref}>{logo}</WrapLink>
@@ -51,7 +51,7 @@ export const PageHeader: FC<PageHeaderProps> = ({ logo, logoHref, links }) => {
                     <div
                       className={classNames(
                         "block rounded text-md py-1 pl-2",
-                        "border-b border-gray-100 bg-transparent",
+                        "border-b border-gray-100",
                         "md:border-b-0",
                         {
                           "text-white bg-teal-500 md:text-cyan-500 md:bg-transparent":
