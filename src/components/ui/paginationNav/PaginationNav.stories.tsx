@@ -13,10 +13,19 @@ export default meta;
 
 type Story = StoryObj<typeof PaginationNav>;
 
-export const Primary: Story = {
+export const Omitted: Story = {
   args: {
     minPage: 1,
     maxPage: 20,
+    currentPage: 4,
+    pageHref: (page) => `/${page}`,
+  },
+};
+
+export const NoOmitted: Story = {
+  args: {
+    minPage: 1,
+    maxPage: 5,
     currentPage: 4,
     pageHref: (page) => `/${page}`,
   },
