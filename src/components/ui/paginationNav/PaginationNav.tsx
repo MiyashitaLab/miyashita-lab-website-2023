@@ -1,4 +1,5 @@
-import { FC } from "react";
+import classNames from "classnames";
+import { FC, PropsWithoutRef } from "react";
 
 import { Icon } from "@/components/ui/icon";
 import { paginateWithFrame } from "@/components/ui/paginationNav/paginateWithFrame";
@@ -9,13 +10,15 @@ export type PaginationNavProps = {
   maxPage: number;
   currentPage: number;
   pageHref: (page: number) => string;
-};
+} & PropsWithoutRef<JSX.IntrinsicElements["nav"]>;
 
 export const PaginationNav: FC<PaginationNavProps> = ({
   minPage,
   maxPage,
   currentPage,
   pageHref,
+  className,
+  ...props
 }) => {
   const omissionSymbol = "...";
   const mdPages = paginateWithFrame({
@@ -43,7 +46,7 @@ export const PaginationNav: FC<PaginationNavProps> = ({
   //smの場合は表示ページ数を減らす
 
   return (
-    <nav className={"flex justify-center"}>
+    <nav className={classNames("flex justify-center", className)} {...props}>
       <ul className="flex">
         <li className={"w-12 md:w-24"}>
           <PaginationNavButton href={prevPageHref} className={"rounded-l-lg"}>
