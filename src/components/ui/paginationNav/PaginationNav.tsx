@@ -18,11 +18,19 @@ export const PaginationNav: FC<PaginationNavProps> = ({
   pageHref,
 }) => {
   const omissionSymbol = "...";
-  const pages = paginateWithFrame({
+  const mdPages = paginateWithFrame({
     firstPage: minPage,
     lastPage: maxPage,
     currentPage: currentPage,
     halfFrameSize: 4,
+    omissionSymbol: omissionSymbol,
+  });
+
+  const smPages = paginateWithFrame({
+    firstPage: minPage,
+    lastPage: maxPage,
+    currentPage: currentPage,
+    halfFrameSize: 2,
     omissionSymbol: omissionSymbol,
   });
 
@@ -32,10 +40,12 @@ export const PaginationNav: FC<PaginationNavProps> = ({
   const nextPage = currentPage + 1;
   const nextPageHref = nextPage <= maxPage ? pageHref(nextPage) : undefined;
 
+  //smの場合は表示ページ数を減らす
+
   return (
-    <nav>
-      <ul className="inline-flex">
-        <li>
+    <nav className={"flex justify-center"}>
+      <ul className="flex">
+        <li className={"w-12 md:w-24"}>
           <PaginationNavButton href={prevPageHref} className={"rounded-l-lg"}>
             <Icon
               fontStyle={"solid"}
@@ -47,21 +57,39 @@ export const PaginationNav: FC<PaginationNavProps> = ({
             </span>
           </PaginationNavButton>
         </li>
-        {pages.map((page, i) => {
+        {smPages.map((page, i) => {
           const href = typeof page === "number" ? pageHref(page) : undefined;
           const current = page === currentPage;
 
           return (
-            <li key={`${page}-${i}`}>
+            <li key={`${page}-${i}-sm`} className={"inline w-10 md:hidden"}>
               <PaginationNavButton current={current} href={href}>
-                {" "}
                 {page}
               </PaginationNavButton>
             </li>
           );
         })}
-        <li>
-          <PaginationNavButton href={nextPageHref} className={"rounded-r-lg"}>
+        {mdPages.map((page, i) => {
+          const href = typeof page === "number" ? pageHref(page) : undefined;
+          const current = page === currentPage;
+
+          return (
+            <li key={`${page}-${i}-md`} className={"hidden w-10 md:inline"}>
+              <PaginationNavButton
+                current={current}
+                href={href}
+                className={"w-full"}
+              >
+                {page}
+              </PaginationNavButton>
+            </li>
+          );
+        })}
+        <li className={"w-12 md:w-24"}>
+          <PaginationNavButton
+            href={nextPageHref}
+            className={"w-full rounded-r-lg"}
+          >
             <span className={"mr-2 hidden md:inline"} aria-hidden={true}>
               Next
             </span>

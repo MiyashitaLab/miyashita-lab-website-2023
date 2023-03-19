@@ -26,7 +26,7 @@ export const NoOmitted: Story = {
   args: {
     minPage: 1,
     maxPage: 5,
-    currentPage: 4,
+    currentPage: 1,
     pageHref: (page) => `/${page}`,
   },
 };
