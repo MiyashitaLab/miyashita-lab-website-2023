@@ -20,7 +20,7 @@ export const ArticleHeader: FC<ArticleHeaderProps> = ({
   return (
     <div
       className={classNames(
-        "w-full px-4 py-6 text-center text-white",
+        "w-full px-2 py-4 text-center text-white md:px-4 md:py-6",
         {
           "bg-cyan-700": type === "news",
           "bg-teal-700": type === "project",
