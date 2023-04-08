@@ -1,17 +1,20 @@
 import Link from "next/link";
-import { FC, ReactNode } from "react";
+import { FC, PropsWithoutRef, ReactNode } from "react";
 
 export type WrapLinkProps = {
-  href: string;
+  href?: string;
   children: ReactNode;
-  className?: string;
-};
+} & PropsWithoutRef<JSX.IntrinsicElements["a"]>;
 
 //classNameはNext/Linkコンポーネント内部のaタグに付与される
 
-export const WrapLink: FC<WrapLinkProps> = ({ href, children, className }) => {
+export const WrapLink: FC<WrapLinkProps> = ({ href, children, ...props }) => {
+  if (href === undefined) {
+    return <a {...props}>{children}</a>;
+  }
+
   return (
-    <Link href={href} className={className}>
+    <Link href={href} {...props}>
       {children}
     </Link>
   );
