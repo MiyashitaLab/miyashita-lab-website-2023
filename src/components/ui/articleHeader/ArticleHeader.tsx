@@ -18,7 +18,7 @@ export const ArticleHeader: FC<ArticleHeaderProps> = ({
   date,
 }) => {
   return (
-    <div
+    <header
       className={classNames(
         "w-full px-2 py-4 text-center text-white md:px-4 md:py-6",
         {
@@ -32,8 +32,9 @@ export const ArticleHeader: FC<ArticleHeaderProps> = ({
         <BeautifulBreak>{children}</BeautifulBreak>
       </h1>
       <div className={"mt-2 text-sm"}>
-        <time>{dateToYYYYMMDD(date)}</time>
+        {/* https://developer.mozilla.org/ja/docs/Web/HTML/Element/time#%E5%A6%A5%E5%BD%93%E3%81%AA_datetime_%E5%80%A4 */}
+        <time dateTime={dateToYYYYMMDD(date)}>{dateToYYYYMMDD(date)}</time>
       </div>
-    </div>
+    </header>
   );
 };
