@@ -7,6 +7,7 @@ import parse, {
 } from "html-react-parser";
 import Image from "next/image";
 import { FC } from "react";
+import sanitizeHtml, { IOptions } from "sanitize-html";
 
 import { WrapLink } from "@/components/feature/wrapLink";
 
@@ -18,6 +19,29 @@ export const HtmlContent: FC<HtmlContentProps> = ({ content }) => {
   return (
     <div className={"max-w-lg bg-stone-50 p-2"}>{transformHtml(content)}</div>
   );
+};
+
+const transformHtml = (htmlText: string) => {
+  const sanitized = sanitizeHtml(htmlText, sanitizeOptions);
+  return parse(sanitized, parseOptions);
+};
+
+// Youtubeなどの埋め込みを許可するためにiframeを許可する
+// 検討の結果、ホスト名を制限することはしていない
+const sanitizeOptions: IOptions = {
+  allowedTags: [...sanitizeHtml.defaults.allowedTags, "img", "iframe"],
+  allowedAttributes: {
+    ...sanitizeHtml.defaults.allowedAttributes,
+    iframe: [
+      "width",
+      "height",
+      "src",
+      "title",
+      "frameborder",
+      "allow",
+      "allowfullscreen",
+    ],
+  },
 };
 
 const parseOptions: HTMLReactParserOptions = {
@@ -140,10 +164,6 @@ const parseOptions: HTMLReactParserOptions = {
       }
     }
   },
-};
-
-const transformHtml = (htmlText: string) => {
-  return parse(htmlText, parseOptions);
 };
 
 // the workaround: https://github.com/remarkablemark/html-react-parser/issues/616
