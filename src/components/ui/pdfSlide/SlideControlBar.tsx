@@ -23,7 +23,7 @@ export const SlideControlBar: FC<SlideControlBarProps> = ({
 }) => {
   const percentage = (currentPage / (numPages - 1)) * 100;
   return (
-    <div className={" w-full "}>
+    <div className={"w-full"}>
       <div className={"h-2 bg-gray-200"}>
         <div
           className={"h-2 bg-cyan-700"}

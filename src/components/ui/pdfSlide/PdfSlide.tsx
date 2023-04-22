@@ -11,6 +11,7 @@ import {
 import { Document, Page, pdfjs } from "react-pdf";
 
 import { SlideControlBar } from "@/components/ui/pdfSlide/SlideControlBar";
+import { useMeasure } from "@/lib/hook/useMeasure";
 
 // /publicに置いても良いけどめんどかったので
 const cMapUrl = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`;
@@ -20,11 +21,9 @@ pdfjs.GlobalWorkerOptions.workerSrc = pdfJsWorker;
 
 export type PdfSlideProps = {
   pdfUrl: string;
-  width: number;
-  height: number;
 };
 
-export const PdfSlide: FC<PdfSlideProps> = ({ pdfUrl, height, width }) => {
+export const PdfSlide: FC<PdfSlideProps> = ({ pdfUrl }) => {
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [numPages, setNumPages] = useState<number>(0);
   const [initialPageLoaded, setInitialPageLoaded] = useState<boolean>(false);
@@ -106,8 +105,10 @@ export const PdfSlide: FC<PdfSlideProps> = ({ pdfUrl, height, width }) => {
     turnToPrevPage,
   ]);
 
+  const [ref, { width }] = useMeasure<HTMLDivElement>();
+
   return (
-    <div className={"max-w-lg"}>
+    <div className={"max-w-lg"} ref={ref}>
       <Document
         file={pdfUrl}
         options={{
@@ -123,7 +124,6 @@ export const PdfSlide: FC<PdfSlideProps> = ({ pdfUrl, height, width }) => {
           // 2ページ以上離れている場合は非表示にする
           // 全ページ見たら結局変わらないが、初回ロード時のメモリ節約にはなるはず
           if (2 < Math.abs(currentPage - index)) return undefined;
-          const width = 512;
           return (
             <Page
               key={index}
