@@ -38,9 +38,30 @@ export const News: Story = {
       cardMock,
       cardMock,
       cardMock,
-      cardMock,
-      cardMock,
-      cardMock,
+      {
+        ...cardMock,
+        thumbnail: {
+          url: "/temp/1080x1080.png",
+          width: 1080,
+          height: 1080,
+        },
+      },
+      {
+        ...cardMock,
+        thumbnail: {
+          url: "/temp/1280x720.png",
+          width: 1280,
+          height: 720,
+        },
+      },
+      {
+        ...cardMock,
+        thumbnail: {
+          url: "/temp/1280x960.png",
+          width: 1280,
+          height: 960,
+        },
+      },
     ],
     headingContent: (
       <>

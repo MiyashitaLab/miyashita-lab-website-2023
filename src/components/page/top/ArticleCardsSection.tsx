@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { FC, ReactNode } from "react";
 
+import { WrapImage } from "@/components/feature/wrapImage";
 import { WrapLink } from "@/components/feature/wrapLink";
 import { ReadMoreLink } from "@/components/page/top/ReadMoreLink";
 import { ArticleCard } from "@/components/ui/articleCard";
@@ -16,12 +17,12 @@ type Image = {
 export type CardProp = {
   detailUrl: string;
   title: string;
-  date: Date;
+  date?: Date;
   thumbnail: Image;
 };
 
 type ArticleCardsSection = {
-  cards: CardProp[];
+  cards: readonly CardProp[];
   href: string;
   headingContent: ReactNode;
 };
@@ -49,12 +50,13 @@ export const ArticleCardsSection: FC<ArticleCardsSection> = ({
             title={card.title}
             href={card.detailUrl}
           >
-            <Image
+            <WrapImage
               src={card.thumbnail.url}
-              alt={""} //サムネイルなので空
-              sizes="(max-width: 768px) 15rem, 25vw" //md以下はbasis-60で指定しているので15rem、md以上は横に4つ並べるので25vw
-              width={card.thumbnail.width}
-              height={card.thumbnail.height}
+              alt={""}
+              originalWidth={card.thumbnail.width}
+              originalHeight={card.thumbnail.height}
+              maxWidth={240} //1.91:1
+              maxHeight={126}
             />
           </ArticleCard>
         ))}
