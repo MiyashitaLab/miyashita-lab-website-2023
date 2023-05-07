@@ -1,5 +1,6 @@
 import { FC } from "react";
 
+import { BeautifulBreak } from "@/components/feature/beautifulBreak";
 import { CMSImage, WrapImage } from "@/components/feature/wrapImage/WrapImage";
 import {
   ArticleCardData,
@@ -67,7 +68,9 @@ export const Top: FC<TopProps> = ({
             宮下研究室
           </h1>
           <p className={"my-2"}>
-            宮下研究室では、音楽・映像・3DCGアニメーション、3Dプリンタ、ゲームやVR、プログラミングも味覚も全て「表現」であると捉え、人間の表現能力を拡張する「インストゥルメント」として、コンピュータのあり方を考えています。
+            <BeautifulBreak segmenter={"sentence"}>
+              宮下研究室では、音楽・映像・3DCGアニメーション、3Dプリンタ、ゲームやVR、プログラミングも味覚も全て「表現」であると捉え、人間の表現能力を拡張する「インストゥルメント」として、コンピュータのあり方を考えています。
+            </BeautifulBreak>
           </p>
           <ReadMoreLink href={"/about"}>研究室について</ReadMoreLink>
         </section>
