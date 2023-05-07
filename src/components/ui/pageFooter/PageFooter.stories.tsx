@@ -19,15 +19,15 @@ export const Primary: Story = {
     links: [
       {
         text: "Copyright Notice",
-        href: "#",
+        href: "/copyright",
       },
       {
         text: "Privacy Policy",
-        href: "#",
+        href: "/privacy",
       },
       {
         text: "Contact",
-        href: "#",
+        href: "/contact",
       },
     ],
   },

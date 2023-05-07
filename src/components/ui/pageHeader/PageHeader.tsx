@@ -5,6 +5,7 @@ import { WrapLink } from "@/components/feature/wrapLink";
 import { Icon } from "@/components/ui/icon";
 
 export type PageHeaderProps = {
+  className?: string;
   logo: ReactElement;
   logoHref: string;
   links: {
@@ -16,7 +17,12 @@ export type PageHeaderProps = {
 
 //md未満はハンバーガーメニューにする
 
-export const PageHeader: FC<PageHeaderProps> = ({ logo, logoHref, links }) => {
+export const PageHeader: FC<PageHeaderProps> = ({
+  className,
+  logo,
+  logoHref,
+  links,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClickHamburger = () => {
@@ -24,7 +30,7 @@ export const PageHeader: FC<PageHeaderProps> = ({ logo, logoHref, links }) => {
   };
 
   return (
-    <header className={"h-12"}>
+    <header className={classNames(className)}>
       <nav className="border-gray-200 bg-white px-4">
         <div className="mx-auto flex h-full max-w-screen-xl flex-wrap items-center justify-between bg-white py-1">
           <div className={"flex h-10 items-center"}>

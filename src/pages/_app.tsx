@@ -1,9 +1,20 @@
 import "@/styles/globals.css";
 
 import { Noto_Sans_JP } from "@next/font/google";
-import { FC, ReactNode } from "react";
+import { NextPage } from "next";
+import { FC, ReactElement, ReactNode } from "react";
+
+import { Layout } from "@/components/ui/layout";
 
 import type { AppProps } from "next/app";
+
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
 
 //normal: 400
 //bold: 700
@@ -20,10 +31,7 @@ export const AppWrapper: FC<{ children: ReactNode }> = ({ children }) => {
 };
 
 //ここに書いたものはstorybookでは読み込まれないので注意
-export default function App({ Component, pageProps }: AppProps) {
-  return (
-    <AppWrapper>
-      <Component {...pageProps} />
-    </AppWrapper>
-  );
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => <Layout>{page}</Layout>);
+  return <AppWrapper>{getLayout(<Component {...pageProps} />)}</AppWrapper>;
 }

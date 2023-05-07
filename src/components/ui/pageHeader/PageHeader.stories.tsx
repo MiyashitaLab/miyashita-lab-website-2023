@@ -16,6 +16,7 @@ type Story = StoryObj<typeof PageHeader>;
 
 export const Primary: Story = {
   args: {
+    className: "h-12",
     logo: (
       <Image
         src={"https://i.gyazo.com/805255098e26117dbc0d4ca695347b5c.png"}

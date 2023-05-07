@@ -7,7 +7,7 @@ import { dateToYYYYMMDD } from "@/lib/formatDate";
 export type ArticleCardProps = {
   className?: ComponentProps<"div">["className"];
   children?: ReactNode;
-  date: Date;
+  date?: Date;
   title: string;
   href: string;
 };
@@ -26,10 +26,12 @@ export const ArticleCard: FC<ArticleCardProps> = ({
       <WrapLink href={href}>
         <div className={"flex justify-center"}>{children}</div>
         <div className="p-2">
-          <time className={"text-sm text-gray-600"}>
-            {dateToYYYYMMDD(date)}
-          </time>
-          <p className={"text-lg line-clamp-2"}>
+          {date && (
+            <time className={"text-sm text-gray-600"}>
+              {dateToYYYYMMDD(date)}
+            </time>
+          )}
+          <p className={"line-clamp-2 text-lg"}>
             <BeautifulBreak>{title}</BeautifulBreak>
           </p>
         </div>
