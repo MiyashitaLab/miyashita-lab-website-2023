@@ -27,28 +27,28 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
           links={[
             {
               text: "ホーム",
-              href: "#home",
+              href: "/",
               highlight: true,
             },
             {
               text: "紹介",
-              href: "#about",
+              href: "/about",
             },
             {
               text: "ニュース",
-              href: "#news",
+              href: "/news",
             },
             {
               text: "論文リポジトリ",
-              href: "#paper",
+              href: "/researches",
             },
             {
               text: "プロジェクト",
-              href: "#project",
+              href: "/projects",
             },
             {
               text: "メンバー",
-              href: "#member",
+              href: "/members",
             },
           ]}
         />
@@ -59,15 +59,15 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
         links={[
           {
             text: "Copyright Notice",
-            href: "#",
+            href: "/copyright",
           },
           {
             text: "Privacy Policy",
-            href: "#",
+            href: "/privacy",
           },
           {
             text: "Contact",
-            href: "#",
+            href: "/contact",
           },
         ]}
       />

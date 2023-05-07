@@ -16,26 +16,28 @@ export default meta;
 
 type Story = StoryObj<typeof Top>;
 
-const articleCardMock = {
-  detailHref: "/news/1",
-  title: "ニュースタイトル",
-  date: new Date(),
-  thumbnail: {
-    src: "/temp/noimage.png",
-    originalWidth: 800,
-    originalHeight: 450,
-  },
-} satisfies ArticleCardData;
+const articleCardMock = (i: number) =>
+  ({
+    detailHref: `/news/${i}`,
+    title: "ニュースタイトル",
+    date: new Date(),
+    thumbnail: {
+      src: "/temp/noimage.png",
+      originalWidth: 800,
+      originalHeight: 450,
+    },
+  } satisfies ArticleCardData);
 
-const projectCardMock = {
-  detailHref: "/projects/1",
-  title: "プロジェクトタイトル",
-  thumbnail: {
-    src: "/temp/noimage.png",
-    originalWidth: 800,
-    originalHeight: 450,
-  },
-} satisfies ArticleCardData;
+const projectCardMock = (i: number) =>
+  ({
+    detailHref: `/projects/${i}`,
+    title: "プロジェクトタイトル",
+    thumbnail: {
+      src: "/temp/noimage.png",
+      originalWidth: 800,
+      originalHeight: 450,
+    },
+  } satisfies ArticleCardData);
 
 const memberCardMock = (index: number) =>
   ({
@@ -59,51 +61,48 @@ export const Primary = {
     news: {
       url: "/news",
       cards: [
-        articleCardMock,
-        articleCardMock,
-        articleCardMock,
-        articleCardMock,
+        articleCardMock(0),
+        articleCardMock(1),
+        articleCardMock(2),
+        articleCardMock(3),
         {
-          ...articleCardMock,
+          ...articleCardMock(4),
           title: "インタラクション2023に参加しました",
         },
-        articleCardMock,
-        articleCardMock,
-        articleCardMock,
+        articleCardMock(5),
+        articleCardMock(6),
+        articleCardMock(7),
       ],
     },
     paper: {
       url: "/researches",
       cards: [
-        articleCardMock,
-        articleCardMock,
-        articleCardMock,
-        articleCardMock,
+        articleCardMock(0),
         {
-          ...articleCardMock,
+          ...articleCardMock(1),
           title: "インタラクション2023に参加しました",
         },
-        articleCardMock,
-        articleCardMock,
-        articleCardMock,
+        articleCardMock(2),
+        articleCardMock(3),
+        articleCardMock(4),
       ],
     },
     project: {
       url: "/projects",
       cards: [
-        projectCardMock,
-        projectCardMock,
-        projectCardMock,
-        projectCardMock,
-        projectCardMock,
-        projectCardMock,
-        projectCardMock,
-        projectCardMock,
+        projectCardMock(0),
+        projectCardMock(1),
+        projectCardMock(2),
+        projectCardMock(3),
+        projectCardMock(4),
+        projectCardMock(5),
+        projectCardMock(6),
+        projectCardMock(7),
       ],
     },
     member: {
       url: "/members",
-      cards: [...Array(18)].map((i) => memberCardMock(i)),
+      cards: [...Array(18)].map((_, i) => memberCardMock(i)),
     },
   },
 } as const satisfies Story;

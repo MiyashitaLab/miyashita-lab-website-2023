@@ -1,7 +1,8 @@
 import { StoryObj } from "@storybook/react";
 
-import { MemberCardData, MemberCardsSection } from "./MemberCardsSection";
+import { MemberCardsSection } from "./MemberCardsSection";
 
+import { Primary } from "@/components/page/top/Top.stories";
 import { Icon } from "@/components/ui/icon";
 
 import type { Meta } from "@storybook/react";
@@ -15,24 +16,11 @@ export default meta;
 
 type Story = StoryObj<typeof MemberCardsSection>;
 
-const cardMock = (index: number) =>
-  ({
-    detailHref: `/member/${index}`,
-    name: "KIM MINJI",
-    role: "B3",
-    thumbnail: {
-      src: "/temp/400x400.png",
-      originalWidth: 400,
-      originalHeight: 400,
-    },
-  } satisfies MemberCardData);
-
 export const Member = {
   args: {
-    href: "#",
-    //連番
-    cards: [...Array(18)].map((i) => cardMock(i)),
+    href: "/member",
     headingIcon: <Icon fontStyle="solid" name={"users"} />,
     headingText: "メンバー",
+    cards: Primary.args.member.cards,
   },
 } as const satisfies Story;
