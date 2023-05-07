@@ -52,6 +52,10 @@ export const ArticleCardsSection: FC<ArticleCardsSectionProps> = ({
               src={card.thumbnail.src}
               originalWidth={card.thumbnail.originalWidth}
               originalHeight={card.thumbnail.originalHeight}
+              sizes={{
+                base: "25vw", // 1/4
+                md: "15rem", // basis-60
+              }}
               alt={""}
               container
               className={"aspect-[1.91/1] w-full"}

@@ -24,10 +24,8 @@ export type WrapImageProps = (CMSImage & {
           lg?: CSSProperties["width"]; // 1024pxまで
           xl?: CSSProperties["width"]; // 1280pxまで
         };
-      }
-    | {
-        container: true;
-        className: string;
+        container?: boolean;
+        className?: string;
       }
   );
 
@@ -38,6 +36,9 @@ export const WrapImage: FC<WrapImageProps> = ({
   originalHeight,
   ...rest
 }) => {
+  //TODO この辺もう少し整理したい
+  // コンポーネント分けちゃった方がいいかも
+
   if ("sizes" in rest) {
     const { base, sm, md, lg, xl } = rest.sizes;
     const sizes = [
@@ -51,6 +52,20 @@ export const WrapImage: FC<WrapImageProps> = ({
       .concat(`${base}`)
       .join(", ");
 
+    if (rest.container === true) {
+      return (
+        <div className={classNames(rest.className, "relative")}>
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            className={"object-contain"}
+            sizes={sizes}
+          />
+        </div>
+      );
+    }
+
     return (
       <Image
         src={src}
@@ -59,14 +74,6 @@ export const WrapImage: FC<WrapImageProps> = ({
         height={originalHeight}
         sizes={sizes}
       />
-    );
-  }
-
-  if ("container" in rest) {
-    return (
-      <div className={classNames(rest.className, "relative")}>
-        <Image src={src} alt={alt} fill className={"object-contain"} />
-      </div>
     );
   }
 
