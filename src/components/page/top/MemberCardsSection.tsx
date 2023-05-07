@@ -1,31 +1,30 @@
 import { FC, ReactElement } from "react";
 
-import { WrapImage } from "@/components/feature/wrapImage";
-import { CMSImage } from "@/components/feature/wrapImage/WrapImage";
+import { CMSImage, WrapImage } from "@/components/feature/wrapImage/WrapImage";
 import { WrapLink } from "@/components/feature/wrapLink";
 import { ReadMoreLink } from "@/components/page/top/ReadMoreLink";
-import { ArticleCard } from "@/components/ui/articleCard";
 import { CardsHeading } from "@/components/ui/cardsHeading";
+import { MemberCard } from "@/components/ui/memberCard";
 
-export type ArticleCardData = {
+export type MemberCardData = {
   detailHref: string;
-  title: string;
-  date?: Date;
+  role: string;
+  name: string;
   thumbnail: CMSImage;
 };
 
-export type ArticleCardsSectionProps = {
-  cards: readonly ArticleCardData[];
+export type MemberCardsSectionProps = {
   href: string;
+  cards: readonly MemberCardData[];
   headingIcon: ReactElement;
   headingText: string;
 };
 
-export const ArticleCardsSection: FC<ArticleCardsSectionProps> = ({
-  cards,
+export const MemberCardsSection: FC<MemberCardsSectionProps> = ({
   href,
-  headingIcon,
+  cards,
   headingText,
+  headingIcon,
 }) => {
   return (
     <section className={"mx-auto my-8"}>
@@ -35,31 +34,30 @@ export const ArticleCardsSection: FC<ArticleCardsSectionProps> = ({
           <span>{headingText}</span>
         </WrapLink>
       </CardsHeading>
-      <div
-        className={
-          "my-6 flex flex-row gap-2 overflow-x-auto lg:grid lg:grid-cols-4"
-        }
-      >
+      <div className={"my-6 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6"}>
         {cards.map((card) => (
-          <ArticleCard
+          <MemberCard
             key={card.detailHref}
-            className={"relative shrink-0 basis-60 self-stretch"}
-            date={card.date}
-            title={card.title}
+            className={"my-2"}
             href={card.detailHref}
+            name={card.name}
+            role={card.role}
           >
             <WrapImage
               src={card.thumbnail.src}
               originalWidth={card.thumbnail.originalWidth}
               originalHeight={card.thumbnail.originalHeight}
               alt={""}
-              container
-              className={"aspect-[1.91/1] w-full"}
+              sizes={{
+                sm: "33vw", // 1/3
+                md: "25vw", // 1/4
+                base: "16vw", // 1/6
+              }}
             />
-          </ArticleCard>
+          </MemberCard>
         ))}
       </div>
-      <ReadMoreLink href={href}>もっと見る</ReadMoreLink>
+      <ReadMoreLink href={href}>歴代メンバー</ReadMoreLink>
     </section>
   );
 };

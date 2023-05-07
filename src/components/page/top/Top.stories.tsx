@@ -2,6 +2,9 @@ import { StoryObj } from "@storybook/react";
 
 import { Top } from "./Top";
 
+import { ArticleCardData } from "@/components/page/top/ArticleCardsSection";
+import { MemberCardData } from "@/components/page/top/MemberCardsSection";
+
 import type { Meta } from "@storybook/react";
 
 const meta: Meta<typeof Top> = {
@@ -13,64 +16,76 @@ export default meta;
 
 type Story = StoryObj<typeof Top>;
 
-const cardMock = {
-  detailUrl: "/news/1",
+const articleCardMock = {
+  detailHref: "/news/1",
   title: "ニュースタイトル",
   date: new Date(),
   thumbnail: {
-    url: "/temp/noimage.png",
-    width: 800,
-    height: 450,
+    src: "/temp/noimage.png",
+    originalWidth: 800,
+    originalHeight: 450,
   },
-};
+} satisfies ArticleCardData;
 
 const projectCardMock = {
-  detailUrl: "/projects/1",
+  detailHref: "/projects/1",
   title: "プロジェクトタイトル",
   thumbnail: {
-    url: "/temp/noimage.png",
-    width: 800,
-    height: 450,
+    src: "/temp/noimage.png",
+    originalWidth: 800,
+    originalHeight: 450,
   },
-};
+} satisfies ArticleCardData;
+
+const memberCardMock = (index: number) =>
+  ({
+    detailHref: `/member/${index}`,
+    name: "宮下芳明",
+    role: "教員",
+    thumbnail: {
+      src: "/temp/400x400.png",
+      originalWidth: 400,
+      originalHeight: 400,
+    },
+  } satisfies MemberCardData);
 
 export const Primary = {
   args: {
     headImage: {
-      url: "/temp/homeHeader.png",
-      width: 1280,
-      height: 360,
+      src: "/temp/homeHeader.png",
+      originalWidth: 1280,
+      originalHeight: 360,
     },
     news: {
       url: "/news",
       cards: [
-        cardMock,
-        cardMock,
-        cardMock,
-        cardMock,
+        articleCardMock,
+        articleCardMock,
+        articleCardMock,
+        articleCardMock,
         {
-          ...cardMock,
+          ...articleCardMock,
           title: "インタラクション2023に参加しました",
         },
-        cardMock,
-        cardMock,
-        cardMock,
+        articleCardMock,
+        articleCardMock,
+        articleCardMock,
       ],
     },
     paper: {
       url: "/researches",
       cards: [
-        cardMock,
-        cardMock,
-        cardMock,
-        cardMock,
+        articleCardMock,
+        articleCardMock,
+        articleCardMock,
+        articleCardMock,
         {
-          ...cardMock,
+          ...articleCardMock,
           title: "インタラクション2023に参加しました",
         },
-        cardMock,
-        cardMock,
-        cardMock,
+        articleCardMock,
+        articleCardMock,
+        articleCardMock,
       ],
     },
     project: {
@@ -88,7 +103,7 @@ export const Primary = {
     },
     member: {
       url: "/members",
-      cards: [],
+      cards: [...Array(18)].map((i) => memberCardMock(i)),
     },
   },
 } as const satisfies Story;

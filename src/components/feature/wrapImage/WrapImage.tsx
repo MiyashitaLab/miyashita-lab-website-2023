@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import Image from "next/image";
 import { CSSProperties, FC } from "react";
 
@@ -23,6 +24,10 @@ export type WrapImageProps = (CMSImage & {
           lg?: CSSProperties["width"]; // 1024pxまで
           xl?: CSSProperties["width"]; // 1280pxまで
         };
+      }
+    | {
+        container: true;
+        className: string;
       }
   );
 
@@ -55,16 +60,24 @@ export const WrapImage: FC<WrapImageProps> = ({
         sizes={sizes}
       />
     );
-  } else {
-    const { maxWidth, maxHeight } = rest;
-    const { width, height } = calcImgSize(
-      maxWidth,
-      maxHeight,
-      originalWidth,
-      originalHeight
-    );
-    return <Image src={src} alt={alt} width={width} height={height} />;
   }
+
+  if ("container" in rest) {
+    return (
+      <div className={classNames(rest.className, "relative")}>
+        <Image src={src} alt={alt} fill className={"object-contain"} />
+      </div>
+    );
+  }
+
+  const { maxWidth, maxHeight } = rest;
+  const { width, height } = calcImgSize(
+    maxWidth,
+    maxHeight,
+    originalWidth,
+    originalHeight
+  );
+  return <Image src={src} alt={alt} width={width} height={height} />;
 };
 
 const calcImgSize = (

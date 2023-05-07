@@ -1,6 +1,6 @@
 import { StoryObj } from "@storybook/react";
 
-import { ArticleCardsSection } from "./ArticleCardsSection";
+import { ArticleCardData, ArticleCardsSection } from "./ArticleCardsSection";
 
 import { Icon } from "@/components/ui/icon";
 
@@ -16,15 +16,15 @@ export default meta;
 type Story = StoryObj<typeof ArticleCardsSection>;
 
 const cardMock = {
-  detailUrl: "/news/1",
+  detailHref: "/news/1",
   title: "ニュースタイトル",
   date: new Date(),
   thumbnail: {
-    url: "/temp/noimage.png",
-    width: 384,
-    height: 216,
+    src: "/temp/1200x630.png",
+    originalWidth: 1200,
+    originalHeight: 630,
   },
-};
+} satisfies ArticleCardData;
 
 export const News: Story = {
   args: {
@@ -41,33 +41,29 @@ export const News: Story = {
       {
         ...cardMock,
         thumbnail: {
-          url: "/temp/1080x1080.png",
-          width: 1080,
-          height: 1080,
+          src: "/temp/1080x1080.png",
+          originalWidth: 1080,
+          originalHeight: 1080,
         },
       },
       {
         ...cardMock,
         thumbnail: {
-          url: "/temp/1280x720.png",
-          width: 1280,
-          height: 720,
+          src: "/temp/1280x720.png",
+          originalWidth: 1280,
+          originalHeight: 720,
         },
       },
       {
         ...cardMock,
         thumbnail: {
-          url: "/temp/1280x960.png",
-          width: 1280,
-          height: 960,
+          src: "/temp/1280x960.png",
+          originalWidth: 1280,
+          originalHeight: 960,
         },
       },
     ],
-    headingContent: (
-      <>
-        <Icon fontStyle="solid" name={"book"} />
-        <span>論文リポジトリ</span>
-      </>
-    ),
+    headingIcon: <Icon fontStyle="solid" name={"book"} />,
+    headingText: "論文リポジトリ",
   },
 };

@@ -1,60 +1,40 @@
-import Image from "next/image";
 import { FC } from "react";
 
-import { ArticleCardsSection } from "@/components/page/top/ArticleCardsSection";
+import { CMSImage, WrapImage } from "@/components/feature/wrapImage/WrapImage";
+import {
+  ArticleCardData,
+  ArticleCardsSection,
+} from "@/components/page/top/ArticleCardsSection";
+import {
+  MemberCardData,
+  MemberCardsSection,
+} from "@/components/page/top/MemberCardsSection";
 import { ReadMoreLink } from "@/components/page/top/ReadMoreLink";
 import { Icon } from "@/components/ui/icon";
-
-//TODO 別の所に移す
-type CMSImage = {
-  url: string;
-  width: number;
-  height: number;
-};
-
-type CardProp = {
-  detailUrl: string;
-  title: string;
-  date: Date;
-  thumbnail: CMSImage;
-};
-
-type ProjectCardProp = {
-  detailUrl: string;
-  title: string;
-  thumbnail: CMSImage;
-};
-
-type MemberCardProp = {
-  detailUrl: string;
-  name: string;
-  thumbnail: CMSImage;
-  role: string;
-};
 
 export type TopProps = {
   headImage: CMSImage;
   news:
     | {
-        cards: readonly CardProp[];
+        cards: readonly ArticleCardData[];
         url: string;
       }
     | undefined;
   paper:
     | {
-        cards: readonly CardProp[];
+        cards: readonly ArticleCardData[];
         url: string;
       }
     | undefined;
   project:
     | {
-        cards: readonly ProjectCardProp[];
+        cards: readonly ArticleCardData[];
         url: string;
       }
     | undefined;
   member:
     | {
-        cards: readonly MemberCardProp[];
+        cards: readonly MemberCardData[];
         url: string;
       }
     | undefined;
@@ -70,15 +50,15 @@ export const Top: FC<TopProps> = ({
   return (
     <>
       <div>
-        <Image
-          src={headImage.url}
+        <WrapImage
+          {...headImage}
           alt={"Home header"}
-          width={headImage.width}
-          height={headImage.height}
-          sizes={"100vw"}
+          sizes={{
+            base: "100vw",
+          }}
         />
       </div>
-      <div className={"mx-4"}>
+      <div className={"mx-4 xl:mx-0"}>
         <section className={"mx-auto my-6 max-w-screen-lg text-center"}>
           <h1 className={"my-2 break-keep text-2xl"}>
             明治大学 <wbr />
@@ -95,40 +75,32 @@ export const Top: FC<TopProps> = ({
           <ArticleCardsSection
             cards={news.cards}
             href={news.url}
-            headingContent={
-              <>
-                <Icon fontStyle="solid" name={"newspaper"} className={"px-2"} />
-                <span>ニュース</span>
-              </>
-            }
+            headingIcon={<Icon fontStyle="solid" name={"newspaper"} />}
+            headingText={"ニュース"}
           />
         )}
         {paper && (
           <ArticleCardsSection
             cards={paper.cards}
             href={paper.url}
-            headingContent={
-              <>
-                <Icon fontStyle="solid" name={"book"} className={"px-2"} />
-                <span>論文リポジトリ</span>
-              </>
-            }
+            headingIcon={<Icon fontStyle="solid" name={"book"} />}
+            headingText={"論文リポジトリ"}
           />
         )}
         {project && (
           <ArticleCardsSection
             cards={project.cards}
             href={project.url}
-            headingContent={
-              <>
-                <Icon
-                  fontStyle="solid"
-                  name={"diagram-project"}
-                  className={"px-2"}
-                />
-                <span>プロジェクト</span>
-              </>
-            }
+            headingIcon={<Icon fontStyle="solid" name={"diagram-project"} />}
+            headingText={"プロジェクト"}
+          />
+        )}
+        {member && (
+          <MemberCardsSection
+            cards={member.cards}
+            href={member.url}
+            headingIcon={<Icon fontStyle="solid" name={"users"} />}
+            headingText={"メンバー"}
           />
         )}
       </div>

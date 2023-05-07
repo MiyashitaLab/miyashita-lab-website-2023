@@ -21,33 +21,29 @@ export const MemberCard: FC<MemberCardProps> = ({
   isLongName = false,
 }) => {
   return (
-    <div className={`overflow-hidden ${className}`}>
+    <div className={`${className}`}>
       <WrapLink href={href}>
-        <div className={"group p-2"}>
+        <div className={"group"}>
           <div
             className={
-              "flex justify-center overflow-hidden rounded-md shadow-lg transition group-hover:scale-105"
+              "mx-2 flex justify-center overflow-hidden rounded-md shadow-lg transition group-hover:scale-105"
             }
           >
             {children}
           </div>
-          <div className={"mt-2 py-2 text-gray-800"}>
-            <p className={"text-center text-sm"}>{role}</p>
-            <div
-              className={`mt-1 text-center text-gray-800 ${
-                isLongName ? "text-sm" : "text-xl"
-              }`}
-            >
-              <span className={"border-b border-gray-400 py-1"}>
+          <div className={"mt-1 py-1 text-center text-gray-800 md:mt-2 "}>
+            <p className={"text-xs md:text-sm"}>{role}</p>
+            <p className={"mt-0.5 text-xs sm:text-base md:mt-1"}>
+              <span className={"border-b border-gray-400 "}>
                 <span>{name}</span>
                 <Icon
                   fontStyle={"solid"}
                   name={"angle-right"}
                   size={"xs"}
-                  className={"p-2"}
+                  className={"px-1"}
                 />
               </span>
-            </div>
+            </p>
           </div>
         </div>
       </WrapLink>
