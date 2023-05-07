@@ -12,8 +12,9 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
   //TODO 画像は仮で入れてある
   return (
     <div>
-      <div className={"fixed top-0 z-50 h-12 w-full shadow"}>
+      <div className={"fixed top-0 z-50 h-12 w-full"}>
         <PageHeader
+          className={"shadow"}
           logo={
             <Image
               src={"/temp/logo.png"}
