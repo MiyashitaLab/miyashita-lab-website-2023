@@ -11,7 +11,7 @@ export const CardsHeading: FC<CardsHeadingProps> = ({ children, href }) => {
   const wrapped = (
     <span
       className={
-        "space-x-2 border-b-2 border-cyan-500 px-2 py-1 text-4xl font-bold"
+        "space-x-2 border-b-2 border-cyan-500 px-2 py-1 text-3xl font-semibold"
       }
     >
       {children}
