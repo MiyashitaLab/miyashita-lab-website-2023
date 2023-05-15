@@ -8,7 +8,7 @@ import { Icon } from "@/components/ui/icon";
 import type { Meta } from "@storybook/react";
 
 const meta: Meta<typeof ArticleCardsSection> = {
-  title: "Top/ArticleCardsSection",
+  title: "Pages/Top/ArticleCardsSection",
   component: ArticleCardsSection,
 };
 

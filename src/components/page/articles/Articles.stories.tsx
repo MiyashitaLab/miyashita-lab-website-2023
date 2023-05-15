@@ -9,7 +9,7 @@ import { PaginationNav } from "@/components/ui/paginationNav";
 import type { Meta } from "@storybook/react";
 
 const meta: Meta<typeof Articles> = {
-  title: "Articles",
+  title: "Pages/Articles",
   component: Articles,
 };
 

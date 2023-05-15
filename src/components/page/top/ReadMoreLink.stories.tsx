@@ -5,7 +5,7 @@ import { ReadMoreLink } from "./ReadMoreLink";
 import type { Meta } from "@storybook/react";
 
 const meta: Meta<typeof ReadMoreLink> = {
-  title: "Top/ReadMoreLink",
+  title: "Pages/Top/ReadMoreLink",
   component: ReadMoreLink,
 };
 
