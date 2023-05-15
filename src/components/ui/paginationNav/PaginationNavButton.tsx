@@ -21,11 +21,12 @@ export const PaginationNavButton = ({
       href={href}
       aria-current={current ? "page" : undefined}
       className={classNames(
-        "block w-full text-center border border-gray-300 bg-white px-1 py-2 leading-tight text-gray-500",
+        "block w-full text-center border border-gray-300 px-1 py-2 leading-tight ",
         className,
         {
-          "hover:bg-gray-100 hover:text-gray-700": href !== undefined,
-          "text-cyan-700 bg-cyan-100 hover:text-cyan-800 hover:bg-cyan-200":
+          "text-gray-500 bg-white hover:bg-gray-100 hover:text-gray-700":
+            !current && href !== undefined,
+          "text-cyan-700 bg-cyan-50 hover:text-cyan-800 hover:bg-cyan-100":
             current,
         }
       )}
