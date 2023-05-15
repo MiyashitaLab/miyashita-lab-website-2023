@@ -8,7 +8,7 @@ import { MemberCardData } from "@/components/page/top/MemberCardsSection";
 import type { Meta } from "@storybook/react";
 
 const meta: Meta<typeof Top> = {
-  title: "Top",
+  title: "Pages/Top",
   component: Top,
 };
 
