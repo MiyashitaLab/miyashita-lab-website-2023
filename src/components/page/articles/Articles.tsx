@@ -22,7 +22,7 @@ export const Articles: FC<ArticlesProps> = ({
   pagination,
 }) => {
   return (
-    <div>
+    <div className={"mx-4 xl:mx-0"}>
       <CardsHeading>
         <WrapLink href={href}>
           <span className={"px-2"}>{headingIcon}</span>
