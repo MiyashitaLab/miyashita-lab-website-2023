@@ -3,12 +3,12 @@ import { FC } from "react";
 import { WrapLink } from "@/components/feature/wrapLink";
 import { Icon } from "@/components/ui/icon";
 
-type ReadMoreLinkProps = {
+export type PageLinkProps = {
   children: string;
   href: string;
 };
 
-export const ReadMoreLink: FC<ReadMoreLinkProps> = ({ children, href }) => {
+export const PageLink: FC<PageLinkProps> = ({ children, href }) => {
   return (
     <div className={"text-center"}>
       <WrapLink

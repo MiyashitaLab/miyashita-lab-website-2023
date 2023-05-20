@@ -10,8 +10,8 @@ import {
   MemberCardData,
   MemberCardsSection,
 } from "@/components/page/top/MemberCardsSection";
-import { ReadMoreLink } from "@/components/page/top/ReadMoreLink";
 import { Icon } from "@/components/ui/icon";
+import { PageLink } from "src/components/ui/pageLink";
 
 export type TopProps = {
   headImage: CMSImage;
@@ -72,7 +72,7 @@ export const Top: FC<TopProps> = ({
               宮下研究室では、音楽・映像・3DCGアニメーション、3Dプリンタ、ゲームやVR、プログラミングも味覚も全て「表現」であると捉え、人間の表現能力を拡張する「インストゥルメント」として、コンピュータのあり方を考えています。
             </BeautifulBreak>
           </p>
-          <ReadMoreLink href={"/about"}>研究室について</ReadMoreLink>
+          <PageLink href={"/about"}>研究室について</PageLink>
         </section>
         {news && (
           <ArticleCardsSection

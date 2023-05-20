@@ -2,8 +2,8 @@ import { FC, ReactElement } from "react";
 
 import { CMSImage, WrapImage } from "@/components/feature/wrapImage/WrapImage";
 import { WrapLink } from "@/components/feature/wrapLink";
-import { ReadMoreLink } from "@/components/page/top/ReadMoreLink";
 import { CardsHeading } from "@/components/ui/cardsHeading";
+import { PageLink } from "src/components/ui/pageLink";
 import { MemberCard } from "@/components/ui/memberCard";
 
 export type MemberCardData = {
@@ -57,7 +57,7 @@ export const MemberCardsSection: FC<MemberCardsSectionProps> = ({
           </MemberCard>
         ))}
       </div>
-      <ReadMoreLink href={href}>歴代メンバー</ReadMoreLink>
+      <PageLink href={href}>歴代メンバー</PageLink>
     </section>
   );
 };
