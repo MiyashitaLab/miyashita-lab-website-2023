@@ -8,7 +8,7 @@ export type ArticleHeaderProps = {
   className?: ComponentProps<"div">["className"];
   type: "news" | "project";
   children: string;
-  date: Date;
+  date?: Date;
 };
 
 export const ArticleHeader: FC<ArticleHeaderProps> = ({
@@ -31,10 +31,12 @@ export const ArticleHeader: FC<ArticleHeaderProps> = ({
       <h1 className={"text-xl font-bold md:text-2xl"}>
         <BeautifulBreak>{children}</BeautifulBreak>
       </h1>
-      <div className={"mt-2 text-sm"}>
-        {/* https://developer.mozilla.org/ja/docs/Web/HTML/Element/time#%E5%A6%A5%E5%BD%93%E3%81%AA_datetime_%E5%80%A4 */}
-        <time dateTime={dateToYYYYMMDD(date)}>{dateToYYYYMMDD(date)}</time>
-      </div>
+      {date && (
+        <div className={"mt-2 text-sm"}>
+          {/* https://developer.mozilla.org/ja/docs/Web/HTML/Element/time#%E5%A6%A5%E5%BD%93%E3%81%AA_datetime_%E5%80%A4 */}
+          <time dateTime={dateToYYYYMMDD(date)}>{dateToYYYYMMDD(date)}</time>
+        </div>
+      )}
     </header>
   );
 };
