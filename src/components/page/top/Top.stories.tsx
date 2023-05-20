@@ -4,6 +4,7 @@ import { Top } from "./Top";
 
 import { ArticleCardData } from "@/components/page/top/ArticleCardsSection";
 import { MemberCardData } from "@/components/page/top/MemberCardsSection";
+import { Layout } from "@/components/ui/layout";
 
 import type { Meta } from "@storybook/react";
 
@@ -105,4 +106,9 @@ export const Primary = {
       cards: [...Array(18)].map((_, i) => memberCardMock(i)),
     },
   },
+  render: (args) => (
+    <Layout>
+      <Top {...args} />
+    </Layout>
+  ),
 } as const satisfies Story;

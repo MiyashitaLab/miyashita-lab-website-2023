@@ -47,7 +47,7 @@ export const Members: FC<MembersProps> = ({
   };
 
   return (
-    <div className={"mx-auto my-6 max-w-screen-lg text-center"}>
+    <div className={"mx-auto my-6 text-center"}>
       <section className={"mx-auto my-8"}>
         <CardsHeading>{enrolledCardsHeading}</CardsHeading>
         {renderCards(enrolledCards)}

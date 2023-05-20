@@ -2,6 +2,8 @@ import { StoryObj } from "@storybook/react";
 
 import { General } from "./General";
 
+import { Layout } from "@/components/ui/layout";
+
 import type { Meta } from "@storybook/react";
 
 const meta: Meta<typeof General> = {
@@ -21,4 +23,9 @@ export const Primary: Story = {
 文章
 `,
   },
+  render: (args) => (
+    <Layout>
+      <General {...args} />
+    </Layout>
+  ),
 };
