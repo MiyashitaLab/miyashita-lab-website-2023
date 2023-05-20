@@ -3,8 +3,8 @@ import { FC, ReactElement } from "react";
 import { CMSImage, WrapImage } from "@/components/feature/wrapImage/WrapImage";
 import { WrapLink } from "@/components/feature/wrapLink";
 import { CardsHeading } from "@/components/ui/cardsHeading";
-import { PageLink } from "src/components/ui/pageLink";
 import { MemberCard } from "@/components/ui/memberCard";
+import { PageLink } from "src/components/ui/pageLink";
 
 export type MemberCardData = {
   detailHref: string;
@@ -57,7 +57,9 @@ export const MemberCardsSection: FC<MemberCardsSectionProps> = ({
           </MemberCard>
         ))}
       </div>
-      <PageLink href={href}>歴代メンバー</PageLink>
+      <PageLink href={href} className={"text-center"}>
+        歴代メンバー
+      </PageLink>
     </section>
   );
 };

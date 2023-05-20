@@ -63,7 +63,9 @@ export const ArticleCardsSection: FC<ArticleCardsSectionProps> = ({
           </ArticleCard>
         ))}
       </div>
-      <PageLink href={href}>もっと見る</PageLink>
+      <PageLink href={href} className={"text-center"}>
+        もっと見る
+      </PageLink>
     </section>
   );
 };
