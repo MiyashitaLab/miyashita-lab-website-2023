@@ -2,9 +2,9 @@ import { FC, ReactElement } from "react";
 
 import { CMSImage, WrapImage } from "@/components/feature/wrapImage/WrapImage";
 import { WrapLink } from "@/components/feature/wrapLink";
-import { ReadMoreLink } from "@/components/page/top/ReadMoreLink";
 import { CardsHeading } from "@/components/ui/cardsHeading";
 import { MemberCard } from "@/components/ui/memberCard";
+import { PageLink } from "src/components/ui/pageLink";
 
 export type MemberCardData = {
   detailHref: string;
@@ -57,7 +57,9 @@ export const MemberCardsSection: FC<MemberCardsSectionProps> = ({
           </MemberCard>
         ))}
       </div>
-      <ReadMoreLink href={href}>歴代メンバー</ReadMoreLink>
+      <PageLink href={href} className={"text-center"}>
+        歴代メンバー
+      </PageLink>
     </section>
   );
 };

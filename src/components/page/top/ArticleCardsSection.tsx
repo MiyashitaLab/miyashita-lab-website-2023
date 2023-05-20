@@ -3,9 +3,9 @@ import { FC, ReactElement } from "react";
 import { WrapImage } from "@/components/feature/wrapImage";
 import { CMSImage } from "@/components/feature/wrapImage/WrapImage";
 import { WrapLink } from "@/components/feature/wrapLink";
-import { ReadMoreLink } from "@/components/page/top/ReadMoreLink";
 import { ArticleCard } from "@/components/ui/articleCard";
 import { CardsHeading } from "@/components/ui/cardsHeading";
+import { PageLink } from "@/components/ui/pageLink/";
 
 export type ArticleCardData = {
   detailHref: string;
@@ -63,7 +63,9 @@ export const ArticleCardsSection: FC<ArticleCardsSectionProps> = ({
           </ArticleCard>
         ))}
       </div>
-      <ReadMoreLink href={href}>もっと見る</ReadMoreLink>
+      <PageLink href={href} className={"text-center"}>
+        もっと見る
+      </PageLink>
     </section>
   );
 };
