@@ -1,7 +1,8 @@
 import "../src/styles/globals.css";
 import { AppWrapper } from "@/pages/_app";
+import { Preview } from "@storybook/react";
 
-export const parameters = {
+export const parameters: Preview["parameters"] = {
   backgrounds: {
     default: "light",
   },
@@ -12,9 +13,10 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  layout: "fullscreen",
 };
 
-export const decorators = [
+export const decorators: Preview["decorators"] = [
   (Story: () => JSX.Element) => (
     <AppWrapper>
       <Story />
