@@ -1,0 +1,51 @@
+name: Generate Contentful Schema
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: npm
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        id: node_modules_cache_id
+        with:
+          path: |
+            ${{ github.workspace }}/node_modules
+            key: node_modules-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies
+        if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Run contentful-types
+        run: npm run generate-contentful-schema
+        env:
+          CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
+          CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
+
+      - name: Set up git user
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "action@github.com"
+
+      - name: Commit schema changes then create pull request
+        run: |
+          export BRANCH_NAME="update-contentful-schema-${{ github.run_number }}"
+          git checkout -b $BRANCH_NAME
+          git add src
+          git commit -m "Update Contentful schema"
+          git push origin $BRANCH_NAME
+          gh pr create --title "Update Contentful schema" --body "Update Contentful schema" --base main --head $BRANCH_NAME -w
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
