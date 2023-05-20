@@ -45,7 +45,7 @@ jobs:
           git add src
           git commit -m "Update Contentful schema"
           git push origin $BRANCH_NAME
-          gh pr create --title "Update Contentful schema" --body "Update Contentful schema" --base main --head $BRANCH_NAME -w
+          gh pr create --title "Update Contentful schema" --body "Update Contentful schema" --base main --head $BRANCH_NAME
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
