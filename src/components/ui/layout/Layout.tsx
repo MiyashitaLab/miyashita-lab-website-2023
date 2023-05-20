@@ -11,7 +11,7 @@ export type LayoutProps = {
 export const Layout: FC<LayoutProps> = ({ children }) => {
   //TODO 画像は仮で入れてある
   return (
-    <div>
+    <div className={"bg-stone-50"}>
       <div className={"fixed top-0 z-50 h-12 w-full"}>
         <PageHeader
           className={"shadow"}

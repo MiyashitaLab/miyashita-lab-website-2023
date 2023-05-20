@@ -3,6 +3,7 @@ import { StoryObj } from "@storybook/react";
 import { Members } from "./Members";
 
 import { Primary as TopPrimary } from "@/components/page/top/Top.stories";
+import { Layout } from "@/components/ui/layout";
 
 import type { Meta } from "@storybook/react";
 
@@ -22,4 +23,9 @@ export const Primary: Story = {
     graduatedCardsHeading: "歴代メンバー",
     graduatedCards: TopPrimary.args.member.cards,
   },
+  render: (args) => (
+    <Layout>
+      <Members {...args} />
+    </Layout>
+  ),
 };
