@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   check:
     name: Test
@@ -18,22 +22,21 @@ jobs:
           node-version: 18
           cache: npm
 
-      - uses: actions/cache@v3
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        id: node_modules_cache_id
         with:
           path: |
-            ~/.npm
-            ${{ github.workspace }}/.next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
-          restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+            ${{ github.workspace }}/node_modules
+          key: node_modules-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install dependencies
-        run: npm install
+        if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
+        run: npm ci
 
       - name: Run code lint
         run: npm run lint
 
       - name: Run code tests
         run: npm run test
-
 
