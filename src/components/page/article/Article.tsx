@@ -4,7 +4,6 @@ import {
   ArticleHeader,
   ArticleHeaderProps,
 } from "@/components/ui/articleHeader";
-import { CardsHeading } from "@/components/ui/cardsHeading";
 import { MarkdownContent } from "@/components/ui/markdownContent";
 
 export type ArticleProps = {
