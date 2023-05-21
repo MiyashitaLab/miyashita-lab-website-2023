@@ -45,7 +45,7 @@ export interface TypeNewsFields {
  * @type {TypeNewsSkeleton}
  * @author 4P33ZffjyItYHnkcNRtQih
  * @since 2023-05-17T15:04:45.111Z
- * @version 3
+ * @version 5
  */
 export type TypeNewsSkeleton = EntrySkeletonType<TypeNewsFields, "news">;
 /**
@@ -54,6 +54,6 @@ export type TypeNewsSkeleton = EntrySkeletonType<TypeNewsFields, "news">;
  * @type {TypeNews}
  * @author 4P33ZffjyItYHnkcNRtQih
  * @since 2023-05-17T15:04:45.111Z
- * @version 3
+ * @version 5
  */
 export type TypeNews<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeNewsSkeleton, Modifiers, Locales>;
