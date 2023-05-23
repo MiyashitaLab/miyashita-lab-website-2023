@@ -10,7 +10,7 @@
     "test": "vitest",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "generate-contentful-schema": "cf-content-types-generator --spaceId $CONTENTFUL_SPACE_ID --token $CONTENTFUL_ACCESS_TOKEN -X --jsdoc --out src/contentful/schema"
+    "generate-contentful-schema": "cf-content-types-generator --spaceId $CONTENTFUL_SPACE_ID --token $CONTENTFUL_ACCESS_TOKEN --v10 --out src/models/contentful"
   },
   "dependencies": {
     "@types/node": "18.15.11",
