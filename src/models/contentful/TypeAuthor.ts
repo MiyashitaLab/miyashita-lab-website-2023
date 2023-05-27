@@ -1,7 +1,7 @@
 import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
 
 export interface TypeAuthorFields {
-    fullname: EntryFieldTypes.Symbol;
+    fullName: EntryFieldTypes.Symbol;
     familyNameJa: EntryFieldTypes.Symbol;
     lastNameJa: EntryFieldTypes.Symbol;
     familyNameEn: EntryFieldTypes.Symbol;
