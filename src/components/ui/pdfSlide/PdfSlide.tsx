@@ -12,6 +12,7 @@ import { Document, Page, pdfjs } from "react-pdf";
 
 import { SlideControlBar } from "@/components/ui/pdfSlide/SlideControlBar";
 import { useMeasure } from "@/lib/hook/useMeasure";
+import { resizeToFitContainer } from "@/lib/resizeToFitContianer";
 
 // /publicに置いても良いけどめんどかったので
 const cMapUrl = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`;
@@ -21,9 +22,11 @@ pdfjs.GlobalWorkerOptions.workerSrc = pdfJsWorker;
 
 export type PdfSlideProps = {
   pdfUrl: string;
+  width: number | "full" | "noLimit";
+  height: number | "full" | "noLimit";
 };
 
-export const PdfSlide: FC<PdfSlideProps> = ({ pdfUrl }) => {
+export const PdfSlide: FC<PdfSlideProps> = ({ pdfUrl, width, height }) => {
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [numPages, setNumPages] = useState<number>(0);
   const [initialPageLoaded, setInitialPageLoaded] = useState<boolean>(false);
@@ -105,10 +108,20 @@ export const PdfSlide: FC<PdfSlideProps> = ({ pdfUrl }) => {
     turnToPrevPage,
   ]);
 
-  const [ref, { width }] = useMeasure<HTMLDivElement>();
+  const [ref, { width: containerWidth, height: containerHeight }] =
+    useMeasure<HTMLDivElement>();
+
+  const [pdfPageSizes, setPdfPageSizes] = useState<{
+    [key: number]: {
+      width: number;
+      height: number;
+      originalWidth: number;
+      originalHeight: number;
+    };
+  }>({});
 
   return (
-    <div className={"max-w-lg"} ref={ref}>
+    <div className={"h-full w-full"} ref={ref}>
       <Document
         file={pdfUrl}
         options={{
@@ -121,17 +134,43 @@ export const PdfSlide: FC<PdfSlideProps> = ({ pdfUrl }) => {
         }}
       >
         {Array.from(new Array(numPages), (_, index) => {
+          //Pageコンポーネントはwidthとheightどちらかしか指定できないので、こんなのが必要
+
+          const settingSize = (size: number | "full" | "noLimit") => {
+            if (size === "full") return containerWidth;
+            if (size === "noLimit") return 100000;
+            return size;
+          };
+
+          const { width: fitWidth } = resizeToFitContainer({
+            maxWidth: settingSize(width),
+            maxHeight: settingSize(height),
+            width: pdfPageSizes[index]?.originalWidth ?? 1,
+            height: pdfPageSizes[index]?.originalHeight ?? 1,
+          });
+
           // 2ページ以上離れている場合は非表示にする
           // 全ページ見たら結局変わらないが、初回ロード時のメモリ節約にはなるはず
           if (2 < Math.abs(currentPage - index)) return undefined;
           return (
             <Page
               key={index}
-              className={classNames({
+              className={classNames("flex items-center justify-center", {
                 hidden: index !== currentPage,
               })}
               canvasRef={pageRefs.current[index]}
-              width={width}
+              onLoadSuccess={(page) => {
+                setPdfPageSizes((prev) => ({
+                  ...prev,
+                  [index]: {
+                    width: page.width,
+                    height: page.height,
+                    originalWidth: page.originalWidth,
+                    originalHeight: page.originalHeight,
+                  },
+                }));
+              }}
+              width={fitWidth}
               pageIndex={index}
               renderTextLayer={false}
               renderAnnotationLayer={false}
