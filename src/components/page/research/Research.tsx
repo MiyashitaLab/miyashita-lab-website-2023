@@ -25,14 +25,13 @@ export type ResearchProps = {
     publishUrl: string;
     date: Date;
     journalTitle: string;
-    volume: string;
-    issue: string;
-    firstPage: string;
-    lastPage: string;
-    copyrightHolder: string;
+    volume?: string;
+    issue?: string;
+    pages?: string;
+    copyrightHolder?: string;
     quotation: string;
   };
-  pdfUrl: string;
+  pdfUrl?: string;
   // TODO hero
 };
 
@@ -96,10 +95,13 @@ export const Research: FC<ResearchProps> = ({
           <div className={"flex flex-none items-start pl-4"}>
             <WrapLink
               href={pdfUrl}
-              className={
-                "flex h-8 items-center rounded bg-red-700 px-2 text-gray-100"
-              }
-              target={"_blank"}
+              className={classNames(
+                "flex h-8 items-center rounded bg-red-700 px-2 text-gray-100",
+                {
+                  "opacity-50": !pdfUrl,
+                }
+              )}
+              target={pdfUrl ? "_blank" : undefined}
             >
               <Icon className={"p-1"} fontStyle={"solid"} name={"file-lines"} />
               <span className={"px-1"}>PDF</span>
@@ -133,11 +135,15 @@ export const Research: FC<ResearchProps> = ({
               <span>{publicationInfo.journalTitle}</span>
             </InfoItem>
             <div className={"flex flex-col gap-x-4 sm:flex-row sm:flex-wrap"}>
-              <InfoItem label={"Volume:"}>{publicationInfo.volume}</InfoItem>
-              <InfoItem label={"Issue:"}>{publicationInfo.issue}</InfoItem>
-              <InfoItem
-                label={"Pages:"}
-              >{`${publicationInfo.firstPage}-${publicationInfo.lastPage}`}</InfoItem>
+              {publicationInfo.volume && (
+                <InfoItem label={"Volume:"}>{publicationInfo.volume}</InfoItem>
+              )}
+              {publicationInfo.issue && (
+                <InfoItem label={"Issue:"}>{publicationInfo.issue}</InfoItem>
+              )}
+              {publicationInfo.pages && (
+                <InfoItem label={"Pages:"}>{publicationInfo.pages}</InfoItem>
+              )}
             </div>
             <InfoItem label={"Source URL:"}>
               <WrapLink href={publicationInfo.publishUrl}>

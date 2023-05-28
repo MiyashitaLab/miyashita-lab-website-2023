@@ -47,8 +47,7 @@ export const Primary: Story = {
       journalTitle: "研究報告ヒューマンコンピュータインタラクション（HCI）",
       volume: "2023-HCI-201",
       issue: "11",
-      firstPage: "1",
-      lastPage: "8",
+      pages: "1-8",
       copyrightHolder: "情報処理学会",
       quotation:
         "大塲洋介，宮下芳明．ノッチの左右でワープするカーソルの効果の検証，研究報告ヒューマンコンピュータインタラクション（HCI），Vol.2023-HCI-201，Issue.11，pp.1-8，2023．",
