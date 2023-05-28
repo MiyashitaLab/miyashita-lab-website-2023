@@ -10,6 +10,7 @@ export type CMSImage = {
 
 export type WrapImageProps = (CMSImage & {
   alt: string;
+  className?: string;
 }) &
   (
     | {
@@ -25,7 +26,6 @@ export type WrapImageProps = (CMSImage & {
           xl?: CSSProperties["width"]; // 1280pxまで
         };
         container?: boolean;
-        className?: string;
       }
   );
 
@@ -68,6 +68,7 @@ export const WrapImage: FC<WrapImageProps> = ({
 
     return (
       <Image
+        className={rest.className}
         src={src}
         alt={alt}
         width={originalWidth}
@@ -84,7 +85,15 @@ export const WrapImage: FC<WrapImageProps> = ({
     originalWidth,
     originalHeight
   );
-  return <Image src={src} alt={alt} width={width} height={height} />;
+  return (
+    <Image
+      className={rest.className}
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+    />
+  );
 };
 
 const calcImgSize = (
