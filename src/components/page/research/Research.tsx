@@ -2,16 +2,49 @@ import classNames from "classnames";
 import { FC, useCallback, useEffect, useRef, useState } from "react";
 
 import { BeautifulBreak } from "@/components/feature/beautifulBreak";
+import { CMSImage } from "@/components/feature/wrapImage/WrapImage";
 import { WrapLink } from "@/components/feature/wrapLink";
 import { AuthorTag } from "@/components/page/research/AuthorTag";
 import { InfoItem } from "@/components/page/research/InfoItem";
 import { Icon } from "@/components/ui/icon";
+import { dateToYYYYMMDD } from "@/lib/formatDate";
 
 export type ResearchProps = {
-  //write your props here
+  title: string;
+  abstract: string;
+  authorList: {
+    name: string;
+    thumbnail: CMSImage;
+  }[];
+  paperType: {
+    en: string;
+    ja: string;
+  };
+  keywords: string[];
+  publicationInfo: {
+    publishUrl: string;
+    date: Date;
+    journalTitle: string;
+    volume: string;
+    issue: string;
+    firstPage: string;
+    lastPage: string;
+    copyrightHolder: string;
+    quotation: string;
+  };
+  pdfUrl: string;
+  // TODO hero
 };
 
-export const Research: FC<ResearchProps> = ({}) => {
+export const Research: FC<ResearchProps> = ({
+  title,
+  abstract,
+  authorList,
+  paperType,
+  keywords,
+  publicationInfo,
+  pdfUrl,
+}) => {
   const [showCite, setShowCite] = useState(false);
 
   const citeContainerRef = useRef<HTMLDivElement>(null);
@@ -41,35 +74,24 @@ export const Research: FC<ResearchProps> = ({}) => {
       {/* TODO HERO */}
       <div className={"mx-4"}>
         <div className={"font-semibold"}>
-          <span lang={"ja"}>研究報告</span>
+          <span lang={"ja"}>{paperType.ja}</span>
           <span lang={"en"} className={"pl-2"}>
-            Conference Proceedings
+            {paperType.en}
           </span>
         </div>
         <h1 className={"py-2 text-3xl font-semibold"}>
-          <BeautifulBreak segmenter={"word"}>
-            ノッチの左右でワープするカーソルの効果の検証
-          </BeautifulBreak>
+          <BeautifulBreak segmenter={"word"}>{title}</BeautifulBreak>
         </h1>
 
         <div className={"flex py-2"}>
           <div className={"flex flex-1 gap-2"}>
-            <AuthorTag
-              name={"大塲 洋介"}
-              thumbnail={{
-                src: "/temp/author-default.png",
-                originalWidth: 300,
-                originalHeight: 300,
-              }}
-            />
-            <AuthorTag
-              name={"宮下 芳明"}
-              thumbnail={{
-                src: "/temp/author-default.png",
-                originalWidth: 300,
-                originalHeight: 300,
-              }}
-            />
+            {authorList.map((author) => (
+              <AuthorTag
+                key={author.name}
+                name={author.name}
+                thumbnail={author.thumbnail}
+              />
+            ))}
           </div>
           <div className={"flex flex-none items-start pl-4"}>
             <button className={"h-8 rounded bg-red-700 px-2 text-gray-100"}>
@@ -92,9 +114,7 @@ export const Research: FC<ResearchProps> = ({}) => {
               ref={citeTextareaRef}
               className={"h-full w-full resize-none border-0 bg-transparent"}
               readOnly
-              value={
-                "大塲洋介，宮下芳明．ノッチの左右でワープするカーソルの効果の検証，研究報告ヒューマンコンピュータインタラクション（HCI），Vol.2023-HCI-201，Issue.11，pp.1-8，2023．"
-              }
+              value={publicationInfo.quotation}
             />
           </div>
           <div
@@ -104,17 +124,19 @@ export const Research: FC<ResearchProps> = ({}) => {
             ref={citeInfoRef}
           >
             <InfoItem label={"Journal: "}>
-              <span>研究報告ヒューマンコンピュータインタラクション（HCI）</span>
+              <span>{publicationInfo.journalTitle}</span>
             </InfoItem>
             <div className={"flex flex-col gap-x-4 sm:flex-row sm:flex-wrap"}>
-              <InfoItem label={"Volume:"}>2023-HCI-201</InfoItem>
-              <InfoItem label={"Issue:"}>11</InfoItem>
-              <InfoItem label={"Pages:"}>1-8</InfoItem>
+              <InfoItem label={"Volume:"}>{publicationInfo.volume}</InfoItem>
+              <InfoItem label={"Issue:"}>{publicationInfo.issue}</InfoItem>
+              <InfoItem
+                label={"Pages:"}
+              >{`${publicationInfo.firstPage}-${publicationInfo.lastPage}`}</InfoItem>
             </div>
             <InfoItem label={"Source URL:"}>
-              <WrapLink href={"http://id.nii.ac.jp/1001/00223213/"}>
+              <WrapLink href={publicationInfo.publishUrl}>
                 <span className={"text-blue-800"}>
-                  http://id.nii.ac.jp/1001/00223213/
+                  {publicationInfo.publishUrl}
                 </span>
               </WrapLink>
             </InfoItem>
@@ -133,37 +155,21 @@ export const Research: FC<ResearchProps> = ({}) => {
         <hr className={"my-2 border-gray-200"} />
 
         <InfoItem label={"Published:"}>
-          <time>2023-01-09</time>
+          <time dateTime={dateToYYYYMMDD(publicationInfo.date)}>
+            {dateToYYYYMMDD(publicationInfo.date)}
+          </time>
         </InfoItem>
 
         <hr className={"my-2 border-gray-200"} />
 
-        <InfoItem label={"Keywords:"}>
-          {[
-            "keyword1",
-            "keyword2",
-            "keyword1",
-            "keyword2",
-            "keyword1",
-            "keyword2",
-            "keyword1",
-            "keyword2",
-          ].join(" / ")}
-        </InfoItem>
+        <InfoItem label={"Keywords:"}>{keywords.join(" / ")}</InfoItem>
 
         <hr className={"my-2 border-gray-200"} />
 
         <section>
           <h2 className={"py-2 text-2xl font-semibold"}>Abstract</h2>
           <p>
-            <BeautifulBreak segmenter={"sentence"}>
-              MacBook
-              Pro（2021）画面上部のノッチ領域にカーソルが進入した場合，カーソルの一部や全体が隠れてしまう．この影響でノッチが操作時間を増加させることを著者らは先行研究で明らかにした．本稿では，ノッチの左右でワープするカーソルを用いることで，ターゲットまでの経路を短縮し，ノッチが増加させる操作時間を抑制できないか検証した．また，ノッチにカーソルの全体が隠れない，デフォルトサイズの
-              2
-              倍のカーソルとの比較も行った．結果，ノッチの左右でワープするカーソルの有効性は示されず，デフォルトサイズの
-              2
-              倍のカーソルを用いることが操作時間の観点において望ましいことがわかった．
-            </BeautifulBreak>
+            <BeautifulBreak segmenter={"sentence"}>{abstract}</BeautifulBreak>
           </p>
         </section>
       </div>
