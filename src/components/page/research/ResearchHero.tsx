@@ -3,20 +3,22 @@ import { FC } from "react";
 import { CMSImage, WrapImage } from "@/components/feature/wrapImage/WrapImage";
 import { PdfSlide } from "@/components/ui/pdfSlide";
 
+export type HeroType =
+  | {
+      type: "image";
+      image: CMSImage;
+    }
+  | {
+      type: "youtube";
+      youtubeUrl: string;
+    }
+  | {
+      type: "slide";
+      slidePdfUrl: string;
+    };
+
 export type ResearchHeroProps = {
-  hero:
-    | {
-        type: "image";
-        image: CMSImage;
-      }
-    | {
-        type: "youtube";
-        youtubeUrl: string;
-      }
-    | {
-        type: "slide";
-        slidePdfUrl: string;
-      };
+  hero: HeroType;
 };
 
 export const ResearchHero: FC<ResearchHeroProps> = ({ hero }) => {

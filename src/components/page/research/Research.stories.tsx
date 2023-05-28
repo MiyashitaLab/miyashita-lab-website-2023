@@ -2,6 +2,8 @@ import { StoryObj } from "@storybook/react";
 
 import { Research } from "./Research";
 
+import { Layout } from "@/components/ui/layout";
+
 import type { Meta } from "@storybook/react";
 
 const meta: Meta<typeof Research> = {
@@ -53,5 +55,15 @@ export const Primary: Story = {
         "大塲洋介，宮下芳明．ノッチの左右でワープするカーソルの効果の検証，研究報告ヒューマンコンピュータインタラクション（HCI），Vol.2023-HCI-201，Issue.11，pp.1-8，2023．",
     },
     pdfUrl: "http://id.nii.ac.jp/1001/00223213/",
+    hero: {
+      type: "slide",
+      slidePdfUrl:
+        "https://downloads.ctfassets.net/jb98px4a3r2v/3qmD3GMMSFJYYdKBBRzUtX/99f8d3e9b073f453e67c6459811dc7c2/hci201-230116003808-1b702961__1_.pdf",
+    },
   },
+  render: (args) => (
+    <Layout>
+      <Research {...args} />
+    </Layout>
+  ),
 };

@@ -6,6 +6,10 @@ import { CMSImage } from "@/components/feature/wrapImage/WrapImage";
 import { WrapLink } from "@/components/feature/wrapLink";
 import { AuthorTag } from "@/components/page/research/AuthorTag";
 import { InfoItem } from "@/components/page/research/InfoItem";
+import {
+  HeroType,
+  ResearchHero,
+} from "@/components/page/research/ResearchHero";
 import { Icon } from "@/components/ui/icon";
 import { dateToYYYYMMDD } from "@/lib/formatDate";
 
@@ -32,7 +36,7 @@ export type ResearchProps = {
     quotation: string;
   };
   pdfUrl?: string;
-  // TODO hero
+  hero: HeroType;
 };
 
 export const Research: FC<ResearchProps> = ({
@@ -43,6 +47,7 @@ export const Research: FC<ResearchProps> = ({
   keywords,
   publicationInfo,
   pdfUrl,
+  hero,
 }) => {
   const [showCite, setShowCite] = useState(false);
 
@@ -70,8 +75,8 @@ export const Research: FC<ResearchProps> = ({
 
   return (
     <div>
-      {/* TODO HERO */}
-      <div className={"mx-4"}>
+      <ResearchHero hero={hero} />
+      <div className={"m-4"}>
         <div className={"font-semibold"}>
           <span lang={"ja"}>{paperType.ja}</span>
           <span lang={"en"} className={"pl-2"}>
