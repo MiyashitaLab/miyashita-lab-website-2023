@@ -88,7 +88,7 @@ export const Research: FC<ResearchProps> = ({
         </h1>
 
         <div className={"flex py-2"}>
-          <div className={"flex flex-1 gap-2"}>
+          <div className={"flex flex-1 flex-wrap gap-2"}>
             {authorList.map((author) => (
               <AuthorTag
                 key={author.name}
@@ -151,7 +151,10 @@ export const Research: FC<ResearchProps> = ({
               )}
             </div>
             <InfoItem label={"Source URL:"}>
-              <WrapLink href={publicationInfo.publishUrl}>
+              <WrapLink
+                href={publicationInfo.publishUrl}
+                className={"break-all"}
+              >
                 <span className={"text-blue-800"}>
                   {publicationInfo.publishUrl}
                 </span>

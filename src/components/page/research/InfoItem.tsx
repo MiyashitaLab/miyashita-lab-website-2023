@@ -7,7 +7,7 @@ export type InfoItemProps = {
 
 export const InfoItem: FC<InfoItemProps> = ({ label, children }) => {
   return (
-    <p className={"inline-flex"}>
+    <p className={"inline-flex flex-wrap"}>
       <span className={"pr-2 font-semibold"}>{label}</span>
       <span>{children}</span>
     </p>
