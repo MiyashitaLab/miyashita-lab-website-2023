@@ -53,5 +53,6 @@ export const Primary: Story = {
       quotation:
         "大塲洋介，宮下芳明．ノッチの左右でワープするカーソルの効果の検証，研究報告ヒューマンコンピュータインタラクション（HCI），Vol.2023-HCI-201，Issue.11，pp.1-8，2023．",
     },
+    pdfUrl: "http://id.nii.ac.jp/1001/00223213/",
   },
 };

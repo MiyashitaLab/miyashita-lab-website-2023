@@ -94,10 +94,16 @@ export const Research: FC<ResearchProps> = ({
             ))}
           </div>
           <div className={"flex flex-none items-start pl-4"}>
-            <button className={"h-8 rounded bg-red-700 px-2 text-gray-100"}>
+            <WrapLink
+              href={pdfUrl}
+              className={
+                "flex h-8 items-center rounded bg-red-700 px-2 text-gray-100"
+              }
+              target={"_blank"}
+            >
               <Icon className={"p-1"} fontStyle={"solid"} name={"file-lines"} />
               <span className={"px-1"}>PDF</span>
-            </button>
+            </WrapLink>
           </div>
         </div>
 
