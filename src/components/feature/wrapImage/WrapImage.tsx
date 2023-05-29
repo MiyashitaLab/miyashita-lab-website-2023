@@ -2,6 +2,8 @@ import classNames from "classnames";
 import Image from "next/image";
 import { CSSProperties, FC } from "react";
 
+import { resizeToFitContainer } from "@/lib/resizeToFitContianer";
+
 export type CMSImage = {
   src: string;
   originalWidth: number;
@@ -79,12 +81,12 @@ export const WrapImage: FC<WrapImageProps> = ({
   }
 
   const { maxWidth, maxHeight } = rest;
-  const { width, height } = calcImgSize(
+  const { width, height } = resizeToFitContainer({
     maxWidth,
     maxHeight,
-    originalWidth,
-    originalHeight
-  );
+    width: originalWidth,
+    height: originalHeight,
+  });
   return (
     <Image
       className={rest.className}
@@ -94,30 +96,4 @@ export const WrapImage: FC<WrapImageProps> = ({
       height={height}
     />
   );
-};
-
-const calcImgSize = (
-  maxWidth: number,
-  maxHeight: number,
-  width: number,
-  height: number
-) => {
-  //縦が収まるように縮小したときの横幅
-  const widthByHeight = (maxHeight * width) / height;
-  //横が収まるように縮小したときの縦幅
-  const heightByWidth = (maxWidth * height) / width;
-
-  if (widthByHeight > maxWidth) {
-    //縦が収まるようにしたら横がはみ出た場合、横が収まるようにする
-    return {
-      width: maxWidth,
-      height: heightByWidth,
-    };
-  } else {
-    //縦が収まるようにしても横がはみ出なかった場合、その値を採用
-    return {
-      width: widthByHeight,
-      height: maxHeight,
-    };
-  }
 };
