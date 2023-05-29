@@ -1,5 +1,6 @@
 import "../src/styles/globals.css";
-import { AppWrapper } from "@/pages/_app";
+// noinspection ES6PreferShortImport /src外なので@/を使えない
+import { AppWrapper } from "../src/pages/_app";
 import { Preview } from "@storybook/react";
 
 export const parameters: Preview["parameters"] = {
