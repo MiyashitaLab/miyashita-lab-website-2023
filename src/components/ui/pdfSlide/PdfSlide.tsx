@@ -144,7 +144,7 @@ export const PdfSlide: FC<PdfSlideProps> = ({ pdfUrl, width, height }) => {
 
           const { width: fitWidth } = resizeToFitContainer({
             maxWidth: settingSize(width),
-            maxHeight: settingSize(height),
+            maxHeight: settingSize(height) - 40, // 40はコントロールバーの高さ
             width: pdfPageSizes[index]?.originalWidth ?? 1,
             height: pdfPageSizes[index]?.originalHeight ?? 1,
           });
