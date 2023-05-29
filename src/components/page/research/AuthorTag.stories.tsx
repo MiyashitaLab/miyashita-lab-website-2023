@@ -16,7 +16,7 @@ type Story = StoryObj<typeof AuthorTag>;
 export const News = {
   args: {
     thumbnail: {
-      src: "/temp/author-default.png",
+      src: "./temp/author-default.png",
       originalWidth: 300,
       originalHeight: 300,
     },

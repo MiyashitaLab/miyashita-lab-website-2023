@@ -16,6 +16,6 @@ type Story = StoryObj<typeof PdfSlide>;
 export const Primary: Story = {
   args: {
     pdfUrl:
-      "https://storage.googleapis.com/miyashita-lab-website-2023-storage-dev/83e3404f-b952-4a90-b692-8d6ab26ff08a/hci201-230116003808-1b702961.pdf",
+      "https://downloads.ctfassets.net/jb98px4a3r2v/3qmD3GMMSFJYYdKBBRzUtX/99f8d3e9b073f453e67c6459811dc7c2/hci201-230116003808-1b702961__1_.pdf",
   },
 };

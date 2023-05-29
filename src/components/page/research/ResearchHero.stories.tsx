@@ -18,7 +18,7 @@ export const Image: Story = {
     hero: {
       type: "image",
       image: {
-        src: "/temp/noimage.png",
+        src: "./temp/noimage.png",
         originalWidth: 800,
         originalHeight: 450,
       },

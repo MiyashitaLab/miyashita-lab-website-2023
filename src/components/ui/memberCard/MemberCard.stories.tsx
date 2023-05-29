@@ -22,10 +22,10 @@ export const Primary: Story = {
     name: "name",
     children: (
       <Image
-        src="https://i.gyazo.com/1ee443ccf53c4ba849d2419b88bbc790.png"
+        src="./temp/author-default.png"
         alt={"dummy image"}
-        width={200}
-        height={200}
+        width={400}
+        height={400}
       />
     ),
     //write your args here
@@ -40,10 +40,10 @@ export const Homei: Story = {
     name: "宮下芳明",
     children: (
       <Image
-        src="https://i.gyazo.com/7a9e59db4794de41d8eedea10843e6cb.webp"
+        src="./temp/author-default.png"
         alt={""}
-        width={200}
-        height={200}
+        width={400}
+        height={400}
       />
     ),
   },
@@ -58,10 +58,10 @@ export const OB: Story = {
     isLongName: true,
     children: (
       <Image
-        src="https://i.gyazo.com/1ee443ccf53c4ba849d2419b88bbc790.png"
+        src="./temp/author-default.png"
         alt={"dummy image"}
-        width={200}
-        height={200}
+        width={400}
+        height={400}
       />
     ),
   },

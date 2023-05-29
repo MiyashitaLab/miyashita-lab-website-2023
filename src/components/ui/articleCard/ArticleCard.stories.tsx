@@ -1,8 +1,8 @@
 import { StoryObj } from "@storybook/react";
-import Image from "next/image";
 
 import { ArticleCard } from "./ArticleCard";
 
+import { WrapImage } from "@/components/feature/wrapImage";
 import { ArticleCardDescription } from "@/components/ui/articleCardDescription";
 import { Icon } from "@/components/ui/icon";
 import { Label } from "@/components/ui/label";
@@ -25,11 +25,16 @@ export const Basic: Story = {
     href: "#",
     children: (
       <>
-        <Image
-          src="https://raw.githubusercontent.com/MiyashitaLab/miyashita.com/master/public/assets/images/noimage.png"
+        <WrapImage
+          src="./temp/noimage.png"
           alt={"test image"}
-          width={384}
-          height={216}
+          originalWidth={800}
+          originalHeight={450}
+          sizes={{
+            base: "100vw",
+          }}
+          container
+          className={"aspect-[1.91/1] w-full"}
         />
       </>
     ),
@@ -44,11 +49,16 @@ export const LongTitle: Story = {
     href: "#",
     children: (
       <>
-        <Image
-          src="https://i.gyazo.com/fb446d3a093d2916907e1ee38ab7907a.png"
+        <WrapImage
+          src="./temp/960x540.png"
           alt={"test image"}
-          width={384}
-          height={216}
+          originalWidth={960}
+          originalHeight={540}
+          sizes={{
+            base: "100vw",
+          }}
+          container
+          className={"aspect-[1.91/1] w-full"}
         />
       </>
     ),
@@ -63,11 +73,16 @@ export const Research: Story = {
     href: "#",
     children: (
       <>
-        <Image
-          src="https://i.gyazo.com/fb446d3a093d2916907e1ee38ab7907a.png"
+        <WrapImage
+          src="./temp/400x400.png"
           alt={"test image"}
-          width={384}
-          height={216}
+          originalWidth={400}
+          originalHeight={400}
+          sizes={{
+            base: "100vw",
+          }}
+          container
+          className={"aspect-[1.91/1] w-full"}
         />
       </>
     ),

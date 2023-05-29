@@ -19,7 +19,7 @@ export const Primary: Story = {
     className: "h-12",
     logo: (
       <Image
-        src={"https://i.gyazo.com/805255098e26117dbc0d4ca695347b5c.png"}
+        src={"./temp/logo.png"}
         alt={"Miyashita Lab Logo"}
         width={152}
         height={32}
