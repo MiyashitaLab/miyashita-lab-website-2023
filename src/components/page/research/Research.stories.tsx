@@ -24,7 +24,7 @@ export const Primary: Story = {
       {
         name: "大塲 洋介",
         thumbnail: {
-          src: "/temp/author-default.png",
+          src: "./temp/author-default.png",
           originalWidth: 300,
           originalHeight: 300,
         },
@@ -32,7 +32,7 @@ export const Primary: Story = {
       {
         name: "宮下 芳明",
         thumbnail: {
-          src: "/temp/author-default.png",
+          src: "./temp/author-default.png",
           originalWidth: 300,
           originalHeight: 300,
         },

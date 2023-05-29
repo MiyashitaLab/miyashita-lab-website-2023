@@ -23,7 +23,7 @@ const articleCardMock = (i: number) =>
     title: "ニュースタイトル",
     date: new Date(),
     thumbnail: {
-      src: "/temp/noimage.png",
+      src: "./temp/noimage.png",
       originalWidth: 800,
       originalHeight: 450,
     },
@@ -34,7 +34,7 @@ const projectCardMock = (i: number) =>
     detailHref: `/projects/${i}`,
     title: "プロジェクトタイトル",
     thumbnail: {
-      src: "/temp/noimage.png",
+      src: "./temp/noimage.png",
       originalWidth: 800,
       originalHeight: 450,
     },
@@ -46,7 +46,7 @@ const memberCardMock = (index: number) =>
     name: "宮下芳明",
     role: "教員",
     thumbnail: {
-      src: "/temp/400x400.png",
+      src: "./temp/400x400.png",
       originalWidth: 400,
       originalHeight: 400,
     },
@@ -55,7 +55,7 @@ const memberCardMock = (index: number) =>
 export const Primary = {
   args: {
     headImage: {
-      src: "/temp/homeHeader.png",
+      src: "./temp/homeHeader.png",
       originalWidth: 1280,
       originalHeight: 360,
     },

@@ -32,7 +32,7 @@ export const Primary: Story = {
     name: "宮下芳明",
     role: "教員",
     thumbnail: {
-      src: "/temp/400x400.png",
+      src: "./temp/400x400.png",
       originalWidth: 400,
       originalHeight: 400,
     },

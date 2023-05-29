@@ -17,7 +17,7 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
           className={"shadow"}
           logo={
             <Image
-              src={"/temp/logo.png"}
+              src={"./temp/logo.png"}
               alt={"Miyashita Lab Logo"}
               width={152}
               height={32}
