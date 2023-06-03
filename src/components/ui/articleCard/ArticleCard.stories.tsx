@@ -26,7 +26,7 @@ export const Basic: Story = {
     children: (
       <>
         <WrapImage
-          src="./temp/noimage.png"
+          src="./card-default.png"
           alt={"test image"}
           originalWidth={800}
           originalHeight={450}
@@ -50,7 +50,7 @@ export const LongTitle: Story = {
     children: (
       <>
         <WrapImage
-          src="./temp/960x540.png"
+          src="./story/960x540.png"
           alt={"test image"}
           originalWidth={960}
           originalHeight={540}
@@ -74,7 +74,7 @@ export const Research: Story = {
     children: (
       <>
         <WrapImage
-          src="./temp/400x400.png"
+          src="./story/400x400.png"
           alt={"test image"}
           originalWidth={400}
           originalHeight={400}

@@ -16,9 +16,9 @@ type Story = StoryObj<typeof AuthorTag>;
 export const News = {
   args: {
     thumbnail: {
-      src: "./temp/author-default.png",
-      originalWidth: 300,
-      originalHeight: 300,
+      src: "./member-default.png",
+      originalWidth: 1000,
+      originalHeight: 1000,
     },
     name: "宮下 芳明",
   },

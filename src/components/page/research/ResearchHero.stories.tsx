@@ -18,9 +18,9 @@ export const Image: Story = {
     hero: {
       type: "image",
       image: {
-        src: "./temp/noimage.png",
-        originalWidth: 800,
-        originalHeight: 450,
+        src: "./card-default.png",
+        originalWidth: 1200,
+        originalHeight: 630,
       },
     },
   },
