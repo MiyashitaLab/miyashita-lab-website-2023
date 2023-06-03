@@ -98,8 +98,8 @@ export const WrapImage: FC<WrapImageProps> = ({
       src={src}
       alt={alt}
       priority={priority}
-      width={width}
-      height={height}
+      width={Math.round(width)}
+      height={Math.round(height)}
     />
   );
 };
