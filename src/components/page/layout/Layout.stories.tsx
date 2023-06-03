@@ -16,5 +16,6 @@ type Story = StoryObj<typeof Layout>;
 export const Primary: Story = {
   args: {
     children: <div>なかみ</div>,
+    currentTopPath: "/about",
   },
 };

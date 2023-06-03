@@ -4,15 +4,17 @@ import { FC, ReactElement, useState } from "react";
 import { WrapLink } from "@/components/feature/wrapLink";
 import { Icon } from "@/components/ui/icon";
 
+export type PageHeaderLinkItem = {
+  text: string;
+  href: string;
+  highlight?: boolean;
+};
+
 export type PageHeaderProps = {
   className?: string;
   logo: ReactElement;
   logoHref: string;
-  links: {
-    href: string;
-    text: string;
-    highlight?: boolean;
-  }[];
+  links: PageHeaderLinkItem[];
 };
 
 //md未満はハンバーガーメニューにする

@@ -1,14 +1,57 @@
-import { FC, ReactNode } from "react";
+import { useRouter } from "next/router";
+import { FC, ReactNode, useMemo } from "react";
 
 import { WrapImage } from "@/components/feature/wrapImage";
 import { PageFooter } from "@/components/ui/pageFooter";
 import { PageHeader } from "@/components/ui/pageHeader";
+import { PageHeaderLinkItem } from "@/components/ui/pageHeader/PageHeader";
+
+const headerItems = [
+  {
+    text: "Home",
+    href: "/",
+  },
+  {
+    text: "About",
+    href: "/about",
+  },
+  {
+    text: "News",
+    href: "/news",
+  },
+  {
+    text: "Research DB",
+    href: "/researches",
+  },
+  {
+    text: "Projects",
+    href: "/projects",
+  },
+  {
+    text: "Members",
+    href: "/members",
+  },
+] satisfies PageHeaderLinkItem[];
 
 export type LayoutProps = {
   children: ReactNode;
+  currentTopPath?: string;
 };
 
-export const Layout: FC<LayoutProps> = ({ children }) => {
+export const Layout: FC<LayoutProps> = ({ children, currentTopPath }) => {
+  const router = useRouter();
+
+  const pathname = currentTopPath ?? extractTopLevelPathName(router.pathname);
+
+  const links = useMemo<PageHeaderLinkItem[]>(
+    () =>
+      headerItems.map((linkItem) => ({
+        ...linkItem,
+        highlight: pathname === linkItem.href,
+      })),
+    [pathname]
+  );
+
   return (
     <div className={"flex h-full flex-col bg-stone-50"}>
       <div className={"fixed top-0 z-50 h-12 w-full"}>
@@ -25,33 +68,7 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
             />
           }
           logoHref={"#home"}
-          links={[
-            {
-              text: "Home",
-              href: "/",
-              highlight: true,
-            },
-            {
-              text: "紹介",
-              href: "/about",
-            },
-            {
-              text: "ニュース",
-              href: "/news",
-            },
-            {
-              text: "論文リポジトリ",
-              href: "/researches",
-            },
-            {
-              text: "プロジェクト",
-              href: "/projects",
-            },
-            {
-              text: "メンバー",
-              href: "/members",
-            },
-          ]}
+          links={links}
         />
       </div>
       <main className={"mx-auto w-full max-w-screen-xl flex-auto pt-12"}>
@@ -76,4 +93,13 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
       />
     </div>
   );
+};
+
+const extractTopLevelPathName = (pathname: string) => {
+  const segments = pathname.split("/");
+  if (segments.length > 1) {
+    return `/${segments[1]}`;
+  } else {
+    return pathname;
+  }
 };
