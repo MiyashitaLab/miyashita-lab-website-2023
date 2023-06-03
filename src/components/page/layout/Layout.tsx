@@ -52,7 +52,7 @@ const footerLinks = [
 export type LayoutProps = {
   children: ReactNode;
   currentTopPath?: string;
-  copyrightText: string;
+  copyrightText?: string;
 };
 
 export const Layout: FC<LayoutProps> = ({
@@ -73,7 +73,9 @@ export const Layout: FC<LayoutProps> = ({
     [pathname]
   );
 
-  const copyright = copyrightText && `© ${copyrightText}`;
+  const copyright = `© ${
+    copyrightText ?? `${new Date().getFullYear()} Miyashita Lab`
+  }`;
 
   return (
     <div className={"flex h-full flex-col bg-stone-50"}>
