@@ -15,6 +15,6 @@ type Story = StoryObj<typeof Layout>;
 
 export const Primary: Story = {
   args: {
-    //write your args here
+    children: <div>なかみ</div>,
   },
 };

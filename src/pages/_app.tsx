@@ -27,7 +27,11 @@ const notoSansJp = Noto_Sans_JP({
 
 //こっちはstorybookでも読み込まれる
 export const AppWrapper: FC<{ children: ReactNode }> = ({ children }) => {
-  return <div style={notoSansJp.style}>{children}</div>;
+  return (
+    <div style={notoSansJp.style} className={"h-screen"}>
+      {children}
+    </div>
+  );
 };
 
 //ここに書いたものはstorybookでは読み込まれないので注意

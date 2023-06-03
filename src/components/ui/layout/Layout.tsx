@@ -11,7 +11,7 @@ export type LayoutProps = {
 export const Layout: FC<LayoutProps> = ({ children }) => {
   //TODO 画像は仮で入れてある
   return (
-    <div className={"bg-stone-50"}>
+    <div className={"flex h-full flex-col bg-stone-50"}>
       <div className={"fixed top-0 z-50 h-12 w-full"}>
         <PageHeader
           className={"shadow"}
@@ -53,7 +53,9 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
           ]}
         />
       </div>
-      <main className={"mx-auto max-w-screen-xl pt-12"}>{children}</main>
+      <main className={"mx-auto max-w-screen-xl flex-auto pt-12"}>
+        {children}
+      </main>
       <PageFooter
         copyright={"© 2023 Miyashita Lab"}
         links={[
