@@ -2,7 +2,7 @@ import { StoryObj } from "@storybook/react";
 
 import { Article } from "./Article";
 
-import { Layout } from "@/components/ui/layout";
+import { Layout } from "src/components/page/layout";
 
 import type { Meta } from "@storybook/react";
 

@@ -3,7 +3,7 @@ import { StoryObj } from "@storybook/react";
 import { Members } from "./Members";
 
 import { Primary as TopPrimary } from "@/components/page/top/Top.stories";
-import { Layout } from "@/components/ui/layout";
+import { Layout } from "src/components/page/layout";
 
 import type { Meta } from "@storybook/react";
 

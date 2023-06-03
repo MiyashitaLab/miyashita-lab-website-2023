@@ -5,7 +5,7 @@ import { Layout } from "./Layout";
 import type { Meta } from "@storybook/react";
 
 const meta: Meta<typeof Layout> = {
-  title: "Layout",
+  title: "Pages/Layout",
   component: Layout,
 };
 
@@ -16,5 +16,7 @@ type Story = StoryObj<typeof Layout>;
 export const Primary: Story = {
   args: {
     children: <div>なかみ</div>,
+    currentTopPath: "/about",
+    copyrightText: "2023 Miyashita Lab",
   },
 };
