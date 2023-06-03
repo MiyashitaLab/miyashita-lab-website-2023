@@ -23,9 +23,9 @@ const articleCardMock = (i: number) =>
     title: "ニュースタイトル",
     date: new Date(),
     thumbnail: {
-      src: "./temp/noimage.png",
-      originalWidth: 800,
-      originalHeight: 450,
+      src: "./card-default.png",
+      originalWidth: 1200,
+      originalHeight: 630,
     },
   } satisfies ArticleCardData);
 
@@ -34,9 +34,9 @@ const projectCardMock = (i: number) =>
     detailHref: `/projects/${i}`,
     title: "プロジェクトタイトル",
     thumbnail: {
-      src: "./temp/noimage.png",
-      originalWidth: 800,
-      originalHeight: 450,
+      src: "./card-default.png",
+      originalWidth: 1200,
+      originalHeight: 630,
     },
   } satisfies ArticleCardData);
 
@@ -46,16 +46,16 @@ const memberCardMock = (index: number) =>
     name: "宮下芳明",
     role: "教員",
     thumbnail: {
-      src: "./temp/400x400.png",
-      originalWidth: 400,
-      originalHeight: 400,
+      src: "./member-default.png",
+      originalWidth: 1000,
+      originalHeight: 1000,
     },
   } satisfies MemberCardData);
 
 export const Primary = {
   args: {
     headImage: {
-      src: "./temp/homeHeader.png",
+      src: "./story/homeHeader.png",
       originalWidth: 1280,
       originalHeight: 360,
     },

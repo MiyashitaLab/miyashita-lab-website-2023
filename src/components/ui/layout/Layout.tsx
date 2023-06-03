@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { FC, ReactNode } from "react";
 
+import { WrapImage } from "@/components/feature/wrapImage";
 import { PageFooter } from "@/components/ui/pageFooter";
 import { PageHeader } from "@/components/ui/pageHeader";
 
@@ -9,18 +9,19 @@ export type LayoutProps = {
 };
 
 export const Layout: FC<LayoutProps> = ({ children }) => {
-  //TODO 画像は仮で入れてある
   return (
     <div className={"flex h-full flex-col bg-stone-50"}>
       <div className={"fixed top-0 z-50 h-12 w-full"}>
         <PageHeader
           className={"shadow"}
           logo={
-            <Image
-              src={"./temp/logo.png"}
-              alt={"Miyashita Lab Logo"}
-              width={152}
-              height={32}
+            <WrapImage
+              src={"./logo.png"}
+              alt={"Miyashita Lab"}
+              originalWidth={831}
+              originalHeight={175}
+              maxWidth={152}
+              maxHeight={32}
             />
           }
           logoHref={"#home"}

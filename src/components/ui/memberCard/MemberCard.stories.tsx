@@ -22,7 +22,7 @@ export const Primary: Story = {
     name: "name",
     children: (
       <Image
-        src="./temp/author-default.png"
+        src="./member-default.png"
         alt={"dummy image"}
         width={400}
         height={400}
@@ -39,12 +39,7 @@ export const Homei: Story = {
     role: "教員",
     name: "宮下芳明",
     children: (
-      <Image
-        src="./temp/author-default.png"
-        alt={""}
-        width={400}
-        height={400}
-      />
+      <Image src="./member-default.png" alt={""} width={400} height={400} />
     ),
   },
 };
@@ -58,7 +53,7 @@ export const OB: Story = {
     isLongName: true,
     children: (
       <Image
-        src="./temp/author-default.png"
+        src="./author-default.png"
         alt={"dummy image"}
         width={400}
         height={400}

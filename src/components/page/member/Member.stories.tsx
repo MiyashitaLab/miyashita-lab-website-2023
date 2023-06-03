@@ -32,9 +32,9 @@ export const Primary: Story = {
     name: "宮下芳明",
     role: "教員",
     thumbnail: {
-      src: "./temp/400x400.png",
-      originalWidth: 400,
-      originalHeight: 400,
+      src: "./member-default.png",
+      originalWidth: 1000,
+      originalHeight: 1000,
     },
     content: content,
     papersHref: "#",
