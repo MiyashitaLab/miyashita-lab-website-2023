@@ -10,37 +10,40 @@ export type CMSImage = {
   originalHeight: number;
 };
 
-export type WrapImageProps = (CMSImage & {
+export type WrapImageProps = CMSImage &
+  WrapImageBaseProps &
+  (WrapImageSizeSpecifiedProps | WrapImageContainerProps);
+
+export type WrapImageBaseProps = {
   alt: string;
   className?: string;
-}) &
-  (
-    | {
-        maxWidth: number;
-        maxHeight: number;
-      }
-    | {
-        sizes: {
-          base: Exclude<CSSProperties["width"], undefined>;
-          sm?: CSSProperties["width"]; // 640pxまで
-          md?: CSSProperties["width"]; // 768pxまで
-          lg?: CSSProperties["width"]; // 1024pxまで
-          xl?: CSSProperties["width"]; // 1280pxまで
-        };
-        container?: boolean;
-      }
-  );
+  priority?: boolean;
+};
+
+export type WrapImageSizeSpecifiedProps = {
+  maxWidth: number;
+  maxHeight: number;
+};
+
+export type WrapImageContainerProps = {
+  sizes: {
+    base: Exclude<CSSProperties["width"], undefined>;
+    sm?: CSSProperties["width"]; // 640pxまで
+    md?: CSSProperties["width"]; // 768pxまで
+    lg?: CSSProperties["width"]; // 1024pxまで
+    xl?: CSSProperties["width"]; // 1280pxまで
+  };
+  container?: boolean;
+};
 
 export const WrapImage: FC<WrapImageProps> = ({
   src,
   alt,
   originalWidth,
   originalHeight,
+  priority,
   ...rest
 }) => {
-  //TODO この辺もう少し整理したい
-  // コンポーネント分けちゃった方がいいかも
-
   if ("sizes" in rest) {
     const { base, sm, md, lg, xl } = rest.sizes;
     const sizes = [
@@ -60,6 +63,7 @@ export const WrapImage: FC<WrapImageProps> = ({
           <Image
             src={src}
             alt={alt}
+            priority={priority}
             fill
             className={"object-contain"}
             sizes={sizes}
@@ -73,6 +77,7 @@ export const WrapImage: FC<WrapImageProps> = ({
         className={rest.className}
         src={src}
         alt={alt}
+        priority={priority}
         width={originalWidth}
         height={originalHeight}
         sizes={sizes}
@@ -92,6 +97,7 @@ export const WrapImage: FC<WrapImageProps> = ({
       className={rest.className}
       src={src}
       alt={alt}
+      priority={priority}
       width={width}
       height={height}
     />
