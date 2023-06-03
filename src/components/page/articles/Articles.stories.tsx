@@ -4,8 +4,8 @@ import { Articles } from "./Articles";
 
 import { Primary as TopPrimary } from "@/components/page/top/Top.stories";
 import { Icon } from "@/components/ui/icon";
-import { Layout } from "@/components/ui/layout";
 import { PaginationNav } from "@/components/ui/paginationNav";
+import { Layout } from "src/components/page/layout";
 
 import type { Meta } from "@storybook/react";
 

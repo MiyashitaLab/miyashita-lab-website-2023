@@ -4,7 +4,7 @@ import { Noto_Sans_JP } from "@next/font/google";
 import { NextPage } from "next";
 import { FC, ReactElement, ReactNode } from "react";
 
-import { Layout } from "@/components/ui/layout";
+import { Layout } from "src/components/page/layout";
 
 import type { AppProps } from "next/app";
 

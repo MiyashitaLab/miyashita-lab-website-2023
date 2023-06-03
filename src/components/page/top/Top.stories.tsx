@@ -4,7 +4,7 @@ import { Top } from "./Top";
 
 import { ArticleCardData } from "@/components/page/top/ArticleCardsSection";
 import { MemberCardData } from "@/components/page/top/MemberCardsSection";
-import { Layout } from "@/components/ui/layout";
+import { Layout } from "src/components/page/layout";
 
 import type { Meta } from "@storybook/react";
 

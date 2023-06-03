@@ -27,7 +27,7 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
           logoHref={"#home"}
           links={[
             {
-              text: "ホーム",
+              text: "Home",
               href: "/",
               highlight: true,
             },
