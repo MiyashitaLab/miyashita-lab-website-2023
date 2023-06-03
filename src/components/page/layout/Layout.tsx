@@ -52,9 +52,14 @@ const footerLinks = [
 export type LayoutProps = {
   children: ReactNode;
   currentTopPath?: string;
+  copyrightText: string;
 };
 
-export const Layout: FC<LayoutProps> = ({ children, currentTopPath }) => {
+export const Layout: FC<LayoutProps> = ({
+  children,
+  currentTopPath,
+  copyrightText,
+}) => {
   const router = useRouter();
 
   const pathname = currentTopPath ?? extractTopLevelPathName(router.pathname);
@@ -67,6 +72,8 @@ export const Layout: FC<LayoutProps> = ({ children, currentTopPath }) => {
       })),
     [pathname]
   );
+
+  const copyright = copyrightText && `© ${copyrightText}`;
 
   return (
     <div className={"flex h-full flex-col bg-stone-50"}>
@@ -90,7 +97,7 @@ export const Layout: FC<LayoutProps> = ({ children, currentTopPath }) => {
       <main className={"mx-auto w-full max-w-screen-xl flex-auto pt-12"}>
         {children}
       </main>
-      <PageFooter copyright={"© 2023 Miyashita Lab"} links={footerLinks} />
+      <PageFooter copyright={copyright} links={footerLinks} />
     </div>
   );
 };

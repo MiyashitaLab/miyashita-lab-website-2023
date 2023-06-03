@@ -17,5 +17,6 @@ export const Primary: Story = {
   args: {
     children: <div>なかみ</div>,
     currentTopPath: "/about",
+    copyrightText: "2023 Miyashita Lab",
   },
 };
