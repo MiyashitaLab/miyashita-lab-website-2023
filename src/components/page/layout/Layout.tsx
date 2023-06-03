@@ -54,7 +54,7 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
           ]}
         />
       </div>
-      <main className={"mx-auto max-w-screen-xl flex-auto pt-12"}>
+      <main className={"mx-auto w-full max-w-screen-xl flex-auto pt-12"}>
         {children}
       </main>
       <PageFooter
