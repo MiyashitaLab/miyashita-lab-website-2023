@@ -84,6 +84,7 @@ export const Layout: FC<LayoutProps> = ({
             <WrapImage
               src={"./logo.png"}
               alt={"Miyashita Lab"}
+              priority
               originalWidth={831}
               originalHeight={175}
               maxWidth={152}
