@@ -3,13 +3,15 @@ import { FC } from "react";
 
 import { WrapLink } from "@/components/feature/wrapLink";
 
+export type PageFooterLinkItem = {
+  href: string;
+  text: string;
+};
+
 export type PageFooterProps = {
   className?: string;
   copyright: string;
-  links: {
-    href: string;
-    text: string;
-  }[];
+  links: readonly PageFooterLinkItem[];
 };
 
 export const PageFooter: FC<PageFooterProps> = ({

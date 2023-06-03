@@ -14,7 +14,7 @@ export type PageHeaderProps = {
   className?: string;
   logo: ReactElement;
   logoHref: string;
-  links: PageHeaderLinkItem[];
+  links: readonly PageHeaderLinkItem[];
 };
 
 //md未満はハンバーガーメニューにする

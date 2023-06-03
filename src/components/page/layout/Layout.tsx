@@ -3,6 +3,7 @@ import { FC, ReactNode, useMemo } from "react";
 
 import { WrapImage } from "@/components/feature/wrapImage";
 import { PageFooter } from "@/components/ui/pageFooter";
+import { PageFooterLinkItem } from "@/components/ui/pageFooter/PageFooter";
 import { PageHeader } from "@/components/ui/pageHeader";
 import { PageHeaderLinkItem } from "@/components/ui/pageHeader/PageHeader";
 
@@ -31,7 +32,22 @@ const headerItems = [
     text: "Members",
     href: "/members",
   },
-] satisfies PageHeaderLinkItem[];
+] as const satisfies readonly PageHeaderLinkItem[];
+
+const footerLinks = [
+  {
+    text: "Copyright Notice",
+    href: "/copyright",
+  },
+  {
+    text: "Privacy Policy",
+    href: "/privacy",
+  },
+  {
+    text: "Contact",
+    href: "/contact",
+  },
+] as const satisfies readonly PageFooterLinkItem[];
 
 export type LayoutProps = {
   children: ReactNode;
@@ -74,23 +90,7 @@ export const Layout: FC<LayoutProps> = ({ children, currentTopPath }) => {
       <main className={"mx-auto w-full max-w-screen-xl flex-auto pt-12"}>
         {children}
       </main>
-      <PageFooter
-        copyright={"© 2023 Miyashita Lab"}
-        links={[
-          {
-            text: "Copyright Notice",
-            href: "/copyright",
-          },
-          {
-            text: "Privacy Policy",
-            href: "/privacy",
-          },
-          {
-            text: "Contact",
-            href: "/contact",
-          },
-        ]}
-      />
+      <PageFooter copyright={"© 2023 Miyashita Lab"} links={footerLinks} />
     </div>
   );
 };
