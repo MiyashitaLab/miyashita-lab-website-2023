@@ -16,7 +16,11 @@ export const ResearchFilterPanel: FC<ResearchFilterPanelProps> = ({
       <div className={"grid grid-flow-row gap-2"}>
         {filterItems}
         <div className={"flex justify-center"}>
-          <button type={"button"} className={"h-8 w-8"} onClick={onClickAppend}>
+          <button
+            type={"button"}
+            className={"h-8 w-8 text-gray-800 hover:text-gray-500"}
+            onClick={onClickAppend}
+          >
             <Icon size={"xl"} fontStyle={"solid"} name={"square-plus"} />
           </button>
         </div>

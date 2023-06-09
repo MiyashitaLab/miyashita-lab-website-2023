@@ -58,7 +58,11 @@ export const ResearchFilterItem = <T extends string>({
         />
       </div>
       <div className={"flex items-center justify-center p-1"}>
-        <button type={"button"} className={"h-8 w-8"} onClick={onClickDelete}>
+        <button
+          type={"button"}
+          className={"h-8 w-8 text-gray-800 hover:text-gray-500"}
+          onClick={onClickDelete}
+        >
           <Icon size={"xl"} fontStyle={"solid"} name={"square-minus"} />
         </button>
       </div>
