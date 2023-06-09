@@ -55,7 +55,7 @@ const memberCardMock = (index: number) =>
 export const Primary = {
   args: {
     headImage: {
-      src: "./story/homeHeader.png",
+      src: "./story/homeHero.png",
       originalWidth: 1280,
       originalHeight: 360,
     },

@@ -59,6 +59,7 @@ export const Top: FC<TopProps> = ({
         <WrapImage
           {...headImage}
           alt={"Home header"}
+          priority
           sizes={{
             base: "100vw",
           }}
