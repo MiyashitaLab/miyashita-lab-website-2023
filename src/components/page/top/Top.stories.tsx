@@ -59,6 +59,11 @@ export const Primary = {
       originalWidth: 1280,
       originalHeight: 360,
     },
+    about: {
+      url: "/about",
+      shortDescription:
+        "宮下研究室では、音楽・映像・3DCGアニメーション、3Dプリンタ、ゲームやVR、プログラミングも味覚も全て「表現」であると捉え、人間の表現能力を拡張する「インストゥルメント」として、コンピュータのあり方を考えています。",
+    },
     news: {
       url: "/news",
       cards: [
