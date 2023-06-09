@@ -37,7 +37,7 @@ export const ResearchFilterItem = <T extends string>({
   );
 
   return (
-    <div className={"grid h-full w-full grid-cols-[1fr_max-content] gap-2"}>
+    <div className={"grid h-full w-full grid-cols-[1fr_max-content]"}>
       <div className={"grid grid-cols-[max-content_1fr]"}>
         <select
           value={type}
@@ -57,9 +57,15 @@ export const ResearchFilterItem = <T extends string>({
           className={"rounded-r-lg border border-gray-300 p-1 text-gray-800"}
         />
       </div>
-      <button className={"p-2"} onClick={onClickDelete}>
-        <Icon fontStyle={"solid"} name={"xmark"} />
-      </button>
+      <div className={"flex items-center justify-center p-1"}>
+        <button
+          type={"button"}
+          className={"h-8 w-8 text-gray-800 hover:text-gray-500"}
+          onClick={onClickDelete}
+        >
+          <Icon size={"xl"} fontStyle={"solid"} name={"square-minus"} />
+        </button>
+      </div>
     </div>
   );
 };
