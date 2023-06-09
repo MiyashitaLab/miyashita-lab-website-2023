@@ -21,7 +21,7 @@ const headerItems = [
     href: "/news",
   },
   {
-    text: "Research DB",
+    text: "Researches",
     href: "/researches",
   },
   {
