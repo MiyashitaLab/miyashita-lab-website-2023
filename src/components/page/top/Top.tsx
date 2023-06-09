@@ -87,7 +87,7 @@ export const Top: FC<TopProps> = ({
             cards={paper.cards}
             href={paper.url}
             headingIcon={<Icon fontStyle="solid" name={"book"} />}
-            headingText={"論文リポジトリ"}
+            headingText={"研究"}
           />
         )}
         {project && (
