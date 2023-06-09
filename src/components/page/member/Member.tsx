@@ -9,7 +9,7 @@ export type MemberProps = {
   role: string;
   thumbnail: CMSImage;
   content: string;
-  papersHref?: string;
+  researchesUrl?: string;
 };
 
 export const Member: FC<MemberProps> = ({
@@ -17,7 +17,7 @@ export const Member: FC<MemberProps> = ({
   role,
   thumbnail,
   content,
-  papersHref,
+  researchesUrl,
 }) => {
   return (
     <div className={"m-4 flex flex-col md:flex-row"}>
@@ -30,9 +30,9 @@ export const Member: FC<MemberProps> = ({
           maxWidth={200}
           maxHeight={200}
         />
-        {papersHref && (
+        {researchesUrl && (
           <PageLink
-            href={papersHref}
+            href={researchesUrl}
             className={"hidden py-4 text-center text-lg md:block"}
           >
             論文一覧
@@ -42,8 +42,8 @@ export const Member: FC<MemberProps> = ({
       <div className={"p-4"}>
         <h1 className={"text-3xl font-semibold"}>{name}</h1>
         <p className={"my-2"}>{role}</p>
-        {papersHref && (
-          <PageLink href={papersHref} className={"md:hidden"}>
+        {researchesUrl && (
+          <PageLink href={researchesUrl} className={"md:hidden"}>
             論文一覧
           </PageLink>
         )}

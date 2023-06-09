@@ -37,7 +37,7 @@ export const Primary: Story = {
       originalHeight: 1000,
     },
     content: content,
-    papersHref: "#",
+    researchesUrl: "#",
   },
   render: (args) => (
     <Layout>

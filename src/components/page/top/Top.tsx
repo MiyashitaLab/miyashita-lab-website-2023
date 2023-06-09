@@ -25,7 +25,7 @@ export type TopProps = {
         url: string;
       }
     | undefined;
-  paper:
+  research:
     | {
         cards: readonly ArticleCardData[];
         url: string;
@@ -49,7 +49,7 @@ export const Top: FC<TopProps> = ({
   headImage,
   about,
   news,
-  paper,
+  research,
   project,
   member,
 }) => {
@@ -88,10 +88,10 @@ export const Top: FC<TopProps> = ({
             headingText={"ニュース"}
           />
         )}
-        {paper && (
+        {research && (
           <ArticleCardsSection
-            cards={paper.cards}
-            href={paper.url}
+            cards={research.cards}
+            href={research.url}
             headingIcon={<Icon fontStyle="solid" name={"book"} />}
             headingText={"研究"}
           />

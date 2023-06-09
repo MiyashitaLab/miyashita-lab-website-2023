@@ -80,7 +80,7 @@ export const Primary = {
         articleCardMock(7),
       ],
     },
-    paper: {
+    research: {
       url: "/researches",
       cards: [
         articleCardMock(0),
