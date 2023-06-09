@@ -15,13 +15,17 @@ import { PageLink } from "src/components/ui/pageLink";
 
 export type TopProps = {
   headImage: CMSImage;
+  about: {
+    shortDescription: string;
+    url: string;
+  };
   news:
     | {
         cards: readonly ArticleCardData[];
         url: string;
       }
     | undefined;
-  paper:
+  research:
     | {
         cards: readonly ArticleCardData[];
         url: string;
@@ -43,8 +47,9 @@ export type TopProps = {
 
 export const Top: FC<TopProps> = ({
   headImage,
+  about,
   news,
-  paper,
+  research,
   project,
   member,
 }) => {
@@ -54,6 +59,7 @@ export const Top: FC<TopProps> = ({
         <WrapImage
           {...headImage}
           alt={"Home header"}
+          priority
           sizes={{
             base: "100vw",
           }}
@@ -69,10 +75,10 @@ export const Top: FC<TopProps> = ({
           </h1>
           <p className={"my-2"}>
             <BeautifulBreak segmenter={"sentence"}>
-              宮下研究室では、音楽・映像・3DCGアニメーション、3Dプリンタ、ゲームやVR、プログラミングも味覚も全て「表現」であると捉え、人間の表現能力を拡張する「インストゥルメント」として、コンピュータのあり方を考えています。
+              {about.shortDescription}
             </BeautifulBreak>
           </p>
-          <PageLink href={"/about"}>研究室について</PageLink>
+          <PageLink href={about.url}>研究室について</PageLink>
         </section>
         {news && (
           <ArticleCardsSection
@@ -82,12 +88,12 @@ export const Top: FC<TopProps> = ({
             headingText={"ニュース"}
           />
         )}
-        {paper && (
+        {research && (
           <ArticleCardsSection
-            cards={paper.cards}
-            href={paper.url}
+            cards={research.cards}
+            href={research.url}
             headingIcon={<Icon fontStyle="solid" name={"book"} />}
-            headingText={"論文リポジトリ"}
+            headingText={"研究"}
           />
         )}
         {project && (

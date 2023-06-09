@@ -55,9 +55,14 @@ const memberCardMock = (index: number) =>
 export const Primary = {
   args: {
     headImage: {
-      src: "./story/homeHeader.png",
+      src: "./story/homeHero.png",
       originalWidth: 1280,
       originalHeight: 360,
+    },
+    about: {
+      url: "/about",
+      shortDescription:
+        "宮下研究室では、音楽・映像・3DCGアニメーション、3Dプリンタ、ゲームやVR、プログラミングも味覚も全て「表現」であると捉え、人間の表現能力を拡張する「インストゥルメント」として、コンピュータのあり方を考えています。",
     },
     news: {
       url: "/news",
@@ -75,7 +80,7 @@ export const Primary = {
         articleCardMock(7),
       ],
     },
-    paper: {
+    research: {
       url: "/researches",
       cards: [
         articleCardMock(0),
