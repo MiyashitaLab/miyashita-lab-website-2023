@@ -50,6 +50,8 @@ export const Primary = {
   args: {
     headImage: {
       src: "./story/homeHero.png",
+      width: 1280,
+      height: 360,
     },
     about: {
       url: "/about",

@@ -1,12 +1,15 @@
 import { FC } from "react";
 
-import { CMSImage, WrapImage } from "@/components/feature/wrapImage/WrapImage";
+import {
+  CMSImageWithSize,
+  WrapImageSized,
+} from "@/components/feature/wrapImage/WrapImage";
 import { PdfSlide } from "@/components/ui/pdfSlide";
 
 export type HeroType =
   | {
       type: "image";
-      image: CMSImage;
+      image: CMSImageWithSize;
     }
   | {
       type: "youtube";
@@ -24,13 +27,16 @@ export type ResearchHeroProps = {
 export const ResearchHero: FC<ResearchHeroProps> = ({ hero }) => {
   if (hero.type === "image") {
     return (
-      <div className={"aspect-[1.91/1] max-h-96 w-full bg-stone-100"}>
-        <WrapImage
+      <div className={"w-full bg-stone-100"}>
+        <WrapImageSized
           className={"mx-auto"}
           src={hero.image.src}
+          width={hero.image.width}
+          height={hero.image.height}
           sizes={{
             base: "100vw",
           }}
+          maxHeight={384} //h-96
           alt={""}
         />
       </div>

@@ -1,6 +1,6 @@
 import { FC, ReactElement, ReactNode } from "react";
 
-import { WrapImage } from "@/components/feature/wrapImage";
+import { WrapImageFill } from "@/components/feature/wrapImage";
 import { WrapLink } from "@/components/feature/wrapLink";
 import { ArticleCardData } from "@/components/page/top/ArticleCardsSection";
 import { ArticleCard } from "@/components/ui/articleCard";
@@ -43,7 +43,7 @@ export const Articles: FC<ArticlesProps> = ({
             href={card.detailHref}
           >
             <div className={"aspect-[1.91/1] w-full"}>
-              <WrapImage
+              <WrapImageFill
                 src={card.thumbnail.src}
                 sizes={{
                   base: "100vw",

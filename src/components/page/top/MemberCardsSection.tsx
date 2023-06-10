@@ -1,6 +1,9 @@
 import { FC, ReactElement } from "react";
 
-import { CMSImage, WrapImage } from "@/components/feature/wrapImage/WrapImage";
+import {
+  CMSImage,
+  WrapImageFill,
+} from "@/components/feature/wrapImage/WrapImage";
 import { WrapLink } from "@/components/feature/wrapLink";
 import { CardsHeading } from "@/components/ui/cardsHeading";
 import { MemberCard } from "@/components/ui/memberCard";
@@ -44,7 +47,7 @@ export const MemberCardsSection: FC<MemberCardsSectionProps> = ({
             role={card.role}
           >
             <div className={"aspect-square w-full"}>
-              <WrapImage
+              <WrapImageFill
                 src={card.thumbnail.src}
                 alt={""}
                 sizes={{

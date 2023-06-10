@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { WrapImage } from "@/components/feature/wrapImage";
+import { WrapImageFill } from "@/components/feature/wrapImage";
 import { MemberCardData } from "@/components/page/top/MemberCardsSection";
 import { CardsHeading } from "@/components/ui/cardsHeading";
 import { MemberCard } from "@/components/ui/memberCard";
@@ -30,7 +30,7 @@ export const Members: FC<MembersProps> = ({
             role={card.role}
           >
             <div className={"aspect-square w-full"}>
-              <WrapImage
+              <WrapImageFill
                 src={card.thumbnail.src}
                 alt={""}
                 sizes={{

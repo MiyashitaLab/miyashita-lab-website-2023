@@ -2,7 +2,7 @@ import { StoryObj } from "@storybook/react";
 
 import { ArticleCard } from "./ArticleCard";
 
-import { WrapImage } from "@/components/feature/wrapImage";
+import { WrapImageFill } from "@/components/feature/wrapImage";
 import { ArticleCardDescription } from "@/components/ui/articleCardDescription";
 import { Icon } from "@/components/ui/icon";
 import { Label } from "@/components/ui/label";
@@ -25,7 +25,7 @@ export const Basic: Story = {
     href: "#",
     children: (
       <div className={"aspect-[1.91/1] w-full"}>
-        <WrapImage
+        <WrapImageFill
           src="./card-default.png"
           alt={"test image"}
           sizes={{
@@ -45,7 +45,7 @@ export const LongTitle: Story = {
     href: "#",
     children: (
       <div className={"aspect-[1.91/1] w-full"}>
-        <WrapImage
+        <WrapImageFill
           src="./story/960x540.png"
           alt={"test image"}
           sizes={{
@@ -65,7 +65,7 @@ export const Research: Story = {
     href: "#",
     children: (
       <div className={"aspect-[1.91/1] w-full"}>
-        <WrapImage
+        <WrapImageFill
           src="./story/400x400.png"
           alt={"test image"}
           sizes={{

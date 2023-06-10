@@ -1,7 +1,9 @@
 import { FC, ReactElement } from "react";
 
-import { WrapImage } from "@/components/feature/wrapImage";
-import { CMSImage } from "@/components/feature/wrapImage/WrapImage";
+import {
+  CMSImage,
+  WrapImageFill,
+} from "@/components/feature/wrapImage/WrapImage";
 import { WrapLink } from "@/components/feature/wrapLink";
 import { ArticleCard } from "@/components/ui/articleCard";
 import { CardsHeading } from "@/components/ui/cardsHeading";
@@ -49,7 +51,7 @@ export const ArticleCardsSection: FC<ArticleCardsSectionProps> = ({
             href={card.detailHref}
           >
             <div className={"aspect-[1.91/1] w-full"}>
-              <WrapImage
+              <WrapImageFill
                 src={card.thumbnail.src}
                 sizes={{
                   base: "25vw", // 1/4

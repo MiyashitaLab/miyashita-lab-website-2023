@@ -1,6 +1,9 @@
 import { FC } from "react";
 
-import { CMSImage, WrapImage } from "@/components/feature/wrapImage/WrapImage";
+import {
+  CMSImage,
+  WrapImageSized,
+} from "@/components/feature/wrapImage/WrapImage";
 import { WrapLink } from "@/components/feature/wrapLink";
 
 export type AuthorTagProps = {
@@ -12,7 +15,7 @@ export const AuthorTag: FC<AuthorTagProps> = ({ thumbnail, name }) => {
   return (
     <WrapLink href={"#"}>
       <div className={"inline-block rounded-full bg-cyan-800 text-gray-100"}>
-        <WrapImage
+        <WrapImageSized
           className={"inline-block rounded-full border-2 border-cyan-800"}
           src={thumbnail.src}
           width={32}
