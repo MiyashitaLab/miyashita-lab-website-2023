@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import Image from "next/image";
 import { CSSProperties, FC } from "react";
 
@@ -6,100 +5,122 @@ import { resizeToFitContainer } from "@/lib/resizeToFitContianer";
 
 export type CMSImage = {
   src: string;
-  originalWidth: number;
-  originalHeight: number;
 };
 
-export type WrapImageProps = CMSImage &
-  WrapImageBaseProps &
-  (WrapImageSizeSpecifiedProps | WrapImageContainerProps);
+export type CMSImageWithSize = CMSImage & {
+  width: number;
+  height: number;
+};
 
-export type WrapImageBaseProps = {
+export type SizeSet = {
+  base: Exclude<CSSProperties["width"], undefined>;
+  sm?: CSSProperties["width"]; // 640pxまで
+  md?: CSSProperties["width"]; // 768pxまで
+  lg?: CSSProperties["width"]; // 1024pxまで
+  xl?: CSSProperties["width"]; // 1280pxまで
+};
+
+export type WrapImageSizedProps = CMSImageWithSize & {
   alt: string;
-  className?: string;
   priority?: boolean;
+  className?: string;
+  sizes?: SizeSet;
+  maxWidth?: number;
+  maxHeight?: number;
 };
 
-export type WrapImageSizeSpecifiedProps = {
-  maxWidth: number;
-  maxHeight: number;
+export type WrapImageFillProps = CMSImage & {
+  alt: string;
+  priority?: boolean;
+  sizes: SizeSet;
 };
 
-export type WrapImageContainerProps = {
-  sizes: {
-    base: Exclude<CSSProperties["width"], undefined>;
-    sm?: CSSProperties["width"]; // 640pxまで
-    md?: CSSProperties["width"]; // 768pxまで
-    lg?: CSSProperties["width"]; // 1024pxまで
-    xl?: CSSProperties["width"]; // 1280pxまで
-  };
-  container?: boolean;
-};
-
-export const WrapImage: FC<WrapImageProps> = ({
+/**
+ * next/imageを使って画像を表示するコンポーネント
+ * サイズが固定の場合はこちらを使う
+ */
+export const WrapImageSized: FC<WrapImageSizedProps> = ({
   src,
   alt,
-  originalWidth,
-  originalHeight,
   priority,
-  ...rest
+  className,
+  width,
+  height,
+  sizes,
+  maxHeight,
+  maxWidth,
 }) => {
-  if ("sizes" in rest) {
-    const { base, sm, md, lg, xl } = rest.sizes;
-    const sizes = [
-      { minWidth: 1280, size: xl },
-      { minWidth: 1024, size: lg },
-      { minWidth: 768, size: md },
-      { minWidth: 640, size: sm },
-    ]
-      .filter(({ size }) => size !== undefined)
-      .map(({ minWidth, size }) => `(min-width: ${minWidth}) ${size}`)
-      .concat(`${base}`)
-      .join(", ");
+  const sizesSet = sizes && constructSizesSrcSet(sizes);
 
-    if (rest.container === true) {
-      return (
-        <div className={classNames(rest.className, "relative")}>
-          <Image
-            src={src}
-            alt={alt}
-            priority={priority}
-            fill
-            className={"object-contain"}
-            sizes={sizes}
-          />
-        </div>
-      );
-    }
+  if (maxWidth || maxHeight) {
+    const limitedSize = resizeToFitContainer({
+      maxWidth: maxWidth ?? 99999,
+      maxHeight: maxHeight ?? 99999,
+      width: width,
+      height: height,
+    });
 
     return (
       <Image
-        className={rest.className}
         src={src}
         alt={alt}
         priority={priority}
-        width={originalWidth}
-        height={originalHeight}
-        sizes={sizes}
+        className={className}
+        sizes={sizesSet}
+        width={limitedSize.width}
+        height={limitedSize.height}
       />
     );
   }
 
-  const { maxWidth, maxHeight } = rest;
-  const { width, height } = resizeToFitContainer({
-    maxWidth,
-    maxHeight,
-    width: originalWidth,
-    height: originalHeight,
-  });
   return (
     <Image
-      className={rest.className}
       src={src}
       alt={alt}
       priority={priority}
-      width={Math.round(width)}
-      height={Math.round(height)}
+      className={className}
+      sizes={sizesSet}
+      width={width}
+      height={height}
     />
   );
+};
+
+/**
+ * next/imageを使って画像を表示するコンポーネント
+ * 画像サイズを親サイズに合わせたい場合はこちらを使う
+ */
+export const WrapImageFill: FC<WrapImageFillProps> = ({
+  src,
+  alt,
+  priority,
+  sizes,
+}) => {
+  const sizesSet = constructSizesSrcSet(sizes);
+
+  return (
+    <div className={"relative flex h-full w-full items-center justify-center"}>
+      <Image
+        src={src}
+        alt={alt}
+        priority={priority}
+        fill
+        sizes={sizesSet}
+        className={"object-contain"}
+      />
+    </div>
+  );
+};
+
+const constructSizesSrcSet = ({ base, sm, md, lg, xl }: SizeSet) => {
+  return [
+    { minWidth: 1280, size: xl },
+    { minWidth: 1024, size: lg },
+    { minWidth: 768, size: md },
+    { minWidth: 640, size: sm },
+  ]
+    .filter(({ size }) => size !== undefined)
+    .map(({ minWidth, size }) => `(min-width: ${minWidth}) ${size}`)
+    .concat(`${base}`)
+    .join(", ");
 };

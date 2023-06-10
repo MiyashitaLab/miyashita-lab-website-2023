@@ -1,7 +1,10 @@
 import { FC } from "react";
 
 import { BeautifulBreak } from "@/components/feature/beautifulBreak";
-import { CMSImage, WrapImage } from "@/components/feature/wrapImage/WrapImage";
+import {
+  CMSImageWithSize,
+  WrapImageSized,
+} from "@/components/feature/wrapImage/WrapImage";
 import {
   ArticleCardData,
   ArticleCardsSection,
@@ -14,7 +17,7 @@ import { Icon } from "@/components/ui/icon";
 import { PageLink } from "src/components/ui/pageLink";
 
 export type TopProps = {
-  headImage: CMSImage;
+  headImage: CMSImageWithSize;
   about: {
     shortDescription: string;
     url: string;
@@ -55,15 +58,8 @@ export const Top: FC<TopProps> = ({
 }) => {
   return (
     <>
-      <div>
-        <WrapImage
-          {...headImage}
-          alt={"Home header"}
-          priority
-          sizes={{
-            base: "100vw",
-          }}
-        />
+      <div className={"w-full"}>
+        <WrapImageSized {...headImage} alt={"Home header"} priority />
       </div>
       <div className={"mx-4 xl:mx-0"}>
         <section className={"mx-auto my-6 max-w-screen-lg text-center"}>

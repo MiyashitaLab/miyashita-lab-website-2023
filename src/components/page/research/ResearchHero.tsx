@@ -1,12 +1,15 @@
 import { FC } from "react";
 
-import { CMSImage, WrapImage } from "@/components/feature/wrapImage/WrapImage";
+import {
+  CMSImageWithSize,
+  WrapImageSized,
+} from "@/components/feature/wrapImage/WrapImage";
 import { PdfSlide } from "@/components/ui/pdfSlide";
 
 export type HeroType =
   | {
       type: "image";
-      image: CMSImage;
+      image: CMSImageWithSize;
     }
   | {
       type: "youtube";
@@ -24,14 +27,16 @@ export type ResearchHeroProps = {
 export const ResearchHero: FC<ResearchHeroProps> = ({ hero }) => {
   if (hero.type === "image") {
     return (
-      <div className={"bg-stone-100"}>
-        <WrapImage
+      <div className={"w-full bg-stone-100"}>
+        <WrapImageSized
           className={"mx-auto"}
           src={hero.image.src}
-          originalWidth={hero.image.originalWidth}
-          originalHeight={hero.image.originalHeight}
-          maxHeight={384}
-          maxWidth={9999}
+          width={hero.image.width}
+          height={hero.image.height}
+          sizes={{
+            base: "100vw",
+          }}
+          maxHeight={384} //h-96
           alt={""}
         />
       </div>
@@ -44,16 +49,18 @@ export const ResearchHero: FC<ResearchHeroProps> = ({ hero }) => {
 
     //TODO widget_referrerを設定する
     return (
-      <div className={"bg-stone-100"}>
-        <iframe
-          className={"mx-auto"}
-          width="682"
-          height="384"
-          src={`https://www.youtube-nocookie.com/embed/${youtubeId}?modestbranding=1&rel=0`}
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        />
+      <div className={"w-full bg-stone-100"}>
+        <div className={"relative mx-auto aspect-video w-full max-w-[682px]"}>
+          <iframe
+            className={"absolute left-0 top-0 h-full w-full"}
+            width={560}
+            height={315}
+            src={`https://www.youtube-nocookie.com/embed/${youtubeId}?modestbranding=1&rel=0`}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        </div>
       </div>
     );
   }

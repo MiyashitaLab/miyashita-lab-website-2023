@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { CMSImage, WrapImage } from "@/components/feature/wrapImage/WrapImage";
+import { CMSImage, WrapImageSized } from "@/components/feature/wrapImage";
 import { MarkdownContent } from "@/components/ui/markdownContent";
 import { PageLink } from "@/components/ui/pageLink";
 
@@ -22,14 +22,7 @@ export const Member: FC<MemberProps> = ({
   return (
     <div className={"m-4 flex flex-col md:flex-row"}>
       <div className={"mx-auto shrink-0 p-4"}>
-        <WrapImage
-          src={thumbnail.src}
-          originalWidth={thumbnail.originalWidth}
-          originalHeight={thumbnail.originalHeight}
-          alt={""}
-          maxWidth={200}
-          maxHeight={200}
-        />
+        <WrapImageSized src={thumbnail.src} alt={""} width={200} height={200} />
         {researchesUrl && (
           <PageLink
             href={researchesUrl}

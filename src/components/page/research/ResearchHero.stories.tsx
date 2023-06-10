@@ -19,8 +19,8 @@ export const Image: Story = {
       type: "image",
       image: {
         src: "./card-default.png",
-        originalWidth: 1200,
-        originalHeight: 630,
+        width: 1200,
+        height: 630,
       },
     },
   },

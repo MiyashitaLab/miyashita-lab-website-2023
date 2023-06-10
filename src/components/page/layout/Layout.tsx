@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { FC, ReactNode, useMemo } from "react";
 
-import { WrapImage } from "@/components/feature/wrapImage";
+import { WrapImageSized } from "@/components/feature/wrapImage";
 import { PageFooter } from "@/components/ui/pageFooter";
 import { PageFooterLinkItem } from "@/components/ui/pageFooter/PageFooter";
 import { PageHeader } from "@/components/ui/pageHeader";
@@ -83,21 +83,21 @@ export const Layout: FC<LayoutProps> = ({
         <PageHeader
           className={"shadow"}
           logo={
-            <WrapImage
+            <WrapImageSized
               src={"./logo.png"}
               alt={"Miyashita Lab"}
               priority
-              originalWidth={831}
-              originalHeight={175}
-              maxWidth={152}
-              maxHeight={32}
+              width={152}
+              height={32}
             />
           }
           logoHref={"#home"}
           links={links}
         />
       </div>
-      <main className={"mx-auto w-full max-w-screen-xl flex-auto pt-12"}>
+      <main
+        className={"mx-auto w-full max-w-screen-xl flex-auto bg-stone-50 pt-12"}
+      >
         {children}
       </main>
       <div className={"w-full"}>

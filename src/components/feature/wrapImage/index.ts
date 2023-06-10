@@ -1,2 +1,8 @@
-export { WrapImage } from "./WrapImage";
-export type { WrapImageProps } from "./WrapImage";
+export { WrapImageFill, WrapImageSized } from "./WrapImage";
+export type {
+  CMSImage,
+  CMSImageWithSize,
+  WrapImageSizedProps,
+  WrapImageFillProps,
+  SizeSet,
+} from "./WrapImage";
