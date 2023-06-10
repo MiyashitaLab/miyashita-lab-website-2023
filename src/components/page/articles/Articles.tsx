@@ -42,20 +42,18 @@ export const Articles: FC<ArticlesProps> = ({
             title={card.title}
             href={card.detailHref}
           >
-            <WrapImage
-              src={card.thumbnail.src}
-              originalWidth={card.thumbnail.originalWidth}
-              originalHeight={card.thumbnail.originalHeight}
-              sizes={{
-                base: "100vw",
-                sm: "50vw",
-                md: "33vw",
-                lg: "25vw",
-              }}
-              alt={""}
-              container
-              className={"aspect-[1.91/1] w-full"}
-            />
+            <div className={"aspect-[1.91/1] w-full"}>
+              <WrapImage
+                src={card.thumbnail.src}
+                sizes={{
+                  base: "100vw",
+                  sm: "50vw",
+                  md: "33vw",
+                  lg: "25vw",
+                }}
+                alt={""}
+              />
+            </div>
           </ArticleCard>
         ))}
       </div>

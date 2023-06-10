@@ -48,18 +48,16 @@ export const ArticleCardsSection: FC<ArticleCardsSectionProps> = ({
             title={card.title}
             href={card.detailHref}
           >
-            <WrapImage
-              src={card.thumbnail.src}
-              originalWidth={card.thumbnail.originalWidth}
-              originalHeight={card.thumbnail.originalHeight}
-              sizes={{
-                base: "25vw", // 1/4
-                md: "15rem", // basis-60
-              }}
-              alt={""}
-              container
-              className={"aspect-[1.91/1] w-full"}
-            />
+            <div className={"aspect-[1.91/1] w-full"}>
+              <WrapImage
+                src={card.thumbnail.src}
+                sizes={{
+                  base: "25vw", // 1/4
+                  md: "15rem", // basis-60
+                }}
+                alt={""}
+              />
+            </div>
           </ArticleCard>
         ))}
       </div>

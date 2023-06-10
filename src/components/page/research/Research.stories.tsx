@@ -25,16 +25,12 @@ export const Primary: Story = {
         name: "大塲 洋介",
         thumbnail: {
           src: "./member-default.png",
-          originalWidth: 300,
-          originalHeight: 300,
         },
       },
       {
         name: "宮下 芳明",
         thumbnail: {
           src: "./member-default.png",
-          originalWidth: 300,
-          originalHeight: 300,
         },
       },
     ],

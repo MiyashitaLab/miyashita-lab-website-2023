@@ -43,17 +43,17 @@ export const MemberCardsSection: FC<MemberCardsSectionProps> = ({
             name={card.name}
             role={card.role}
           >
-            <WrapImage
-              src={card.thumbnail.src}
-              originalWidth={card.thumbnail.originalWidth}
-              originalHeight={card.thumbnail.originalHeight}
-              alt={""}
-              sizes={{
-                sm: "33vw", // 1/3
-                md: "25vw", // 1/4
-                base: "16vw", // 1/6
-              }}
-            />
+            <div className={"aspect-square w-full"}>
+              <WrapImage
+                src={card.thumbnail.src}
+                alt={""}
+                sizes={{
+                  sm: "33vw", // 1/3
+                  md: "25vw", // 1/4
+                  base: "16vw", // 1/6
+                }}
+              />
+            </div>
           </MemberCard>
         ))}
       </div>

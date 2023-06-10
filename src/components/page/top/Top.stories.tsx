@@ -24,8 +24,6 @@ const articleCardMock = (i: number) =>
     date: new Date(),
     thumbnail: {
       src: "./card-default.png",
-      originalWidth: 1200,
-      originalHeight: 630,
     },
   } satisfies ArticleCardData);
 
@@ -35,8 +33,6 @@ const projectCardMock = (i: number) =>
     title: "プロジェクトタイトル",
     thumbnail: {
       src: "./card-default.png",
-      originalWidth: 1200,
-      originalHeight: 630,
     },
   } satisfies ArticleCardData);
 
@@ -47,8 +43,6 @@ const memberCardMock = (index: number) =>
     role: "教員",
     thumbnail: {
       src: "./member-default.png",
-      originalWidth: 1000,
-      originalHeight: 1000,
     },
   } satisfies MemberCardData);
 
@@ -56,8 +50,6 @@ export const Primary = {
   args: {
     headImage: {
       src: "./story/homeHero.png",
-      originalWidth: 1280,
-      originalHeight: 360,
     },
     about: {
       url: "/about",

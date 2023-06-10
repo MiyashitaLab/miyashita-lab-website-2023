@@ -87,10 +87,8 @@ export const Layout: FC<LayoutProps> = ({
               src={"./logo.png"}
               alt={"Miyashita Lab"}
               priority
-              originalWidth={831}
-              originalHeight={175}
-              maxWidth={152}
-              maxHeight={32}
+              width={152}
+              height={32}
             />
           }
           logoHref={"#home"}

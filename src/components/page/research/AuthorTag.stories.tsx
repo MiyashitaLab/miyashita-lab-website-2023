@@ -17,8 +17,6 @@ export const News = {
   args: {
     thumbnail: {
       src: "./member-default.png",
-      originalWidth: 1000,
-      originalHeight: 1000,
     },
     name: "宮下 芳明",
   },

@@ -33,8 +33,6 @@ export const Primary: Story = {
     role: "教員",
     thumbnail: {
       src: "./member-default.png",
-      originalWidth: 1000,
-      originalHeight: 1000,
     },
     content: content,
     researchesUrl: "#",

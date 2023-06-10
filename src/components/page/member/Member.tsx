@@ -22,14 +22,7 @@ export const Member: FC<MemberProps> = ({
   return (
     <div className={"m-4 flex flex-col md:flex-row"}>
       <div className={"mx-auto shrink-0 p-4"}>
-        <WrapImage
-          src={thumbnail.src}
-          originalWidth={thumbnail.originalWidth}
-          originalHeight={thumbnail.originalHeight}
-          alt={""}
-          maxWidth={200}
-          maxHeight={200}
-        />
+        <WrapImage src={thumbnail.src} alt={""} width={200} height={200} />
         {researchesUrl && (
           <PageLink
             href={researchesUrl}

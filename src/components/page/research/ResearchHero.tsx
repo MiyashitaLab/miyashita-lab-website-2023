@@ -24,14 +24,13 @@ export type ResearchHeroProps = {
 export const ResearchHero: FC<ResearchHeroProps> = ({ hero }) => {
   if (hero.type === "image") {
     return (
-      <div className={"bg-stone-100"}>
+      <div className={"aspect-[1.91/1] max-h-96 w-full bg-stone-100"}>
         <WrapImage
           className={"mx-auto"}
           src={hero.image.src}
-          originalWidth={hero.image.originalWidth}
-          originalHeight={hero.image.originalHeight}
-          maxHeight={384}
-          maxWidth={9999}
+          sizes={{
+            base: "100vw",
+          }}
           alt={""}
         />
       </div>

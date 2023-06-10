@@ -1,13 +1,8 @@
-import classNames from "classnames";
 import Image from "next/image";
 import { CSSProperties, FC } from "react";
 
-import { resizeToFitContainer } from "@/lib/resizeToFitContianer";
-
 export type CMSImage = {
   src: string;
-  originalWidth: number;
-  originalHeight: number;
 };
 
 export type WrapImageProps = CMSImage &
@@ -16,13 +11,13 @@ export type WrapImageProps = CMSImage &
 
 export type WrapImageBaseProps = {
   alt: string;
-  className?: string;
   priority?: boolean;
 };
 
 export type WrapImageSizeSpecifiedProps = {
-  maxWidth: number;
-  maxHeight: number;
+  className?: string;
+  width: number;
+  height: number;
 };
 
 export type WrapImageContainerProps = {
@@ -33,14 +28,11 @@ export type WrapImageContainerProps = {
     lg?: CSSProperties["width"]; // 1024pxまで
     xl?: CSSProperties["width"]; // 1280pxまで
   };
-  container?: boolean;
 };
 
 export const WrapImage: FC<WrapImageProps> = ({
   src,
   alt,
-  originalWidth,
-  originalHeight,
   priority,
   ...rest
 }) => {
@@ -57,49 +49,30 @@ export const WrapImage: FC<WrapImageProps> = ({
       .concat(`${base}`)
       .join(", ");
 
-    if (rest.container === true) {
-      return (
-        <div className={classNames(rest.className, "relative")}>
-          <Image
-            src={src}
-            alt={alt}
-            priority={priority}
-            fill
-            className={"object-contain"}
-            sizes={sizes}
-          />
-        </div>
-      );
-    }
-
     return (
-      <Image
-        className={rest.className}
-        src={src}
-        alt={alt}
-        priority={priority}
-        width={originalWidth}
-        height={originalHeight}
-        sizes={sizes}
-      />
+      <div
+        className={"relative flex h-full w-full items-center justify-center"}
+      >
+        <Image
+          src={src}
+          alt={alt}
+          priority={priority}
+          fill
+          sizes={sizes}
+          className={"object-contain"}
+        />
+      </div>
     );
   }
 
-  const { maxWidth, maxHeight } = rest;
-  const { width, height } = resizeToFitContainer({
-    maxWidth,
-    maxHeight,
-    width: originalWidth,
-    height: originalHeight,
-  });
   return (
     <Image
-      className={rest.className}
       src={src}
       alt={alt}
       priority={priority}
-      width={Math.round(width)}
-      height={Math.round(height)}
+      className={rest.className}
+      width={rest.width}
+      height={rest.height}
     />
   );
 };

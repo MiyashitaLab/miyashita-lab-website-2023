@@ -15,10 +15,8 @@ export const AuthorTag: FC<AuthorTagProps> = ({ thumbnail, name }) => {
         <WrapImage
           className={"inline-block rounded-full border-2 border-cyan-800"}
           src={thumbnail.src}
-          originalWidth={thumbnail.originalWidth}
-          originalHeight={thumbnail.originalHeight}
-          maxWidth={32}
-          maxHeight={32}
+          width={32}
+          height={32}
           alt={""}
         />
         <span className={"pl-1 pr-3 align-middle"}>{name}</span>
