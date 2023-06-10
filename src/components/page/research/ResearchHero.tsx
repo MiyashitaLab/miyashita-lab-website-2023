@@ -43,16 +43,18 @@ export const ResearchHero: FC<ResearchHeroProps> = ({ hero }) => {
 
     //TODO widget_referrerを設定する
     return (
-      <div className={"bg-stone-100"}>
-        <iframe
-          className={"mx-auto"}
-          width="682"
-          height="384"
-          src={`https://www.youtube-nocookie.com/embed/${youtubeId}?modestbranding=1&rel=0`}
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        />
+      <div className={"w-full bg-stone-100"}>
+        <div className={"relative mx-auto aspect-video w-full max-w-[682px]"}>
+          <iframe
+            className={"absolute left-0 top-0 h-full w-full"}
+            width={560}
+            height={315}
+            src={`https://www.youtube-nocookie.com/embed/${youtubeId}?modestbranding=1&rel=0`}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        </div>
       </div>
     );
   }
