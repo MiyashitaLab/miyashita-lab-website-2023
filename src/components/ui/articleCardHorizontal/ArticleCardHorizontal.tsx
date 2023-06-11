@@ -8,7 +8,6 @@ import { dateToYYYYMMDD } from "@/lib/formatDate";
 export type ArticleCardHorizontalProps = ArticleCardProps;
 
 export const ArticleCardHorizontal: FC<ArticleCardHorizontalProps> = ({
-  className,
   children,
   date,
   label,
@@ -18,7 +17,7 @@ export const ArticleCardHorizontal: FC<ArticleCardHorizontalProps> = ({
 }) => {
   return (
     <div
-      className={`overflow-hidden rounded-lg border border-gray-200 bg-white shadow ${className} h-full w-full`}
+      className={`h-full w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow`}
     >
       <WrapLink href={href}>
         <div className={"grid h-full w-full grid-cols-[min(25%,200px),75%]"}>
