@@ -35,29 +35,25 @@ export const Articles: FC<ArticlesProps> = ({
         }
       >
         {cards.map((card) => (
-          <div
+          <ArticleCard
             key={card.detailHref}
-            className={"relative shrink-0 basis-60 self-stretch"}
+            date={card.date}
+            title={card.title}
+            href={card.detailHref}
           >
-            <ArticleCard
-              date={card.date}
-              title={card.title}
-              href={card.detailHref}
-            >
-              <div className={"aspect-[1.91/1] w-full"}>
-                <WrapImageFill
-                  src={card.thumbnail.src}
-                  sizes={{
-                    base: "100vw",
-                    sm: "50vw",
-                    md: "33vw",
-                    lg: "25vw",
-                  }}
-                  alt={""}
-                />
-              </div>
-            </ArticleCard>
-          </div>
+            <div className={"aspect-[1.91/1] w-full"}>
+              <WrapImageFill
+                src={card.thumbnail.src}
+                sizes={{
+                  base: "100vw",
+                  sm: "50vw",
+                  md: "33vw",
+                  lg: "25vw",
+                }}
+                alt={""}
+              />
+            </div>
+          </ArticleCard>
         ))}
       </div>
       <div className={"my-8"}>{pagination}</div>

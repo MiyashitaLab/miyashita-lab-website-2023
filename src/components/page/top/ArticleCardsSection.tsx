@@ -43,10 +43,7 @@ export const ArticleCardsSection: FC<ArticleCardsSectionProps> = ({
         }
       >
         {cards.map((card) => (
-          <div
-            key={card.detailHref}
-            className={"relative shrink-0 basis-60 self-stretch"}
-          >
+          <div key={card.detailHref} className={"shrink-0 basis-60"}>
             <ArticleCard
               date={card.date}
               title={card.title}
