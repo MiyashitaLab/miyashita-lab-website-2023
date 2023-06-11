@@ -16,6 +16,7 @@ export interface TypePaperFields {
     firstPage?: EntryFieldTypes.Symbol;
     lastPage?: EntryFieldTypes.Symbol;
     copyrightHolder?: EntryFieldTypes.Symbol;
+    customMetaList?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
     thumbnail?: EntryFieldTypes.AssetLink;
     youtubeUrl?: EntryFieldTypes.Symbol;
     slidePdf?: EntryFieldTypes.AssetLink;
