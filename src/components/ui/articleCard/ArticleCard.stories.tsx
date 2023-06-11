@@ -12,6 +12,11 @@ import type { Meta } from "@storybook/react";
 const meta: Meta<typeof ArticleCard> = {
   title: "ArticleCard",
   component: ArticleCard,
+  render: (args) => (
+    <div className={"w-96"}>
+      <ArticleCard {...args} />
+    </div>
+  ),
 };
 
 export default meta;
@@ -20,7 +25,6 @@ type Story = StoryObj<typeof ArticleCard>;
 
 export const Basic: Story = {
   args: {
-    className: "w-96",
     date: new Date("2021-01-01"),
     href: "#",
     children: (
@@ -40,7 +44,6 @@ export const Basic: Story = {
 
 export const LongTitle: Story = {
   args: {
-    className: "w-96",
     date: new Date("2021-12-31"),
     href: "#",
     children: (
@@ -60,7 +63,6 @@ export const LongTitle: Story = {
 
 export const Research: Story = {
   args: {
-    className: "w-96",
     date: new Date("2021-12-31"),
     href: "#",
     children: (

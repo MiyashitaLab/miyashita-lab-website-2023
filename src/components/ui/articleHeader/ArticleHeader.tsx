@@ -1,18 +1,16 @@
 import classNames from "classnames";
-import { ComponentProps, FC } from "react";
+import { FC } from "react";
 
 import { BeautifulBreak } from "@/components/feature/beautifulBreak";
 import { dateToYYYYMMDD } from "@/lib/formatDate";
 
 export type ArticleHeaderProps = {
-  className?: ComponentProps<"div">["className"];
   type: "news" | "project";
   children: string;
   date?: Date;
 };
 
 export const ArticleHeader: FC<ArticleHeaderProps> = ({
-  className,
   children,
   type,
   date,
@@ -24,8 +22,7 @@ export const ArticleHeader: FC<ArticleHeaderProps> = ({
         {
           "bg-cyan-700": type === "news",
           "bg-teal-700": type === "project",
-        },
-        className
+        }
       )}
     >
       <h1 className={"text-xl font-bold md:text-2xl"}>

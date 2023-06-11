@@ -1,11 +1,10 @@
-import { ComponentProps, FC, ReactElement, ReactNode } from "react";
+import { FC, ReactElement, ReactNode } from "react";
 
 import { BeautifulBreak } from "@/components/feature/beautifulBreak";
 import { WrapLink } from "@/components/feature/wrapLink";
 import { dateToYYYYMMDD } from "@/lib/formatDate";
 
 export type ArticleCardProps = {
-  className?: ComponentProps<"div">["className"];
   children?: ReactNode;
   date?: Date;
   label?: ReactElement;
@@ -15,7 +14,6 @@ export type ArticleCardProps = {
 };
 
 export const ArticleCard: FC<ArticleCardProps> = ({
-  className,
   children,
   date,
   label,
@@ -25,7 +23,7 @@ export const ArticleCard: FC<ArticleCardProps> = ({
 }) => {
   return (
     <div
-      className={`overflow-hidden rounded-lg border border-gray-200 bg-white shadow ${className}`}
+      className={`h-full w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow`}
     >
       <WrapLink href={href}>
         <div className={"flex justify-center"}>{children}</div>

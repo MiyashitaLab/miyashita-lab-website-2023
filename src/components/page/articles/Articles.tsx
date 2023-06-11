@@ -37,7 +37,6 @@ export const Articles: FC<ArticlesProps> = ({
         {cards.map((card) => (
           <ArticleCard
             key={card.detailHref}
-            className={"relative shrink-0 basis-60 self-stretch"}
             date={card.date}
             title={card.title}
             href={card.detailHref}

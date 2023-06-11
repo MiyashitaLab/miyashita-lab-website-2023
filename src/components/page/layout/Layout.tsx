@@ -79,9 +79,8 @@ export const Layout: FC<LayoutProps> = ({
 
   return (
     <div className={"flex h-full flex-col bg-stone-50"}>
-      <div className={"fixed top-0 z-50 h-12 w-full"}>
+      <div className={"fixed top-0 z-50 h-12 w-full shadow"}>
         <PageHeader
-          className={"shadow"}
           logo={
             <WrapImageSized
               src={"./logo.png"}

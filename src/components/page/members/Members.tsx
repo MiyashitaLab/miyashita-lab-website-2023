@@ -20,11 +20,14 @@ export const Members: FC<MembersProps> = ({
 }) => {
   const renderCards = (cards: readonly MemberCardData[]) => {
     return (
-      <div className={"my-6 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6"}>
+      <div
+        className={
+          "my-6 grid grid-cols-3 gap-y-2 sm:grid-cols-4 md:grid-cols-6"
+        }
+      >
         {cards.map((card) => (
           <MemberCard
             key={card.detailHref}
-            className={"my-2"}
             href={card.detailHref}
             name={card.name}
             role={card.role}

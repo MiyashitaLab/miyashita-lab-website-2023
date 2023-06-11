@@ -43,24 +43,24 @@ export const ArticleCardsSection: FC<ArticleCardsSectionProps> = ({
         }
       >
         {cards.map((card) => (
-          <ArticleCard
-            key={card.detailHref}
-            className={"relative shrink-0 basis-60 self-stretch"}
-            date={card.date}
-            title={card.title}
-            href={card.detailHref}
-          >
-            <div className={"aspect-[1.91/1] w-full"}>
-              <WrapImageFill
-                src={card.thumbnail.src}
-                sizes={{
-                  base: "25vw", // 1/4
-                  md: "15rem", // basis-60
-                }}
-                alt={""}
-              />
-            </div>
-          </ArticleCard>
+          <div key={card.detailHref} className={"shrink-0 basis-60"}>
+            <ArticleCard
+              date={card.date}
+              title={card.title}
+              href={card.detailHref}
+            >
+              <div className={"aspect-[1.91/1] w-full"}>
+                <WrapImageFill
+                  src={card.thumbnail.src}
+                  sizes={{
+                    base: "25vw", // 1/4
+                    md: "15rem", // basis-60
+                  }}
+                  alt={""}
+                />
+              </div>
+            </ArticleCard>
+          </div>
         ))}
       </div>
       <PageLink href={href} className={"text-center"}>

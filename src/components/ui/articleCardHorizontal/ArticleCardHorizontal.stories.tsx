@@ -20,7 +20,6 @@ type Story = StoryObj<typeof ArticleCardHorizontal>;
 
 export const Primary: Story = {
   args: {
-    className: "w-96",
     date: new Date("2021-12-31"),
     href: "#",
     children: (
