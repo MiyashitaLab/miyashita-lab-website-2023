@@ -8,6 +8,11 @@ import type { Meta } from "@storybook/react";
 const meta: Meta<typeof MemberCard> = {
   title: "MemberCard",
   component: MemberCard,
+  render: (args) => (
+    <div className={"w-48"}>
+      <MemberCard {...args} />
+    </div>
+  ),
 };
 
 export default meta;
@@ -16,7 +21,6 @@ type Story = StoryObj<typeof MemberCard>;
 
 export const Primary: Story = {
   args: {
-    className: "w-48",
     href: "#",
     role: "role",
     name: "name",
@@ -28,13 +32,11 @@ export const Primary: Story = {
         height={400}
       />
     ),
-    //write your args here
   },
 };
 
 export const Homei: Story = {
   args: {
-    className: "w-48",
     href: "#",
     role: "教員",
     name: "宮下芳明",
@@ -46,14 +48,12 @@ export const Homei: Story = {
 
 export const OB: Story = {
   args: {
-    className: "w-48",
     href: "#",
     role: "2021年度卒業",
     name: "dummy no nagainame",
-    isLongName: true,
     children: (
       <Image
-        src="./author-default.png"
+        src="./member-default.png"
         alt={"dummy image"}
         width={400}
         height={400}
