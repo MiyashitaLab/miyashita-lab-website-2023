@@ -53,9 +53,7 @@ export const Member: FC<MemberProps> = ({
 
   return (
     <div
-      className={
-        "grid grid-cols-[auto_1fr] grid-rows-[auto_auto_auto_auto_1fr] gap-x-8 gap-y-4 p-6"
-      }
+      className={"grid auto-rows-auto grid-cols-[auto_1fr] gap-x-8 gap-y-4 p-6"}
     >
       <div className={"col-span-2 row-span-1 md:col-span-1 md:row-span-3"}>
         {renderImgArea()}
