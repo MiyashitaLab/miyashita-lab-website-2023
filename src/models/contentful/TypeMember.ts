@@ -3,10 +3,12 @@ import type { TypeAuthorSkeleton } from "./TypeAuthor";
 
 export interface TypeMemberFields {
     name: EntryFieldTypes.Symbol;
+    author?: EntryFieldTypes.EntryLink<TypeAuthorSkeleton>;
     slug?: EntryFieldTypes.Symbol;
     role: EntryFieldTypes.Symbol<"professor" | "student">;
+    institution: EntryFieldTypes.Symbol;
     content?: EntryFieldTypes.Text;
-    author?: EntryFieldTypes.EntryLink<TypeAuthorSkeleton>;
+    achievement?: EntryFieldTypes.Text;
     enrolledYear: EntryFieldTypes.Integer;
     graduatedYear: EntryFieldTypes.Integer;
     status: EntryFieldTypes.Symbol<"auto" | "bachelor" | "doctor" | "enrolled" | "master" | "withdrawn">;
