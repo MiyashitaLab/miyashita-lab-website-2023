@@ -95,10 +95,8 @@ export const Layout: FC<LayoutProps> = ({
           links={links}
         />
       </div>
-      <main
-        className={"mx-auto w-full max-w-screen-xl flex-auto bg-stone-50 pt-12"}
-      >
-        {children}
+      <main className={"w-full flex-auto bg-stone-50 pt-12"}>
+        <div className={"mx-auto max-w-screen-xl"}>{children}</div>
       </main>
       <div className={"w-full"}>
         <PageFooter copyright={copyright} links={footerLinks} />
