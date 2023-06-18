@@ -1,10 +1,11 @@
 import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
+import type { TypeAuthorSkeleton } from "./TypeAuthor";
 
 export interface TypePaperFields {
     title: EntryFieldTypes.Symbol;
     abstract: EntryFieldTypes.Text;
     language: EntryFieldTypes.Symbol<"english" | "japanese">;
-    author: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<EntrySkeletonType>>;
+    author: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeAuthorSkeleton>>;
     type: EntryFieldTypes.Symbol<"journal" | "proceeding" | "report" | "thesis">;
     keyword: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
     publishUrl?: EntryFieldTypes.Symbol;
