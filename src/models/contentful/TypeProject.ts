@@ -6,7 +6,6 @@ export interface TypeProjectFields {
     thumbnail?: EntryFieldTypes.AssetLink;
     category: EntryFieldTypes.Symbol;
     content: EntryFieldTypes.Text;
-    test?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
 }
 
 export type TypeProjectSkeleton = EntrySkeletonType<TypeProjectFields, "project">;
