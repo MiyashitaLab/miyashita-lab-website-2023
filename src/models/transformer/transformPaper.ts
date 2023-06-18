@@ -32,7 +32,7 @@ export const transformPaperModel = (
   paper: Entry<TypePaperSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
 ): PaperModel => {
   const pages = `${paper.fields.firstPage} - ${paper.fields.lastPage}`;
-  const quotation = "";
+  const quotation = ipsjQuotation(paper);
 
   const hero: PaperHeroModel = (() => {
     if (paper.fields.youtubeUrl) {
@@ -75,6 +75,19 @@ export const transformPaperModel = (
     pdfUrl: paper.fields.pdf?.fields.file?.url,
     hero: hero,
   };
+};
+
+const ipsjQuotation = (
+  paper: Entry<TypePaperSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
+): string => {
+  //https://www.ipsj.or.jp/kenkyukai/innyo.html
+  const title = paper.fields.title;
+  const journalTitle = paper.fields.journalTitle;
+  const volume = paper.fields.volume;
+  const issue = paper.fields.issue;
+  const pages = `${paper.fields.firstPage} - ${paper.fields.lastPage}`;
+  const year = new Date(paper.fields.publicationDate).getFullYear();
+  return `${title}, ${journalTitle}, Vol.${volume}, No.${issue}, pp.${pages}, ${year}`;
 };
 
 const filterTruthy = <T>(value: T | undefined): value is T => {
