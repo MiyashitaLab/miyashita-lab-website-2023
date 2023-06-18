@@ -6,12 +6,10 @@ import { CMSImage } from "@/components/feature/wrapImage/WrapImage";
 import { WrapLink } from "@/components/feature/wrapLink";
 import { AuthorTag } from "@/components/page/research/AuthorTag";
 import { InfoItem } from "@/components/page/research/InfoItem";
-import {
-  HeroType,
-  ResearchHero,
-} from "@/components/page/research/ResearchHero";
+import { ResearchHero } from "@/components/page/research/ResearchHero";
 import { Icon } from "@/components/ui/icon";
 import { dateToYYYYMMDD } from "@/lib/formatDate";
+import { PaperHeroModel } from "@/models/models";
 
 export type ResearchProps = {
   title: string;
@@ -36,7 +34,7 @@ export type ResearchProps = {
     quotation: string;
   };
   pdfUrl?: string;
-  hero: HeroType;
+  hero: PaperHeroModel;
 };
 
 export const Research: FC<ResearchProps> = ({
