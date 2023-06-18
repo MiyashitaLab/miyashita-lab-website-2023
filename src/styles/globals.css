@@ -17,6 +17,6 @@ body {
     height: 100%;
 }
 
-#storybook-root {
+#__next,#storybook-root {
     height: 100%;
 }
