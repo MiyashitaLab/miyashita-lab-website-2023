@@ -6,6 +6,7 @@ import { PageFooter } from "@/components/ui/pageFooter";
 import { PageFooterLinkItem } from "@/components/ui/pageFooter/PageFooter";
 import { PageHeader } from "@/components/ui/pageHeader";
 import { PageHeaderLinkItem } from "@/components/ui/pageHeader/PageHeader";
+import { LogoImg } from "@/lib/publicImage";
 
 const headerItems = [
   {
@@ -83,7 +84,7 @@ export const Layout: FC<LayoutProps> = ({
         <PageHeader
           logo={
             <WrapImageSized
-              src={"./logo.png"}
+              src={LogoImg.src}
               alt={"Miyashita Lab"}
               priority
               width={152}
