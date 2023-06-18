@@ -1,27 +1,11 @@
 import { FC } from "react";
 
-import {
-  CMSImageWithSize,
-  WrapImageSized,
-} from "@/components/feature/wrapImage/WrapImage";
+import { WrapImageSized } from "@/components/feature/wrapImage/WrapImage";
 import { PdfSlide } from "@/components/ui/pdfSlide";
-
-export type HeroType =
-  | {
-      type: "image";
-      image: CMSImageWithSize;
-    }
-  | {
-      type: "youtube";
-      youtubeUrl: string;
-    }
-  | {
-      type: "slide";
-      slidePdfUrl: string;
-    };
+import { PaperHeroModel } from "@/models/models";
 
 export type ResearchHeroProps = {
-  hero: HeroType;
+  hero: PaperHeroModel;
 };
 
 export const ResearchHero: FC<ResearchHeroProps> = ({ hero }) => {
