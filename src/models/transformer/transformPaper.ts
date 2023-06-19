@@ -15,7 +15,7 @@ export const transformPartialPaperModel = (
   return {
     title: paper.fields.title,
     abstract: paper.fields.abstract,
-    publishDate: new Date(paper.fields.publicationDate),
+    publishDateStr: paper.fields.publicationDate,
     language: paper.fields.language,
     authors: paper.fields.author
       .filter(filterTruthy)

@@ -21,6 +21,7 @@ export type AuthorModel = {
 export type PartialMemberModel = {
   slug: string;
   name: string;
+  thumbnail?: CMSImage;
   displayRole: string;
   roleSortOrder: number;
 };
