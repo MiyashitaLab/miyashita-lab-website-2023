@@ -1,8 +1,10 @@
 import { Entry } from "contentful";
 
+import { MemberDefaultImg } from "@/lib/publicImage";
 import { TypeMemberFields, TypeMemberSkeleton } from "@/models/contentful";
 import { MemberModel, PartialMemberModel } from "@/models/models";
 import { transformAuthorModel } from "@/models/transformer/transformAuthor";
+import { transformCMSImage } from "@/models/transformer/transformCMSImage";
 
 export const transformPartialMemberModal = (
   member: Entry<TypeMemberSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
@@ -18,9 +20,13 @@ export const transformPartialMemberModal = (
   const roleSortOrder =
     member.fields.role === "professor" ? -9999 : -member.fields.enrolledYear;
 
+  const thumbnailAsset = member.fields.thumbnail?.fields.file;
   return {
     name: member.fields.name,
     slug: member.fields.slug ?? member.fields.name,
+    thumbnail: thumbnailAsset
+      ? transformCMSImage(thumbnailAsset)
+      : MemberDefaultImg,
     displayRole: role,
     roleSortOrder: roleSortOrder,
   };
@@ -111,7 +117,7 @@ const calsStatus = (
   const nowFiscalYear = getJapaneseFiscalYear(now);
 
   //在学中
-  if (graduatedYear < nowFiscalYear) {
+  if (graduatedYear <= nowFiscalYear) {
     return "enrolled";
   }
 

@@ -21,6 +21,7 @@ export type AuthorModel = {
 export type PartialMemberModel = {
   slug: string;
   name: string;
+  thumbnail?: CMSImage;
   displayRole: string;
   roleSortOrder: number;
 };
@@ -35,7 +36,7 @@ export type MemberModel = PartialMemberModel & {
 export type PartialNewsModel = {
   slug: string;
   title: string;
-  date: Date;
+  dateStr: string;
   thumbnail?: CMSImage;
 };
 
@@ -46,7 +47,7 @@ export type NewsModel = PartialNewsModel & {
 export type PartialPaperModel = {
   title: string;
   abstract: string;
-  publishDate: Date;
+  publishDateStr: string;
   language: "english" | "japanese";
   authors: AuthorModel[];
   type: "journal" | "proceeding" | "report" | "thesis";
@@ -96,6 +97,6 @@ export type ProjectModel = PartialProjectModel & {
 
 export type TopPageModel = {
   title: string;
-  topImg: CMSImage;
+  topImg: CMSImageWithSize;
   description: string;
 };

@@ -1,21 +1,20 @@
 import { Entry } from "contentful";
 
+import { CardDefaultImg } from "@/lib/publicImage";
 import { TypeProjectSkeleton } from "@/models/contentful";
 import { PartialProjectModel, ProjectModel } from "@/models/models";
+import { transformCMSImage } from "@/models/transformer/transformCMSImage";
 
 export const transformPartialProjectModel = (
   project: Entry<TypeProjectSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
 ): PartialProjectModel => {
-  if (project.fields.thumbnail?.fields.file?.url === undefined) {
-    throw new Error("Project image unresolved");
-  }
-
+  const thumbnailAsset = project.fields.thumbnail?.fields.file;
   return {
     title: project.fields.title,
     slug: project.fields.slug,
-    thumbnail: {
-      src: project.fields.thumbnail?.fields.file.url,
-    },
+    thumbnail: thumbnailAsset
+      ? transformCMSImage(thumbnailAsset)
+      : CardDefaultImg,
     category: project.fields.category,
   };
 };
