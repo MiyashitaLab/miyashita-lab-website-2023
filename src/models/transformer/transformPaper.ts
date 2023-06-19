@@ -3,15 +3,11 @@ import { Entry } from "contentful";
 import { TypePaperSkeleton } from "@/models/contentful";
 import { PaperHeroModel, PaperModel, PartialPaperModel } from "@/models/models";
 import { transformAuthorModel } from "@/models/transformer/transformAuthor";
+import { transformCMSImage } from "@/models/transformer/transformCMSImage";
 
 export const transformPartialPaperModel = (
   paper: Entry<TypePaperSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
 ): PartialPaperModel => {
-  const imgUrl = paper.fields.thumbnail?.fields.file?.url;
-  if (imgUrl === undefined) {
-    throw new Error("Paper image unresolved");
-  }
-
   return {
     title: paper.fields.title,
     abstract: paper.fields.abstract,
@@ -22,9 +18,7 @@ export const transformPartialPaperModel = (
       .map((author) => transformAuthorModel(author)),
     type: paper.fields.type,
     keywords: paper.fields.keyword,
-    thumbnailImg: {
-      src: imgUrl,
-    },
+    thumbnailImg: transformCMSImage(paper.fields.thumbnail?.fields.file),
   };
 };
 
@@ -50,11 +44,7 @@ export const transformPaperModel = (
     if (paper.fields.thumbnail && paper.fields.thumbnail.fields.file) {
       return {
         type: "image",
-        image: {
-          src: paper.fields.thumbnail.fields.file.url,
-          width: paper.fields.thumbnail.fields.file.details.image!.width,
-          height: paper.fields.thumbnail.fields.file.details.image!.height,
-        },
+        image: transformCMSImage(paper.fields.thumbnail.fields.file),
       };
     }
     throw new Error("Paper hero image unresolved");
