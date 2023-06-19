@@ -117,7 +117,7 @@ const calsStatus = (
   const nowFiscalYear = getJapaneseFiscalYear(now);
 
   //在学中
-  if (graduatedYear < nowFiscalYear) {
+  if (graduatedYear <= nowFiscalYear) {
     return "enrolled";
   }
 
