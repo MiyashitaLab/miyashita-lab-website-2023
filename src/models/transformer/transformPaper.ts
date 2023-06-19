@@ -1,5 +1,6 @@
 import { Entry } from "contentful";
 
+import { CardDefaultImg } from "@/lib/publicImage";
 import { TypePaperSkeleton } from "@/models/contentful";
 import { PaperHeroModel, PaperModel, PartialPaperModel } from "@/models/models";
 import { transformAuthorModel } from "@/models/transformer/transformAuthor";
@@ -8,6 +9,7 @@ import { transformCMSImage } from "@/models/transformer/transformCMSImage";
 export const transformPartialPaperModel = (
   paper: Entry<TypePaperSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
 ): PartialPaperModel => {
+  const thumbnailAsset = paper.fields.thumbnail?.fields.file;
   return {
     title: paper.fields.title,
     abstract: paper.fields.abstract,
@@ -18,7 +20,9 @@ export const transformPartialPaperModel = (
       .map((author) => transformAuthorModel(author)),
     type: paper.fields.type,
     keywords: paper.fields.keyword,
-    thumbnailImg: transformCMSImage(paper.fields.thumbnail?.fields.file),
+    thumbnailImg: thumbnailAsset
+      ? transformCMSImage(thumbnailAsset)
+      : CardDefaultImg,
   };
 };
 
