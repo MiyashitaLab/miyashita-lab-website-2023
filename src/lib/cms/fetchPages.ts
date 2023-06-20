@@ -1,5 +1,5 @@
 import { client } from "@/lib/cms/contentfulClient";
-import { fetchAll } from "@/lib/cms/fetchAll";
+import { fetchAllEntries } from "@/lib/cms/fetchAllEntries";
 import { TypePagesFields, TypePagesSkeleton } from "@/models/contentful";
 import { GeneralPageModel } from "@/models/models";
 import { transformPagesModel } from "@/models/transformer/transformPages";
@@ -7,7 +7,7 @@ import { transformPagesModel } from "@/models/transformer/transformPages";
 export const fetchPageSlugs = async (): Promise<
   TypePagesFields["slug"]["values"][]
 > => {
-  const pages = await fetchAll<TypePagesSkeleton>({
+  const pages = await fetchAllEntries<TypePagesSkeleton>({
     content_type: "pages",
     select: ["fields.slug"],
   });

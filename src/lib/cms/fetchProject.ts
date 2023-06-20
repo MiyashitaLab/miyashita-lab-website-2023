@@ -1,5 +1,5 @@
 import { client } from "@/lib/cms/contentfulClient";
-import { fetchAll } from "@/lib/cms/fetchAll";
+import { fetchAllEntries } from "@/lib/cms/fetchAllEntries";
 import { TypeProjectSkeleton } from "@/models/contentful";
 import { PartialProjectModel } from "@/models/models";
 import { transformPartialProjectModel } from "@/models/transformer/transformProject";
@@ -7,7 +7,7 @@ import { transformPartialProjectModel } from "@/models/transformer/transformProj
 export const fetchPartialProjectList = async (): Promise<
   PartialProjectModel[]
 > => {
-  const projects = await fetchAll<TypeProjectSkeleton>({
+  const projects = await fetchAllEntries<TypeProjectSkeleton>({
     content_type: "project",
     select: [
       "fields.category",

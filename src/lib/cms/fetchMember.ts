@@ -1,5 +1,5 @@
 import { client } from "@/lib/cms/contentfulClient";
-import { fetchAll } from "@/lib/cms/fetchAll";
+import { fetchAllEntries } from "@/lib/cms/fetchAllEntries";
 import { TypeMemberSkeleton } from "@/models/contentful";
 import { MemberModel, PartialMemberModel } from "@/models/models";
 import {
@@ -10,7 +10,7 @@ import {
 export const fetchPartialMemberList = async (): Promise<
   PartialMemberModel[]
 > => {
-  const members = await fetchAll<TypeMemberSkeleton>({
+  const members = await fetchAllEntries<TypeMemberSkeleton>({
     content_type: "member",
     select: [
       "fields.name",

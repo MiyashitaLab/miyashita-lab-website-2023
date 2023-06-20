@@ -1,5 +1,5 @@
 import { client } from "@/lib/cms/contentfulClient";
-import { fetchAll } from "@/lib/cms/fetchAll";
+import { fetchAllEntries } from "@/lib/cms/fetchAllEntries";
 import { TypePaperSkeleton } from "@/models/contentful";
 import { PaperModel, PartialPaperModel } from "@/models/models";
 import {
@@ -8,7 +8,7 @@ import {
 } from "@/models/transformer/transformPaper";
 
 export const fetchPartialPaperList = async (): Promise<PartialPaperModel[]> => {
-  const papers = await fetchAll<TypePaperSkeleton>({
+  const papers = await fetchAllEntries<TypePaperSkeleton>({
     content_type: "paper",
     select: [
       "fields.title",

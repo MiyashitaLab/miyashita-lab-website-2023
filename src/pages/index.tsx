@@ -14,11 +14,6 @@ type Props = {
   newsList: PartialNewsModel[];
 };
 
-/*
-TODO: fetchするときページングされるので、全権取得する必要がある
-TODO: トップ画像中央寄せする
- */
-
 const Home: NextPage<Props> = ({ top, newsList }) => {
   return (
     <Top
