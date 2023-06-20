@@ -2,9 +2,9 @@ import { GetStaticProps, NextPage } from "next";
 
 import { Top } from "@/components/page/top";
 import { fetchPartialMemberList } from "@/lib/cms/fetchMember";
-import { fetchPartialNewsList } from "@/lib/cms/fetchNews";
-import { fetchPartialPaperList } from "@/lib/cms/fetchPaper";
-import { fetchPartialProjectList } from "@/lib/cms/fetchProject";
+import { fetchLatestPartialNews } from "@/lib/cms/fetchNews";
+import { fetchLatestPartialPaperList } from "@/lib/cms/fetchPaper";
+import { fetchLatestPartialProjectList } from "@/lib/cms/fetchProject";
 import { fetchTopPage } from "@/lib/cms/fetchTopPage";
 import { ROUTES } from "@/lib/routes";
 import {
@@ -86,9 +86,9 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   return {
     props: {
       top: await fetchTopPage(),
-      newsList: await fetchPartialNewsList(),
-      researchList: await fetchPartialPaperList(),
-      projectList: await fetchPartialProjectList(),
+      newsList: await fetchLatestPartialNews(12),
+      researchList: await fetchLatestPartialPaperList(12),
+      projectList: await fetchLatestPartialProjectList(12),
       memberList: activeMemberList,
     },
   };
