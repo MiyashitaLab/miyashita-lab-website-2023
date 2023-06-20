@@ -9,17 +9,28 @@ import { transformCMSImage } from "@/models/transformer/transformCMSImage";
 export const transformPartialPaperModel = (
   paper: Entry<TypePaperSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
 ): PartialPaperModel => {
-  const thumbnailAsset = paper.fields.thumbnail?.fields.file;
+  const {
+    title,
+    abstract,
+    publicationDate,
+    language,
+    author: authorsRaw,
+    type,
+    keyword,
+    thumbnail,
+  } = paper.fields;
+
+  const thumbnailAsset = thumbnail?.fields.file;
   return {
-    title: paper.fields.title,
-    abstract: paper.fields.abstract,
-    publishDateStr: paper.fields.publicationDate,
-    language: paper.fields.language,
-    authors: paper.fields.author
+    title: title,
+    abstract: abstract,
+    publishDateStr: publicationDate,
+    language: language,
+    authors: authorsRaw
       .filter(filterTruthy)
       .map((author) => transformAuthorModel(author)),
-    type: paper.fields.type,
-    keywords: paper.fields.keyword,
+    type: type,
+    keywords: keyword,
     thumbnailImg: thumbnailAsset
       ? transformCMSImage(thumbnailAsset)
       : CardDefaultImg,
@@ -29,26 +40,41 @@ export const transformPartialPaperModel = (
 export const transformPaperModel = (
   paper: Entry<TypePaperSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
 ): PaperModel => {
-  const pages = `${paper.fields.firstPage} - ${paper.fields.lastPage}`;
+  const {
+    copyrightHolder,
+    pdf,
+    volume,
+    youtubeUrl,
+    lastPage,
+    issue,
+    journalTitle,
+    firstPage,
+    slidePdf,
+    publishUrl,
+    customMetaList,
+    thumbnail,
+  } = paper.fields;
+
+  const pages = `${firstPage} - ${lastPage}`;
   const quotation = ipsjQuotation(paper);
 
   const hero: PaperHeroModel = (() => {
-    if (paper.fields.youtubeUrl) {
+    if (youtubeUrl) {
       return {
         type: "youtube",
-        youtubeUrl: paper.fields.youtubeUrl,
+        youtubeUrl: youtubeUrl,
       } satisfies PaperHeroModel;
     }
-    if (paper.fields.slidePdf && paper.fields.slidePdf.fields.file?.url) {
+    if (slidePdf && slidePdf.fields.file?.url) {
       return {
         type: "slide",
-        slidePdfUrl: paper.fields.slidePdf.fields.file?.url,
+        slidePdfUrl: slidePdf.fields.file?.url,
       } satisfies PaperHeroModel;
     }
-    if (paper.fields.thumbnail && paper.fields.thumbnail.fields.file) {
+    if (thumbnail && thumbnail.fields.file) {
       return {
         type: "image",
-        image: transformCMSImage(paper.fields.thumbnail.fields.file),
+        image: transformCMSImage(thumbnail.fields.file),
       };
     }
     throw new Error("Paper hero image unresolved");
@@ -57,16 +83,16 @@ export const transformPaperModel = (
   return {
     ...transformPartialPaperModel(paper),
     publication: {
-      url: paper.fields.publishUrl,
-      journalTitle: paper.fields.journalTitle,
-      volume: paper.fields.volume,
-      issue: paper.fields.issue,
+      url: publishUrl,
+      journalTitle: journalTitle,
+      volume: volume,
+      issue: issue,
       pages: pages,
-      copyrightHolder: paper.fields.copyrightHolder,
+      copyrightHolder: copyrightHolder,
       quotation: quotation,
-      customMetaList: paper.fields.customMetaList ?? [],
+      customMetaList: customMetaList ?? [],
     },
-    pdfUrl: paper.fields.pdf?.fields.file?.url,
+    pdfUrl: pdf?.fields.file?.url,
     hero: hero,
   };
 };
@@ -75,12 +101,18 @@ const ipsjQuotation = (
   paper: Entry<TypePaperSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
 ): string => {
   //https://www.ipsj.or.jp/kenkyukai/innyo.html
-  const title = paper.fields.title;
-  const journalTitle = paper.fields.journalTitle;
-  const volume = paper.fields.volume;
-  const issue = paper.fields.issue;
-  const pages = `${paper.fields.firstPage} - ${paper.fields.lastPage}`;
-  const year = new Date(paper.fields.publicationDate).getFullYear();
+  const {
+    title,
+    journalTitle,
+    volume,
+    issue,
+    publicationDate,
+    lastPage,
+    firstPage,
+  } = paper.fields;
+
+  const pages = `${firstPage} - ${lastPage}`;
+  const year = new Date(publicationDate).getFullYear();
   return `${title}, ${journalTitle}, Vol.${volume}, No.${issue}, pp.${pages}, ${year}`;
 };
 

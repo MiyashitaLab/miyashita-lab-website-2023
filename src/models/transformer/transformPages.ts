@@ -6,9 +6,11 @@ import { GeneralPageModel } from "@/models/models";
 export const transformPagesModel = (
   pages: Entry<TypePagesSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
 ): GeneralPageModel => {
+  const { slug, title, content } = pages.fields;
+
   return {
-    slug: pages.fields.slug,
-    title: pages.fields.title,
-    contentMd: pages.fields.content,
+    slug: slug,
+    title: title,
+    contentMd: content,
   };
 };

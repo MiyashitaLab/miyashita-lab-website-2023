@@ -9,30 +9,53 @@ import { transformCMSImage } from "@/models/transformer/transformCMSImage";
 export const transformPartialMemberModal = (
   member: Entry<TypeMemberSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
 ): PartialMemberModel => {
-  const role = displayRole({
-    role: member.fields.role,
-    schoolYear: member.fields.schoolYear,
-    graduatedYear: member.fields.graduatedYear,
-    enrolledYear: member.fields.enrolledYear,
-    status: member.fields.status,
+  const {
+    name,
+    slug,
+    thumbnail,
+    role,
+    schoolYear,
+    graduatedYear,
+    enrolledYear,
+    status,
+  } = member.fields;
+
+  const displayRole = getDisplayRole({
+    role: role,
+    schoolYear: schoolYear,
+    graduatedYear: graduatedYear,
+    enrolledYear: enrolledYear,
+    status: status,
   });
   //TODO 要見直し
-  const roleSortOrder =
-    member.fields.role === "professor" ? -9999 : -member.fields.enrolledYear;
+  const roleSortOrder = role === "professor" ? -9999 : -enrolledYear;
 
-  const thumbnailAsset = member.fields.thumbnail?.fields.file;
+  const thumbnailAsset = thumbnail?.fields.file;
   return {
-    name: member.fields.name,
-    slug: member.fields.slug ?? member.fields.name,
+    name: name,
+    slug: slug ?? name,
     thumbnail: thumbnailAsset
       ? transformCMSImage(thumbnailAsset)
       : MemberDefaultImg,
-    displayRole: role,
+    displayRole: displayRole,
     roleSortOrder: roleSortOrder,
   };
 };
 
-const displayRole = ({
+export const transformMemberModel = (
+  member: Entry<TypeMemberSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
+): MemberModel => {
+  const { author, institution, content, achievement } = member.fields;
+  return {
+    ...transformPartialMemberModal(member),
+    author: author && transformAuthorModel(author),
+    institution: institution,
+    contentMd: content,
+    achievementMd: achievement,
+  };
+};
+
+const getDisplayRole = ({
   role,
   schoolYear,
   graduatedYear,
@@ -150,16 +173,4 @@ const getJapaneseFiscalYear = (date: Date): number => {
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   return month < 4 ? year - 1 : year;
-};
-
-export const transformMemberModel = (
-  member: Entry<TypeMemberSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
-): MemberModel => {
-  return {
-    ...transformPartialMemberModal(member),
-    author: member.fields.author && transformAuthorModel(member.fields.author),
-    institution: member.fields.institution,
-    contentMd: member.fields.content,
-    achievementMd: member.fields.achievement,
-  };
 };

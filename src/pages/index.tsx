@@ -1,7 +1,72 @@
-import { Top } from "@/components/page/top";
-import { Primary } from "@/components/page/top/Top.stories";
+import { GetStaticProps, NextPage } from "next";
 
-export default function Home() {
-  //TODO CMSから取得する
-  return <Top {...Primary.args} />;
-}
+import { Top } from "@/components/page/top";
+import { fetchPartialMemberList } from "@/lib/cms/fetchMember";
+import { fetchPartialNewsList } from "@/lib/cms/fetchNews";
+import { fetchPartialPaperList } from "@/lib/cms/fetchPaper";
+import { fetchPartialProjectList } from "@/lib/cms/fetchProject";
+import { fetchTopPage } from "@/lib/cms/fetchTopPage";
+import { CardDefaultImg } from "@/lib/publicImage";
+import { PartialNewsModel, TopPageModel } from "@/models/models";
+
+type Props = {
+  top: TopPageModel;
+  newsList: PartialNewsModel[];
+};
+
+/*
+TODO: fetchするときページングされるので、全権取得する必要がある
+TODO: トップ画像中央寄せする
+ */
+
+const Home: NextPage<Props> = ({ top, newsList }) => {
+  return (
+    <Top
+      headImage={top.topImg}
+      about={{
+        shortDescription: top.description,
+        url: "/about",
+      }}
+      news={{
+        cards: newsList.map((news) => ({
+          title: news.title,
+          date: new Date(news.dateStr),
+          detailHref: `/news/${news.slug}`,
+          thumbnail: news.thumbnail || {
+            src: CardDefaultImg.src,
+          },
+        })),
+        url: "/news",
+      }}
+      research={{
+        cards: [],
+        url: "/research",
+      }}
+      project={{
+        cards: [],
+        url: "/project",
+      }}
+      member={{
+        cards: [],
+        url: "/member",
+      }}
+    />
+  );
+};
+
+export default Home;
+
+export const getStaticProps: GetStaticProps = async () => {
+  console.log(await fetchPartialMemberList());
+  console.log(await fetchPartialNewsList());
+  console.log(await fetchPartialPaperList());
+  console.log(await fetchPartialProjectList());
+  console.log(await fetchTopPage());
+
+  return {
+    props: {
+      top: await fetchTopPage(),
+      newsList: await fetchPartialNewsList(),
+    },
+  };
+};

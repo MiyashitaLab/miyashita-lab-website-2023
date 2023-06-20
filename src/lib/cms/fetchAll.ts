@@ -4,7 +4,7 @@ import { EntriesQueries } from "contentful/dist/types/types/query";
 import { client } from "@/lib/cms/contentfulClient";
 
 export const fetchAll = async <TEntrySkeleton extends EntrySkeletonType>(
-  query?: Omit<EntriesQueries<TEntrySkeleton, undefined>, "skip" | "limit">
+  query?: EntriesQueries<TEntrySkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
 ): Promise<Entry<TEntrySkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>[]> => {
   let skip = 0;
   const limit = 500;

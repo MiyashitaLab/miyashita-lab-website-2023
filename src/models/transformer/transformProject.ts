@@ -8,22 +8,25 @@ import { transformCMSImage } from "@/models/transformer/transformCMSImage";
 export const transformPartialProjectModel = (
   project: Entry<TypeProjectSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
 ): PartialProjectModel => {
-  const thumbnailAsset = project.fields.thumbnail?.fields.file;
+  const { category, slug, title, thumbnail } = project.fields;
+
+  const thumbnailAsset = thumbnail?.fields.file;
   return {
-    title: project.fields.title,
-    slug: project.fields.slug,
+    title: title,
+    slug: slug,
     thumbnail: thumbnailAsset
       ? transformCMSImage(thumbnailAsset)
       : CardDefaultImg,
-    category: project.fields.category,
+    category: category,
   };
 };
 
 export const transformProjectModel = (
   project: Entry<TypeProjectSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
 ): ProjectModel => {
+  const { content } = project.fields;
   return {
     ...transformPartialProjectModel(project),
-    contentMd: project.fields.content,
+    contentMd: content,
   };
 };
