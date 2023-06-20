@@ -139,7 +139,7 @@ const complementStatus = (
   const nowFiscalYear = getJapaneseFiscalYear(now);
 
   //在学中
-  if (graduatedYear <= nowFiscalYear) {
+  if (nowFiscalYear <= graduatedYear) {
     return "enrolled";
   }
 
