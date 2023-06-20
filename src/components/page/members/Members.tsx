@@ -1,15 +1,13 @@
-import { FC } from "react";
+import { FC, ReactElement } from "react";
 
 import { WrapImageFill } from "@/components/feature/wrapImage";
-import { MemberCardData } from "@/components/page/top/MemberCardsSection";
 import { CardsHeading } from "@/components/ui/cardsHeading";
-import { MemberCard } from "@/components/ui/memberCard";
 
 export type MembersProps = {
   enrolledCardsHeading: string;
-  enrolledCards: readonly MemberCardData[];
+  enrolledCards: ReactElement[];
   graduatedCardsHeading: string;
-  graduatedCards: readonly MemberCardData[];
+  graduatedCards: ReactElement[];
 };
 
 export const Members: FC<MembersProps> = ({
@@ -18,33 +16,14 @@ export const Members: FC<MembersProps> = ({
   graduatedCardsHeading,
   graduatedCards,
 }) => {
-  const renderCards = (cards: readonly MemberCardData[]) => {
+  const renderCards = (cards: ReactElement[]) => {
     return (
       <div
         className={
           "my-6 grid grid-cols-3 gap-y-2 sm:grid-cols-4 md:grid-cols-6"
         }
       >
-        {cards.map((card) => (
-          <MemberCard
-            key={card.detailHref}
-            href={card.detailHref}
-            name={card.name}
-            role={card.role}
-          >
-            <div className={"aspect-square w-full"}>
-              <WrapImageFill
-                src={card.thumbnail.src}
-                alt={""}
-                sizes={{
-                  sm: "33vw", // 1/3
-                  md: "25vw", // 1/4
-                  base: "16vw", // 1/6
-                }}
-              />
-            </div>
-          </MemberCard>
-        ))}
+        {cards}
       </div>
     );
   };
@@ -59,6 +38,24 @@ export const Members: FC<MembersProps> = ({
         <CardsHeading>{graduatedCardsHeading}</CardsHeading>
         {renderCards(graduatedCards)}
       </section>
+    </div>
+  );
+};
+
+export const MembersCardImage: FC<{
+  src: string;
+}> = ({ src }) => {
+  return (
+    <div className={"aspect-square w-full"}>
+      <WrapImageFill
+        src={src}
+        alt={""}
+        sizes={{
+          sm: "33vw", // 1/3
+          md: "25vw", // 1/4
+          base: "16vw", // 1/6
+        }}
+      />
     </div>
   );
 };

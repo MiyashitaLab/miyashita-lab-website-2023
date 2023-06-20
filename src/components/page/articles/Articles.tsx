@@ -2,12 +2,10 @@ import { FC, ReactElement, ReactNode } from "react";
 
 import { WrapImageFill } from "@/components/feature/wrapImage";
 import { WrapLink } from "@/components/feature/wrapLink";
-import { ArticleCardData } from "@/components/page/top/ArticleCardsSection";
-import { ArticleCard } from "@/components/ui/articleCard";
 import { CardsHeading } from "@/components/ui/cardsHeading";
 
 export type ArticlesProps = {
-  cards: readonly ArticleCardData[];
+  children: ReactElement[];
   href: string;
   headingIcon: ReactElement;
   headingText: string;
@@ -15,7 +13,7 @@ export type ArticlesProps = {
 };
 
 export const Articles: FC<ArticlesProps> = ({
-  cards,
+  children,
   href,
   headingIcon,
   headingText,
@@ -34,29 +32,28 @@ export const Articles: FC<ArticlesProps> = ({
           "my-6 grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
         }
       >
-        {cards.map((card) => (
-          <ArticleCard
-            key={card.detailHref}
-            date={card.date}
-            title={card.title}
-            href={card.detailHref}
-          >
-            <div className={"aspect-[1.91/1] w-full"}>
-              <WrapImageFill
-                src={card.thumbnail.src}
-                sizes={{
-                  base: "100vw",
-                  sm: "50vw",
-                  md: "33vw",
-                  lg: "25vw",
-                }}
-                alt={""}
-              />
-            </div>
-          </ArticleCard>
-        ))}
+        {children}
       </div>
       <div className={"my-8"}>{pagination}</div>
+    </div>
+  );
+};
+
+export const ArticlesCardImage: FC<{
+  src: string;
+}> = ({ src }) => {
+  return (
+    <div className={"aspect-[1.91/1] w-full"}>
+      <WrapImageFill
+        src={src}
+        sizes={{
+          base: "100vw",
+          sm: "50vw",
+          md: "33vw",
+          lg: "25vw",
+        }}
+        alt={""}
+      />
     </div>
   );
 };

@@ -1,30 +1,19 @@
 import { FC, ReactElement } from "react";
 
-import {
-  CMSImage,
-  WrapImageFill,
-} from "@/components/feature/wrapImage/WrapImage";
+import { WrapImageFill } from "@/components/feature/wrapImage/WrapImage";
 import { WrapLink } from "@/components/feature/wrapLink";
-import { ArticleCard } from "@/components/ui/articleCard";
 import { CardsHeading } from "@/components/ui/cardsHeading";
 import { PageLink } from "@/components/ui/pageLink/";
 
-export type ArticleCardData = {
-  detailHref: string;
-  title: string;
-  date?: Date;
-  thumbnail: CMSImage;
-};
-
 export type ArticleCardsSectionProps = {
-  cards: readonly ArticleCardData[];
+  children: ReactElement[];
   href: string;
   headingIcon: ReactElement;
   headingText: string;
 };
 
 export const ArticleCardsSection: FC<ArticleCardsSectionProps> = ({
-  cards,
+  children,
   href,
   headingIcon,
   headingText,
@@ -42,24 +31,9 @@ export const ArticleCardsSection: FC<ArticleCardsSectionProps> = ({
           "my-6 flex flex-row gap-2 overflow-x-auto lg:grid lg:grid-cols-4"
         }
       >
-        {cards.map((card) => (
-          <div key={card.detailHref} className={"shrink-0 basis-60"}>
-            <ArticleCard
-              date={card.date}
-              title={card.title}
-              href={card.detailHref}
-            >
-              <div className={"aspect-[1.91/1] w-full"}>
-                <WrapImageFill
-                  src={card.thumbnail.src}
-                  sizes={{
-                    base: "25vw", // 1/4
-                    md: "15rem", // basis-60
-                  }}
-                  alt={""}
-                />
-              </div>
-            </ArticleCard>
+        {children.map((child) => (
+          <div key={child.key} className={"shrink-0 basis-60"}>
+            {child}
           </div>
         ))}
       </div>
@@ -67,5 +41,22 @@ export const ArticleCardsSection: FC<ArticleCardsSectionProps> = ({
         もっと見る
       </PageLink>
     </section>
+  );
+};
+
+export const ArticleCardsSectionImage: FC<{
+  src: string;
+}> = ({ src }) => {
+  return (
+    <div className={"aspect-[1.91/1] w-full"}>
+      <WrapImageFill
+        src={src}
+        sizes={{
+          base: "25vw", // 1/4
+          md: "15rem", // basis-60
+        }}
+        alt={""}
+      />
+    </div>
   );
 };
