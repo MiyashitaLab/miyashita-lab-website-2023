@@ -8,20 +8,25 @@ import { transformCMSImage } from "@/models/transformer/transformCMSImage";
 export const transformPartialNewsModel = (
   news: Entry<TypeNewsSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
 ): PartialNewsModel => {
-  const imgAsset = news.fields.thumbnail?.fields.file;
+  const { title, slug, date, thumbnail } = news.fields;
+
+  const thumbnailAsset = thumbnail?.fields.file;
   return {
-    title: news.fields.title,
-    slug: news.fields.slug,
-    dateStr: news.fields.date,
-    thumbnail: imgAsset ? transformCMSImage(imgAsset) : CardDefaultImg,
+    title: title,
+    slug: slug ?? title,
+    dateStr: date,
+    thumbnail: thumbnailAsset
+      ? transformCMSImage(thumbnailAsset)
+      : CardDefaultImg,
   };
 };
 
 export const transformNewsModel = (
   news: Entry<TypeNewsSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
 ): NewsModel => {
+  const { content } = news.fields;
   return {
     ...transformPartialNewsModel(news),
-    contentMd: news.fields.content,
+    contentMd: content,
   };
 };

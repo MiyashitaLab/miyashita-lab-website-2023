@@ -21,9 +21,10 @@ export type AuthorModel = {
 export type PartialMemberModel = {
   slug: string;
   name: string;
-  thumbnail?: CMSImage;
+  thumbnail: CMSImage;
   displayRole: string;
   roleSortOrder: number;
+  active: boolean;
 };
 
 export type MemberModel = PartialMemberModel & {
@@ -37,7 +38,7 @@ export type PartialNewsModel = {
   slug: string;
   title: string;
   dateStr: string;
-  thumbnail?: CMSImage;
+  thumbnail: CMSImage;
 };
 
 export type NewsModel = PartialNewsModel & {
@@ -45,6 +46,7 @@ export type NewsModel = PartialNewsModel & {
 };
 
 export type PartialPaperModel = {
+  slug: string;
   title: string;
   abstract: string;
   publishDateStr: string;
@@ -52,7 +54,7 @@ export type PartialPaperModel = {
   authors: AuthorModel[];
   type: "journal" | "proceeding" | "report" | "thesis";
   keywords: string[];
-  thumbnailImg?: CMSImage;
+  thumbnailImg: CMSImage;
 };
 
 export type PaperModel = PartialPaperModel & {
@@ -87,7 +89,7 @@ export type PaperHeroModel =
 export type PartialProjectModel = {
   slug: string;
   title: string;
-  thumbnail?: CMSImage;
+  thumbnail: CMSImage;
   category: string;
 };
 

@@ -7,7 +7,6 @@ export const fetchTopPage = async (): Promise<TopPageModel> => {
   const top =
     await client.withoutUnresolvableLinks.getEntries<TypeTopPageSkeleton>({
       content_type: "topPage",
-      include: 1,
     });
   const topContent = top.items[0];
   if (topContent === undefined) {

@@ -9,30 +9,60 @@ import { transformCMSImage } from "@/models/transformer/transformCMSImage";
 export const transformPartialMemberModal = (
   member: Entry<TypeMemberSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
 ): PartialMemberModel => {
-  const role = displayRole({
-    role: member.fields.role,
-    schoolYear: member.fields.schoolYear,
-    graduatedYear: member.fields.graduatedYear,
-    enrolledYear: member.fields.enrolledYear,
-    status: member.fields.status,
+  const {
+    name,
+    slug,
+    thumbnail,
+    role,
+    schoolYear,
+    graduatedYear,
+    enrolledYear,
+    status,
+  } = member.fields;
+
+  const complementedStatus = complementStatus(
+    status,
+    enrolledYear,
+    graduatedYear
+  );
+
+  const displayRole = getDisplayRole({
+    role: role,
+    schoolYear: schoolYear,
+    graduatedYear: graduatedYear,
+    enrolledYear: enrolledYear,
+    status: complementedStatus,
   });
   //TODO 要見直し
-  const roleSortOrder =
-    member.fields.role === "professor" ? -9999 : -member.fields.enrolledYear;
+  const roleSortOrder = role === "professor" ? -9999 : -enrolledYear;
 
-  const thumbnailAsset = member.fields.thumbnail?.fields.file;
+  const thumbnailAsset = thumbnail?.fields.file;
   return {
-    name: member.fields.name,
-    slug: member.fields.slug ?? member.fields.name,
+    name: name,
+    slug: slug ?? name,
     thumbnail: thumbnailAsset
       ? transformCMSImage(thumbnailAsset)
       : MemberDefaultImg,
-    displayRole: role,
+    displayRole: displayRole,
     roleSortOrder: roleSortOrder,
+    active: complementedStatus === "enrolled",
   };
 };
 
-const displayRole = ({
+export const transformMemberModel = (
+  member: Entry<TypeMemberSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
+): MemberModel => {
+  const { author, institution, content, achievement } = member.fields;
+  return {
+    ...transformPartialMemberModal(member),
+    author: author && transformAuthorModel(author),
+    institution: institution,
+    contentMd: content,
+    achievementMd: achievement,
+  };
+};
+
+const getDisplayRole = ({
   role,
   schoolYear,
   graduatedYear,
@@ -49,32 +79,21 @@ const displayRole = ({
     return "教員";
   }
 
-  const calcStatus =
-    status === "auto" ? calsStatus(enrolledYear, graduatedYear) : status;
-
-  if (calcStatus === "enrolled") {
-    //在学中
-
-    return schoolYear === "auto"
-      ? calcSchoolYear(enrolledYear, graduatedYear)
-      : schoolYear;
-  } else {
-    //卒業 or 退学済み
-
-    if (calcStatus === "bachelor") {
+  switch (status) {
+    case "enrolled":
+      return schoolYear === "auto"
+        ? calcSchoolYear(enrolledYear, graduatedYear)
+        : schoolYear;
+    case "bachelor":
       return `${graduatedYear}年度学部卒業`;
-    }
-    if (calcStatus === "master") {
+    case "master":
       return `${graduatedYear}年度修士卒業`;
-    }
-    if (calcStatus === "doctor") {
+    case "doctor":
       return `${graduatedYear}年度博士卒業`;
-    }
-    if (calcStatus === "withdrawn") {
+    case "withdrawn":
       return `${graduatedYear}年度退学`;
-    }
-
-    throw new Error(`Unexpected status: ${calcStatus}`);
+    default:
+      throw new Error("Invalid status");
   }
 };
 
@@ -109,15 +128,18 @@ const calcSchoolYear = (
   }
 };
 
-const calsStatus = (
+const complementStatus = (
+  status: "auto" | "enrolled" | "bachelor" | "doctor" | "master" | "withdrawn",
   enrolledYear: number,
   graduatedYear: number,
   now: Date = new Date()
 ): "enrolled" | "bachelor" | "doctor" | "master" | "withdrawn" => {
+  if (status !== "auto") return status;
+
   const nowFiscalYear = getJapaneseFiscalYear(now);
 
   //在学中
-  if (graduatedYear <= nowFiscalYear) {
+  if (nowFiscalYear <= graduatedYear) {
     return "enrolled";
   }
 
@@ -150,16 +172,4 @@ const getJapaneseFiscalYear = (date: Date): number => {
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   return month < 4 ? year - 1 : year;
-};
-
-export const transformMemberModel = (
-  member: Entry<TypeMemberSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
-): MemberModel => {
-  return {
-    ...transformPartialMemberModal(member),
-    author: member.fields.author && transformAuthorModel(member.fields.author),
-    institution: member.fields.institution,
-    contentMd: member.fields.content,
-    achievementMd: member.fields.achievement,
-  };
 };

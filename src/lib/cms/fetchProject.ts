@@ -1,18 +1,42 @@
 import { client } from "@/lib/cms/contentfulClient";
+import { fetchAllEntries } from "@/lib/cms/fetchAllEntries";
 import { TypeProjectSkeleton } from "@/models/contentful";
 import { PartialProjectModel } from "@/models/models";
 import { transformPartialProjectModel } from "@/models/transformer/transformProject";
 
-export const fetchPartialProjectList = async (): Promise<
-  PartialProjectModel[]
-> => {
+export const fetchLatestPartialProjectList = async (
+  entryNum: number
+): Promise<PartialProjectModel[]> => {
   const projects =
     await client.withoutUnresolvableLinks.getEntries<TypeProjectSkeleton>({
       content_type: "project",
+      select: [
+        "fields.category",
+        "fields.slug",
+        "fields.title",
+        "fields.thumbnail",
+      ],
       order: ["-sys.updatedAt"],
+      limit: entryNum,
     });
-
   return projects.items.map((project) => transformPartialProjectModel(project));
+};
+
+export const fetchPartialProjectList = async (): Promise<
+  PartialProjectModel[]
+> => {
+  const projects = await fetchAllEntries<TypeProjectSkeleton>({
+    content_type: "project",
+    select: [
+      "fields.category",
+      "fields.slug",
+      "fields.title",
+      "fields.thumbnail",
+    ],
+    order: ["-sys.updatedAt"],
+  });
+
+  return projects.map((project) => transformPartialProjectModel(project));
 };
 
 export const fetchProject = async (

@@ -1,16 +1,35 @@
 import { client } from "@/lib/cms/contentfulClient";
+import { fetchAllEntries } from "@/lib/cms/fetchAllEntries";
 import { TypeNewsSkeleton } from "@/models/contentful";
 import { PartialNewsModel } from "@/models/models";
 import { transformPartialNewsModel } from "@/models/transformer/transformNews";
 
-export const fetchPartialNewsList = async (): Promise<PartialNewsModel[]> => {
+export const fetchLatestPartialNews = async (
+  entryNum: number
+): Promise<PartialNewsModel[]> => {
   const newsList =
     await client.withoutUnresolvableLinks.getEntries<TypeNewsSkeleton>({
       content_type: "news",
+      select: [
+        "fields.title",
+        "fields.slug",
+        "fields.date",
+        "fields.thumbnail",
+      ],
       order: ["-fields.date"],
+      limit: entryNum,
     });
-
   return newsList.items.map((news) => transformPartialNewsModel(news));
+};
+
+export const fetchPartialNewsList = async (): Promise<PartialNewsModel[]> => {
+  const newsList = await fetchAllEntries<TypeNewsSkeleton>({
+    content_type: "news",
+    select: ["fields.title", "fields.slug", "fields.date", "fields.thumbnail"],
+    order: ["-fields.date"],
+  });
+
+  return newsList.map((news) => transformPartialNewsModel(news));
 };
 
 export const fetchNews = async (slug: string): Promise<PartialNewsModel> => {

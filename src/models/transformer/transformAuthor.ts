@@ -6,15 +6,18 @@ import { AuthorModel } from "@/models/models";
 export const transformAuthorModel = (
   author: Entry<TypeAuthorSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
 ): AuthorModel => {
+  const { fullName, familyNameJa, familyNameEn, lastNameJa, lastNameEn } =
+    author.fields;
+
   return {
-    fullName: author.fields.fullName,
+    fullName,
     familyName: {
-      ja: author.fields.familyNameJa,
-      en: author.fields.familyNameEn,
+      ja: familyNameJa,
+      en: familyNameEn,
     },
     lastName: {
-      ja: author.fields.lastNameJa,
-      en: author.fields.lastNameEn,
+      ja: lastNameJa,
+      en: lastNameEn,
     },
   };
 };
