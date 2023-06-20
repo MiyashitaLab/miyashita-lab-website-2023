@@ -20,12 +20,18 @@ export const transformPartialMemberModal = (
     status,
   } = member.fields;
 
+  const complementedStatus = complementStatus(
+    status,
+    enrolledYear,
+    graduatedYear
+  );
+
   const displayRole = getDisplayRole({
     role: role,
     schoolYear: schoolYear,
     graduatedYear: graduatedYear,
     enrolledYear: enrolledYear,
-    status: status,
+    status: complementedStatus,
   });
   //TODO 要見直し
   const roleSortOrder = role === "professor" ? -9999 : -enrolledYear;
@@ -39,6 +45,7 @@ export const transformPartialMemberModal = (
       : MemberDefaultImg,
     displayRole: displayRole,
     roleSortOrder: roleSortOrder,
+    active: complementedStatus === "enrolled",
   };
 };
 
@@ -72,32 +79,21 @@ const getDisplayRole = ({
     return "教員";
   }
 
-  const calcStatus =
-    status === "auto" ? calsStatus(enrolledYear, graduatedYear) : status;
-
-  if (calcStatus === "enrolled") {
-    //在学中
-
-    return schoolYear === "auto"
-      ? calcSchoolYear(enrolledYear, graduatedYear)
-      : schoolYear;
-  } else {
-    //卒業 or 退学済み
-
-    if (calcStatus === "bachelor") {
+  switch (status) {
+    case "enrolled":
+      return schoolYear === "auto"
+        ? calcSchoolYear(enrolledYear, graduatedYear)
+        : schoolYear;
+    case "bachelor":
       return `${graduatedYear}年度学部卒業`;
-    }
-    if (calcStatus === "master") {
+    case "master":
       return `${graduatedYear}年度修士卒業`;
-    }
-    if (calcStatus === "doctor") {
+    case "doctor":
       return `${graduatedYear}年度博士卒業`;
-    }
-    if (calcStatus === "withdrawn") {
+    case "withdrawn":
       return `${graduatedYear}年度退学`;
-    }
-
-    throw new Error(`Unexpected status: ${calcStatus}`);
+    default:
+      throw new Error("Invalid status");
   }
 };
 
@@ -132,11 +128,14 @@ const calcSchoolYear = (
   }
 };
 
-const calsStatus = (
+const complementStatus = (
+  status: "auto" | "enrolled" | "bachelor" | "doctor" | "master" | "withdrawn",
   enrolledYear: number,
   graduatedYear: number,
   now: Date = new Date()
 ): "enrolled" | "bachelor" | "doctor" | "master" | "withdrawn" => {
+  if (status !== "auto") return status;
+
   const nowFiscalYear = getJapaneseFiscalYear(now);
 
   //在学中

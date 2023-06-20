@@ -24,6 +24,7 @@ export type PartialMemberModel = {
   thumbnail: CMSImage;
   displayRole: string;
   roleSortOrder: number;
+  active: boolean;
 };
 
 export type MemberModel = PartialMemberModel & {
