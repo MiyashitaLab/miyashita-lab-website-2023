@@ -45,6 +45,7 @@ export type NewsModel = PartialNewsModel & {
 };
 
 export type PartialPaperModel = {
+  slug: string;
   title: string;
   abstract: string;
   publishDateStr: string;

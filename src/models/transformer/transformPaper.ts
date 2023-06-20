@@ -22,6 +22,7 @@ export const transformPartialPaperModel = (
 
   const thumbnailAsset = thumbnail?.fields.file;
   return {
+    slug: paper.sys.id,
     title: title,
     abstract: abstract,
     publishDateStr: publicationDate,

@@ -11,6 +11,7 @@ export const fetchPartialPaperList = async (): Promise<PartialPaperModel[]> => {
   const papers = await fetchAllEntries<TypePaperSkeleton>({
     content_type: "paper",
     select: [
+      "sys.id",
       "fields.title",
       "fields.abstract",
       "fields.publicationDate",
