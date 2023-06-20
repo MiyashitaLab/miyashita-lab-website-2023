@@ -6,7 +6,6 @@ import { fetchPartialNewsList } from "@/lib/cms/fetchNews";
 import { fetchPartialPaperList } from "@/lib/cms/fetchPaper";
 import { fetchPartialProjectList } from "@/lib/cms/fetchProject";
 import { fetchTopPage } from "@/lib/cms/fetchTopPage";
-import { CardDefaultImg } from "@/lib/publicImage";
 import { PartialNewsModel, TopPageModel } from "@/models/models";
 
 type Props = {
@@ -27,9 +26,7 @@ const Home: NextPage<Props> = ({ top, newsList }) => {
           title: news.title,
           date: new Date(news.dateStr),
           detailHref: `/news/${news.slug}`,
-          thumbnail: news.thumbnail || {
-            src: CardDefaultImg.src,
-          },
+          thumbnail: news.thumbnail,
         })),
         url: "/news",
       }}
