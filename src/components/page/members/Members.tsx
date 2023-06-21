@@ -1,42 +1,49 @@
-import { FC, ReactElement } from "react";
+import { FC } from "react";
 
 import { WrapImageFill } from "@/components/feature/wrapImage";
+import { MemberCardsSectionImage } from "@/components/page/top/MemberCardsSection";
 import { CardsHeading } from "@/components/ui/cardsHeading";
+import { MemberCard } from "@/components/ui/memberCard";
+import { PartialMemberModel } from "@/models/models";
 
 export type MembersProps = {
-  enrolledCardsHeading: string;
-  enrolledCards: ReactElement[];
-  graduatedCardsHeading: string;
-  graduatedCards: ReactElement[];
+  memberList: PartialMemberModel[];
 };
 
-export const Members: FC<MembersProps> = ({
-  enrolledCardsHeading,
-  enrolledCards,
-  graduatedCardsHeading,
-  graduatedCards,
-}) => {
-  const renderCards = (cards: ReactElement[]) => {
+export const Members: FC<MembersProps> = ({ memberList }) => {
+  const renderCards = (members: PartialMemberModel[]) => {
     return (
       <div
         className={
           "my-6 grid grid-cols-3 gap-y-2 sm:grid-cols-4 md:grid-cols-6"
         }
       >
-        {cards}
+        {members.map((member) => (
+          <MemberCard
+            key={member.slug}
+            href={member.slug}
+            role={member.displayRole}
+            name={member.name}
+          >
+            <MemberCardsSectionImage src={member.thumbnail.src} />
+          </MemberCard>
+        ))}
       </div>
     );
   };
 
+  const activeMembers = memberList.filter((member) => member.active);
+  const graduatedMembers = memberList.filter((member) => !member.active);
+
   return (
     <div className={"mx-auto my-6 text-center"}>
       <section className={"mx-auto my-8"}>
-        <CardsHeading>{enrolledCardsHeading}</CardsHeading>
-        {renderCards(enrolledCards)}
+        <CardsHeading>現役メンバー</CardsHeading>
+        {renderCards(activeMembers)}
       </section>
       <section className={"mx-auto my-8"}>
-        <CardsHeading>{graduatedCardsHeading}</CardsHeading>
-        {renderCards(graduatedCards)}
+        <CardsHeading>歴代メンバー</CardsHeading>
+        {renderCards(graduatedMembers)}
       </section>
     </div>
   );
