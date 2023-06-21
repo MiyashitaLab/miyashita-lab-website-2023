@@ -1,9 +1,14 @@
+import { faker } from "@faker-js/faker";
 import { StoryObj } from "@storybook/react";
 
-import { MemberCardsSection } from "./MemberCardsSection";
+import {
+  MemberCardsSection,
+  MemberCardsSectionImage,
+} from "./MemberCardsSection";
 
-import { Primary } from "@/components/page/top/Top.stories";
 import { Icon } from "@/components/ui/icon";
+import { MemberCard } from "@/components/ui/memberCard";
+import { memberModelMock } from "@/models/mockData";
 
 import type { Meta } from "@storybook/react";
 
@@ -21,6 +26,17 @@ export const Member = {
     href: "/member",
     headingIcon: <Icon fontStyle="solid" name={"users"} />,
     headingText: "メンバー",
-    cards: Primary.args.member.cards,
+    children: faker.helpers
+      .multiple(() => memberModelMock(faker), { count: 8 })
+      .map((member) => (
+        <MemberCard
+          key={member.slug}
+          href={member.slug}
+          name={member.name}
+          role={member.displayRole}
+        >
+          <MemberCardsSectionImage src={member.thumbnail.src} />
+        </MemberCard>
+      )),
   },
 } as const satisfies Story;

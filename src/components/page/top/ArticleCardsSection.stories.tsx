@@ -1,9 +1,14 @@
+import { faker } from "@faker-js/faker";
 import { StoryObj } from "@storybook/react";
 
-import { ArticleCardsSection } from "./ArticleCardsSection";
+import {
+  ArticleCardsSection,
+  ArticleCardsSectionImage,
+} from "./ArticleCardsSection";
 
-import { Primary } from "@/components/page/top/Top.stories";
+import { ArticleCard } from "@/components/ui/articleCard";
 import { Icon } from "@/components/ui/icon";
+import { newsModelMock } from "@/models/mockData";
 
 import type { Meta } from "@storybook/react";
 
@@ -21,6 +26,17 @@ export const News = {
     href: "/news",
     headingIcon: <Icon fontStyle="solid" name={"newspaper"} />,
     headingText: "ニュース",
-    cards: Primary.args.news.cards,
+    children: faker.helpers
+      .multiple(() => newsModelMock(faker), { count: 8 })
+      .map((news) => (
+        <ArticleCard
+          key={news.slug}
+          href={news.slug}
+          title={news.title}
+          date={new Date(news.dateStr)}
+        >
+          <ArticleCardsSectionImage src={news.thumbnail.src} />
+        </ArticleCard>
+      )),
   },
 } as const satisfies Story;

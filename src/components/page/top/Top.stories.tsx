@@ -1,10 +1,14 @@
+import { faker } from "@faker-js/faker";
 import { StoryObj } from "@storybook/react";
 
 import { Top } from "./Top";
 
-import { ArticleCardData } from "@/components/page/top/ArticleCardsSection";
-import { MemberCardData } from "@/components/page/top/MemberCardsSection";
-import { Layout } from "src/components/page/layout";
+import {
+  memberModelMock,
+  newsModelMock,
+  paperModelMock,
+  projectModelMock,
+} from "@/models/mockData";
 
 import type { Meta } from "@storybook/react";
 
@@ -17,97 +21,27 @@ export default meta;
 
 type Story = StoryObj<typeof Top>;
 
-const articleCardMock = (i: number) =>
-  ({
-    detailHref: `/news/${i}`,
-    title: "ニュースタイトル",
-    date: new Date(),
-    thumbnail: {
-      src: "./card-default.png",
-    },
-  } satisfies ArticleCardData);
-
-const projectCardMock = (i: number) =>
-  ({
-    detailHref: `/projects/${i}`,
-    title: "プロジェクトタイトル",
-    thumbnail: {
-      src: "./card-default.png",
-    },
-  } satisfies ArticleCardData);
-
-const memberCardMock = (index: number) =>
-  ({
-    detailHref: `/member/${index}`,
-    name: "宮下芳明",
-    role: "教員",
-    thumbnail: {
-      src: "./member-default.png",
-    },
-  } satisfies MemberCardData);
-
 export const Primary = {
   args: {
-    headImage: {
-      src: "./story/homeHero.png",
-      width: 1280,
-      height: 360,
-    },
-    about: {
-      url: "/about",
-      shortDescription:
+    top: {
+      topImg: {
+        src: "./story/homeHero.png",
+        width: 1280,
+        height: 360,
+      },
+      title: "宮下研究室",
+      description:
         "宮下研究室では、音楽・映像・3DCGアニメーション、3Dプリンタ、ゲームやVR、プログラミングも味覚も全て「表現」であると捉え、人間の表現能力を拡張する「インストゥルメント」として、コンピュータのあり方を考えています。",
     },
-    news: {
-      url: "/news",
-      cards: [
-        articleCardMock(0),
-        articleCardMock(1),
-        articleCardMock(2),
-        articleCardMock(3),
-        {
-          ...articleCardMock(4),
-          title: "インタラクション2023に参加しました",
-        },
-        articleCardMock(5),
-        articleCardMock(6),
-        articleCardMock(7),
-      ],
-    },
-    research: {
-      url: "/researches",
-      cards: [
-        articleCardMock(0),
-        {
-          ...articleCardMock(1),
-          title: "インタラクション2023に参加しました",
-        },
-        articleCardMock(2),
-        articleCardMock(3),
-        articleCardMock(4),
-      ],
-    },
-    project: {
-      url: "/projects",
-      cards: [
-        projectCardMock(0),
-        projectCardMock(1),
-        projectCardMock(2),
-        projectCardMock(3),
-        projectCardMock(4),
-        projectCardMock(5),
-        projectCardMock(6),
-        projectCardMock(7),
-      ],
-    },
-    member: {
-      url: "/members",
-      cards: [...Array(18)].map((_, i) => memberCardMock(i)),
-    },
+    newsList: faker.helpers.multiple(() => newsModelMock(faker), { count: 8 }),
+    researchList: faker.helpers.multiple(() => paperModelMock(faker), {
+      count: 8,
+    }),
+    projectList: faker.helpers.multiple(() => projectModelMock(faker), {
+      count: 8,
+    }),
+    memberList: faker.helpers.multiple(() => memberModelMock(faker), {
+      count: 12,
+    }),
   },
-  render: (args) => (
-    <Layout>
-      <Top {...args} />
-    </Layout>
-  ),
-} as const satisfies Story;
+} satisfies Story;

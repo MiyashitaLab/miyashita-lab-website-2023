@@ -60,6 +60,7 @@ export const Primary: Story = {
         pageHref={(page) => `/${page}`}
       />
     ),
+
   },
   render: (args) => (
     <Layout currentTopPath={"/researches"}>
