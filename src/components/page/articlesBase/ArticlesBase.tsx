@@ -12,7 +12,7 @@ export type ArticlesProps = {
   pagination: ReactNode;
 };
 
-export const Articles: FC<ArticlesProps> = ({
+export const ArticlesBase: FC<ArticlesProps> = ({
   children,
   href,
   headingIcon,
@@ -21,12 +21,14 @@ export const Articles: FC<ArticlesProps> = ({
 }) => {
   return (
     <div className={"mx-4 xl:mx-0"}>
-      <CardsHeading>
-        <WrapLink href={href}>
-          <span className={"px-2"}>{headingIcon}</span>
-          <span>{headingText}</span>
-        </WrapLink>
-      </CardsHeading>
+      <div className={"py-8"}>
+        <CardsHeading>
+          <WrapLink href={href}>
+            <span className={"px-2"}>{headingIcon}</span>
+            <span>{headingText}</span>
+          </WrapLink>
+        </CardsHeading>
+      </div>
       <div
         className={
           "my-6 grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
