@@ -3,9 +3,9 @@ import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleC
 export interface TypeAuthorFields {
     fullName: EntryFieldTypes.Symbol;
     familyNameJa: EntryFieldTypes.Symbol;
-    lastNameJa: EntryFieldTypes.Symbol;
+    givenNameJa: EntryFieldTypes.Symbol;
     familyNameEn: EntryFieldTypes.Symbol;
-    lastNameEn: EntryFieldTypes.Symbol;
+    givenNameEn: EntryFieldTypes.Symbol;
 }
 
 export type TypeAuthorSkeleton = EntrySkeletonType<TypeAuthorFields, "author">;
