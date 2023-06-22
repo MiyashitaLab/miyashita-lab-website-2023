@@ -1,9 +1,9 @@
 import { FC, ReactElement, ReactNode, useMemo } from "react";
 
-import { WrapImageFill } from "@/components/feature/wrapImage";
 import { WrapLink } from "@/components/feature/wrapLink";
 import { ArticleCardDescription } from "@/components/ui/articleCardDescription";
 import { ArticleCardHorizontal } from "@/components/ui/articleCardHorizontal";
+import { ArticleCardHorizontalImage } from "@/components/ui/articleCardHorizontal/ArticleCardHorizontal";
 import { CardsHeading } from "@/components/ui/cardsHeading";
 import { Icon } from "@/components/ui/icon";
 import { Label } from "@/components/ui/label";
@@ -152,7 +152,7 @@ export const Researches: FC<ResearchesProps> = ({
               />
             }
           >
-            <ResearchCardImage src={paper.thumbnailImg.src} />
+            <ArticleCardHorizontalImage src={paper.thumbnailImg.src} />
           </ArticleCardHorizontal>
         );
       })}
@@ -193,7 +193,7 @@ const ResearchesLayout: FC<ResearchesLayoutProps> = ({
   pagination,
 }) => {
   return (
-    <div className={"mx-4 flex flex-col gap-4 xl:mx-0"}>
+    <div className={"mx-4 flex flex-col gap-4 py-2 xl:mx-0"}>
       <CardsHeading>
         <WrapLink href={href}>
           <span className={"px-2"}>{headingIcon}</span>
@@ -208,17 +208,5 @@ const ResearchesLayout: FC<ResearchesLayoutProps> = ({
       <div className={"grid auto-rows-auto gap-2"}>{cards}</div>
       <div className={"my-8"}>{pagination}</div>
     </div>
-  );
-};
-
-const ResearchCardImage: FC<{ src: string }> = ({ src }) => {
-  return (
-    <WrapImageFill
-      src={src}
-      alt={"test image"}
-      sizes={{
-        base: "100vw",
-      }}
-    />
   );
 };
