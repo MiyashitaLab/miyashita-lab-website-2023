@@ -8,6 +8,7 @@ import {
   PaperModel,
   ProjectModel,
 } from "@/models/models";
+import { paperTypeMap } from "@/models/transformer/transformPaper";
 
 export const imageMock = (faker: Faker): CMSImageWithSize => {
   const { width, height } = faker.helpers.arrayElement([
@@ -87,12 +88,7 @@ export const paperModelMock = (faker: Faker): PaperModel => {
       count: { min: 1, max: 5 },
     }),
     journalTitle: faker.company.name(),
-    type: faker.helpers.arrayElement([
-      { en: "proceeding", ja: "予稿集" },
-      { en: "journal", ja: "論文誌" },
-      { en: "report", ja: "研究報告" },
-      { en: "thesis", ja: "学位論文" },
-    ]),
+    type: faker.helpers.arrayElement(Object.values(paperTypeMap)),
     keywords: faker.helpers.multiple(() => faker.lorem.word(), {
       count: { min: 1, max: 5 },
     }),
