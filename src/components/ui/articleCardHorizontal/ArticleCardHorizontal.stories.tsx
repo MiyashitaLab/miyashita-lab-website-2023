@@ -1,11 +1,12 @@
 import { StoryObj } from "@storybook/react";
-import Image from "next/image";
 
 import { ArticleCardHorizontal } from "./ArticleCardHorizontal";
 
+import { WrapImageFill } from "@/components/feature/wrapImage";
 import { ArticleCardDescription } from "@/components/ui/articleCardDescription";
 import { Icon } from "@/components/ui/icon";
 import { Label } from "@/components/ui/label";
+import { CardDefaultImg } from "@/lib/publicImage";
 
 import type { Meta } from "@storybook/react";
 
@@ -24,15 +25,13 @@ export const Primary: Story = {
     href: "#",
     children: (
       <>
-        <div
-          className={"relative flex h-full w-full items-center justify-center"}
-        >
-          <Image
-            src={"./card-default.png"}
-            alt={""}
-            fill
-            sizes={"100vw"}
-            className={"object-contain"}
+        <div className={"aspect-[1.91/1] w-full"}>
+          <WrapImageFill
+            src={CardDefaultImg.src}
+            alt={"test image"}
+            sizes={{
+              base: "100vw",
+            }}
           />
         </div>
       </>

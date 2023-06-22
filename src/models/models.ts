@@ -52,7 +52,11 @@ export type PartialPaperModel = {
   publishDateStr: string;
   language: "english" | "japanese";
   authors: AuthorModel[];
-  type: "journal" | "proceeding" | "report" | "thesis";
+  type: {
+    en: string;
+    ja: string;
+  };
+  journalTitle: string;
   keywords: string[];
   thumbnailImg: CMSImage;
 };
@@ -60,7 +64,6 @@ export type PartialPaperModel = {
 export type PaperModel = PartialPaperModel & {
   publication: {
     url?: string;
-    journalTitle: string;
     volume?: string;
     issue?: string;
     pages?: string;

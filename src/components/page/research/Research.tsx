@@ -2,48 +2,26 @@ import classNames from "classnames";
 import { FC, useCallback, useEffect, useRef, useState } from "react";
 
 import { BeautifulBreak } from "@/components/feature/beautifulBreak";
-import { CMSImage } from "@/components/feature/wrapImage/WrapImage";
 import { WrapLink } from "@/components/feature/wrapLink";
 import { AuthorTag } from "@/components/page/research/AuthorTag";
 import { InfoItem } from "@/components/page/research/InfoItem";
 import { ResearchHero } from "@/components/page/research/ResearchHero";
 import { Icon } from "@/components/ui/icon";
 import { dateToYYYYMMDD } from "@/lib/formatDate";
-import { PaperHeroModel } from "@/models/models";
+import { MemberDefaultImg } from "@/lib/publicImage";
+import { PaperModel } from "@/models/models";
 
-export type ResearchProps = {
-  title: string;
-  abstract: string;
-  authorList: {
-    name: string;
-    thumbnail: CMSImage;
-  }[];
-  paperType: {
-    en: string;
-    ja: string;
-  };
-  keywords: string[];
-  publicationInfo: {
-    publishUrl: string;
-    date: Date;
-    journalTitle: string;
-    volume?: string;
-    issue?: string;
-    pages?: string;
-    copyrightHolder?: string;
-    quotation: string;
-  };
-  pdfUrl?: string;
-  hero: PaperHeroModel;
-};
+export type ResearchProps = PaperModel;
 
-export const Research: FC<ResearchProps> = ({
+export const Research: FC<PaperModel> = ({
   title,
   abstract,
-  authorList,
-  paperType,
+  publishDateStr,
+  authors,
+  type,
+  journalTitle,
   keywords,
-  publicationInfo,
+  publication,
   pdfUrl,
   hero,
 }) => {
@@ -71,14 +49,16 @@ export const Research: FC<ResearchProps> = ({
     citeTextareaRef.current?.select();
   }, [showCite]);
 
+  const publishDateYYYYMMDD = dateToYYYYMMDD(new Date(publishDateStr));
+
   return (
     <div>
       <ResearchHero hero={hero} />
       <div className={"m-4"}>
         <div className={"font-semibold"}>
-          <span lang={"ja"}>{paperType.ja}</span>
+          <span lang={"ja"}>{type.ja}</span>
           <span lang={"en"} className={"pl-2"}>
-            {paperType.en}
+            {type.en}
           </span>
         </div>
         <h1 className={"py-2 text-3xl font-semibold"}>
@@ -87,11 +67,11 @@ export const Research: FC<ResearchProps> = ({
 
         <div className={"flex py-2"}>
           <div className={"flex flex-1 flex-wrap gap-2"}>
-            {authorList.map((author) => (
+            {authors.map((author) => (
               <AuthorTag
-                key={author.name}
-                name={author.name}
-                thumbnail={author.thumbnail}
+                key={author.fullName}
+                name={author.fullName}
+                thumbnail={MemberDefaultImg} //TODO 仮
               />
             ))}
           </div>
@@ -125,7 +105,7 @@ export const Research: FC<ResearchProps> = ({
               ref={citeTextareaRef}
               className={"h-full w-full resize-none border-0 bg-transparent"}
               readOnly
-              value={publicationInfo.quotation}
+              value={publication.quotation}
             />
           </div>
           <div
@@ -135,27 +115,22 @@ export const Research: FC<ResearchProps> = ({
             ref={citeInfoRef}
           >
             <InfoItem label={"Journal: "}>
-              <span>{publicationInfo.journalTitle}</span>
+              <span>{journalTitle}</span>
             </InfoItem>
             <div className={"flex flex-col gap-x-4 sm:flex-row sm:flex-wrap"}>
-              {publicationInfo.volume && (
-                <InfoItem label={"Volume:"}>{publicationInfo.volume}</InfoItem>
+              {publication.volume && (
+                <InfoItem label={"Volume:"}>{publication.volume}</InfoItem>
               )}
-              {publicationInfo.issue && (
-                <InfoItem label={"Issue:"}>{publicationInfo.issue}</InfoItem>
+              {publication.issue && (
+                <InfoItem label={"Issue:"}>{publication.issue}</InfoItem>
               )}
-              {publicationInfo.pages && (
-                <InfoItem label={"Pages:"}>{publicationInfo.pages}</InfoItem>
+              {publication.pages && (
+                <InfoItem label={"Pages:"}>{publication.pages}</InfoItem>
               )}
             </div>
             <InfoItem label={"Source URL:"}>
-              <WrapLink
-                href={publicationInfo.publishUrl}
-                className={"break-all"}
-              >
-                <span className={"text-blue-800"}>
-                  {publicationInfo.publishUrl}
-                </span>
+              <WrapLink href={publication.url} className={"break-all"}>
+                <span className={"text-blue-800"}>{publication.url}</span>
               </WrapLink>
             </InfoItem>
           </div>
@@ -173,9 +148,7 @@ export const Research: FC<ResearchProps> = ({
         <hr className={"my-2 border-gray-200"} />
 
         <InfoItem label={"Published:"}>
-          <time dateTime={dateToYYYYMMDD(publicationInfo.date)}>
-            {dateToYYYYMMDD(publicationInfo.date)}
-          </time>
+          <time dateTime={publishDateYYYYMMDD}>{publishDateYYYYMMDD}</time>
         </InfoItem>
 
         <hr className={"my-2 border-gray-200"} />

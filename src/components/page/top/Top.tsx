@@ -115,7 +115,7 @@ const ResearchSection: FC<{
           title={research.title}
           date={new Date(research.publishDateStr)}
           href={ROUTES.RESEARCH_DETAIL(research.slug)}
-          label={<Label className={"bg-cyan-700"}>{research.type}</Label>}
+          label={<Label className={"bg-cyan-700"}>{research.type.ja}</Label>}
           description={
             <ArticleCardDescription
               items={[

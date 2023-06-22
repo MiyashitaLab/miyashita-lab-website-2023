@@ -37,6 +37,7 @@ export const News: FC<NewsProps> = ({
           minPage={1}
           maxPage={pageNum}
           currentPage={currentPage}
+          mode={"link"}
           pageHref={pageHref}
         />
       }

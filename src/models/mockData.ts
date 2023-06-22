@@ -86,11 +86,12 @@ export const paperModelMock = (faker: Faker): PaperModel => {
     authors: faker.helpers.multiple(() => authorModelMock(faker), {
       count: { min: 1, max: 5 },
     }),
+    journalTitle: faker.company.name(),
     type: faker.helpers.arrayElement([
-      "journal",
-      "proceeding",
-      "report",
-      "thesis",
+      { en: "proceeding", ja: "予稿集" },
+      { en: "journal", ja: "論文誌" },
+      { en: "report", ja: "研究報告" },
+      { en: "thesis", ja: "学位論文" },
     ]),
     keywords: faker.helpers.multiple(() => faker.lorem.word(), {
       count: { min: 1, max: 5 },
@@ -98,7 +99,7 @@ export const paperModelMock = (faker: Faker): PaperModel => {
     thumbnailImg: imageMock(faker),
     publication: {
       url: faker.internet.url(),
-      journalTitle: faker.company.name(),
+
       volume: `${faker.number.int({ min: 1, max: 100 })}`,
       issue: `${faker.number.int({ min: 1, max: 100 })}`,
       pages: `${faker.number.int({ min: 1, max: 100 })} - ${faker.number.int({
