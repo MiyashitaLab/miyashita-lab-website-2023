@@ -127,7 +127,7 @@ const ResearchSection: FC<{
                 },
                 {
                   icon: <Icon fontStyle={"solid"} name={"book"} />,
-                  text: "research.journal",
+                  text: research.journalTitle,
                 },
               ]}
             />
