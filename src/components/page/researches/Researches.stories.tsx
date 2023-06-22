@@ -24,8 +24,8 @@ export const Primary: Story = {
     allResearchList: Array.from({ length: 30 }).map((_, i) =>
       paperModelMock(faker)
     ),
-    queries: query,
-    setQueries: (q) => {
+    query: query,
+    setQuery: (q) => {
       query = q;
     },
   },
