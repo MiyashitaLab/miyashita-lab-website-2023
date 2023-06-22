@@ -12,7 +12,7 @@ export type AuthorModel = {
     ja: string;
     en: string;
   };
-  lastName: {
+  givenName: {
     ja: string;
     en: string;
   };

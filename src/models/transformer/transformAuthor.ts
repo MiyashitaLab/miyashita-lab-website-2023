@@ -15,7 +15,7 @@ export const transformAuthorModel = (
       ja: familyNameJa,
       en: familyNameEn,
     },
-    lastName: {
+    givenName: {
       ja: givenNameJa,
       en: givenNameEn,
     },

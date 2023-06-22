@@ -36,7 +36,7 @@ export const authorModelMock = (faker: Faker): AuthorModel => {
       ja: lastNameJa,
       en: lastNameEn,
     },
-    lastName: {
+    givenName: {
       ja: firstNameJa,
       en: firstNameEn,
     },
