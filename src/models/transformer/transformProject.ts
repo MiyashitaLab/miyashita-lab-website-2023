@@ -14,7 +14,7 @@ export const transformPartialProjectModel = (
   return {
     title: title,
     slug: slug,
-    thumbnail: thumbnailAsset
+    thumbnailImg: thumbnailAsset
       ? transformCMSImage(thumbnailAsset)
       : CardDefaultImg,
     category: category,

@@ -21,7 +21,7 @@ export type AuthorModel = {
 export type PartialMemberModel = {
   slug: string;
   name: string;
-  thumbnail: CMSImage;
+  thumbnailImg: CMSImage;
   displayRole: string;
   roleSortOrder: number;
   active: boolean;
@@ -38,7 +38,7 @@ export type PartialNewsModel = {
   slug: string;
   title: string;
   dateStr: string;
-  thumbnail: CMSImage;
+  thumbnailImg: CMSImage;
 };
 
 export type NewsModel = PartialNewsModel & {
@@ -92,7 +92,7 @@ export type PaperHeroModel =
 export type PartialProjectModel = {
   slug: string;
   title: string;
-  thumbnail: CMSImage;
+  thumbnailImg: CMSImage;
   category: string;
 };
 

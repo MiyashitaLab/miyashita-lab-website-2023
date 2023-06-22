@@ -15,7 +15,7 @@ export const transformPartialNewsModel = (
     title: title,
     slug: slug ?? title,
     dateStr: date,
-    thumbnail: thumbnailAsset
+    thumbnailImg: thumbnailAsset
       ? transformCMSImage(thumbnailAsset)
       : CardDefaultImg,
   };

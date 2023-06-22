@@ -25,7 +25,7 @@ export const Members: FC<MembersProps> = ({ memberList }) => {
             role={member.displayRole}
             name={member.name}
           >
-            <MemberCardsSectionImage src={member.thumbnail.src} />
+            <MemberCardsSectionImage src={member.thumbnailImg.src} />
           </MemberCard>
         ))}
       </div>

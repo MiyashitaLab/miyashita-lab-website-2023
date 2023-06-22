@@ -35,7 +35,7 @@ export const News = {
           title={news.title}
           date={new Date(news.dateStr)}
         >
-          <ArticleCardsSectionImage src={news.thumbnail.src} />
+          <ArticleCardsSectionImage src={news.thumbnailImg.src} />
         </ArticleCard>
       )),
   },
