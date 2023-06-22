@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { FC, PropsWithoutRef } from "react";
+import { FC } from "react";
 
 import { Icon } from "@/components/ui/icon";
 import { paginateWithFrame } from "@/components/ui/paginationNav/paginateWithFrame";
@@ -9,15 +9,21 @@ export type PaginationNavProps = {
   minPage: number;
   maxPage: number;
   currentPage: number;
-  pageHref: (page: number) => string;
-} & PropsWithoutRef<JSX.IntrinsicElements["nav"]>;
+} & (
+  | {
+      mode: "link";
+      pageHref: (page: number) => string;
+    }
+  | {
+      mode: "button";
+      onPageClick: (page: number) => void;
+    }
+);
 
 export const PaginationNav: FC<PaginationNavProps> = ({
   minPage,
   maxPage,
   currentPage,
-  pageHref,
-  className,
   ...props
 }) => {
   const omissionSymbol = "...";
@@ -38,18 +44,36 @@ export const PaginationNav: FC<PaginationNavProps> = ({
   });
 
   const prevPage = currentPage - 1;
-  const prevPageHref = minPage <= prevPage ? pageHref(prevPage) : undefined;
+  const prevPageHref =
+    minPage <= prevPage && props.mode === "link"
+      ? props.pageHref(prevPage)
+      : undefined;
+  const prevPageClick =
+    minPage <= prevPage && props.mode === "button"
+      ? () => props.onPageClick(prevPage)
+      : undefined;
 
   const nextPage = currentPage + 1;
-  const nextPageHref = nextPage <= maxPage ? pageHref(nextPage) : undefined;
+  const nextPageHref =
+    nextPage <= maxPage && props.mode === "link"
+      ? props.pageHref(nextPage)
+      : undefined;
+  const nextPageClick =
+    nextPage <= maxPage && props.mode === "button"
+      ? () => props.onPageClick(nextPage)
+      : undefined;
 
   //smの場合は表示ページ数を減らす
 
   return (
-    <nav className={classNames("flex justify-center", className)} {...props}>
+    <nav className={classNames("flex justify-center")} {...props}>
       <ul className="flex">
         <li className={"w-12 md:w-24"}>
-          <PaginationNavButton href={prevPageHref} className={"rounded-l-lg"}>
+          <PaginationNavButton
+            href={prevPageHref}
+            onClick={prevPageClick}
+            className={"rounded-l-lg"}
+          >
             <Icon
               fontStyle={"solid"}
               name={"chevron-left"}
@@ -61,26 +85,45 @@ export const PaginationNav: FC<PaginationNavProps> = ({
           </PaginationNavButton>
         </li>
         {smPages.map((page, i) => {
-          const href = typeof page === "number" ? pageHref(page) : undefined;
+          const href =
+            typeof page === "number" && props.mode === "link"
+              ? props.pageHref(page)
+              : undefined;
           const current = page === currentPage;
+          const handleClick =
+            typeof page === "number" && props.mode === "button"
+              ? () => props.onPageClick(page)
+              : undefined;
 
           return (
             <li key={`${page}-${i}-sm`} className={"inline w-10 md:hidden"}>
-              <PaginationNavButton current={current} href={href}>
+              <PaginationNavButton
+                current={current}
+                href={href}
+                onClick={handleClick}
+              >
                 {page}
               </PaginationNavButton>
             </li>
           );
         })}
         {mdPages.map((page, i) => {
-          const href = typeof page === "number" ? pageHref(page) : undefined;
+          const href =
+            typeof page === "number" && props.mode === "link"
+              ? props.pageHref(page)
+              : undefined;
           const current = page === currentPage;
+          const handleClick =
+            typeof page === "number" && props.mode === "button"
+              ? () => props.onPageClick(page)
+              : undefined;
 
           return (
             <li key={`${page}-${i}-md`} className={"hidden w-10 md:inline"}>
               <PaginationNavButton
                 current={current}
                 href={href}
+                onClick={handleClick}
                 className={"w-full"}
               >
                 {page}
@@ -91,6 +134,7 @@ export const PaginationNav: FC<PaginationNavProps> = ({
         <li className={"w-12 md:w-24"}>
           <PaginationNavButton
             href={nextPageHref}
+            onClick={nextPageClick}
             className={"w-full rounded-r-lg"}
           >
             <span className={"mr-2 hidden md:inline"} aria-hidden={true}>

@@ -6,6 +6,25 @@ import { PaperHeroModel, PaperModel, PartialPaperModel } from "@/models/models";
 import { transformAuthorModel } from "@/models/transformer/transformAuthor";
 import { transformCMSImage } from "@/models/transformer/transformCMSImage";
 
+export const paperTypeMap = {
+  proceeding: {
+    en: "Proceeding",
+    ja: "予稿集",
+  },
+  journal: {
+    en: "Journal",
+    ja: "論文誌",
+  },
+  report: {
+    en: "Report",
+    ja: "研究報告",
+  },
+  thesis: {
+    en: "Thesis",
+    ja: "学位論文",
+  },
+} as const;
+
 export const transformPartialPaperModel = (
   paper: Entry<TypePaperSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
 ): PartialPaperModel => {
@@ -14,6 +33,7 @@ export const transformPartialPaperModel = (
     abstract,
     publicationDate,
     language,
+    journalTitle,
     author: authorsRaw,
     type,
     keyword,
@@ -26,11 +46,12 @@ export const transformPartialPaperModel = (
     title: title,
     abstract: abstract,
     publishDateStr: publicationDate,
+    journalTitle: journalTitle,
     language: language,
     authors: authorsRaw
       .filter(filterTruthy)
       .map((author) => transformAuthorModel(author)),
-    type: type,
+    type: paperTypeMap[type],
     keywords: keyword,
     thumbnailImg: thumbnailAsset
       ? transformCMSImage(thumbnailAsset)
@@ -48,7 +69,6 @@ export const transformPaperModel = (
     youtubeUrl,
     lastPage,
     issue,
-    journalTitle,
     firstPage,
     slidePdf,
     publishUrl,
@@ -85,7 +105,6 @@ export const transformPaperModel = (
     ...transformPartialPaperModel(paper),
     publication: {
       url: publishUrl,
-      journalTitle: journalTitle,
       volume: volume,
       issue: issue,
       pages: pages,

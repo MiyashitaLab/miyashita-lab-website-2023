@@ -1,6 +1,7 @@
 import { FC } from "react";
 
 import { BeautifulBreak } from "@/components/feature/beautifulBreak";
+import { WrapImageFill } from "@/components/feature/wrapImage";
 import { WrapLink } from "@/components/feature/wrapLink";
 import { ArticleCardProps } from "@/components/ui/articleCard";
 import { dateToYYYYMMDD } from "@/lib/formatDate";
@@ -39,5 +40,17 @@ export const ArticleCardHorizontal: FC<ArticleCardHorizontalProps> = ({
         </div>
       </WrapLink>
     </div>
+  );
+};
+
+export const ArticleCardHorizontalImage: FC<{ src: string }> = ({ src }) => {
+  return (
+    <WrapImageFill
+      src={src}
+      alt={""}
+      sizes={{
+        base: "25vw",
+      }}
+    />
   );
 };
