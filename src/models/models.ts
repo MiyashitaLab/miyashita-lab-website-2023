@@ -28,10 +28,10 @@ export type PartialMemberModel = {
 };
 
 export type MemberModel = PartialMemberModel & {
-  author?: AuthorModel;
+  author: AuthorModel | null;
   institution: string;
-  contentMd?: string;
-  achievementMd?: string;
+  contentMd: string;
+  achievementMd: string;
 };
 
 export type PartialNewsModel = {
@@ -63,15 +63,15 @@ export type PartialPaperModel = {
 
 export type PaperModel = PartialPaperModel & {
   publication: {
-    url?: string;
-    volume?: string;
-    issue?: string;
-    pages?: string;
-    copyrightHolder?: string;
+    url: string | null;
+    volume: string | null;
+    issue: string | null;
+    pages: string | null;
+    copyrightHolder: string | null;
     quotation: string;
     customMetaList: string[];
   };
-  pdfUrl?: string;
+  pdfUrl: string | null;
   hero: PaperHeroModel;
 };
 

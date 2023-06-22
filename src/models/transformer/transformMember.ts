@@ -55,10 +55,10 @@ export const transformMemberModel = (
   const { author, institution, content, achievement } = member.fields;
   return {
     ...transformPartialMemberModal(member),
-    author: author && transformAuthorModel(author),
+    author: (author && transformAuthorModel(author)) ?? null,
     institution: institution,
-    contentMd: content,
-    achievementMd: achievement,
+    contentMd: content ?? "",
+    achievementMd: achievement ?? "",
   };
 };
 

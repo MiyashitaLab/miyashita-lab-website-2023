@@ -63,6 +63,9 @@ export const memberModelMock = (faker: Faker): MemberModel => {
     displayRole: roleWithOrder.role,
     roleSortOrder: roleWithOrder.order,
     active: true,
+    author: authorModelMock(faker),
+    contentMd: faker.lorem.paragraphs(),
+    achievementMd: faker.lorem.paragraphs(),
     institution: "明治大学 総合数理学部 先端メディアサイエンス学科",
   };
 };
