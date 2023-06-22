@@ -333,7 +333,7 @@ const ResearchesLayout: FC<ResearchesLayoutProps> = ({
 
 const ResearchCardImage: FC<{ src: string }> = ({ src }) => {
   return (
-    <div className={"aspect-[1.91/1] w-full"}>
+    <div className={"aspect-[1.91/1] w-full bg-gray-100"}>
       <WrapImageFill
         src={src}
         alt={"test image"}
