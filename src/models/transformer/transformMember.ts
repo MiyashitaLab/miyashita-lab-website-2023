@@ -40,7 +40,7 @@ export const transformPartialMemberModal = (
   return {
     name: name,
     slug: slug ?? name,
-    thumbnail: thumbnailAsset
+    thumbnailImg: thumbnailAsset
       ? transformCMSImage(thumbnailAsset)
       : MemberDefaultImg,
     displayRole: displayRole,
@@ -55,10 +55,10 @@ export const transformMemberModel = (
   const { author, institution, content, achievement } = member.fields;
   return {
     ...transformPartialMemberModal(member),
-    author: author && transformAuthorModel(author),
+    author: (author && transformAuthorModel(author)) ?? null,
     institution: institution,
-    contentMd: content,
-    achievementMd: achievement,
+    contentMd: content ?? "",
+    achievementMd: achievement ?? "",
   };
 };
 

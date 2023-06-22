@@ -49,7 +49,7 @@ export const News: FC<NewsProps> = ({
           date={new Date(news.dateStr)}
           href={ROUTES.NEWS_DETAIL(news.slug)}
         >
-          <ArticlesCardImage src={news.thumbnail.src} />
+          <ArticlesCardImage src={news.thumbnailImg.src} />
         </ArticleCard>
       ))}
     </ArticlesBase>

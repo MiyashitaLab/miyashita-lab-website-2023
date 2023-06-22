@@ -35,7 +35,7 @@ export const Member = {
           name={member.name}
           role={member.displayRole}
         >
-          <MemberCardsSectionImage src={member.thumbnail.src} />
+          <MemberCardsSectionImage src={member.thumbnailImg.src} />
         </MemberCard>
       )),
   },

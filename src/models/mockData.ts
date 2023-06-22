@@ -54,7 +54,7 @@ export const memberModelMock = (faker: Faker): MemberModel => {
   return {
     slug: faker.lorem.slug(),
     name: faker.person.fullName(),
-    thumbnail: {
+    thumbnailImg: {
       src: faker.image.urlPicsumPhotos({
         width: 400,
         height: 400,
@@ -63,6 +63,9 @@ export const memberModelMock = (faker: Faker): MemberModel => {
     displayRole: roleWithOrder.role,
     roleSortOrder: roleWithOrder.order,
     active: true,
+    author: authorModelMock(faker),
+    contentMd: faker.lorem.paragraphs(),
+    achievementMd: faker.lorem.paragraphs(),
     institution: "明治大学 総合数理学部 先端メディアサイエンス学科",
   };
 };
@@ -72,7 +75,7 @@ export const newsModelMock = (faker: Faker): NewsModel => {
     slug: faker.lorem.slug(),
     title: faker.lorem.sentence(),
     dateStr: faker.date.recent().toISOString(),
-    thumbnail: imageMock(faker),
+    thumbnailImg: imageMock(faker),
     contentMd: faker.lorem.paragraphs(),
   };
 };
@@ -126,7 +129,7 @@ export const projectModelMock = (faker: Faker): ProjectModel => {
     slug: faker.lorem.slug(),
     title: faker.lorem.sentence(),
     category: faker.company.buzzNoun(),
-    thumbnail: imageMock(faker),
+    thumbnailImg: imageMock(faker),
     contentMd: faker.lorem.paragraphs(),
   };
 };

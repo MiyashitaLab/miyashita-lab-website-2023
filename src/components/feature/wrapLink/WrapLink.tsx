@@ -2,14 +2,14 @@ import Link from "next/link";
 import { FC, PropsWithoutRef, ReactNode } from "react";
 
 export type WrapLinkProps = {
-  href?: string;
+  href?: string | undefined | null;
   children: ReactNode;
-} & PropsWithoutRef<JSX.IntrinsicElements["a"]>;
+} & Omit<PropsWithoutRef<JSX.IntrinsicElements["a"]>, "href">;
 
 //classNameはNext/Linkコンポーネント内部のaタグに付与される
 
 export const WrapLink: FC<WrapLinkProps> = ({ href, children, ...props }) => {
-  if (href === undefined) {
+  if (!href) {
     return <a {...props}>{children}</a>;
   }
 

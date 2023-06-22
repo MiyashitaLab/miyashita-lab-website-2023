@@ -89,7 +89,7 @@ const NewsSection: FC<{
           date={new Date(news.dateStr)}
           href={ROUTES.NEWS_DETAIL(news.slug)}
         >
-          <ArticleCardsSectionImage src={news.thumbnail.src} />
+          <ArticleCardsSectionImage src={news.thumbnailImg.src} />
         </ArticleCard>
       ))}
     </ArticleCardsSection>
@@ -159,7 +159,7 @@ const ProjectSection: FC<{
           title={project.title}
           href={ROUTES.PROJECT_DETAIL(project.slug)}
         >
-          <ArticleCardsSectionImage src={project.thumbnail.src} />
+          <ArticleCardsSectionImage src={project.thumbnailImg.src} />
         </ArticleCard>
       ))}
     </ArticleCardsSection>
@@ -186,7 +186,7 @@ const MemberSection: FC<{
           role={member.displayRole}
           href={ROUTES.MEMBER_DETAIL(member.slug)}
         >
-          <MemberCardsSectionImage src={member.thumbnail.src} />
+          <MemberCardsSectionImage src={member.thumbnailImg.src} />
         </MemberCard>
       ))}
     </MemberCardsSection>

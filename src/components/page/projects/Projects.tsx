@@ -48,7 +48,7 @@ export const Projects: FC<ProjectsProps> = ({
           title={project.title}
           href={ROUTES.PROJECT_DETAIL(project.slug)}
         >
-          <ArticlesCardImage src={project.thumbnail.src} />
+          <ArticlesCardImage src={project.thumbnailImg.src} />
         </ArticleCard>
       ))}
     </ArticlesBase>

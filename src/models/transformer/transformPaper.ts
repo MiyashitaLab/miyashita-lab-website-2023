@@ -104,15 +104,15 @@ export const transformPaperModel = (
   return {
     ...transformPartialPaperModel(paper),
     publication: {
-      url: publishUrl,
-      volume: volume,
-      issue: issue,
+      url: publishUrl ?? null,
+      volume: volume ?? null,
+      issue: issue ?? null,
       pages: pages,
-      copyrightHolder: copyrightHolder,
+      copyrightHolder: copyrightHolder ?? null,
       quotation: quotation,
       customMetaList: customMetaList ?? [],
     },
-    pdfUrl: pdf?.fields.file?.url,
+    pdfUrl: pdf?.fields.file?.url ?? null,
     hero: hero,
   };
 };
