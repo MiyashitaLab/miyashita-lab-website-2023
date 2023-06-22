@@ -21,6 +21,7 @@ export const fetchLatestPartialPaperList = async (
         "fields.language",
         "fields.author",
         "fields.type",
+        "fields.journalTitle",
         "fields.keyword",
         "fields.thumbnail",
       ],
@@ -42,11 +43,13 @@ export const fetchPartialPaperList = async (): Promise<PartialPaperModel[]> => {
       "fields.language",
       "fields.author",
       "fields.type",
+      "fields.journalTitle",
       "fields.keyword",
       "fields.thumbnail",
     ],
     order: ["-fields.publicationDate"],
   });
+  console.log(papers);
 
   return papers.map((paper) => transformPartialPaperModel(paper));
 };
