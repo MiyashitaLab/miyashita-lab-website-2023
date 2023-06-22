@@ -91,7 +91,7 @@ export const Layout: FC<LayoutProps> = ({
               height={32}
             />
           }
-          logoHref={"#home"}
+          logoHref={"/"}
           links={links}
         />
       </div>
