@@ -155,9 +155,9 @@ const filterAuthor = (paper: PartialPaperModel, value: string): boolean => {
   return paper.authors.some((author) => {
     if (author.fullName.toLowerCase().includes(value)) return true;
     if (author.familyName.en.toLowerCase().includes(value)) return true;
-    if (author.lastName.en.toLowerCase().includes(value)) return true;
+    if (author.givenName.en.toLowerCase().includes(value)) return true;
     if (author.familyName.ja.toLowerCase().includes(value)) return true;
-    return author.lastName.ja.toLowerCase().includes(value);
+    return author.givenName.ja.toLowerCase().includes(value);
   });
 };
 
