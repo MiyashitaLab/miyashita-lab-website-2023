@@ -22,9 +22,11 @@ export const News: FC<NewsProps> = ({
   pageHref,
 }) => {
   const pageNum = Math.ceil(allNewsList.length / numPerPage);
+
+  //currentPageは1スタート
   const pageNewsList = allNewsList.slice(
-    currentPage * numPerPage,
-    (currentPage + 1) * numPerPage
+    (currentPage - 1) * numPerPage,
+    currentPage * numPerPage
   );
 
   return (

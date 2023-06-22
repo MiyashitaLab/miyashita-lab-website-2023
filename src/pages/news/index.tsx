@@ -12,11 +12,13 @@ type Props = {
 const NewsRoute: NextPage<Props> = (props) => {
   const router = useRouter();
 
+  const currentPage = Number(router.query.page) || 1;
+
   return (
     <News
       allNewsList={props.allNewsList}
       numPerPage={24}
-      currentPage={Number(router.query.page) || 0}
+      currentPage={currentPage}
       pageHref={(page) => `${ROUTES.NEWS}?page=${page}`}
     />
   );

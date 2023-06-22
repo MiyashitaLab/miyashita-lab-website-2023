@@ -42,7 +42,7 @@ export const Top: FC<TopProps> = ({
 }) => {
   return (
     <>
-      <div className={"w-full"}>
+      <div className={"flex w-full justify-center"}>
         <WrapImageSized {...top.topImg} alt={"Home header"} priority />
       </div>
       <div className={"mx-4 xl:mx-0"}>
@@ -127,7 +127,7 @@ const ResearchSection: FC<{
                 },
                 {
                   icon: <Icon fontStyle={"solid"} name={"book"} />,
-                  text: "research.journal",
+                  text: research.journalTitle,
                 },
               ]}
             />
