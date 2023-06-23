@@ -43,6 +43,7 @@ export const Researches: FC<ResearchesProps> = ({
     isPassFilter,
   } = useResearchesFilter(query, setQuery);
 
+  //TODO webworkerに任せるなりdebounceするなりする方が良いかもしれない
   const filteredResearchList = useMemo(() => {
     return allResearchList
       .filter((paper) => isPassFilter(paper))
