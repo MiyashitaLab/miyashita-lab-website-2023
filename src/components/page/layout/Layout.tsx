@@ -63,15 +63,15 @@ export const Layout: FC<LayoutProps> = ({
 }) => {
   const router = useRouter();
 
-  const pathname = currentTopPath ?? extractTopLevelPathName(router.pathname);
+  const path = currentTopPath ?? extractTopLevelPathName(router.asPath);
 
   const links = useMemo<PageHeaderLinkItem[]>(
     () =>
       headerItems.map((linkItem) => ({
         ...linkItem,
-        highlight: pathname === linkItem.href,
+        highlight: path === linkItem.href,
       })),
-    [pathname]
+    [path]
   );
 
   const copyright = `© ${
