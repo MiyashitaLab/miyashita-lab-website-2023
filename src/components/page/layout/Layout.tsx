@@ -9,45 +9,18 @@ import { PageHeaderLinkItem } from "@/components/ui/pageHeader/PageHeader";
 import { LogoImg } from "@/lib/publicImage";
 
 const headerItems = [
-  {
-    text: "Home",
-    href: "/",
-  },
-  {
-    text: "About",
-    href: "/about",
-  },
-  {
-    text: "News",
-    href: "/news",
-  },
-  {
-    text: "Researches",
-    href: "/researches",
-  },
-  {
-    text: "Projects",
-    href: "/projects",
-  },
-  {
-    text: "Members",
-    href: "/members",
-  },
+  { text: "Home", href: "/" },
+  { text: "About", href: "/about" },
+  { text: "News", href: "/news" },
+  { text: "Researches", href: "/researches" },
+  { text: "Projects", href: "/projects" },
+  { text: "Members", href: "/members" },
 ] as const satisfies readonly PageHeaderLinkItem[];
 
 const footerLinks = [
-  {
-    text: "Copyright Notice",
-    href: "/copyright",
-  },
-  {
-    text: "Privacy Policy",
-    href: "/privacy",
-  },
-  {
-    text: "Contact",
-    href: "/contact",
-  },
+  { text: "Copyright Notice", href: "/copyright" },
+  { text: "Privacy Policy", href: "/privacy-policy" },
+  { text: "Contact", href: "/about" },
 ] as const satisfies readonly PageFooterLinkItem[];
 
 export type LayoutProps = {
