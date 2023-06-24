@@ -10,13 +10,18 @@
 
 
 html {
+    width: 100%;
     height: 100%;
 }
 
 body {
+    width: 100%;
     height: 100%;
+    /* PageFooterコンポーネントのbg-gray-100と同じ apple端末でのバウンススクロールで見える部分の対策 */
+    background-color: rgb(243, 244, 246);
 }
 
 #__next,#storybook-root {
+    width: 100%;
     height: 100%;
 }
