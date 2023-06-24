@@ -195,12 +195,14 @@ const ResearchesLayout: FC<ResearchesLayoutProps> = ({
 }) => {
   return (
     <div className={"mx-4 flex flex-col gap-4 py-2 xl:mx-0"}>
-      <CardsHeading>
-        <WrapLink href={href}>
-          <span className={"px-2"}>{headingIcon}</span>
-          <span>{headingText}</span>
-        </WrapLink>
-      </CardsHeading>
+      <div className={"py-8"}>
+        <CardsHeading>
+          <WrapLink href={href}>
+            <span className={"px-2"}>{headingIcon}</span>
+            <span>{headingText}</span>
+          </WrapLink>
+        </CardsHeading>
+      </div>
       <div className={"flex justify-center"}>
         <span className={"text-lg"}>{filteredResearchNum}件</span>
       </div>

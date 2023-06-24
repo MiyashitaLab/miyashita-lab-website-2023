@@ -37,7 +37,7 @@ export const Members: FC<MembersProps> = ({ memberList }) => {
   const graduatedMembers = memberList.filter((member) => !member.active);
 
   return (
-    <div className={"mx-auto my-6 text-center"}>
+    <div className={"mx-auto my-8 text-center"}>
       <section className={"mx-auto my-8"}>
         <CardsHeading>現役メンバー</CardsHeading>
         {renderCards(activeMembers)}
