@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { FC } from "react";
+import { createElement, FC } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
@@ -10,6 +10,11 @@ import { wrapImageUrl } from "@/models/transformer/transformCMSImage";
 
 export type MarkdownContentProps = {
   markdown: string;
+  /**
+   * markdownでのHeadingをどのレベルから始めるか
+   * @default 2
+   */
+  topLevelHeading?: number;
 };
 
 const listPaddingName = (depth: number) => {
@@ -26,16 +31,47 @@ const listPaddingName = (depth: number) => {
   }
 };
 
-export const MarkdownContent: FC<MarkdownContentProps> = ({ markdown }) => {
+const headingMap = (h: number, topLevel: number) => {
+  const level = h + topLevel - 1;
+  if (level < 1) return "h1";
+  if (6 < level) return "h6";
+
+  return `h${level}` as "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+};
+
+export const MarkdownContent: FC<MarkdownContentProps> = ({
+  markdown,
+  topLevelHeading = 2,
+}) => {
   return (
     <ReactMarkdown
       rehypePlugins={[rehypeRaw]}
       remarkPlugins={[remarkGfm]}
       components={{
-        h1: ({ children }) => <h1 className={"text-4xl"}>{children}</h1>,
-        h2: ({ children }) => <h2 className={"text-3xl"}>{children}</h2>,
-        h3: ({ children }) => <h3 className={"text-2xl"}>{children}</h3>,
-        h4: ({ children }) => <h4 className={"text-xl"}>{children}</h4>,
+        h1: ({ children }) =>
+          createElement(
+            headingMap(1, topLevelHeading),
+            { className: "mt-8 text-4xl" },
+            children
+          ),
+        h2: ({ children }) =>
+          createElement(
+            headingMap(2, topLevelHeading),
+            { className: "mt-8 text-3xl" },
+            children
+          ),
+        h3: ({ children }) =>
+          createElement(
+            headingMap(3, topLevelHeading),
+            { className: "mt-4 text-2xl" },
+            children
+          ),
+        h4: ({ children }) =>
+          createElement(
+            headingMap(4, topLevelHeading),
+            { className: "mt-4 text-xl" },
+            children
+          ),
         p: ({ children }) => <p className={"my-2 text-base"}>{children}</p>,
         strong: ({ children }) => (
           <strong className={"font-bold"}>{children}</strong>
