@@ -17,8 +17,9 @@ type Story = StoryObj<typeof General>;
 
 export const Primary: Story = {
   args: {
-    headingText: "About",
-    content: `
+    title: "About",
+    centering: false,
+    contentMd: `
 # H1
 文章
 `,
