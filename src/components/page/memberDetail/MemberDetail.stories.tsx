@@ -1,19 +1,20 @@
 import { StoryObj } from "@storybook/react";
 
-import { Member } from "./Member";
+import { MemberDetail } from "./MemberDetail";
 
+import { MemberDefaultImg } from "@/lib/publicImage";
 import { Layout } from "src/components/page/layout";
 
 import type { Meta } from "@storybook/react";
 
-const meta: Meta<typeof Member> = {
-  title: "Pages/Member",
-  component: Member,
+const meta: Meta<typeof MemberDetail> = {
+  title: "Pages/MemberDetail",
+  component: MemberDetail,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof Member>;
+type Story = StoryObj<typeof MemberDetail>;
 
 const content = `
 Homei Miyashita, Ph.D.
@@ -33,20 +34,33 @@ const achievements = `
 
 export const Primary: Story = {
   args: {
+    slug: "#",
     name: "宮下芳明",
-    role: "教員",
+    thumbnailImg: {
+      src: MemberDefaultImg.src,
+    },
+    displayRole: "教員",
+    roleSortOrder: 0,
+    active: true,
+    author: {
+      fullName: "宮下芳明",
+      familyName: {
+        en: "Miyashita",
+        ja: "宮下",
+      },
+      givenName: {
+        en: "Homei",
+        ja: "芳明",
+      },
+    },
     institution:
       "明治大学 総合数理学部 先端メディアサイエンス学科 教授 / JST CREST",
-    thumbnail: {
-      src: "./member-default.png",
-    },
-    introductionMarkdownContent: content,
-    achievementsMarkdownContent: achievements,
-    researchesUrl: "#",
+    contentMd: content,
+    achievementMd: achievements,
   },
   render: (args) => (
     <Layout>
-      <Member {...args} />
+      <MemberDetail {...args} />
     </Layout>
   ),
 };

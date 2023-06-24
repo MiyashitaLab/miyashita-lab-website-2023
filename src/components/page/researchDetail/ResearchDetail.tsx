@@ -3,9 +3,9 @@ import { FC, useCallback, useEffect, useRef, useState } from "react";
 
 import { BeautifulBreak } from "@/components/feature/beautifulBreak";
 import { WrapLink } from "@/components/feature/wrapLink";
-import { AuthorTag } from "@/components/page/research/AuthorTag";
-import { InfoItem } from "@/components/page/research/InfoItem";
-import { ResearchHero } from "@/components/page/research/ResearchHero";
+import { AuthorTag } from "@/components/page/researchDetail/AuthorTag";
+import { InfoItem } from "@/components/page/researchDetail/InfoItem";
+import { ResearchHero } from "@/components/page/researchDetail/ResearchHero";
 import { Icon } from "@/components/ui/icon";
 import { dateToYYYYMMDD } from "@/lib/formatDate";
 import { MemberDefaultImg } from "@/lib/publicImage";
@@ -13,7 +13,7 @@ import { PaperModel } from "@/models/models";
 
 export type ResearchProps = PaperModel;
 
-export const Research: FC<PaperModel> = ({
+export const ResearchDetail: FC<PaperModel> = ({
   title,
   abstract,
   publishDateStr,

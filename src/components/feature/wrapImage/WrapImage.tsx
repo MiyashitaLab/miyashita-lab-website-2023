@@ -35,6 +35,13 @@ export type WrapImageFillProps = CMSImage & {
   sizes: SizeSet;
 };
 
+export type WrapImageInlineProps = CMSImage & {
+  alt: string;
+  priority?: boolean;
+  sizes: SizeSet;
+  sizesFlow?: "height" | "width";
+};
+
 /**
  * next/imageを使って画像を表示するコンポーネント
  * サイズが固定の場合はこちらを使う
@@ -112,7 +119,33 @@ export const WrapImageFill: FC<WrapImageFillProps> = ({
   );
 };
 
-const constructSizesSrcSet = ({ base, sm, md, lg, xl }: SizeSet) => {
+export const WrapImageInline: FC<WrapImageInlineProps> = ({
+  src,
+  alt,
+  priority,
+  sizes,
+  sizesFlow = "width",
+}) => {
+  const sizesSet = constructSizesSrcSet(sizes);
+
+  return (
+    <span className={"relative flex h-full w-full items-center justify-center"}>
+      <Image
+        src={src}
+        alt={alt}
+        priority={priority}
+        fill
+        sizes={sizesSet}
+        className={"object-contain"}
+      />
+    </span>
+  );
+};
+
+const constructSizesSrcSet = (
+  { base, sm, md, lg, xl }: SizeSet,
+  mediaQuery: string = "min-width"
+) => {
   return [
     { minWidth: 1280, size: xl },
     { minWidth: 1024, size: lg },
@@ -120,7 +153,7 @@ const constructSizesSrcSet = ({ base, sm, md, lg, xl }: SizeSet) => {
     { minWidth: 640, size: sm },
   ]
     .filter(({ size }) => size !== undefined)
-    .map(({ minWidth, size }) => `(min-width: ${minWidth}) ${size}`)
+    .map(({ minWidth, size }) => `(${mediaQuery}: ${minWidth}) ${size}`)
     .concat(`${base}`)
     .join(", ");
 };

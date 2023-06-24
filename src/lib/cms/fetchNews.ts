@@ -1,8 +1,11 @@
 import { client } from "@/lib/cms/contentfulClient";
 import { fetchAllEntries } from "@/lib/cms/fetchAllEntries";
 import { TypeNewsSkeleton } from "@/models/contentful";
-import { PartialNewsModel } from "@/models/models";
-import { transformPartialNewsModel } from "@/models/transformer/transformNews";
+import { NewsModel, PartialNewsModel } from "@/models/models";
+import {
+  transformNewsModel,
+  transformPartialNewsModel,
+} from "@/models/transformer/transformNews";
 
 export const fetchLatestPartialNews = async (
   entryNum: number
@@ -32,7 +35,7 @@ export const fetchPartialNewsList = async (): Promise<PartialNewsModel[]> => {
   return newsList.map((news) => transformPartialNewsModel(news));
 };
 
-export const fetchNews = async (slug: string): Promise<PartialNewsModel> => {
+export const fetchNews = async (slug: string): Promise<NewsModel> => {
   const news =
     await client.withoutUnresolvableLinks.getEntries<TypeNewsSkeleton>({
       content_type: "news",
@@ -44,5 +47,5 @@ export const fetchNews = async (slug: string): Promise<PartialNewsModel> => {
     throw new Error("News not found");
   }
 
-  return transformPartialNewsModel(news.items[0]);
+  return transformNewsModel(news.items[0]);
 };

@@ -1,36 +1,35 @@
 import { FC } from "react";
 
-import { CMSImage, WrapImageSized } from "@/components/feature/wrapImage";
+import { WrapImageSized } from "@/components/feature/wrapImage";
 import { MarkdownContent } from "@/components/ui/markdownContent";
 import { PageLink } from "@/components/ui/pageLink";
+import { MemberModel } from "@/models/models";
 
-export type MemberProps = {
-  name: string;
-  role: string;
-  institution: string;
-  thumbnail: CMSImage;
-  introductionMarkdownContent: string;
-  achievementsMarkdownContent: string;
-  researchesUrl?: string;
-};
-
-export const Member: FC<MemberProps> = ({
+export const MemberDetail: FC<MemberModel> = ({
   name,
-  role,
+  thumbnailImg,
+  displayRole,
+  author,
   institution,
-  thumbnail,
-  introductionMarkdownContent,
-  achievementsMarkdownContent,
-  researchesUrl,
+  contentMd,
+  achievementMd,
 }) => {
   const renderPageLink = () => {
-    return researchesUrl && <PageLink href={researchesUrl}>論文一覧</PageLink>;
+    //TODO ここに書くべきではない
+    const href = author && `/researches?filter=author:${author.fullName}`;
+
+    return href && <PageLink href={href}>論文一覧</PageLink>;
   };
 
   const renderImgArea = () => {
     return (
       <div className={"flex flex-col items-center"}>
-        <WrapImageSized src={thumbnail.src} alt={""} width={200} height={200} />
+        <WrapImageSized
+          src={thumbnailImg.src}
+          alt={""}
+          width={200}
+          height={200}
+        />
         <div className={"hidden py-4 text-center text-lg md:block"}>
           {renderPageLink()}
         </div>
@@ -42,7 +41,7 @@ export const Member: FC<MemberProps> = ({
     return (
       <>
         <h1 className={"text-3xl font-semibold"}>{name}</h1>
-        <p className={"my-2"}>{role}</p>
+        <p className={"my-2"}>{displayRole}</p>
         <p className={"my-2"}>{institution}</p>
         <div className={"md:hidden"}>{renderPageLink()}</div>
       </>
@@ -63,11 +62,11 @@ export const Member: FC<MemberProps> = ({
       </div>
       <hr className={"col-span-2 row-span-1 md:col-span-1 md:row-span-1"} />
       <div className={"col-span-2 row-span-1 md:col-span-1 md:row-span-1"}>
-        <MarkdownContent markdown={introductionMarkdownContent} />
+        <MarkdownContent markdown={contentMd} />
       </div>
       <hr className={"col-span-2 row-span-1 md:row-span-1"} />
       <div className={"col-span-2 row-span-1 md:row-span-1"}>
-        <MarkdownContent markdown={achievementsMarkdownContent} />
+        <MarkdownContent markdown={achievementMd} />
       </div>
     </div>
   );

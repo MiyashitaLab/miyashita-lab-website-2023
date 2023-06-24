@@ -4,6 +4,7 @@ import { WrapImageFill } from "@/components/feature/wrapImage";
 import { MemberCardsSectionImage } from "@/components/page/top/MemberCardsSection";
 import { CardsHeading } from "@/components/ui/cardsHeading";
 import { MemberCard } from "@/components/ui/memberCard";
+import { ROUTES } from "@/lib/routes";
 import { PartialMemberModel } from "@/models/models";
 
 export type MembersProps = {
@@ -21,7 +22,7 @@ export const Members: FC<MembersProps> = ({ memberList }) => {
         {members.map((member) => (
           <MemberCard
             key={member.slug}
-            href={member.slug}
+            href={ROUTES.MEMBER_DETAIL(member.slug)}
             role={member.displayRole}
             name={member.name}
           >
@@ -36,7 +37,7 @@ export const Members: FC<MembersProps> = ({ memberList }) => {
   const graduatedMembers = memberList.filter((member) => !member.active);
 
   return (
-    <div className={"mx-auto my-6 text-center"}>
+    <div className={"mx-auto my-8 text-center"}>
       <section className={"mx-auto my-8"}>
         <CardsHeading>現役メンバー</CardsHeading>
         {renderCards(activeMembers)}

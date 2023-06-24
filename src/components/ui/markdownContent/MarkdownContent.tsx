@@ -1,11 +1,12 @@
 import classNames from "classnames";
-import Image from "next/image";
 import { FC } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 
+import { WrapImageInline } from "@/components/feature/wrapImage/WrapImage";
 import { WrapLink } from "@/components/feature/wrapLink";
+import { wrapImageUrl } from "@/models/transformer/transformCMSImage";
 
 export type MarkdownContentProps = {
   markdown: string;
@@ -123,7 +124,14 @@ export const MarkdownContent: FC<MarkdownContentProps> = ({ markdown }) => {
             className={"peer relative my-2 block h-60 max-w-full"}
             data-label={"img-container"}
           >
-            <Image className={"object-contain"} src={src!} alt={alt} fill />
+            <WrapImageInline
+              src={wrapImageUrl(src!)}
+              alt={alt}
+              sizes={{
+                base: "15rem", //h-60
+              }}
+              sizesFlow={"height"}
+            />
           </span>
         ),
         iframe: ({ node, ...props }) => {

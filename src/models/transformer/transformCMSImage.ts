@@ -8,8 +8,12 @@ export const transformCMSImage = (asset: AssetFile): CMSImageWithSize => {
   }
 
   return {
-    src: `https:${asset.url}`,
+    src: wrapImageUrl(asset.url),
     width: asset.details.image.width,
     height: asset.details.image.height,
   };
+};
+
+export const wrapImageUrl = (urlWithoutProtocol: string): string => {
+  return `https:${urlWithoutProtocol}`;
 };
