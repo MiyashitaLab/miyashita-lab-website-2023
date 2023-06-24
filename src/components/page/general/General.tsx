@@ -22,7 +22,7 @@ export const General: FC<GeneralProps> = ({
           <span>{headingText}</span>
         </CardsHeading>
       </div>
-      <div className={"max-w-lg p-2"}>
+      <div className={"p-2"}>
         <MarkdownContent markdown={content} />
       </div>
     </div>
