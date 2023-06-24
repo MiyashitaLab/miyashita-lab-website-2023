@@ -5,7 +5,7 @@ import { MarkdownContent } from "@/components/ui/markdownContent";
 import { PageLink } from "@/components/ui/pageLink";
 import { MemberModel } from "@/models/models";
 
-export const Member: FC<MemberModel> = ({
+export const MemberDetail: FC<MemberModel> = ({
   name,
   thumbnailImg,
   displayRole,

@@ -1,19 +1,19 @@
 import { StoryObj } from "@storybook/react";
 
-import { Member } from "./Member";
+import { MemberDetail } from "./MemberDetail";
 
 import { Layout } from "src/components/page/layout";
 
 import type { Meta } from "@storybook/react";
 
-const meta: Meta<typeof Member> = {
-  title: "Pages/Member",
-  component: Member,
+const meta: Meta<typeof MemberDetail> = {
+  title: "Pages/MemberDetail",
+  component: MemberDetail,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof Member>;
+type Story = StoryObj<typeof MemberDetail>;
 
 const content = `
 Homei Miyashita, Ph.D.
@@ -46,7 +46,7 @@ export const Primary: Story = {
   },
   render: (args) => (
     <Layout>
-      <Member {...args} />
+      <MemberDetail {...args} />
     </Layout>
   ),
 };

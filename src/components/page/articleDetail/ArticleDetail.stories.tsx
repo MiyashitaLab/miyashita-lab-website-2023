@@ -1,19 +1,19 @@
 import { StoryObj } from "@storybook/react";
 
-import { Article } from "./Article";
+import { ArticleDetail } from "./ArticleDetail";
 
 import { Layout } from "src/components/page/layout";
 
 import type { Meta } from "@storybook/react";
 
-const meta: Meta<typeof Article> = {
-  title: "Pages/Article",
-  component: Article,
+const meta: Meta<typeof ArticleDetail> = {
+  title: "Pages/ArticleDetail",
+  component: ArticleDetail,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof Article>;
+type Story = StoryObj<typeof ArticleDetail>;
 
 export const News: Story = {
   args: {
@@ -26,7 +26,7 @@ export const News: Story = {
   },
   render: (args) => (
     <Layout>
-      <Article {...args} />
+      <ArticleDetail {...args} />
     </Layout>
   ),
 };
@@ -45,7 +45,7 @@ We present a printing technique that controls the thickness of objects by increa
   },
   render: (args) => (
     <Layout>
-      <Article {...args} />
+      <ArticleDetail {...args} />
     </Layout>
   ),
 };

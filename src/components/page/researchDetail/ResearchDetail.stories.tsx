@@ -1,21 +1,21 @@
 import { faker } from "@faker-js/faker";
 import { StoryObj } from "@storybook/react";
 
-import { Research } from "./Research";
+import { ResearchDetail } from "./ResearchDetail";
 
 import { paperModelMock } from "@/models/mockData";
 import { Layout } from "src/components/page/layout";
 
 import type { Meta } from "@storybook/react";
 
-const meta: Meta<typeof Research> = {
-  title: "PAGES/Research",
-  component: Research,
+const meta: Meta<typeof ResearchDetail> = {
+  title: "PAGES/ResearchDetail",
+  component: ResearchDetail,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof Research>;
+type Story = StoryObj<typeof ResearchDetail>;
 
 export const Primary: Story = {
   args: {
@@ -23,7 +23,7 @@ export const Primary: Story = {
   },
   render: (args) => (
     <Layout>
-      <Research {...args} />
+      <ResearchDetail {...args} />
     </Layout>
   ),
 };

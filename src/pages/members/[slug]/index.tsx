@@ -1,12 +1,12 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
-import { Member, MemberProps } from "@/components/page/member";
 import { fetchMember, fetchPartialMemberList } from "@/lib/cms/fetchMember";
+import { MemberDetail, MemberProps } from "src/components/page/memberDetail";
 
 type Props = MemberProps;
 
 const MemberPage: NextPage<Props> = ({ ...props }) => {
-  return <Member {...props} />;
+  return <MemberDetail {...props} />;
 };
 
 export default MemberPage;

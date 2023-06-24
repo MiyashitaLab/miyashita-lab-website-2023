@@ -13,7 +13,7 @@ export type ArticleProps = {
   content: string;
 };
 
-export const Article: FC<ArticleProps> = ({ title, type, date, content }) => {
+export const ArticleDetail: FC<ArticleProps> = ({ title, type, date, content }) => {
   return (
     <article>
       <ArticleHeader type={type} date={date}>
