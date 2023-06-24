@@ -4,6 +4,7 @@ export interface TypePagesFields {
     slug: EntryFieldTypes.Symbol<"about" | "copyright" | "privacy-policy">;
     title: EntryFieldTypes.Symbol;
     content: EntryFieldTypes.Text;
+    centering: EntryFieldTypes.Boolean;
 }
 
 export type TypePagesSkeleton = EntrySkeletonType<TypePagesFields, "pages">;
