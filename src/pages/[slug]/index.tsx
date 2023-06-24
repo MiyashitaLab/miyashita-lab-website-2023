@@ -4,14 +4,12 @@ import React from "react";
 import { General } from "@/components/page/general";
 import { fetchPage, fetchPageSlugs } from "@/lib/cms/fetchPages";
 import { TypePagesFields } from "@/models/contentful";
+import { GeneralPageModel } from "@/models/models";
 
-type Props = {
-  headingText: string;
-  contentMd: string;
-};
+type Props = GeneralPageModel;
 
-const GeneralPage: NextPage<Props> = ({ headingText, contentMd }) => {
-  return <General headingText={headingText} content={contentMd} />;
+const GeneralPage: NextPage<Props> = (props) => {
+  return <General {...props} />;
 };
 
 export default GeneralPage;
@@ -45,9 +43,6 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   }
 
   return {
-    props: {
-      headingText: pageData.title,
-      contentMd: pageData.contentMd,
-    },
+    props: pageData,
   };
 };

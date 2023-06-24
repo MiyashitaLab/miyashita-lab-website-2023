@@ -3,6 +3,7 @@ import { CMSImage, CMSImageWithSize } from "@/components/feature/wrapImage";
 export type GeneralPageModel = {
   slug: string;
   title: string;
+  centering: boolean;
   contentMd: string;
 };
 
