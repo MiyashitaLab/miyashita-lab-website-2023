@@ -1,9 +1,9 @@
 import classNames from "classnames";
 import { FC, ReactElement } from "react";
 
-import { CardsHeading } from "@/components/ui/cardsHeading";
 import { MarkdownContent } from "@/components/ui/markdownContent";
 import { GeneralPageModel } from "@/models/models";
+import { Heading } from "src/components/ui/heading";
 
 export type GeneralProps = {
   headingIcon?: ReactElement;
@@ -18,10 +18,10 @@ export const General: FC<GeneralProps> = ({
   return (
     <div className={"mx-4"}>
       <div className={"py-8"}>
-        <CardsHeading>
+        <Heading level={1}>
           {headingIcon && <span className={"px-2"}>{headingIcon}</span>}
           <span>{title}</span>
-        </CardsHeading>
+        </Heading>
       </div>
       <div className={classNames("p-2", centering && "text-center")}>
         <MarkdownContent markdown={contentMd} />

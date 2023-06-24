@@ -2,7 +2,7 @@ import { FC, ReactElement } from "react";
 
 import { WrapImageFill } from "@/components/feature/wrapImage/WrapImage";
 import { WrapLink } from "@/components/feature/wrapLink";
-import { CardsHeading } from "@/components/ui/cardsHeading";
+import { Heading } from "src/components/ui/heading";
 import { PageLink } from "src/components/ui/pageLink";
 
 export type MemberCardsSectionProps = {
@@ -20,12 +20,12 @@ export const MemberCardsSection: FC<MemberCardsSectionProps> = ({
 }) => {
   return (
     <section className={"mx-auto my-8"}>
-      <CardsHeading>
+      <Heading level={2}>
         <WrapLink href={href}>
           <span className={"px-2"}>{headingIcon}</span>
           <span>{headingText}</span>
         </WrapLink>
-      </CardsHeading>
+      </Heading>
       <div
         className={
           "my-6 grid grid-cols-3 gap-y-2 sm:grid-cols-4 md:grid-cols-6"

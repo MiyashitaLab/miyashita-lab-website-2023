@@ -4,7 +4,6 @@ import { WrapLink } from "@/components/feature/wrapLink";
 import { ArticleCardDescription } from "@/components/ui/articleCardDescription";
 import { ArticleCardHorizontal } from "@/components/ui/articleCardHorizontal";
 import { ArticleCardHorizontalImage } from "@/components/ui/articleCardHorizontal/ArticleCardHorizontal";
-import { CardsHeading } from "@/components/ui/cardsHeading";
 import { Icon } from "@/components/ui/icon";
 import { Label } from "@/components/ui/label";
 import { PaginationNav } from "@/components/ui/paginationNav";
@@ -18,6 +17,7 @@ import {
 } from "@/lib/hook/useResearchesFilter";
 import { ROUTES } from "@/lib/routes";
 import { PartialPaperModel } from "@/models/models";
+import { Heading } from "src/components/ui/heading";
 
 export type ResearchesProps = {
   allResearchList: PartialPaperModel[];
@@ -196,12 +196,12 @@ const ResearchesLayout: FC<ResearchesLayoutProps> = ({
   return (
     <div className={"mx-4 flex flex-col gap-4 py-2 xl:mx-0"}>
       <div className={"py-8"}>
-        <CardsHeading>
+        <Heading level={1}>
           <WrapLink href={href}>
             <span className={"px-2"}>{headingIcon}</span>
             <span>{headingText}</span>
           </WrapLink>
-        </CardsHeading>
+        </Heading>
       </div>
       <div className={"flex justify-center"}>
         <span className={"text-lg"}>{filteredResearchNum}件</span>

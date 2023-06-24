@@ -2,7 +2,7 @@ import { FC, ReactElement, ReactNode } from "react";
 
 import { WrapImageFill } from "@/components/feature/wrapImage";
 import { WrapLink } from "@/components/feature/wrapLink";
-import { CardsHeading } from "@/components/ui/cardsHeading";
+import { Heading } from "src/components/ui/heading";
 
 export type ArticlesProps = {
   children: ReactElement[];
@@ -22,12 +22,12 @@ export const ArticlesBase: FC<ArticlesProps> = ({
   return (
     <div className={"mx-4 xl:mx-0"}>
       <div className={"py-8"}>
-        <CardsHeading>
+        <Heading level={1}>
           <WrapLink href={href}>
             <span className={"px-2"}>{headingIcon}</span>
             <span>{headingText}</span>
           </WrapLink>
-        </CardsHeading>
+        </Heading>
       </div>
       <div
         className={
