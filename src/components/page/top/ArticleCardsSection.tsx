@@ -2,8 +2,8 @@ import { FC, ReactElement } from "react";
 
 import { WrapImageFill } from "@/components/feature/wrapImage/WrapImage";
 import { WrapLink } from "@/components/feature/wrapLink";
-import { CardsHeading } from "@/components/ui/cardsHeading";
 import { PageLink } from "@/components/ui/pageLink/";
+import { Heading } from "src/components/ui/heading";
 
 export type ArticleCardsSectionProps = {
   children: ReactElement[];
@@ -20,12 +20,12 @@ export const ArticleCardsSection: FC<ArticleCardsSectionProps> = ({
 }) => {
   return (
     <section className={"mx-auto my-8"}>
-      <CardsHeading>
+      <Heading level={2}>
         <WrapLink href={href}>
           <span className={"px-2"}>{headingIcon}</span>
           <span>{headingText}</span>
         </WrapLink>
-      </CardsHeading>
+      </Heading>
       <div
         className={
           "my-6 flex flex-row gap-2 overflow-x-auto lg:grid lg:grid-cols-4"

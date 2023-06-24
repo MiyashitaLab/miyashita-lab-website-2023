@@ -2,10 +2,10 @@ import { FC } from "react";
 
 import { WrapImageFill } from "@/components/feature/wrapImage";
 import { MemberCardsSectionImage } from "@/components/page/top/MemberCardsSection";
-import { CardsHeading } from "@/components/ui/cardsHeading";
 import { MemberCard } from "@/components/ui/memberCard";
 import { ROUTES } from "@/lib/routes";
 import { PartialMemberModel } from "@/models/models";
+import { Heading } from "src/components/ui/heading";
 
 export type MembersProps = {
   memberList: PartialMemberModel[];
@@ -39,11 +39,11 @@ export const Members: FC<MembersProps> = ({ memberList }) => {
   return (
     <div className={"mx-auto my-8 text-center"}>
       <section className={"mx-auto my-8"}>
-        <CardsHeading>現役メンバー</CardsHeading>
+        <Heading level={2}>現役メンバー</Heading>
         {renderCards(activeMembers)}
       </section>
       <section className={"mx-auto my-8"}>
-        <CardsHeading>歴代メンバー</CardsHeading>
+        <Heading level={2}>歴代メンバー</Heading>
         {renderCards(graduatedMembers)}
       </section>
     </div>
