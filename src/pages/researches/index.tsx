@@ -9,7 +9,7 @@ type Props = {
   allResearchesList: ResearchesProps["allResearchList"];
 };
 
-export const ResearchesRoute: NextPage<Props> = ({ allResearchesList }) => {
+export const ResearchesPage: NextPage<Props> = ({ allResearchesList }) => {
   const router = useRouter();
 
   const [query, setQuery] = useState<Record<string, string> | undefined>(
@@ -45,7 +45,7 @@ export const ResearchesRoute: NextPage<Props> = ({ allResearchesList }) => {
   );
 };
 
-export default ResearchesRoute;
+export default ResearchesPage;
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   return {

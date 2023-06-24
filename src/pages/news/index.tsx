@@ -9,7 +9,7 @@ type Props = {
   allNewsList: NewsProps["allNewsList"];
 };
 
-const NewsRoute: NextPage<Props> = (props) => {
+const NewsPage: NextPage<Props> = (props) => {
   const router = useRouter();
 
   const currentPage = Number(router.query.page) || 1;
@@ -24,7 +24,7 @@ const NewsRoute: NextPage<Props> = (props) => {
   );
 };
 
-export default NewsRoute;
+export default NewsPage;
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   return {

@@ -5,11 +5,11 @@ import { fetchPartialMemberList } from "@/lib/cms/fetchMember";
 
 type Props = MembersProps;
 
-const MembersRoute: NextPage<Props> = ({ memberList }) => {
+const MembersPage: NextPage<Props> = ({ memberList }) => {
   return <Members memberList={memberList} />;
 };
 
-export default MembersRoute;
+export default MembersPage;
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   return {

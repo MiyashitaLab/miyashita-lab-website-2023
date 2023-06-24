@@ -6,7 +6,7 @@ import { ArticleDetail } from "src/components/page/articleDetail";
 
 type Props = NewsModel;
 
-const NewsPage: NextPage<Props> = ({ ...props }) => {
+const NewsDetailPage: NextPage<Props> = ({ ...props }) => {
   return (
     <ArticleDetail
       type={"news"}
@@ -17,7 +17,7 @@ const NewsPage: NextPage<Props> = ({ ...props }) => {
   );
 };
 
-export default NewsPage;
+export default NewsDetailPage;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const newsList = await fetchPartialNewsList();

@@ -6,11 +6,11 @@ import { MemberDetail } from "src/components/page/memberDetail";
 
 type Props = MemberModel;
 
-const MemberPage: NextPage<Props> = ({ ...props }) => {
+const MemberDetailPage: NextPage<Props> = ({ ...props }) => {
   return <MemberDetail {...props} />;
 };
 
-export default MemberPage;
+export default MemberDetailPage;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const members = await fetchPartialMemberList();
