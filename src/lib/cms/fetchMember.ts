@@ -27,6 +27,23 @@ export const fetchPartialMemberList = async (): Promise<
   return members.map(transformPartialMemberModal);
 };
 
+export const fetchMemberSlugByAuthor = async (
+  authorId: string
+): Promise<string> => {
+  const member = await client.getEntries<TypeMemberSkeleton>({
+    content_type: "member",
+    select: ["fields.slug", "fields.author"],
+    "fields.author.sys.id": authorId,
+  });
+
+  const memberEntry = member.items[0];
+  if (memberEntry === undefined || memberEntry.fields.slug === undefined) {
+    throw new Error("Member not found");
+  }
+
+  return memberEntry.fields.slug;
+};
+
 export const fetchMember = async (slug: string): Promise<MemberModel> => {
   const member =
     await client.withoutUnresolvableLinks.getEntries<TypeMemberSkeleton>({
