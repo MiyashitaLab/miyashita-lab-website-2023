@@ -34,7 +34,7 @@ export const MemberCardsSection: FC<MemberCardsSectionProps> = ({
         {children}
       </div>
       <PageLink href={href} className={"text-center"}>
-        歴代メンバー
+        全てのメンバーを見る
       </PageLink>
     </section>
   );
