@@ -22,18 +22,19 @@ const handler: NextApiHandler = async (req, res) => {
     return;
   }
 
-  const { model, id } = req.query;
+  const model = req.query.model ?? req.body.model;
   if (typeof model !== "string" || !validateModelQueryValue(model)) {
     res.status(400).json({ message: "無効なmodelパラメータです" });
     return;
   }
 
-  if (typeof id !== "string") {
-    res.status(400).json({ message: "無効なidパラメータです" });
+  const slugOrId = req.query.slug ?? req.body.id ?? req.query.id ?? req.body.id;
+  if (typeof slugOrId !== "string") {
+    res.status(400).json({ message: "無効なid/slugパラメータです" });
     return;
   }
 
-  const updateRoutes = await modelDependencies[model](id);
+  const updateRoutes = await modelDependencies[model](slugOrId);
 
   const revalidateResults = await Promise.all(
     updateRoutes.map(async (route) => {
