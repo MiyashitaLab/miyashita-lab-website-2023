@@ -57,16 +57,19 @@ const handler: NextApiHandler = async (req, res) => {
     })
   );
 
-  res.status(200).json({ revalidateResults });
-
   if (process.env.SLACK_WEBHOOK_URL) {
     await noticeToSlack(process.env.SLACK_WEBHOOK_URL, revalidateResults).catch(
       (error) => {
-        console.warn("Slack通知に失敗しました", error);
+        console.error("Slack通知に失敗しました", error);
         // ignore
       }
     );
   }
+
+  res.status(200).json({
+    revalidateResults,
+    slack: process.env.SLACK_WEBHOOK_URL !== undefined,
+  });
 };
 
 const validModelQueryValue = Object.keys(modelDependencies);
@@ -106,7 +109,7 @@ const noticeToSlack = async (webhook: string, results: RevalidateResult[]) => {
     ],
   };
 
-  await fetch(webhook, {
+  return await fetch(webhook, {
     method: "POST",
     body: JSON.stringify(body),
   });
