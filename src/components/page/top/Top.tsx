@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 
 import { BeautifulBreak } from "@/components/feature/beautifulBreak";
 import { WrapImageSized } from "@/components/feature/wrapImage/WrapImage";
@@ -40,6 +40,11 @@ export const Top: FC<TopProps> = ({
   projectList,
   memberList,
 }) => {
+  const sortedMemberList = useMemo(
+    () => [...memberList].sort((a, b) => b.roleSortOrder - a.roleSortOrder),
+    [memberList]
+  );
+
   return (
     <>
       <div className={"flex w-full justify-center"}>
@@ -63,7 +68,7 @@ export const Top: FC<TopProps> = ({
         <NewsSection newsList={newsList} />
         <ResearchSection researchList={researchList} />
         <ProjectSection projectList={projectList} />
-        <MemberSection memberList={memberList} />
+        <MemberSection memberList={sortedMemberList} />
       </div>
     </>
   );
