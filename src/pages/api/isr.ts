@@ -8,6 +8,7 @@ type RevalidateResult = {
   error?: string;
 };
 
+//contentfulのデータを更新したときにwebhookで呼び出される
 const handler: NextApiHandler = async (req, res) => {
   const secret = req.query.secret ?? req.body.secret;
 
@@ -28,7 +29,9 @@ const handler: NextApiHandler = async (req, res) => {
     return;
   }
 
-  const slugOrId = req.query.slug ?? req.body.id ?? req.query.id ?? req.body.id;
+  // sys.idとfields.slugのどちらかがidになる
+  const slugOrId =
+    req.query.slug ?? req.body.slug ?? req.query.id ?? req.body.id;
   if (typeof slugOrId !== "string") {
     res.status(400).json({ message: "無効なid/slugパラメータです" });
     return;
@@ -103,7 +106,7 @@ const noticeToSlack = async (webhook: string, results: RevalidateResult[]) => {
     ],
   };
 
-  const res = await fetch(webhook, {
+  await fetch(webhook, {
     method: "POST",
     body: JSON.stringify(body),
   });
