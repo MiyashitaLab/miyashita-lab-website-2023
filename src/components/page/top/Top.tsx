@@ -50,8 +50,8 @@ export const Top: FC<TopProps> = ({
       <div className={"flex w-full justify-center"}>
         <WrapImageSized {...top.topImg} alt={"Home header"} priority />
       </div>
-      <div className={"mx-4 xl:mx-0"}>
-        <section className={"mx-auto my-6 max-w-screen-lg text-center"}>
+      <div className={"m-4 my-8 flex flex-col gap-y-16 xl:mx-0"}>
+        <section className={"mx-auto max-w-screen-lg text-center"}>
           <h1 className={"my-2 break-keep text-2xl"}>
             明治大学 <wbr />
             総合数理学部 <wbr />
