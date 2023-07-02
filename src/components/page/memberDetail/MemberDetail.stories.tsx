@@ -43,6 +43,7 @@ export const Primary: Story = {
     roleSortOrder: 0,
     active: true,
     author: {
+      id: "homei",
       fullName: "宮下芳明",
       familyName: {
         en: "Miyashita",
