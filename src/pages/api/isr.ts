@@ -28,7 +28,8 @@ const handler: NextApiHandler = async (req, res) => {
     return;
   }
 
-  const slugOrId = req.query.slug ?? req.body.id ?? req.query.id ?? req.body.id;
+  const slugOrId =
+    req.query.slug ?? req.body.slug ?? req.query.id ?? req.body.id;
   if (typeof slugOrId !== "string") {
     res.status(400).json({ message: "無効なid/slugパラメータです" });
     return;
