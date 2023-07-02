@@ -19,7 +19,7 @@ export const MemberCardsSection: FC<MemberCardsSectionProps> = ({
   headingIcon,
 }) => {
   return (
-    <section className={"mx-auto my-8"}>
+    <section className={"mx-auto w-full"}>
       <Heading level={2}>
         <WrapLink href={href}>
           <span className={"px-2"}>{headingIcon}</span>
@@ -34,7 +34,7 @@ export const MemberCardsSection: FC<MemberCardsSectionProps> = ({
         {children}
       </div>
       <PageLink href={href} className={"text-center"}>
-        歴代メンバー
+        全てのメンバーを見る
       </PageLink>
     </section>
   );
