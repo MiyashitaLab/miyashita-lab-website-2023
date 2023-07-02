@@ -31,18 +31,9 @@ package.jsonに追加したらここにも書く。
 
 - tailwindcss, postcss, autoprefixer
   - tailwindcssを使うために必要
-- eslint-plugin-tailwindcss
-  - tailwindcssのクラス名をeslintでチェックするために必要
-- eslint-config-next
-  - next.jsのeslint設定
-  - @typescript-eslint/parserはこれに含まれている
 - @storybook/*, storybook
   - storybookを使うために必要
   - npx sb initで自動追加された
-- hygen
-  - コンポーネントの雛形を作るために使う
-- @tailwindcss/line-clamp
-  - n行固定ではみ出したテキストを...で省略するために使う
 - budoux
   - 適切な箇所で日本語文を改行するために使う
 - classnames
@@ -51,11 +42,18 @@ package.jsonに追加したらここにも書く。
   - next.jsの画像最適化が高速になるのでインストールが推奨されている
 - contentful
   - contentfulのデータを取得するのに使う
-- cf-content-types-generator
-  - contentfulのモデルスキーマからTypeScriptの型データを生成するのに使う
 - react-pdf
   - reactでスライドPDFを表示するのに使う
 - react-markdown, rehype-raw, remark-gfm
   - markdownをreactで表示するのに使う
+- cf-content-types-generator
+  - contentfulのモデルスキーマからTypeScriptの型データを生成するのに使う
+- hygen
+  - コンポーネントの雛形を作るために使う
+- eslint-plugin-tailwindcss
+  - tailwindcssのクラス名をeslintでチェックするために必要
+- eslint-config-next
+  - next.jsのeslint設定
+  - @typescript-eslint/parserはこれに含まれている
 - @faker-js/faker
   - story用ダミーデータを生成するのに使う
