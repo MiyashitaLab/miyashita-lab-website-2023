@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 
 import { WrapImageFill } from "@/components/feature/wrapImage";
 import { MemberCardsSectionImage } from "@/components/page/top/MemberCardsSection";
@@ -34,17 +34,25 @@ export const Members: FC<MembersProps> = ({ memberList }) => {
   };
 
   const activeMembers = memberList.filter((member) => member.active);
+  const activeMembersSorted = useMemo(() => {
+    return [...activeMembers].sort((a, b) => b.roleSortOrder - a.roleSortOrder);
+  }, [activeMembers]);
   const graduatedMembers = memberList.filter((member) => !member.active);
+  const graduatedMembersSorted = useMemo(() => {
+    return [...graduatedMembers].sort(
+      (a, b) => b.roleSortOrder - a.roleSortOrder
+    );
+  }, [graduatedMembers]);
 
   return (
     <div className={"mx-auto my-8 text-center"}>
       <section className={"mx-auto my-8"}>
         <Heading level={2}>現役メンバー</Heading>
-        {renderCards(activeMembers)}
+        {renderCards(activeMembersSorted)}
       </section>
       <section className={"mx-auto my-8"}>
         <Heading level={2}>歴代メンバー</Heading>
-        {renderCards(graduatedMembers)}
+        {renderCards(graduatedMembersSorted)}
       </section>
     </div>
   );
