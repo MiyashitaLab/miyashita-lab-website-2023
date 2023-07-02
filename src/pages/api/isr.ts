@@ -22,7 +22,8 @@ const handler: NextApiHandler = async (req, res) => {
     return;
   }
 
-  const { model, id } = req.query;
+  const model = req.query.model ?? req.body.model;
+  const id = req.query.id ?? req.body.id;
   if (typeof model !== "string" || !validateModelQueryValue(model)) {
     res.status(400).json({ message: "無効なmodelパラメータです" });
     return;
