@@ -34,7 +34,7 @@ export const transformPartialMemberModal = (
     status: complementedStatus,
   });
   //TODO 要見直し
-  const roleSortOrder = role === "professor" ? -9999 : -enrolledYear;
+  const roleSortOrder = role === "professor" ? 9999 : -enrolledYear;
 
   const thumbnailAsset = thumbnail?.fields.file;
   return {
