@@ -47,3 +47,15 @@ package.jsonに追加したらここにも書く。
   - 適切な箇所で日本語文を改行するために使う
 - classnames
   - classNameを扱いやすくするために使う
+- sharp
+  - next.jsの画像最適化が高速になるのでインストールが推奨されている
+- contentful
+  - contentfulのデータを取得するのに使う
+- cf-content-types-generator
+  - contentfulのモデルスキーマからTypeScriptの型データを生成するのに使う
+- react-pdf
+  - reactでスライドPDFを表示するのに使う
+- react-markdown, rehype-raw, remark-gfm
+  - markdownをreactで表示するのに使う
+- @faker-js/faker
+  - story用ダミーデータを生成するのに使う
