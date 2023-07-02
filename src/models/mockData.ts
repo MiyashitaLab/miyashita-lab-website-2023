@@ -31,6 +31,7 @@ export const authorModelMock = (faker: Faker): AuthorModel => {
   const firstNameJa = `ja-${firstNameEn}`;
   const lastNameJa = `ja-${lastNameEn}`;
   return {
+    id: faker.string.uuid(),
     fullName: `${lastNameEn} ${firstNameEn}`,
     familyName: {
       ja: lastNameJa,

@@ -8,6 +8,7 @@ export type GeneralPageModel = {
 };
 
 export type AuthorModel = {
+  id: string;
   fullName: string;
   familyName: {
     ja: string;
