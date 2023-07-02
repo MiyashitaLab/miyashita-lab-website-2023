@@ -8,6 +8,7 @@ type RevalidateResult = {
   error?: string;
 };
 
+//contentfulのデータを更新したときにwebhookで呼び出される
 const handler: NextApiHandler = async (req, res) => {
   const secret = req.query.secret ?? req.body.secret;
 
@@ -28,6 +29,7 @@ const handler: NextApiHandler = async (req, res) => {
     return;
   }
 
+  // sys.idとfields.slugのどちらかがidになる
   const slugOrId =
     req.query.slug ?? req.body.slug ?? req.query.id ?? req.body.id;
   if (typeof slugOrId !== "string") {
