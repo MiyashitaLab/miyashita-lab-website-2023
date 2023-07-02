@@ -106,7 +106,7 @@ const noticeToSlack = async (webhook: string, results: RevalidateResult[]) => {
     ],
   };
 
-  const res = await fetch(webhook, {
+  await fetch(webhook, {
     method: "POST",
     body: JSON.stringify(body),
   });
