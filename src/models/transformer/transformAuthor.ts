@@ -10,6 +10,7 @@ export const transformAuthorModel = (
     author.fields;
 
   return {
+    id: author.sys.id,
     fullName,
     familyName: {
       ja: familyNameJa,

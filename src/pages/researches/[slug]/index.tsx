@@ -20,7 +20,7 @@ export const getStaticPaths = async () => {
         slug: research.slug,
       },
     })),
-    fallback: false,
+    fallback: "blocking",
   };
 };
 

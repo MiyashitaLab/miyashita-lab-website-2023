@@ -20,7 +20,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         slug: member.slug,
       },
     })),
-    fallback: false,
+    fallback: "blocking",
   };
 };
 

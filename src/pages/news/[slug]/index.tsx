@@ -27,7 +27,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         slug: news.slug,
       },
     })),
-    fallback: false,
+    fallback: "blocking",
   };
 };
 

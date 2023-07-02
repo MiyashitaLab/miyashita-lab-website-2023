@@ -49,9 +49,24 @@ export const fetchPartialPaperList = async (): Promise<PartialPaperModel[]> => {
     ],
     order: ["-fields.publicationDate"],
   });
-  console.log(papers);
 
   return papers.map((paper) => transformPartialPaperModel(paper));
+};
+
+export const fetchPaperIdListByAuthor = async (
+  authorId: string
+): Promise<string[]> => {
+  //https://github.com/contentful/contentful.js/blob/master/TYPESCRIPT.md#limitation
+  //referenceするfieldでのクエリは型が効かないので注意
+  const queryParam = { "fields.author.sys.id": authorId };
+
+  const papers = await fetchAllEntries<TypePaperSkeleton>({
+    content_type: "paper",
+    select: ["fields.author", "sys.id"],
+    ...queryParam,
+  });
+
+  return papers.map((paper) => paper.sys.id);
 };
 
 export const fetchPaper = async (id: string): Promise<PaperModel> => {
