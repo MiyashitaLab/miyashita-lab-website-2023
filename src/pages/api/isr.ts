@@ -29,15 +29,10 @@ const handler: NextApiHandler = async (req, res) => {
     return;
   }
 
-  // sys.idとfields.slugのどちらかがidになる
-  const slugOrId =
-    req.query.slug ?? req.body.slug ?? req.query.id ?? req.body.id;
-  if (typeof slugOrId !== "string") {
-    res.status(400).json({ message: "無効なid/slugパラメータです" });
-    return;
-  }
-
-  const updateRoutes = await modelDependencies[model](slugOrId);
+  const updateRoutes = await modelDependencies[model]({
+    id: req.query.id ?? req.body.id,
+    slug: req.query.slug ?? req.body.slug,
+  });
 
   const revalidateResults = await Promise.all(
     updateRoutes.map(async (route) => {

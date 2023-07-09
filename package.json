@@ -20,6 +20,7 @@
     "cf-content-types-generator": "^2.12.2",
     "classnames": "^2.3.2",
     "contentful": "^10.2.0",
+    "contentful-management": "^10.38.4",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.7",
     "next": "13.3.0",

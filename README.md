@@ -42,6 +42,9 @@ package.jsonに追加したらここにも書く。
   - next.jsの画像最適化が高速になるのでインストールが推奨されている
 - contentful
   - contentfulのデータを取得するのに使う
+- contentful-management
+  - entryのsnapshotを取得するのに使う
+  - unpublishやslugを変えた場合、revalidateに変更前の値が必要なのでsnapshotの取得が必要
 - react-pdf
   - reactでスライドPDFを表示するのに使う
 - react-markdown, rehype-raw, remark-gfm
