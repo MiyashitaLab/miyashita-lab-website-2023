@@ -3,6 +3,7 @@ import { FC } from "react";
 import { WrapImageSized } from "@/components/feature/wrapImage";
 import { MarkdownContent } from "@/components/ui/markdownContent";
 import { PageLink } from "@/components/ui/pageLink";
+import { ROUTES } from "@/lib/routes";
 import { MemberModel } from "@/models/models";
 
 export const MemberDetail: FC<MemberModel> = ({
@@ -15,8 +16,7 @@ export const MemberDetail: FC<MemberModel> = ({
   achievementMd,
 }) => {
   const renderPageLink = () => {
-    //TODO ここに書くべきではない
-    const href = author && `/researches?filter=author:${author.fullName}`;
+    const href = author && ROUTES.RESEARCH_AUTHOR_FILTERED(author.fullName);
 
     return href && <PageLink href={href}>論文一覧</PageLink>;
   };

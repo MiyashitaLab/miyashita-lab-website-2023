@@ -6,6 +6,8 @@ export const ROUTES = {
   MEMBER_DETAIL: (slug: string) => `/members/${slug}`,
   RESEARCHES: "/researches",
   RESEARCH_DETAIL: (slug: string) => `/researches/${slug}`,
+  RESEARCH_AUTHOR_FILTERED: (authorName: string) =>
+    `/researches?filter=author:${authorName}`,
   PROJECTS: "/projects",
   PROJECT_DETAIL: (slug: string) => `/projects/${slug}`,
   ABOUT: "/about",

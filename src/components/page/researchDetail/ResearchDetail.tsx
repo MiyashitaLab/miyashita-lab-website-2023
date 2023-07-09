@@ -9,6 +9,7 @@ import { ResearchHero } from "@/components/page/researchDetail/ResearchHero";
 import { Icon } from "@/components/ui/icon";
 import { dateToYYYYMMDD } from "@/lib/formatDate";
 import { MemberDefaultImg } from "@/lib/publicImage";
+import { ROUTES } from "@/lib/routes";
 import { PaperModel } from "@/models/models";
 
 export type ResearchProps = PaperModel;
@@ -72,6 +73,7 @@ export const ResearchDetail: FC<PaperModel> = ({
                 key={author.fullName}
                 name={author.fullName}
                 thumbnail={MemberDefaultImg} //TODO 仮
+                href={ROUTES.RESEARCH_AUTHOR_FILTERED(author.fullName)}
               />
             ))}
           </div>

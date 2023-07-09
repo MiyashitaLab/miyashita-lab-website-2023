@@ -32,8 +32,6 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     return undefined;
   });
 
-  console.log("research", research);
-
   if (research === undefined) {
     return {
       notFound: true,
