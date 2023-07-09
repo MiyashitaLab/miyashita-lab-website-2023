@@ -39,7 +39,7 @@ export const transformPartialMemberModal = (
   const thumbnailAsset = thumbnail?.fields.file;
   return {
     name: name,
-    slug: slug ?? name,
+    slug: slug,
     thumbnailImg: thumbnailAsset
       ? transformCMSImage(thumbnailAsset)
       : MemberDefaultImg,

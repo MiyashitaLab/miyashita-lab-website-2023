@@ -3,8 +3,8 @@ import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleC
 export interface TypePagesFields {
     slug: EntryFieldTypes.Symbol<"about" | "copyright" | "privacy-policy">;
     title: EntryFieldTypes.Symbol;
-    content: EntryFieldTypes.Text;
     centering: EntryFieldTypes.Boolean;
+    content: EntryFieldTypes.Text;
 }
 
 export type TypePagesSkeleton = EntrySkeletonType<TypePagesFields, "pages">;
