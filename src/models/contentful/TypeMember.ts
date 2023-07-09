@@ -5,7 +5,7 @@ export interface TypeMemberFields {
     name: EntryFieldTypes.Symbol;
     thumbnail?: EntryFieldTypes.AssetLink;
     author?: EntryFieldTypes.EntryLink<TypeAuthorSkeleton>;
-    slug?: EntryFieldTypes.Symbol;
+    slug: EntryFieldTypes.Symbol;
     role: EntryFieldTypes.Symbol<"professor" | "student">;
     institution: EntryFieldTypes.Symbol;
     content?: EntryFieldTypes.Text;
