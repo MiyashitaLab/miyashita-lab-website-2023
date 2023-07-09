@@ -9,11 +9,12 @@ import { WrapLink } from "@/components/feature/wrapLink";
 export type AuthorTagProps = {
   thumbnail: CMSImage;
   name: string;
+  href: string;
 };
 
-export const AuthorTag: FC<AuthorTagProps> = ({ thumbnail, name }) => {
+export const AuthorTag: FC<AuthorTagProps> = ({ thumbnail, name, href }) => {
   return (
-    <WrapLink href={"#"}>
+    <WrapLink href={href}>
       <div className={"inline-block rounded-full bg-cyan-800 text-gray-100"}>
         <WrapImageSized
           className={"inline-block rounded-full border-2 border-cyan-800"}

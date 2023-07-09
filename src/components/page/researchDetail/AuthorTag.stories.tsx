@@ -13,11 +13,12 @@ export default meta;
 
 type Story = StoryObj<typeof AuthorTag>;
 
-export const News = {
+export const Author = {
   args: {
     thumbnail: {
       src: "./member-default.png",
     },
     name: "宮下 芳明",
+    href: "#",
   },
 } as const satisfies Story;
