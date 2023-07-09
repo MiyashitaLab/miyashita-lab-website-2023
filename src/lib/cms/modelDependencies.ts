@@ -75,13 +75,14 @@ const updatedSlugRoutes = async (
 ): Promise<string[]> => {
   const snapshot = await fetchSnapshotsSlug(id);
   if (slug) {
-    const prevSlug = snapshot.at(-2)?.slug;
+    const prevSlug = snapshot[1]?.slug;
     if (prevSlug !== undefined && prevSlug !== slug) {
       //slugが変更された
       return [slugRoute(prevSlug), slugRoute(slug)];
+    } else {
+      //slugが変更されていない
+      return [slugRoute(slug)];
     }
-
-    return [slugRoute(slug)];
   } else {
     //unpublishedされた
     //最新のversionが対象のslug
