@@ -3,7 +3,7 @@ import type { TypeAuthorSkeleton } from "./TypeAuthor";
 
 export interface TypePaperFields {
     title: EntryFieldTypes.Symbol;
-    abstract: EntryFieldTypes.Text;
+    abstract?: EntryFieldTypes.Text;
     language: EntryFieldTypes.Symbol<"english" | "japanese">;
     author: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeAuthorSkeleton>>;
     type: EntryFieldTypes.Symbol<"journal" | "proceeding" | "report" | "thesis">;
