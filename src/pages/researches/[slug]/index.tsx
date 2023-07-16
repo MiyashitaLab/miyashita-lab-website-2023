@@ -1,4 +1,4 @@
-import { GetStaticProps, NextPage } from "next";
+import { GetStaticProps } from "next";
 
 import { Layout } from "@/components/page/layout";
 import { ResearchDetail } from "@/components/page/researchDetail";
