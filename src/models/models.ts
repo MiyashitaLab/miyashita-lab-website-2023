@@ -71,7 +71,10 @@ export type PaperModel = PartialPaperModel & {
     pages: string | null;
     copyrightHolder: string | null;
     quotation: string;
-    customMetaList: string[];
+    customMetaList: {
+      key: string;
+      value: string;
+    }[];
   };
   pdfUrl: string | null;
   hero: PaperHeroModel;

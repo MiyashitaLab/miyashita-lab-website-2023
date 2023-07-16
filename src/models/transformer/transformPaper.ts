@@ -101,6 +101,19 @@ export const transformPaperModel = (
     throw new Error("Paper hero image unresolved");
   })();
 
+  const metaList: PaperModel["publication"]["customMetaList"] = (
+    customMetaList ?? []
+  )
+    .map((item) => {
+      const [key, value] = item.split(":");
+      if (!(key && value)) return undefined;
+      return {
+        key: key,
+        value: value,
+      };
+    })
+    .filter(filterTruthy);
+
   return {
     ...transformPartialPaperModel(paper),
     publication: {
@@ -110,7 +123,7 @@ export const transformPaperModel = (
       pages: pages,
       copyrightHolder: copyrightHolder ?? null,
       quotation: quotation,
-      customMetaList: customMetaList ?? [],
+      customMetaList: metaList,
     },
     pdfUrl: pdf?.fields.file?.url ?? null,
     hero: hero,

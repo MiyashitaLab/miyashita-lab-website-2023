@@ -149,6 +149,16 @@ export const ResearchDetail: FC<PaperModel> = ({
 
         <hr className={"my-2 border-gray-200"} />
 
+        {publication.customMetaList.map(({ key, value }, i) => {
+          return (
+            <InfoItem label={`${key}:`} key={`custom-meta-item-${i}`}>
+              <span>{value}</span>
+            </InfoItem>
+          );
+        })}
+
+        <hr className={"my-2 border-gray-200"} />
+
         <InfoItem label={"Published:"}>
           <time dateTime={publishDateYYYYMMDD}>{publishDateYYYYMMDD}</time>
         </InfoItem>
