@@ -31,6 +31,7 @@
     "rehype-raw": "^6.1.1",
     "remark-gfm": "^3.0.1",
     "sharp": "^0.32.1",
+    "tiny-segmenter": "^0.2.0",
     "typescript": "5.0.4"
   },
   "devDependencies": {
