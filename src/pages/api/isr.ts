@@ -10,7 +10,7 @@ type RevalidateResult = {
 
 //contentfulのデータを更新したときにwebhookで呼び出される
 const handler: NextApiHandler = async (req, res) => {
-  const secret = req.query.secret ?? req.body.secret;
+  const secret = req.query?.secret ?? req.body?.secret;
 
   if (process.env.ON_DEMANT_SECRET === undefined) {
     res
@@ -23,15 +23,15 @@ const handler: NextApiHandler = async (req, res) => {
     return;
   }
 
-  const model = req.query.model ?? req.body.model;
+  const model = req.query?.model ?? req.body?.model;
   if (typeof model !== "string" || !validateModelQueryValue(model)) {
     res.status(400).json({ message: "無効なmodelパラメータです" });
     return;
   }
 
   const updateRoutes = await modelDependencies[model]({
-    id: req.query.id ?? req.body.id,
-    slug: req.query.slug ?? req.body.slug,
+    id: req.query?.id ?? req.body?.id,
+    slug: req.query?.slug ?? req.body?.slug,
   });
 
   const revalidateResults = await Promise.all(
