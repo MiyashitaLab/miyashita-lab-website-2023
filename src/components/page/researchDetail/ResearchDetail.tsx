@@ -6,6 +6,7 @@ import { WrapLink } from "@/components/feature/wrapLink";
 import { AuthorTag } from "@/components/page/researchDetail/AuthorTag";
 import { InfoItem } from "@/components/page/researchDetail/InfoItem";
 import { ResearchHero } from "@/components/page/researchDetail/ResearchHero";
+import { HrLayout } from "@/components/ui/hrLayout";
 import { Icon } from "@/components/ui/icon";
 import { dateToYYYYMMDD } from "@/lib/formatDate";
 import { MemberDefaultImg } from "@/lib/publicImage";
@@ -66,105 +67,112 @@ export const ResearchDetail: FC<PaperModel> = ({
           <BeautifulBreak>{title}</BeautifulBreak>
         </h1>
 
-        <div className={"flex py-2"}>
-          <div className={"flex flex-1 flex-wrap gap-2"}>
-            {authors.map((author) => (
-              <AuthorTag
-                key={author.fullName}
-                name={author.fullName}
-                thumbnail={MemberDefaultImg} //TODO 仮
-                href={ROUTES.RESEARCH_AUTHOR_FILTERED(author.fullName)}
-              />
-            ))}
-          </div>
-          <div className={"flex flex-none items-start pl-4"}>
-            <WrapLink
-              href={pdfUrl}
-              className={classNames(
-                "flex h-8 items-center rounded bg-red-700 px-2 text-gray-100",
-                {
-                  "opacity-50": !pdfUrl,
-                }
-              )}
-              target={pdfUrl ? "_blank" : undefined}
-            >
-              <Icon className={"p-1"} fontStyle={"solid"} name={"file-lines"} />
-              <span className={"px-1"}>PDF</span>
-            </WrapLink>
-          </div>
-        </div>
-
-        <hr className={"my-2 border-gray-200"} />
-
-        <div className={"flex"}>
-          <div
-            ref={citeContainerRef}
-            className={classNames("flex-1 h-[--cite-info-height]", {
-              hidden: !showCite,
-            })}
-          >
-            <textarea
-              ref={citeTextareaRef}
-              className={"h-full w-full resize-none border-0 bg-transparent"}
-              readOnly
-              value={publication.quotation}
-            />
-          </div>
-          <div
-            className={classNames("flex-1", {
-              hidden: showCite,
-            })}
-            ref={citeInfoRef}
-          >
-            <InfoItem label={"Journal: "}>
-              <span>{journalTitle}</span>
-            </InfoItem>
-            <div className={"flex flex-col gap-x-4 sm:flex-row sm:flex-wrap"}>
-              {publication.volume && (
-                <InfoItem label={"Volume:"}>{publication.volume}</InfoItem>
-              )}
-              {publication.issue && (
-                <InfoItem label={"Issue:"}>{publication.issue}</InfoItem>
-              )}
-              {publication.pages && (
-                <InfoItem label={"Pages:"}>{publication.pages}</InfoItem>
-              )}
+        <HrLayout hr={<hr className={"my-2 border-gray-200"} />}>
+          <div className={"flex py-2"}>
+            <div className={"flex flex-1 flex-wrap gap-2"}>
+              {authors.map((author) => (
+                <AuthorTag
+                  key={author.fullName}
+                  name={author.fullName}
+                  thumbnail={MemberDefaultImg} //TODO 仮
+                  href={ROUTES.RESEARCH_AUTHOR_FILTERED(author.fullName)}
+                />
+              ))}
             </div>
-            <InfoItem label={"Source URL:"}>
-              <WrapLink href={publication.url} className={"break-all"}>
-                <span className={"text-blue-800"}>{publication.url}</span>
+            <div className={"flex flex-none items-start pl-4"}>
+              <WrapLink
+                href={pdfUrl}
+                className={classNames(
+                  "flex h-8 items-center rounded bg-red-700 px-2 text-gray-100",
+                  {
+                    "opacity-50": !pdfUrl,
+                  }
+                )}
+                target={pdfUrl ? "_blank" : undefined}
+              >
+                <Icon
+                  className={"p-1"}
+                  fontStyle={"solid"}
+                  name={"file-lines"}
+                />
+                <span className={"px-1"}>PDF</span>
               </WrapLink>
-            </InfoItem>
+            </div>
           </div>
-
-          <div className={"flex flex-none items-start pl-4"}>
-            <button
-              onClick={toggleCite}
-              className={"h-8 w-8 rounded bg-stone-200"}
+          <div className={"flex"}>
+            <div
+              ref={citeContainerRef}
+              className={classNames("flex-1 h-[--cite-info-height]", {
+                hidden: !showCite,
+              })}
             >
-              <Icon fontStyle={"solid"} name={"quote-right"} />
-            </button>
+              <textarea
+                ref={citeTextareaRef}
+                className={"h-full w-full resize-none border-0 bg-transparent"}
+                readOnly
+                value={publication.quotation}
+              />
+            </div>
+            <div
+              className={classNames("flex-1", {
+                hidden: showCite,
+              })}
+              ref={citeInfoRef}
+            >
+              <InfoItem label={"Journal: "}>
+                <span>{journalTitle}</span>
+              </InfoItem>
+              <div className={"flex flex-col gap-x-4 sm:flex-row sm:flex-wrap"}>
+                {publication.volume && (
+                  <InfoItem label={"Volume:"}>{publication.volume}</InfoItem>
+                )}
+                {publication.issue && (
+                  <InfoItem label={"Issue:"}>{publication.issue}</InfoItem>
+                )}
+                {publication.pages && (
+                  <InfoItem label={"Pages:"}>{publication.pages}</InfoItem>
+                )}
+              </div>
+              <InfoItem label={"Source URL:"}>
+                <WrapLink href={publication.url} className={"break-all"}>
+                  <span className={"text-blue-800"}>{publication.url}</span>
+                </WrapLink>
+              </InfoItem>
+            </div>
+
+            <div className={"flex flex-none items-start pl-4"}>
+              <button
+                onClick={toggleCite}
+                className={"h-8 w-8 rounded bg-stone-200"}
+              >
+                <Icon fontStyle={"solid"} name={"quote-right"} />
+              </button>
+            </div>
           </div>
-        </div>
 
-        <hr className={"my-2 border-gray-200"} />
+          {publication.customMetaList.length > 0
+            ? publication.customMetaList.map(({ key, value }, i) => {
+                return (
+                  <InfoItem label={`${key}:`} key={`custom-meta-item-${i}`}>
+                    <span>{value}</span>
+                  </InfoItem>
+                );
+              })
+            : null}
 
-        <InfoItem label={"Published:"}>
-          <time dateTime={publishDateYYYYMMDD}>{publishDateYYYYMMDD}</time>
-        </InfoItem>
+          <InfoItem label={"Published:"}>
+            <time dateTime={publishDateYYYYMMDD}>{publishDateYYYYMMDD}</time>
+          </InfoItem>
 
-        <hr className={"my-2 border-gray-200"} />
+          <InfoItem label={"Keywords:"}>{keywords.join(" / ")}</InfoItem>
 
-        <InfoItem label={"Keywords:"}>{keywords.join(" / ")}</InfoItem>
-
-        <hr className={"my-2 border-gray-200"} />
-
-        <section>
-          <h2 className={"py-2 text-2xl font-semibold"}>Abstract</h2>
-          <p>
-            <BeautifulBreak>{abstract}</BeautifulBreak>
-          </p>
-        </section>
+          <section>
+            <h2 className={"py-2 text-2xl font-semibold"}>Abstract</h2>
+            <p>
+              <BeautifulBreak>{abstract}</BeautifulBreak>
+            </p>
+          </section>
+        </HrLayout>
       </div>
     </div>
   );
