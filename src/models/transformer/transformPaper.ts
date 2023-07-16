@@ -63,6 +63,7 @@ export const transformPaperModel = (
   paper: Entry<TypePaperSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
 ): PaperModel => {
   const {
+    publisher,
     copyrightHolder,
     pdf,
     volume,
@@ -121,6 +122,7 @@ export const transformPaperModel = (
       volume: volume ?? null,
       issue: issue ?? null,
       pages: pages,
+      publisher: publisher ?? "",
       copyrightHolder: copyrightHolder ?? null,
       quotation: quotation,
       customMetaList: metaList,
