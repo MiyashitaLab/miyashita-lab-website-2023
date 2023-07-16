@@ -168,7 +168,7 @@ const complementStatus = (
  * 日本の年度を計算する
  * @param date
  */
-const getJapaneseFiscalYear = (date: Date): number => {
+export const getJapaneseFiscalYear = (date: Date): number => {
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   return month < 4 ? year - 1 : year;
