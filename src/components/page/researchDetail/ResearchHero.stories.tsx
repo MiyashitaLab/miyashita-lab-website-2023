@@ -30,7 +30,7 @@ export const Youtube: Story = {
   args: {
     hero: {
       type: "youtube",
-      youtubeUrl: "https://www.youtube.com/watch?v=m_Xsv6GISBo",
+      youtubeId: "m_Xsv6GISBo",
     },
   },
 };

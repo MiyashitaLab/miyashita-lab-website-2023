@@ -28,9 +28,6 @@ export const ResearchHero: FC<ResearchHeroProps> = ({ hero }) => {
   }
 
   if (hero.type === "youtube") {
-    const youtubeId = new URL(hero.youtubeUrl).searchParams.get("v");
-    if (youtubeId === null) return <></>;
-
     //TODO widget_referrerを設定する
     return (
       <div className={"w-full bg-stone-100"}>
@@ -39,7 +36,7 @@ export const ResearchHero: FC<ResearchHeroProps> = ({ hero }) => {
             className={"absolute left-0 top-0 h-full w-full"}
             width={560}
             height={315}
-            src={`https://www.youtube-nocookie.com/embed/${youtubeId}?modestbranding=1&rel=0`}
+            src={`https://www.youtube-nocookie.com/embed/${hero.youtubeId}?modestbranding=1&rel=0`}
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
