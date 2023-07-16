@@ -39,12 +39,8 @@ export const modelDependencies = {
   },
   pages: async (_) => [ROUTES.COPYRIGHT, ROUTES.ABOUT, ROUTES.PRIVACY_POLICY],
   paper: async ({ id, slug }) => {
-    const updatedRoutes = await updatedSlugRoutes(
-      { id, slug },
-      ROUTES.RESEARCH_DETAIL
-    );
-
-    return [ROUTES.HOME, ROUTES.RESEARCHES, ...updatedRoutes];
+    //paperはslugを持たない
+    return [ROUTES.HOME, ROUTES.RESEARCHES, ROUTES.RESEARCH_DETAIL(id)];
   },
   project: async ({ id, slug }) => {
     const updatedRoutes = await updatedSlugRoutes(
