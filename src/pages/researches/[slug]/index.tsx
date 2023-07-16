@@ -1,13 +1,23 @@
 import { GetStaticProps, NextPage } from "next";
 
+import { Layout } from "@/components/page/layout";
 import { ResearchDetail } from "@/components/page/researchDetail";
 import { fetchPaper, fetchPartialPaperList } from "@/lib/cms/fetchPaper";
 import { PaperModel } from "@/models/models";
+import { NextPageWithLayout } from "@/pages/_app";
 
 type Props = PaperModel;
 
-const ResearchPage: NextPage<Props> = ({ ...props }) => {
+const ResearchPage: NextPageWithLayout<Props> = ({ ...props }) => {
   return <ResearchDetail {...props} />;
+};
+
+ResearchPage.getLayout = (page, pageProps) => {
+  return (
+    <Layout copyrightText={pageProps.publication.copyrightHolder ?? undefined}>
+      {page}
+    </Layout>
+  );
 };
 
 export default ResearchPage;
