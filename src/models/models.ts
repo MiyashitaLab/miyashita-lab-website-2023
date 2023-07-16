@@ -69,7 +69,7 @@ export type PaperModel = PartialPaperModel & {
     volume: string | null;
     issue: string | null;
     pages: string | null;
-    publisher: string;
+    publisher: string | null;
     copyrightHolder: string | null;
     quotation: string;
     customMetaList: {

@@ -167,9 +167,19 @@ const ipsjQuotation = (
     firstPage,
   } = paper.fields;
 
-  const pages = `${firstPage} - ${lastPage}`;
+  const pages = () => {
+    if (!firstPage || !lastPage) return undefined;
+    if (firstPage === lastPage) return `p.${firstPage}`;
+    return `pp.${firstPage} - ${lastPage}`;
+  };
   const year = new Date(publicationDate).getFullYear();
-  return `${title}, ${journalTitle}, Vol.${volume}, No.${issue}, pp.${pages}, ${year}`;
+
+  const vol = volume ? `Vol.${volume}` : undefined;
+  const no = issue ? `No.${issue}` : undefined;
+
+  return [title, journalTitle, vol, no, pages(), year]
+    .filter((item) => !!item)
+    .join(", ");
 };
 
 const filterTruthy = <T>(value: T | undefined): value is T => {
