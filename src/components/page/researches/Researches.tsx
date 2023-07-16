@@ -208,7 +208,7 @@ const ResearchesLayout: FC<ResearchesLayoutProps> = ({
       </div>
       <div className={"mx-auto w-full max-w-screen-lg"}>{filterPanel}</div>
       <div className={"flex justify-end"}>{sortSelect}</div>
-      <div className={"grid auto-rows-auto gap-2"}>{cards}</div>
+      <div className={"flex flex-col gap-2"}>{cards}</div>
       <div className={"my-8"}>{pagination}</div>
     </div>
   );
