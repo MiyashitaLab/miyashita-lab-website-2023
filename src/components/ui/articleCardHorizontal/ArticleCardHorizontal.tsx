@@ -33,7 +33,7 @@ export const ArticleCardHorizontal: FC<ArticleCardHorizontalProps> = ({
               {label && <div className={"flex items-center"}>{label}</div>}
             </div>
             <p>
-              <BeautifulBreak segmenter={"word"}>{title}</BeautifulBreak>
+              <BeautifulBreak>{title}</BeautifulBreak>
             </p>
             {description}
           </div>

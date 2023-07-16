@@ -63,7 +63,7 @@ export const ResearchDetail: FC<PaperModel> = ({
           </span>
         </div>
         <h1 className={"py-2 text-3xl font-semibold"}>
-          <BeautifulBreak segmenter={"word"}>{title}</BeautifulBreak>
+          <BeautifulBreak>{title}</BeautifulBreak>
         </h1>
 
         <div className={"flex py-2"}>
@@ -162,7 +162,7 @@ export const ResearchDetail: FC<PaperModel> = ({
         <section>
           <h2 className={"py-2 text-2xl font-semibold"}>Abstract</h2>
           <p>
-            <BeautifulBreak segmenter={"sentence"}>{abstract}</BeautifulBreak>
+            <BeautifulBreak>{abstract}</BeautifulBreak>
           </p>
         </section>
       </div>
