@@ -20,21 +20,20 @@ export const transformPartialMemberModal = (
     status,
   } = member.fields;
 
-  const complementedStatus = complementStatus(
-    status,
-    enrolledYear,
-    graduatedYear
-  );
+  const nowFiscalYear = getJapaneseFiscalYear(new Date());
+  const complementedStatus =
+    status !== "auto"
+      ? status
+      : complementStatus(enrolledYear, graduatedYear, nowFiscalYear);
 
-  const displayRole = getDisplayRole({
+  const { displayRole, roleSortOrder } = getDisplayRoleAndOrder({
     role: role,
     schoolYear: schoolYear,
     graduatedYear: graduatedYear,
     enrolledYear: enrolledYear,
     status: complementedStatus,
+    nowFiscalYear: nowFiscalYear,
   });
-  //TODO 要見直し
-  const roleSortOrder = role === "professor" ? 9999 : -enrolledYear;
 
   const thumbnailAsset = thumbnail?.fields.file;
   return {
@@ -62,48 +61,70 @@ export const transformMemberModel = (
   };
 };
 
-const getDisplayRole = ({
+const getDisplayRoleAndOrder = ({
   role,
   schoolYear,
   graduatedYear,
   enrolledYear,
   status,
+  nowFiscalYear,
 }: {
   role: TypeMemberFields["role"]["values"];
   schoolYear: TypeMemberFields["schoolYear"]["values"];
-  graduatedYear: TypeMemberFields["graduatedYear"]["values"];
-  enrolledYear: TypeMemberFields["enrolledYear"]["values"];
+  graduatedYear: number;
+  enrolledYear: number;
   status: TypeMemberFields["status"]["values"];
-}): string => {
+  nowFiscalYear: number;
+}): {
+  displayRole: string;
+  roleSortOrder: number;
+} => {
   if (role === "professor") {
-    return "教員";
+    return {
+      displayRole: "教員",
+      roleSortOrder: 99999,
+    };
   }
 
   switch (status) {
     case "enrolled":
-      return schoolYear === "auto"
-        ? calcSchoolYear(enrolledYear, graduatedYear)
-        : schoolYear;
+      return {
+        displayRole:
+          schoolYear === "auto"
+            ? calcEnrolledSchoolYear(enrolledYear, nowFiscalYear)
+            : schoolYear,
+        roleSortOrder: 10000 + nowFiscalYear - enrolledYear,
+      };
     case "bachelor":
-      return `${graduatedYear}年度学部卒業`;
+      return {
+        displayRole: `${graduatedYear}年度学部卒業`,
+        roleSortOrder: graduatedYear,
+      };
     case "master":
-      return `${graduatedYear}年度修士卒業`;
+      return {
+        displayRole: `${graduatedYear}年度修士卒業`,
+        roleSortOrder: graduatedYear,
+      };
     case "doctor":
-      return `${graduatedYear}年度博士卒業`;
+      return {
+        displayRole: `${graduatedYear}年度博士卒業`,
+        roleSortOrder: graduatedYear,
+      };
     case "withdrawn":
-      return `${graduatedYear}年度退学`;
+      return {
+        displayRole: `${graduatedYear}年度中途退学`,
+        roleSortOrder: graduatedYear,
+      };
     default:
       throw new Error("Invalid status");
   }
 };
 
-const calcSchoolYear = (
+export const calcEnrolledSchoolYear = (
   enrolledYear: number,
-  graduatedYear: number,
-  now: Date = new Date()
+  nowFiscalYear: number
 ): "B1" | "B2" | "B3" | "B4" | "D1" | "D2" | "D3" | "M1" | "M2" | "unknown" => {
-  const fiscalYear = getJapaneseFiscalYear(now);
-  const schoolYear = fiscalYear - enrolledYear + 1;
+  const schoolYear = nowFiscalYear - enrolledYear + 1;
   switch (schoolYear) {
     case 1:
       return "B1";
@@ -128,22 +149,17 @@ const calcSchoolYear = (
   }
 };
 
-const complementStatus = (
-  status: "auto" | "enrolled" | "bachelor" | "doctor" | "master" | "withdrawn",
+export const complementStatus = (
   enrolledYear: number,
   graduatedYear: number,
-  now: Date = new Date()
+  nowFiscalYear: number
 ): "enrolled" | "bachelor" | "doctor" | "master" | "withdrawn" => {
-  if (status !== "auto") return status;
-
-  const nowFiscalYear = getJapaneseFiscalYear(now);
-
   //在学中
   if (nowFiscalYear <= graduatedYear) {
     return "enrolled";
   }
 
-  const schoolYear = nowFiscalYear - enrolledYear + 1;
+  const schoolYear = graduatedYear - enrolledYear + 1;
 
   //9年で卒業
   if (9 <= schoolYear) {
@@ -168,7 +184,7 @@ const complementStatus = (
  * 日本の年度を計算する
  * @param date
  */
-const getJapaneseFiscalYear = (date: Date): number => {
+export const getJapaneseFiscalYear = (date: Date): number => {
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   return month < 4 ? year - 1 : year;
