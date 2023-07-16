@@ -168,11 +168,13 @@ export const ResearchDetail: FC<PaperModel> = ({
                 </time>
               </InfoItem>
             </div>
-            <div>
-              <InfoItem label={"Publisher:"}>
-                <span>{publication.publisher}</span>
-              </InfoItem>
-            </div>
+            {publication.publisher && (
+              <div>
+                <InfoItem label={"Publisher:"}>
+                  <span>{publication.publisher}</span>
+                </InfoItem>
+              </div>
+            )}
           </div>
 
           <InfoItem label={"Keywords:"}>{keywords.join(" / ")}</InfoItem>

@@ -143,7 +143,7 @@ export const transformPaperModel = (
       volume: volume ?? null,
       issue: issue ?? null,
       pages: pages,
-      publisher: publisher ?? "",
+      publisher: publisher ?? null,
       copyrightHolder: copyrightHolder ?? null,
       quotation: quotation,
       customMetaList: metaList,
