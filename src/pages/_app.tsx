@@ -9,7 +9,7 @@ import { Layout } from "src/components/page/layout";
 import type { AppProps } from "next/app";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode;
+  getLayout?: (page: ReactElement, pageProps: P) => ReactNode;
 };
 
 type AppPropsWithLayout = AppProps & {
@@ -37,5 +37,9 @@ export const AppWrapper: FC<{ children: ReactNode }> = ({ children }) => {
 //ここに書いたものはstorybookでは読み込まれないので注意
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => <Layout>{page}</Layout>);
-  return <AppWrapper>{getLayout(<Component {...pageProps} />)}</AppWrapper>;
+  return (
+    <AppWrapper>
+      {getLayout(<Component {...pageProps} />, pageProps)}
+    </AppWrapper>
+  );
 }

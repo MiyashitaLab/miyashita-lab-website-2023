@@ -106,6 +106,7 @@ export const paperModelMock = (faker: Faker): PaperModel => {
         min: 1,
         max: 100,
       })}`,
+      publisher: faker.company.name(),
       copyrightHolder: faker.company.name(),
       quotation: "quotation",
       customMetaList: [],

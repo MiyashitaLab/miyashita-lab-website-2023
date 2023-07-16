@@ -127,7 +127,7 @@ export const ResearchDetail: FC<PaperModel> = ({
                   <InfoItem label={"Volume:"}>{publication.volume}</InfoItem>
                 )}
                 {publication.issue && (
-                  <InfoItem label={"Issue:"}>{publication.issue}</InfoItem>
+                  <InfoItem label={"Number:"}>{publication.issue}</InfoItem>
                 )}
                 {publication.pages && (
                   <InfoItem label={"Pages:"}>{publication.pages}</InfoItem>
@@ -160,9 +160,20 @@ export const ResearchDetail: FC<PaperModel> = ({
               })
             : null}
 
-          <InfoItem label={"Published:"}>
-            <time dateTime={publishDateYYYYMMDD}>{publishDateYYYYMMDD}</time>
-          </InfoItem>
+          <div>
+            <div>
+              <InfoItem label={"Published:"}>
+                <time dateTime={publishDateYYYYMMDD}>
+                  {publishDateYYYYMMDD}
+                </time>
+              </InfoItem>
+            </div>
+            <div>
+              <InfoItem label={"Publisher:"}>
+                <span>{publication.publisher}</span>
+              </InfoItem>
+            </div>
+          </div>
 
           <InfoItem label={"Keywords:"}>{keywords.join(" / ")}</InfoItem>
 
