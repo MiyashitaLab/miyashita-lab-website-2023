@@ -26,15 +26,14 @@ export const transformPartialMemberModal = (
       ? status
       : complementStatus(enrolledYear, graduatedYear, nowFiscalYear);
 
-  const displayRole = getDisplayRole({
+  const { displayRole, roleSortOrder } = getDisplayRoleAndOrder({
     role: role,
     schoolYear: schoolYear,
     graduatedYear: graduatedYear,
     enrolledYear: enrolledYear,
     status: complementedStatus,
+    nowFiscalYear: nowFiscalYear,
   });
-  //TODO 要見直しかも
-  const roleSortOrder = role === "professor" ? 9999 : -enrolledYear;
 
   const thumbnailAsset = thumbnail?.fields.file;
   return {
@@ -62,36 +61,60 @@ export const transformMemberModel = (
   };
 };
 
-const getDisplayRole = ({
+const getDisplayRoleAndOrder = ({
   role,
   schoolYear,
   graduatedYear,
   enrolledYear,
   status,
+  nowFiscalYear,
 }: {
   role: TypeMemberFields["role"]["values"];
   schoolYear: TypeMemberFields["schoolYear"]["values"];
-  graduatedYear: TypeMemberFields["graduatedYear"]["values"];
-  enrolledYear: TypeMemberFields["enrolledYear"]["values"];
+  graduatedYear: number;
+  enrolledYear: number;
   status: TypeMemberFields["status"]["values"];
-}): string => {
+  nowFiscalYear: number;
+}): {
+  displayRole: string;
+  roleSortOrder: number;
+} => {
   if (role === "professor") {
-    return "教員";
+    return {
+      displayRole: "教員",
+      roleSortOrder: 99999,
+    };
   }
 
   switch (status) {
     case "enrolled":
-      return schoolYear === "auto"
-        ? calcEnrolledSchoolYear(enrolledYear, graduatedYear)
-        : schoolYear;
+      return {
+        displayRole:
+          schoolYear === "auto"
+            ? calcEnrolledSchoolYear(enrolledYear, nowFiscalYear)
+            : schoolYear,
+        roleSortOrder: 10000 + nowFiscalYear - enrolledYear,
+      };
     case "bachelor":
-      return `${graduatedYear}年度学部卒業`;
+      return {
+        displayRole: `${graduatedYear}年度学部卒業`,
+        roleSortOrder: graduatedYear,
+      };
     case "master":
-      return `${graduatedYear}年度修士卒業`;
+      return {
+        displayRole: `${graduatedYear}年度修士卒業`,
+        roleSortOrder: graduatedYear,
+      };
     case "doctor":
-      return `${graduatedYear}年度博士卒業`;
+      return {
+        displayRole: `${graduatedYear}年度博士卒業`,
+        roleSortOrder: graduatedYear,
+      };
     case "withdrawn":
-      return `${graduatedYear}年度退学`;
+      return {
+        displayRole: `${graduatedYear}年度中途退学`,
+        roleSortOrder: graduatedYear,
+      };
     default:
       throw new Error("Invalid status");
   }
