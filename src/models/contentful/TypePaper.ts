@@ -16,7 +16,7 @@ export interface TypePaperFields {
     issue?: EntryFieldTypes.Symbol;
     firstPage?: EntryFieldTypes.Symbol;
     lastPage?: EntryFieldTypes.Symbol;
-    publisher: EntryFieldTypes.Symbol;
+    publisher?: EntryFieldTypes.Symbol;
     copyrightHolder?: EntryFieldTypes.Symbol;
     customMetaList?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
     thumbnail?: EntryFieldTypes.AssetLink;
