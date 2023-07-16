@@ -33,7 +33,7 @@ export const transformPartialMemberModal = (
     enrolledYear: enrolledYear,
     status: complementedStatus,
   });
-  //TODO 要見直し
+  //TODO 要見直しかも
   const roleSortOrder = role === "professor" ? 9999 : -enrolledYear;
 
   const thumbnailAsset = thumbnail?.fields.file;
@@ -82,7 +82,7 @@ const getDisplayRole = ({
   switch (status) {
     case "enrolled":
       return schoolYear === "auto"
-        ? calcSchoolYear(enrolledYear, graduatedYear)
+        ? calcEnrolledSchoolYear(enrolledYear, graduatedYear)
         : schoolYear;
     case "bachelor":
       return `${graduatedYear}年度学部卒業`;
@@ -97,13 +97,11 @@ const getDisplayRole = ({
   }
 };
 
-const calcSchoolYear = (
+export const calcEnrolledSchoolYear = (
   enrolledYear: number,
-  graduatedYear: number,
-  now: Date = new Date()
+  nowFiscalYear: number
 ): "B1" | "B2" | "B3" | "B4" | "D1" | "D2" | "D3" | "M1" | "M2" | "unknown" => {
-  const fiscalYear = getJapaneseFiscalYear(now);
-  const schoolYear = fiscalYear - enrolledYear + 1;
+  const schoolYear = nowFiscalYear - enrolledYear + 1;
   switch (schoolYear) {
     case 1:
       return "B1";
