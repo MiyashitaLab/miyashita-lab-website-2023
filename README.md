@@ -34,7 +34,7 @@ package.jsonに追加したらここにも書く。
 - @storybook/*, storybook
   - storybookを使うために必要
   - npx sb initで自動追加された
-- budoux
+- tiny-segmenter
   - 適切な箇所で日本語文を改行するために使う
 - classnames
   - classNameを扱いやすくするために使う

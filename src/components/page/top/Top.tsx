@@ -59,9 +59,7 @@ export const Top: FC<TopProps> = ({
             宮下研究室
           </h1>
           <p className={"my-2"}>
-            <BeautifulBreak segmenter={"sentence"}>
-              {top.description}
-            </BeautifulBreak>
+            <BeautifulBreak>{top.description}</BeautifulBreak>
           </p>
           <PageLink href={ROUTES.ABOUT}>研究室について</PageLink>
         </section>
