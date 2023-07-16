@@ -20,11 +20,11 @@ export const transformPartialMemberModal = (
     status,
   } = member.fields;
 
-  const complementedStatus = complementStatus(
-    status,
-    enrolledYear,
-    graduatedYear
-  );
+  const nowFiscalYear = getJapaneseFiscalYear(new Date());
+  const complementedStatus =
+    status !== "auto"
+      ? status
+      : complementStatus(enrolledYear, graduatedYear, nowFiscalYear);
 
   const displayRole = getDisplayRole({
     role: role,
@@ -128,22 +128,17 @@ const calcSchoolYear = (
   }
 };
 
-const complementStatus = (
-  status: "auto" | "enrolled" | "bachelor" | "doctor" | "master" | "withdrawn",
+export const complementStatus = (
   enrolledYear: number,
   graduatedYear: number,
-  now: Date = new Date()
+  nowFiscalYear: number
 ): "enrolled" | "bachelor" | "doctor" | "master" | "withdrawn" => {
-  if (status !== "auto") return status;
-
-  const nowFiscalYear = getJapaneseFiscalYear(now);
-
   //在学中
   if (nowFiscalYear <= graduatedYear) {
     return "enrolled";
   }
 
-  const schoolYear = nowFiscalYear - enrolledYear + 1;
+  const schoolYear = graduatedYear - enrolledYear + 1;
 
   //9年で卒業
   if (9 <= schoolYear) {
