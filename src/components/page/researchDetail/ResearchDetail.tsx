@@ -127,7 +127,7 @@ export const ResearchDetail: FC<PaperModel> = ({
                   <InfoItem label={"Volume:"}>{publication.volume}</InfoItem>
                 )}
                 {publication.issue && (
-                  <InfoItem label={"Issue:"}>{publication.issue}</InfoItem>
+                  <InfoItem label={"Number:"}>{publication.issue}</InfoItem>
                 )}
                 {publication.pages && (
                   <InfoItem label={"Pages:"}>{publication.pages}</InfoItem>
