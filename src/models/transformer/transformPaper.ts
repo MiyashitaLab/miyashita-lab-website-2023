@@ -82,11 +82,32 @@ export const transformPaperModel = (
 
   const hero: PaperHeroModel = (() => {
     if (youtubeUrl) {
-      return {
-        type: "youtube",
-        youtubeUrl: youtubeUrl,
-      } satisfies PaperHeroModel;
+      //https://www.youtube.com/watch?v=-d23dUR68JA
+      //https://youtu.be/-d23dUR68JA?t=1
+
+      const url = new URL(youtubeUrl);
+      if (
+        url.hostname === "www.youtube.com" ||
+        url.hostname === "youtube.com"
+      ) {
+        const v = url.searchParams.get("v");
+        if (v) {
+          return {
+            type: "youtube",
+            youtubeId: v,
+          } satisfies PaperHeroModel;
+        }
+      }
+
+      if (url.hostname === "youtu.be") {
+        // /-d23dUR68JAの1文字目の/を取り除く
+        return {
+          type: "youtube",
+          youtubeId: url.pathname.slice(1),
+        };
+      }
     }
+
     if (slidePdf && slidePdf.fields.file?.url) {
       return {
         type: "slide",

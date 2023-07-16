@@ -88,7 +88,7 @@ export type PaperHeroModel =
     }
   | {
       type: "youtube";
-      youtubeUrl: string;
+      youtubeId: string;
     }
   | {
       type: "slide";
