@@ -179,12 +179,14 @@ export const ResearchDetail: FC<PaperModel> = ({
 
           <InfoItem label={"Keywords:"}>{keywords.join(" / ")}</InfoItem>
 
-          <section>
-            <h2 className={"py-2 text-2xl font-semibold"}>Abstract</h2>
-            <p>
-              <BeautifulBreak>{abstract}</BeautifulBreak>
-            </p>
-          </section>
+          {abstract && (
+            <section>
+              <h2 className={"py-2 text-2xl font-semibold"}>Abstract</h2>
+              <p>
+                <BeautifulBreak>{abstract}</BeautifulBreak>
+              </p>
+            </section>
+          )}
         </HrLayout>
       </div>
     </div>

@@ -44,7 +44,7 @@ export const transformPartialPaperModel = (
   return {
     slug: paper.sys.id,
     title: title,
-    abstract: abstract,
+    abstract: abstract ?? null,
     publishDateStr: publicationDate,
     journalTitle: journalTitle,
     language: language,

@@ -50,7 +50,7 @@ export type NewsModel = PartialNewsModel & {
 export type PartialPaperModel = {
   slug: string;
   title: string;
-  abstract: string;
+  abstract: string | null;
   publishDateStr: string;
   language: "english" | "japanese";
   authors: AuthorModel[];
