@@ -5,6 +5,7 @@ import { client } from "@/lib/cms/contentfulClient";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const assetId = req.query.id as string;
+  const fileName = (req.query.name ?? assetId) as string;
 
   if (!assetId) {
     return res.status(400).json({ message: "id is required" });
@@ -28,6 +29,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   //7日
   res.setHeader("Cache-Control", "s-maxage=604800");
   res.setHeader("Content-type", "application/pdf");
+  res.setHeader("Content-Disposition", `inline; filename=${fileName}.pdf`);
 
   //WHATWGのfetchで得られるReadableStreamはNode.jsのinternal.Readableとは別物なので、そのままではpipeできない
   const reader = assetRes.body.getReader();
