@@ -166,6 +166,7 @@ const filterJournal = (paper: PartialPaperModel, value: string): boolean => {
 };
 
 const filterAbstract = (paper: PartialPaperModel, value: string): boolean => {
+  if (!paper.abstract) return false;
   return paper.abstract.toLowerCase().includes(value);
 };
 
