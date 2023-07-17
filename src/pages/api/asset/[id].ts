@@ -29,7 +29,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   //7日
   res.setHeader("Cache-Control", "s-maxage=604800");
   res.setHeader("Content-type", "application/pdf");
-  res.setHeader("Content-Disposition", `inline; filename=${fileName}.pdf`);
+  res.setHeader(
+    "Content-Disposition",
+    `inline; filename*=UTF-8''${encodeURIComponent(fileName)}.pdf`
+  );
 
   //WHATWGのfetchで得られるReadableStreamはNode.jsのinternal.Readableとは別物なので、そのままではpipeできない
   const reader = assetRes.body.getReader();
