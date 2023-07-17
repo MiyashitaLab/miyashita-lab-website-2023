@@ -13,4 +13,6 @@ export const ROUTES = {
   ABOUT: "/about",
   PRIVACY_POLICY: "/privacy-policy",
   COPYRIGHT: "/copyright",
+  API_ASSET: (id: string, filename?: string) =>
+    `/api/asset/${id}${filename ? `?name=${filename}` : ""}`,
 } as const;

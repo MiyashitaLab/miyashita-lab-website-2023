@@ -1,6 +1,7 @@
 import { Entry } from "contentful";
 
 import { CardDefaultImg } from "@/lib/publicImage";
+import { ROUTES } from "@/lib/routes";
 import { TypePaperSkeleton } from "@/models/contentful";
 import { PaperHeroModel, PaperModel, PartialPaperModel } from "@/models/models";
 import { transformAuthorModel } from "@/models/transformer/transformAuthor";
@@ -136,6 +137,8 @@ export const transformPaperModel = (
     })
     .filter(filterTruthy);
 
+  const pdfAssetId = pdf?.sys.id;
+
   return {
     ...transformPartialPaperModel(paper),
     publication: {
@@ -148,7 +151,10 @@ export const transformPaperModel = (
       quotation: quotation,
       customMetaList: metaList,
     },
-    pdfUrl: pdf?.fields.file?.url ?? null,
+    pdfUrl:
+      pdfAssetId !== undefined
+        ? ROUTES.API_ASSET(pdfAssetId, paper.fields.title)
+        : null,
     hero: hero,
   };
 };
