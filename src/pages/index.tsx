@@ -7,13 +7,14 @@ import { fetchLatestPartialNews } from "@/lib/cms/fetchNews";
 import { fetchLatestPartialPaperList } from "@/lib/cms/fetchPaper";
 import { fetchLatestPartialProjectList } from "@/lib/cms/fetchProject";
 import { fetchTopPage } from "@/lib/cms/fetchTopPage";
+import { CardDefaultImg } from "@/lib/publicImage";
 
 const Home: NextPage<TopProps> = (props) => {
   return (
     <>
       <Meta
         pageDescription={props.top.description}
-        cardImage={props.top.topImg}
+        cardImage={CardDefaultImg}
       />
       <Top {...props} />
     </>

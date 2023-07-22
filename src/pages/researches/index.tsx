@@ -2,6 +2,7 @@ import { GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 
+import { Meta } from "@/components/feature/meta";
 import { Researches, ResearchesProps } from "@/components/page/researches";
 import { fetchPartialPaperList } from "@/lib/cms/fetchPaper";
 
@@ -37,11 +38,14 @@ export const ResearchesPage: NextPage<Props> = ({ allResearchesList }) => {
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
 
   return (
-    <Researches
-      allResearchList={allResearchesList}
-      query={queryValue}
-      setQuery={setQueryWithReplace}
-    />
+    <>
+      <Meta pageTitle={"研究一覧"} />
+      <Researches
+        allResearchList={allResearchesList}
+        query={queryValue}
+        setQuery={setQueryWithReplace}
+      />
+    </>
   );
 };
 

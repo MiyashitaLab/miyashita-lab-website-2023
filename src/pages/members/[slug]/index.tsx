@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
+import { Meta } from "@/components/feature/meta";
 import { fetchMember, fetchPartialMemberList } from "@/lib/cms/fetchMember";
 import { MemberModel } from "@/models/models";
 import { MemberDetail } from "src/components/page/memberDetail";
@@ -7,7 +8,12 @@ import { MemberDetail } from "src/components/page/memberDetail";
 type Props = MemberModel;
 
 const MemberDetailPage: NextPage<Props> = ({ ...props }) => {
-  return <MemberDetail {...props} />;
+  return (
+    <>
+      <Meta pageTitle={props.name} />
+      <MemberDetail {...props} />
+    </>
+  );
 };
 
 export default MemberDetailPage;

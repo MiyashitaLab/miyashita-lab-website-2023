@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
+import { Meta } from "@/components/feature/meta";
 import { fetchPartialProjectList, fetchProject } from "@/lib/cms/fetchProject";
 import { ProjectModel } from "@/models/models";
 import { ArticleDetail } from "src/components/page/articleDetail";
@@ -8,11 +9,14 @@ type Props = ProjectModel;
 
 const ProjectDetailPage: NextPage<Props> = ({ ...props }) => {
   return (
-    <ArticleDetail
-      type={"project"}
-      title={props.title}
-      content={props.contentMd}
-    />
+    <>
+      <Meta pageTitle={props.title} cardImage={props.thumbnailImg} />
+      <ArticleDetail
+        type={"project"}
+        title={props.title}
+        content={props.contentMd}
+      />
+    </>
   );
 };
 

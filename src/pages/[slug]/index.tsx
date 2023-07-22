@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import React from "react";
 
+import { Meta } from "@/components/feature/meta";
 import { General } from "@/components/page/general";
 import { fetchPage, fetchPageSlugs } from "@/lib/cms/fetchPages";
 import { TypePagesFields } from "@/models/contentful";
@@ -9,7 +10,12 @@ import { GeneralPageModel } from "@/models/models";
 type Props = GeneralPageModel;
 
 const GeneralPage: NextPage<Props> = (props) => {
-  return <General {...props} />;
+  return (
+    <>
+      <Meta pageTitle={props.title} />
+      <General {...props} />
+    </>
+  );
 };
 
 export default GeneralPage;

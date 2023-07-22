@@ -1,6 +1,7 @@
 import { GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/router";
 
+import { Meta } from "@/components/feature/meta";
 import { Projects, ProjectsProps } from "@/components/page/projects";
 import { fetchPartialProjectList } from "@/lib/cms/fetchProject";
 import { ROUTES } from "@/lib/routes";
@@ -15,12 +16,15 @@ const NewsPage: NextPage<Props> = (props) => {
   const currentPage = Number(router.query.page) || 1;
 
   return (
-    <Projects
-      allProjectList={props.allProjectsList}
-      numPerPage={24}
-      currentPage={currentPage}
-      pageHref={(page) => `${ROUTES.PROJECTS}?page=${page}`}
-    />
+    <>
+      <Meta pageTitle={"プロジェクト一覧"} />
+      <Projects
+        allProjectList={props.allProjectsList}
+        numPerPage={24}
+        currentPage={currentPage}
+        pageHref={(page) => `${ROUTES.PROJECTS}?page=${page}`}
+      />
+    </>
   );
 };
 
