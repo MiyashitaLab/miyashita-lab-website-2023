@@ -1,5 +1,6 @@
 import { GetStaticProps, NextPage } from "next";
 
+import { Meta } from "@/components/feature/meta";
 import { Top, TopProps } from "@/components/page/top";
 import { fetchPartialMemberList } from "@/lib/cms/fetchMember";
 import { fetchLatestPartialNews } from "@/lib/cms/fetchNews";
@@ -8,7 +9,15 @@ import { fetchLatestPartialProjectList } from "@/lib/cms/fetchProject";
 import { fetchTopPage } from "@/lib/cms/fetchTopPage";
 
 const Home: NextPage<TopProps> = (props) => {
-  return <Top {...props} />;
+  return (
+    <>
+      <Meta
+        pageDescription={props.top.description}
+        cardImage={props.top.topImg}
+      />
+      <Top {...props} />
+    </>
+  );
 };
 
 export default Home;
