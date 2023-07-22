@@ -1,8 +1,11 @@
 import { client } from "@/lib/cms/contentfulClient";
 import { fetchAllEntries } from "@/lib/cms/fetchAllEntries";
 import { TypeProjectSkeleton } from "@/models/contentful";
-import { PartialProjectModel } from "@/models/models";
-import { transformPartialProjectModel } from "@/models/transformer/transformProject";
+import { PartialProjectModel, ProjectModel } from "@/models/models";
+import {
+  transformPartialProjectModel,
+  transformProjectModel,
+} from "@/models/transformer/transformProject";
 
 export const fetchLatestPartialProjectList = async (
   entryNum: number
@@ -39,9 +42,7 @@ export const fetchPartialProjectList = async (): Promise<
   return projects.map((project) => transformPartialProjectModel(project));
 };
 
-export const fetchProject = async (
-  slug: string
-): Promise<PartialProjectModel> => {
+export const fetchProject = async (slug: string): Promise<ProjectModel> => {
   const project =
     await client.withoutUnresolvableLinks.getEntries<TypeProjectSkeleton>({
       content_type: "project",
@@ -53,5 +54,5 @@ export const fetchProject = async (
     throw new Error("Project not found");
   }
 
-  return transformPartialProjectModel(projectEntry);
+  return transformProjectModel(projectEntry);
 };
