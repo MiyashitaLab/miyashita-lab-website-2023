@@ -1,5 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import {
+  CONTENTFUL_DELIVERY_TOKEN,
+  CONTENTFUL_SPACE_ID,
+} from "@/lib/environments";
+
 export const config = {
   runtime: "edge",
 };
@@ -14,9 +19,7 @@ const handler = async (req: NextRequest) => {
     return NextResponse.json({ message: "id is required" }, { status: 400 });
   }
 
-  const spaceId = process.env.CONTENTFUL_SPACE_ID!;
-  const accessToken = process.env.CONTENTFUL_DELIVERY_TOKEN!;
-  const assetApiUrl = `https://cdn.contentful.com/spaces/${spaceId}/environments/master/assets/${assetId}?access_token=${accessToken}`;
+  const assetApiUrl = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/assets/${assetId}?access_token=${CONTENTFUL_DELIVERY_TOKEN}`;
   const assetApiRes = await fetch(assetApiUrl);
 
   if (!assetApiRes.ok) {
