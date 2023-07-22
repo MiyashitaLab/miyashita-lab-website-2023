@@ -1,6 +1,7 @@
 import { NextApiHandler } from "next";
 
 import { modelDependencies } from "@/lib/cms/modelDependencies";
+import { ON_DEMAND_SECRET, SLACK_WEBHOOK_URL } from "@/lib/environments";
 
 type RevalidateResult = {
   route: string;
@@ -12,13 +13,13 @@ type RevalidateResult = {
 const handler: NextApiHandler = async (req, res) => {
   const secret = req.query.secret ?? req.body.secret;
 
-  if (process.env.ON_DEMANT_SECRET === undefined) {
+  if (ON_DEMAND_SECRET === undefined) {
     res
       .status(500)
       .json({ message: "ON_DEMANT_SECRET 環境変数が設定されていません" });
     return;
   }
-  if (secret !== process.env.ON_DEMANT_SECRET) {
+  if (secret !== ON_DEMAND_SECRET) {
     res.status(401).json({ message: "不正なsecretです" });
     return;
   }
@@ -52,18 +53,16 @@ const handler: NextApiHandler = async (req, res) => {
     })
   );
 
-  if (process.env.SLACK_WEBHOOK_URL) {
-    await noticeToSlack(process.env.SLACK_WEBHOOK_URL, revalidateResults).catch(
-      (error) => {
-        console.error("Slack通知に失敗しました", error);
-        // ignore
-      }
-    );
+  if (SLACK_WEBHOOK_URL) {
+    await noticeToSlack(SLACK_WEBHOOK_URL, revalidateResults).catch((error) => {
+      console.error("Slack通知に失敗しました", error);
+      // ignore
+    });
   }
 
   res.status(200).json({
     revalidateResults,
-    slack: process.env.SLACK_WEBHOOK_URL !== undefined,
+    slack: SLACK_WEBHOOK_URL !== undefined,
   });
 };
 

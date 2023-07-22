@@ -22,9 +22,11 @@ export const Projects: FC<ProjectsProps> = ({
   pageHref,
 }) => {
   const pageNum = Math.ceil(allProjectList.length / numPerPage);
+
+  //currentPageは1スタート
   const pageProjectsList = allProjectList.slice(
-    currentPage * numPerPage,
-    (currentPage + 1) * numPerPage
+    (currentPage - 1) * numPerPage,
+    currentPage * numPerPage
   );
 
   return (
