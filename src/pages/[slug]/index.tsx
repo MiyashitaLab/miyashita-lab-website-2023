@@ -4,6 +4,7 @@ import React from "react";
 import { Meta } from "@/components/feature/meta";
 import { General } from "@/components/page/general";
 import { fetchPage, fetchPageSlugs } from "@/lib/cms/fetchPages";
+import { digestMarkdown } from "@/lib/digestMarkdown";
 import { TypePagesFields } from "@/models/contentful";
 import { GeneralPageModel } from "@/models/models";
 
@@ -12,7 +13,10 @@ type Props = GeneralPageModel;
 const GeneralPage: NextPage<Props> = (props) => {
   return (
     <>
-      <Meta pageTitle={props.title} />
+      <Meta
+        pageTitle={props.title}
+        pageDescription={digestMarkdown(props.contentMd)}
+      />
       <General {...props} />
     </>
   );

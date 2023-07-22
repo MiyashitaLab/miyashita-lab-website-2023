@@ -2,6 +2,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
 import { Meta } from "@/components/feature/meta";
 import { fetchMember, fetchPartialMemberList } from "@/lib/cms/fetchMember";
+import { digestMarkdown } from "@/lib/digestMarkdown";
 import { MemberModel } from "@/models/models";
 import { MemberDetail } from "src/components/page/memberDetail";
 
@@ -10,7 +11,11 @@ type Props = MemberModel;
 const MemberDetailPage: NextPage<Props> = ({ ...props }) => {
   return (
     <>
-      <Meta pageTitle={props.name} />
+      <Meta
+        pageTitle={props.name}
+        pageDescription={digestMarkdown(props.contentMd)}
+        cardImage={props.thumbnailImg}
+      />
       <MemberDetail {...props} />
     </>
   );

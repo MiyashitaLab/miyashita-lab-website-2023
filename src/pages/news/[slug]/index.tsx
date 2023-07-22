@@ -2,6 +2,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
 import { Meta } from "@/components/feature/meta";
 import { fetchNews, fetchPartialNewsList } from "@/lib/cms/fetchNews";
+import { digestMarkdown } from "@/lib/digestMarkdown";
 import { NewsModel } from "@/models/models";
 import { ArticleDetail } from "src/components/page/articleDetail";
 
@@ -10,7 +11,11 @@ type Props = NewsModel;
 const NewsDetailPage: NextPage<Props> = ({ ...props }) => {
   return (
     <>
-      <Meta pageTitle={props.title} cardImage={props.thumbnailImg} />
+      <Meta
+        pageTitle={props.title}
+        pageDescription={digestMarkdown(props.contentMd)}
+        cardImage={props.thumbnailImg}
+      />
       <ArticleDetail
         type={"news"}
         title={props.title}
