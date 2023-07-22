@@ -29,9 +29,11 @@
     "react-pdf": "^6.2.2",
     "rehype-raw": "^6.1.1",
     "remark-gfm": "^3.0.1",
+    "remark-parse": "^10.0.2",
     "sharp": "^0.32.1",
     "tiny-segmenter": "^0.2.0",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "unified": "^10.1.2"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.0.2",
