@@ -1,53 +1,45 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { Readable } from "node:stream";
+import { NextRequest, NextResponse } from "next/server";
 
-import { client } from "@/lib/cms/contentfulClient";
+export const config = {
+  runtime: "edge",
+};
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const assetId = req.query.id as string;
-  const fileName = (req.query.name ?? assetId) as string;
+// serverless functionはレスポンスのペイロードが上限が4MBなので、上限がより多いedge functionを使う
+
+const handler = async (req: NextRequest) => {
+  const url = new URL(req.nextUrl);
+  const assetId = url.searchParams.get("id");
 
   if (!assetId) {
-    return res.status(400).json({ message: "id is required" });
+    return NextResponse.json({ message: "id is required" }, { status: 400 });
   }
 
-  const asset = await client.getAsset(assetId);
-  const assetUrl = asset.fields.file?.url;
+  const spaceId = process.env.CONTENTFUL_SPACE_ID!;
+  const accessToken = process.env.CONTENTFUL_DELIVERY_TOKEN!;
+  const assetApiUrl = `https://cdn.contentful.com/spaces/${spaceId}/environments/master/assets/${assetId}?access_token=${accessToken}`;
+  const assetApiRes = await fetch(assetApiUrl);
+
+  if (!assetApiRes.ok) {
+    return NextResponse.json({ message: "asset not found" }, { status: 400 });
+  }
+
+  const assetApiResJson = await assetApiRes.json();
+  const assetUrl = assetApiResJson.fields.file?.url;
+  const assetType = assetApiResJson.fields.file?.contentType;
 
   if (!assetUrl) {
-    return res.status(404).json({ message: "asset not found" });
+    return NextResponse.json({ message: "asset not found" }, { status: 400 });
   }
 
-  const assetRes = await fetch(`https:${assetUrl}`);
+  const asset = await fetch(`https:${assetUrl}`);
 
-  if (!assetRes.ok || !assetRes.body) {
-    res.status(404).json({ message: "asset not found" });
-    return;
-  }
-
-  //Vercelの仕様で最大でも1ヶ月
-  //7日
-  res.setHeader("Cache-Control", "s-maxage=604800");
-  res.setHeader("Content-type", "application/pdf");
-  res.setHeader(
-    "Content-Disposition",
-    `inline; filename*=UTF-8''${encodeURIComponent(fileName)}.pdf`
-  );
-
-  //WHATWGのfetchで得られるReadableStreamはNode.jsのinternal.Readableとは別物なので、そのままではpipeできない
-  const reader = assetRes.body.getReader();
-  const stream = new Readable({
-    read() {
-      reader.read().then(({ done, value }) => {
-        if (done) {
-          this.push(null);
-        } else {
-          this.push(value);
-        }
-      });
+  return new NextResponse(asset.body, {
+    status: 200,
+    headers: {
+      "Cache-Control": "s-maxage=604800",
+      "Content-type": assetType,
     },
   });
-  stream.pipe(res);
 };
 
 export default handler;
