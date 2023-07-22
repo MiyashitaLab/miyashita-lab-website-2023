@@ -81,7 +81,7 @@ export const transformPaperModel = (
   const pages = `${firstPage} - ${lastPage}`;
   const quotation = ipsjQuotation(paper);
 
-  const hero: PaperHeroModel = (() => {
+  const hero: PaperHeroModel | null = (() => {
     if (youtubeUrl) {
       //https://www.youtube.com/watch?v=-d23dUR68JA
       //https://youtu.be/-d23dUR68JA?t=1
@@ -115,13 +115,15 @@ export const transformPaperModel = (
         slidePdfUrl: slidePdf.fields.file?.url,
       } satisfies PaperHeroModel;
     }
+
     if (thumbnail && thumbnail.fields.file) {
       return {
         type: "image",
         image: transformCMSImage(thumbnail.fields.file),
       };
     }
-    throw new Error("Paper hero image unresolved");
+
+    return null;
   })();
 
   const metaList: PaperModel["publication"]["customMetaList"] = (

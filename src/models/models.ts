@@ -78,7 +78,7 @@ export type PaperModel = PartialPaperModel & {
     }[];
   };
   pdfUrl: string | null;
-  hero: PaperHeroModel;
+  hero: PaperHeroModel | null;
 };
 
 export type PaperHeroModel =

@@ -55,7 +55,7 @@ export const ResearchDetail: FC<PaperModel> = ({
 
   return (
     <div>
-      <ResearchHero hero={hero} />
+      {hero && <ResearchHero hero={hero} />}
       <div className={"m-4"}>
         <div className={"font-semibold"}>
           <span lang={"ja"}>{type.ja}</span>
