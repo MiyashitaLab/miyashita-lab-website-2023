@@ -36,9 +36,7 @@ export const Primary: Story = {
   args: {
     slug: "#",
     name: "宮下芳明",
-    thumbnailImg: {
-      src: MemberDefaultImg.src,
-    },
+    thumbnailImg: MemberDefaultImg,
     displayRole: "教員",
     roleSortOrder: 0,
     active: true,
