@@ -6,16 +6,20 @@ import { PageFooter } from "@/components/ui/pageFooter";
 import { PageFooterLinkItem } from "@/components/ui/pageFooter/PageFooter";
 import { PageHeader } from "@/components/ui/pageHeader";
 import { PageHeaderLinkItem } from "@/components/ui/pageHeader/PageHeader";
+import { NEXT_PUBLIC_DISABLE_PROJECTS } from "@/lib/publicEnvironments";
 import { LogoImg } from "@/lib/publicImage";
+import { ROUTES } from "@/lib/routes";
 
-const headerItems = [
-  { text: "Home", href: "/" },
-  { text: "About", href: "/about" },
-  { text: "News", href: "/news" },
-  { text: "Researches", href: "/researches" },
-  { text: "Projects", href: "/projects" },
-  { text: "Members", href: "/members" },
-] as const satisfies readonly PageHeaderLinkItem[];
+const headerItems: (PageHeaderLinkItem | undefined)[] = [
+  { text: "Home", href: ROUTES.HOME },
+  { text: "About", href: ROUTES.ABOUT },
+  { text: "News", href: ROUTES.NEWS },
+  { text: "Researches", href: ROUTES.RESEARCHES },
+  NEXT_PUBLIC_DISABLE_PROJECTS
+    ? undefined
+    : { text: "Projects", href: ROUTES.PROJECTS },
+  { text: "Members", href: ROUTES.MEMBERS },
+];
 
 const footerLinks = [
   { text: "Copyright Notice", href: "/copyright" },
@@ -40,10 +44,12 @@ export const Layout: FC<LayoutProps> = ({
 
   const links = useMemo<PageHeaderLinkItem[]>(
     () =>
-      headerItems.map((linkItem) => ({
-        ...linkItem,
-        highlight: path === linkItem.href,
-      })),
+      headerItems
+        .filter((item): item is PageHeaderLinkItem => item !== undefined)
+        .map((linkItem) => ({
+          ...linkItem,
+          highlight: path === linkItem.href,
+        })),
     [path]
   );
 
