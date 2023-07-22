@@ -33,11 +33,13 @@ const handler = async (req: NextRequest) => {
 
   const asset = await fetch(`https:${assetUrl}`);
 
-  const response = new NextResponse(asset.body);
-  response.headers.set("Cache-Control", "s-maxage=604800");
-  response.headers.set("Content-type", assetType);
-
-  return response;
+  return new NextResponse(asset.body, {
+    status: 200,
+    headers: {
+      "Cache-Control": "s-maxage=604800",
+      "Content-type": assetType,
+    },
+  });
 };
 
 export default handler;
