@@ -1,28 +1,31 @@
+import { Content, Parent, Root } from "mdast";
+import remarkGfm from "remark-gfm";
+import remarkParse from "remark-parse";
+import { unified } from "unified";
+
+const processor = unified().use(remarkParse).use(remarkGfm);
+
 /**
  * OGPのdescriptionに使うために、Markdownをプレーンテキストに変換する
  */
-export const digestMarkdown = (markdown: string): string => {
-  const lines = markdown.split("\n");
+export const digestMarkdown = (markdown: string) => {
+  const mdast = processor.parse(markdown) as Root;
 
-  return lines
-    .map((line) => {
-      const plainTextRegex = /[^#*_\-+\d\s`>\[\]!]+/g;
-      const matches = line.match(plainTextRegex);
+  const walk = (tree: Parent | Content): string[] => {
+    if ("children" in tree) {
+      return tree.children.flatMap((child) => walk(child));
+    }
 
-      if (!matches) {
-        return "";
-      }
+    if (tree.type === "text") {
+      return [tree.value];
+    }
 
-      const filteredMatches = matches.map((span) => {
-        const urlRegex =
-          /(https?:\/\/)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\/[^\/\s]*)*/g;
-        const urlWithParentheses =
-          /\((https?:\/\/)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\/[^\/\s]*)*\)/g;
+    return [""];
+  };
 
-        return span.replace(urlWithParentheses, "").replace(urlRegex, "");
-      });
-      return filteredMatches.join("");
-    })
-    .filter((line) => line !== "")
+  const result = walk(mdast);
+  return result
+    .filter((item) => item !== "")
+    .map((text) => text.replaceAll("\n", ""))
     .join(" ");
 };
