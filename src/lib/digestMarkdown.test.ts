@@ -7,7 +7,7 @@ describe("digestMarkdown()", () => {
     const result = digestMarkdown(markdown);
 
     expect(result).toMatchInlineSnapshot(
-      '"H1 文章 H2 文章 H3 文章 H4 文章 新しいポインティング手法を評価する際，実験では通例「できるだけ速く正確に」タスクを行うよう教示する．本稿では複数のバイアスが，既存のポインティング手法であるBubble CursorとBayesian Touch Criterionの評価結果に与える影響を検証した．結果，前者は全バイアス条件でベースライン手法の性能を上回ったが，後者はより単純なターゲット予測手法の性能も下回り，元の論文とは異なる結果となった．このように複数のバイアスを調査することで，手法の特性をより正確に議論し，一般化可能性の高い結論を得ることができる．本稿では複数の主観的なバイアスを実験条件に加えることが望ましいと提言する． 1行目2行目3行目 1行目 with スペース 2行目 with スペース 3行目 with スペース Bold Italic ++Underline++ Break Quote aaa   aaa 列挙 AAA BBB CCC ccc DDD ああああ 順序列挙 壱 弐 参 Head Head Head Head Data Data Data Data Data Data Data Data Data Data Data Data Head Head AAAAAAAAAAA AAAAAAAAAAA AAAAAAAAAAA AAAAAAAAAAA AAAAAAAAAAA AAAAAAAAAAA Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Google news https://www.google.com/  https://www.yahoo.co.jp/  Caption  Caption2 あああ いいいい 段落を分ければ 大丈夫"'
+      '"H1 文章 H2 文章 H3 文章 H4 文章 新しいポインティング手法を評価する際，実験では通例「できるだけ速く正確に」タスクを行うよう教示する．本稿では複数のバイアスが，既存のポインティング手法であるBubble CursorとBaye"'
     );
   });
 });
