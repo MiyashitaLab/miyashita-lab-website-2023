@@ -60,6 +60,8 @@ export const memberModelMock = (faker: Faker): MemberModel => {
         width: 400,
         height: 400,
       }),
+      width: 400,
+      height: 400,
     },
     displayRole: roleWithOrder.role,
     roleSortOrder: roleWithOrder.order,

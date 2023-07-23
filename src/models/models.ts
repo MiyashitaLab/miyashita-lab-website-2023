@@ -1,4 +1,4 @@
-import { CMSImage, CMSImageWithSize } from "@/components/feature/wrapImage";
+import { CMSImageWithSize } from "@/components/feature/wrapImage";
 
 export type GeneralPageModel = {
   slug: string;
@@ -23,7 +23,7 @@ export type AuthorModel = {
 export type PartialMemberModel = {
   slug: string;
   name: string;
-  thumbnailImg: CMSImage;
+  thumbnailImg: CMSImageWithSize;
   displayRole: string;
   roleSortOrder: number;
   active: boolean;
@@ -40,7 +40,7 @@ export type PartialNewsModel = {
   slug: string;
   title: string;
   dateStr: string;
-  thumbnailImg: CMSImage;
+  thumbnailImg: CMSImageWithSize;
 };
 
 export type NewsModel = PartialNewsModel & {
@@ -60,7 +60,7 @@ export type PartialPaperModel = {
   };
   journalTitle: string;
   keywords: string[];
-  thumbnailImg: CMSImage;
+  thumbnailImg: CMSImageWithSize;
 };
 
 export type PaperModel = PartialPaperModel & {
@@ -98,7 +98,7 @@ export type PaperHeroModel =
 export type PartialProjectModel = {
   slug: string;
   title: string;
-  thumbnailImg: CMSImage;
+  thumbnailImg: CMSImageWithSize;
   category: string;
 };
 

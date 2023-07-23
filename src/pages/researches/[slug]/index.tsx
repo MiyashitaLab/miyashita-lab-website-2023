@@ -1,5 +1,6 @@
 import { GetStaticProps } from "next";
 
+import { Meta } from "@/components/feature/meta";
 import { Layout } from "@/components/page/layout";
 import { ResearchDetail } from "@/components/page/researchDetail";
 import { fetchPaper, fetchPartialPaperList } from "@/lib/cms/fetchPaper";
@@ -9,7 +10,17 @@ import { NextPageWithLayout } from "@/pages/_app";
 type Props = PaperModel;
 
 const ResearchPage: NextPageWithLayout<Props> = ({ ...props }) => {
-  return <ResearchDetail {...props} />;
+  return (
+    <>
+      <Meta
+        pageTitle={props.title}
+        pageDescription={props.abstract ?? undefined}
+        cardImage={props.thumbnailImg}
+        pageKeywords={props.keywords}
+      />
+      <ResearchDetail {...props} />
+    </>
+  );
 };
 
 ResearchPage.getLayout = (page, pageProps) => {
