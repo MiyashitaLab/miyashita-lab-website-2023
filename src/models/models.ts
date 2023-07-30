@@ -68,7 +68,8 @@ export type PaperModel = PartialPaperModel & {
     url: string | null;
     volume: string | null;
     issue: string | null;
-    pages: string | null;
+    firstPage: string | null;
+    lastPage: string | null;
     publisher: string | null;
     copyrightHolder: string | null;
     quotation: string;

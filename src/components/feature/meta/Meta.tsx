@@ -3,11 +3,9 @@ import { useRouter } from "next/router";
 import { FC } from "react";
 
 import { CMSImageWithSize } from "@/components/feature/wrapImage";
-import {
-  NEXT_PUBLIC_SITE_TITLE,
-  NEXT_PUBLIC_VERCEL_URL,
-} from "@/lib/publicEnvironments";
+import { NEXT_PUBLIC_SITE_TITLE } from "@/lib/publicEnvironments";
 import { CardDefaultImg } from "@/lib/publicImage";
+import { toPublicUrl } from "@/lib/routes";
 
 export type MetaProps = {
   pageTitle?: string;
@@ -40,10 +38,7 @@ export const Meta: FC<MetaProps> = ({
       <meta property={"og:image:url"} content={cardImage.src} />
       <meta property={"og:image:width"} content={String(cardImage.width)} />
       <meta property={"og:image:height"} content={String(cardImage.height)} />
-      <meta
-        property={"og:url"}
-        content={`https://${NEXT_PUBLIC_VERCEL_URL}/${router.pathname}`}
-      />
+      <meta property={"og:url"} content={toPublicUrl(router.pathname)} />
       <meta property={"og:description"} content={pageDescription} />
       <meta property={"og:locale"} content={"ja_JP"} />
       <meta property={"og:site_name"} content={NEXT_PUBLIC_SITE_TITLE} />

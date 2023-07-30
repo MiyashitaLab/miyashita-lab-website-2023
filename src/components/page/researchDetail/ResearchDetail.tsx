@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { FC, useCallback, useEffect, useRef, useState } from "react";
+import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { BeautifulBreak } from "@/components/feature/beautifulBreak";
 import { WrapLink } from "@/components/feature/wrapLink";
@@ -52,6 +52,13 @@ export const ResearchDetail: FC<PaperModel> = ({
   }, [showCite]);
 
   const publishDateYYYYMMDD = dateToYYYYMMDD(new Date(publishDateStr));
+
+  const pages = useMemo(() => {
+    if (!publication.firstPage || !publication.lastPage) return undefined;
+    if (publication.firstPage === publication.lastPage)
+      return publication.firstPage;
+    return `${publication.firstPage} - ${publication.lastPage}`;
+  }, [publication.firstPage, publication.lastPage]);
 
   return (
     <div>
@@ -129,9 +136,7 @@ export const ResearchDetail: FC<PaperModel> = ({
                 {publication.issue && (
                   <InfoItem label={"Number:"}>{publication.issue}</InfoItem>
                 )}
-                {publication.pages && (
-                  <InfoItem label={"Pages:"}>{publication.pages}</InfoItem>
-                )}
+                {pages && <InfoItem label={"Pages:"}>{pages}</InfoItem>}
               </div>
               <InfoItem label={"Source URL:"}>
                 <WrapLink href={publication.url} className={"break-all"}>

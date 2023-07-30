@@ -1,6 +1,7 @@
 import { GetStaticProps } from "next";
 
 import { Meta } from "@/components/feature/meta";
+import { MetaCitation } from "@/components/feature/metaCitation";
 import { Layout } from "@/components/page/layout";
 import { ResearchDetail } from "@/components/page/researchDetail";
 import { fetchPaper, fetchPartialPaperList } from "@/lib/cms/fetchPaper";
@@ -18,6 +19,7 @@ const ResearchPage: NextPageWithLayout<Props> = ({ ...props }) => {
         cardImage={props.thumbnailImg}
         pageKeywords={props.keywords}
       />
+      <MetaCitation paper={props} />
       <ResearchDetail {...props} />
     </>
   );

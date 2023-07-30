@@ -63,6 +63,7 @@ export const transformPartialPaperModel = (
 export const transformPaperModel = (
   paper: Entry<TypePaperSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
 ): PaperModel => {
+  const entryId = paper.sys.id;
   const {
     publisher,
     copyrightHolder,
@@ -78,7 +79,6 @@ export const transformPaperModel = (
     thumbnail,
   } = paper.fields;
 
-  const pages = `${firstPage} - ${lastPage}`;
   const quotation = ipsjQuotation(paper);
 
   const hero: PaperHeroModel | null = (() => {
@@ -109,10 +109,10 @@ export const transformPaperModel = (
       }
     }
 
-    if (slidePdf && slidePdf.fields.file?.url) {
+    if (slidePdf && slidePdf.sys.id) {
       return {
         type: "slide",
-        slidePdfUrl: slidePdf.fields.file?.url,
+        slidePdfUrl: ROUTES.API_ASSET(slidePdf.sys.id),
       } satisfies PaperHeroModel;
     }
 
@@ -147,7 +147,8 @@ export const transformPaperModel = (
       url: publishUrl ?? null,
       volume: volume ?? null,
       issue: issue ?? null,
-      pages: pages,
+      firstPage: firstPage ?? null,
+      lastPage: lastPage ?? null,
       publisher: publisher ?? null,
       copyrightHolder: copyrightHolder ?? null,
       quotation: quotation,
@@ -155,7 +156,7 @@ export const transformPaperModel = (
     },
     pdfUrl:
       pdfAssetId !== undefined
-        ? ROUTES.API_ASSET(pdfAssetId, paper.fields.title)
+        ? ROUTES.RESEARCH_DETAIL_PDF(entryId, paper.fields.title)
         : null,
     hero: hero,
   };
