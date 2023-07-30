@@ -33,7 +33,9 @@ export const MetaCitation: FC<MetaCitationProps> = ({ paper }) => {
       {paper.publication.firstPage && (
         <meta name="firstpage" content={paper.publication.firstPage} />
       )}
-      <meta name="lastpage" content={`${paper.publication.lastPage}`} />
+      {paper.publication.lastPage && (
+        <meta name="lastpage" content={paper.publication.lastPage} />
+      )}
       <meta
         name={"citation_abstract_html_url"}
         content={toPublicUrl(ROUTES.RESEARCH_DETAIL(paper.slug))}
