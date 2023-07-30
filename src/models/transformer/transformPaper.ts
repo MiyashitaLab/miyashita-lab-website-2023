@@ -78,7 +78,6 @@ export const transformPaperModel = (
     thumbnail,
   } = paper.fields;
 
-  const pages = `${firstPage} - ${lastPage}`;
   const quotation = ipsjQuotation(paper);
 
   const hero: PaperHeroModel | null = (() => {
@@ -147,7 +146,8 @@ export const transformPaperModel = (
       url: publishUrl ?? null,
       volume: volume ?? null,
       issue: issue ?? null,
-      pages: pages,
+      firstPage: firstPage ?? null,
+      lastPage: lastPage ?? null,
       publisher: publisher ?? null,
       copyrightHolder: copyrightHolder ?? null,
       quotation: quotation,
