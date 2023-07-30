@@ -16,3 +16,7 @@ export const ROUTES = {
   API_ASSET: (id: string, filename?: string) =>
     `/api/asset/${id}${filename ? `?name=${filename}` : ""}`,
 } as const;
+
+export const toPublicUrl = (relativePath: string) => {
+  return `https://${process.env.NEXT_PUBLIC_BASE_URL}${relativePath}`;
+};
