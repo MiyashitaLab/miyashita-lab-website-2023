@@ -10,6 +10,14 @@ const nextConfig = {
       },
     ],
   },
+  rewrites: async () => {
+    return [
+      {
+        source: "/researches/:slug/assets/:name",
+        destination: "/api/asset-paper/:slug",
+      },
+    ];
+  },
   experimental: {
     scrollRestoration: true,
   },

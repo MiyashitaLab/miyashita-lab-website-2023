@@ -63,6 +63,7 @@ export const transformPartialPaperModel = (
 export const transformPaperModel = (
   paper: Entry<TypePaperSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
 ): PaperModel => {
+  const entryId = paper.sys.id;
   const {
     publisher,
     copyrightHolder,
@@ -155,7 +156,7 @@ export const transformPaperModel = (
     },
     pdfUrl:
       pdfAssetId !== undefined
-        ? ROUTES.API_ASSET(pdfAssetId, paper.fields.title)
+        ? ROUTES.RESEARCH_DETAIL_PDF(entryId, paper.fields.title)
         : null,
     hero: hero,
   };
