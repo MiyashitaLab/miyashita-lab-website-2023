@@ -104,10 +104,8 @@ export const paperModelMock = (faker: Faker): PaperModel => {
 
       volume: `${faker.number.int({ min: 1, max: 100 })}`,
       issue: `${faker.number.int({ min: 1, max: 100 })}`,
-      pages: `${faker.number.int({ min: 1, max: 100 })} - ${faker.number.int({
-        min: 1,
-        max: 100,
-      })}`,
+      firstPage: `${faker.number.int({ min: 1, max: 100 })}`,
+      lastPage: `${faker.number.int({ min: 1, max: 100 })}`,
       publisher: faker.company.name(),
       copyrightHolder: faker.company.name(),
       quotation: "quotation",
