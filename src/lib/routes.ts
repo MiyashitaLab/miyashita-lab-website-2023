@@ -1,3 +1,5 @@
+import { NEXT_PUBLIC_VERCEL_URL } from "@/lib/publicEnvironments";
+
 export const ROUTES = {
   HOME: "/",
   NEWS: "/news",
@@ -19,5 +21,5 @@ export const ROUTES = {
 } as const;
 
 export const toPublicUrl = (relativePath: string) => {
-  return `https://${process.env.NEXT_PUBLIC_BASE_URL}${relativePath}`;
+  return `https://${NEXT_PUBLIC_VERCEL_URL}${relativePath}`;
 };
