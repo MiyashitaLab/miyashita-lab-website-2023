@@ -15,6 +15,7 @@ export const ROUTES = {
   ABOUT: "/about",
   PRIVACY_POLICY: "/privacy-policy",
   COPYRIGHT: "/copyright",
+  API_ASSET: (id: string) => `/api/asset/${id}`,
 } as const;
 
 export const toPublicUrl = (relativePath: string) => {

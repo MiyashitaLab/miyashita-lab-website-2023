@@ -109,10 +109,10 @@ export const transformPaperModel = (
       }
     }
 
-    if (slidePdf && slidePdf.fields.file?.url) {
+    if (slidePdf && slidePdf.sys.id) {
       return {
         type: "slide",
-        slidePdfUrl: slidePdf.fields.file?.url,
+        slidePdfUrl: ROUTES.API_ASSET(slidePdf.sys.id),
       } satisfies PaperHeroModel;
     }
 
