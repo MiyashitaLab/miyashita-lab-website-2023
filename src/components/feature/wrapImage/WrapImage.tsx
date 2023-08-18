@@ -13,11 +13,11 @@ export type CMSImageWithSize = CMSImage & {
 };
 
 export type SizeSet = {
-  base: Exclude<CSSProperties["width"], undefined>;
-  sm?: CSSProperties["width"]; // 640pxまで
-  md?: CSSProperties["width"]; // 768pxまで
-  lg?: CSSProperties["width"]; // 1024pxまで
-  xl?: CSSProperties["width"]; // 1280pxまで
+  base: Exclude<CSSProperties["width"], undefined>; // それ以外のとき
+  sm?: CSSProperties["width"]; // 640px以上のとき
+  md?: CSSProperties["width"]; // 768px以上のとき
+  lg?: CSSProperties["width"]; // 1024px以上のとき
+  xl?: CSSProperties["width"]; // 1280px以上のとき
 };
 
 export type WrapImageSizedProps = CMSImageWithSize & {
