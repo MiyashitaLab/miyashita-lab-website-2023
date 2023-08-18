@@ -185,8 +185,9 @@ export const MarkdownContent: FC<MarkdownContentProps> = ({
             />
           );
 
+          // peerとimg-containerラベルはemでの画像キャプション実装のためにある
           return (
-            <span className={"w-full"}>
+            <span className={"peer w-full"} data-label={"img-container"}>
               <span className={"mx-auto max-w-screen-sm"}>{imgElem}</span>
             </span>
           );
