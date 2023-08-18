@@ -37,26 +37,28 @@ export const ResearchFilterItem = <T extends string>({
   );
 
   return (
-    <div className={"grid h-full w-full grid-cols-[1fr_max-content]"}>
-      <div className={"grid grid-cols-[max-content_1fr]"}>
-        <select
-          value={type}
-          onChange={handleSelectChange}
-          className={"rounded-l-lg border border-gray-300 p-1 text-gray-800"}
-        >
-          {typeOptions.map(({ value, label }) => (
-            <option key={value} value={value}>
-              {label}
-            </option>
-          ))}
-        </select>
-        <input
-          type="text"
-          value={text}
-          onChange={handleTextChange}
-          className={"rounded-r-lg border border-gray-300 p-1 text-gray-800"}
-        />
-      </div>
+    <div
+      className={
+        "grid h-full w-full grid-cols-[minmax(4rem,1fr)_minmax(0,3fr)_max-content]"
+      }
+    >
+      <select
+        value={type}
+        onChange={handleSelectChange}
+        className={"rounded-l-lg border border-gray-300 p-1 text-gray-800"}
+      >
+        {typeOptions.map(({ value, label }) => (
+          <option key={value} value={value}>
+            {label}
+          </option>
+        ))}
+      </select>
+      <input
+        type="text"
+        value={text}
+        onChange={handleTextChange}
+        className={"rounded-r-lg border border-gray-300 p-1 text-gray-800"}
+      />
       <div className={"flex items-center justify-center p-1"}>
         <button
           type={"button"}
