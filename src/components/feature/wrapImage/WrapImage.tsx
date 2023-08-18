@@ -39,7 +39,6 @@ export type WrapImageInlineProps = CMSImage & {
   alt: string;
   priority?: boolean;
   sizes: SizeSet;
-  sizesFlow?: "height" | "width";
 };
 
 /**
@@ -95,7 +94,7 @@ export const WrapImageSized: FC<WrapImageSizedProps> = ({
 
 /**
  * next/imageを使って画像を表示するコンポーネント
- * 画像サイズを親サイズに合わせたい場合はこちらを使う
+ * サイズが親側で決まっている場合はこれをつかう
  */
 export const WrapImageFill: FC<WrapImageFillProps> = ({
   src,
@@ -119,24 +118,27 @@ export const WrapImageFill: FC<WrapImageFillProps> = ({
   );
 };
 
+/**
+ * next/imageを使って画像を表示するコンポーネント
+ * Markdownの中に入れるときに使う
+ */
 export const WrapImageInline: FC<WrapImageInlineProps> = ({
   src,
   alt,
   priority,
   sizes,
-  sizesFlow = "width",
 }) => {
   const sizesSet = constructSizesSrcSet(sizes);
 
   return (
-    <span className={"relative flex h-full w-full items-center justify-center"}>
+    <span className={"relative h-full"}>
       <Image
         src={src}
         alt={alt}
         priority={priority}
         fill
         sizes={sizesSet}
-        className={"object-contain"}
+        className={"!relative max-h-96 object-contain"}
       />
     </span>
   );

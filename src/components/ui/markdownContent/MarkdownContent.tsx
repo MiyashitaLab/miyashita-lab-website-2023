@@ -4,7 +4,10 @@ import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 
-import { WrapImageInline } from "@/components/feature/wrapImage/WrapImage";
+import {
+  WrapImageInline,
+  WrapImageSized,
+} from "@/components/feature/wrapImage/WrapImage";
 import { WrapLink } from "@/components/feature/wrapLink";
 import { wrapImageUrl } from "@/models/transformer/transformCMSImage";
 
@@ -155,21 +158,35 @@ export const MarkdownContent: FC<MarkdownContentProps> = ({
         hr: ({ children }) => (
           <hr className={"my-4 border-gray-300"}>{children}</hr>
         ),
-        img: ({ src, alt = "" }) => (
-          <span
-            className={"peer relative my-2 block h-60 max-w-full"}
-            data-label={"img-container"}
-          >
+        img: ({ src, alt = "", width, height }) => {
+          // imgタグべた書きでwidthとheightを明記した場合
+          const sizeSpecified =
+            typeof width === "number" && typeof height === "number";
+
+          const imgElem = sizeSpecified ? (
+            <WrapImageSized
+              src={wrapImageUrl(src!)}
+              alt={alt}
+              width={width}
+              height={height}
+            />
+          ) : (
             <WrapImageInline
               src={wrapImageUrl(src!)}
               alt={alt}
               sizes={{
-                base: "15rem", //h-60
+                sm: "100vw",
+                base: "640px", //screen-sm
               }}
-              sizesFlow={"height"}
             />
-          </span>
-        ),
+          );
+
+          return (
+            <span className={"w-full"}>
+              <span className={"mx-auto block max-w-screen-sm"}>{imgElem}</span>
+            </span>
+          );
+        },
         iframe: ({ node, ...props }) => {
           return (
             <div className={"flex justify-center"}>
