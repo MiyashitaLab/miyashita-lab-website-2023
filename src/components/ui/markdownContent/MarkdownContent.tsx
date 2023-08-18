@@ -163,13 +163,17 @@ export const MarkdownContent: FC<MarkdownContentProps> = ({
           const sizeSpecified =
             typeof width === "number" && typeof height === "number";
 
+          // WrapImageInlineはobject-containによって中央寄せされる
+          // WrapImageSizedにはついていないのでflexで中央寄せする
           const imgElem = sizeSpecified ? (
-            <WrapImageSized
-              src={wrapImageUrl(src!)}
-              alt={alt}
-              width={width}
-              height={height}
-            />
+            <div className={"flex items-center justify-center"}>
+              <WrapImageSized
+                src={wrapImageUrl(src!)}
+                alt={alt}
+                width={width}
+                height={height}
+              />
+            </div>
           ) : (
             <WrapImageInline
               src={wrapImageUrl(src!)}
@@ -183,7 +187,7 @@ export const MarkdownContent: FC<MarkdownContentProps> = ({
 
           return (
             <span className={"w-full"}>
-              <span className={"mx-auto block max-w-screen-sm"}>{imgElem}</span>
+              <span className={"mx-auto max-w-screen-sm"}>{imgElem}</span>
             </span>
           );
         },
