@@ -68,7 +68,7 @@ export const PaginationNav: FC<PaginationNavProps> = ({
   return (
     <nav className={classNames("flex justify-center")} {...props}>
       <ul className="flex">
-        <li className={"w-12 md:w-24"}>
+        <li className={"w-10 sm:w-12 md:w-24"}>
           <PaginationNavButton
             href={prevPageHref}
             onClick={prevPageClick}
@@ -131,7 +131,7 @@ export const PaginationNav: FC<PaginationNavProps> = ({
             </li>
           );
         })}
-        <li className={"w-12 md:w-24"}>
+        <li className={"w-10 sm:w-12 md:w-24"}>
           <PaginationNavButton
             href={nextPageHref}
             onClick={nextPageClick}
