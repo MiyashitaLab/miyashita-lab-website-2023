@@ -66,7 +66,7 @@ export const PaginationNav: FC<PaginationNavProps> = ({
   //smの場合は表示ページ数を減らす
 
   return (
-    <nav className={classNames("flex justify-center")} {...props}>
+    <nav className={classNames("flex justify-center")}>
       <ul className="flex">
         <li className={"w-10 sm:w-12 md:w-24"}>
           <PaginationNavButton
