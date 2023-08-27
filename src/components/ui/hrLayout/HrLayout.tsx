@@ -1,4 +1,4 @@
-import { FC, ReactElement, ReactNode } from "react";
+import { FC, Fragment, ReactElement, ReactNode } from "react";
 
 export type HrLayoutProps = {
   children: ReactNode[];
@@ -18,10 +18,10 @@ export const HrLayout: FC<HrLayoutProps> = ({ children, hr }) => {
   return (
     <>
       {validChildren.map((child, index) => (
-        <>
+        <Fragment key={index}>
           {child}
           {index !== validChildren.length - 1 && hr}
-        </>
+        </Fragment>
       ))}
     </>
   );
