@@ -102,12 +102,12 @@ const getDisplayRoleAndOrder = ({
       };
     case "master":
       return {
-        displayRole: `${graduatedYear}年度修士卒業`,
+        displayRole: `${graduatedYear}年度修士修了`,
         roleSortOrder: graduatedYear,
       };
     case "doctor":
       return {
-        displayRole: `${graduatedYear}年度博士卒業`,
+        displayRole: `${graduatedYear}年度博士修了`,
         roleSortOrder: graduatedYear,
       };
     case "withdrawn":
