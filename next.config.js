@@ -20,6 +20,7 @@ const nextConfig = {
   },
   experimental: {
     scrollRestoration: true,
+    largePageDataBytes: 1024 * 1000, //1MB
   },
 };
 

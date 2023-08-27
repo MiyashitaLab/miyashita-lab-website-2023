@@ -17,14 +17,18 @@ export default meta;
 
 type Story = StoryObj<typeof Researches>;
 
-let query = {};
+let query = {} as any;
 
 export const Primary: Story = {
   args: {
     allResearchList: Array.from({ length: 30 }).map((_, i) =>
       paperModelMock(faker)
     ),
-    query: query,
+    query: {
+      page: query["page"] ?? 1,
+      sort: query["sort"] ?? "newest",
+      filters: [],
+    },
     setQuery: (q) => {
       query = q;
     },

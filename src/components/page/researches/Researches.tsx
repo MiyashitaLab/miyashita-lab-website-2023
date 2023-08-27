@@ -10,68 +10,75 @@ import { PaginationNav } from "@/components/ui/paginationNav";
 import { ResearchFilterItem } from "@/components/ui/researchFilterItem";
 import { ResearchFilterPanel } from "@/components/ui/researchFilterPanel";
 import { SortSelect } from "@/components/ui/sortSelect";
-import {
-  FilterType,
-  filterTypeOptions,
-  useResearchesFilter,
-} from "@/lib/hook/useResearchesFilter";
+import { useResearchesFilter } from "@/lib/hook/useResearchesFilter";
+import { useResearchesSort } from "@/lib/hook/useResearchesSort";
 import { ROUTES } from "@/lib/routes";
 import { PartialPaperModel } from "@/models/models";
 import { Heading } from "src/components/ui/heading";
 
 export type ResearchesProps = {
   allResearchList: PartialPaperModel[];
-  query: Record<string, string>;
-  setQuery: (queries: Record<string, string>) => void;
+  numPerPage: number;
+  query: ResearchesPageQuery;
+  setQuery: (query: ResearchesPageQuery) => void;
+  pageHref: (query: ResearchesPageQuery) => string;
 };
-const numPerPage = 24;
+
+export type Filter = {
+  type: FilterType;
+  value: string;
+};
+
+export type FilterType =
+  | "all"
+  | "title"
+  | "author"
+  | "journal"
+  | "abstract"
+  | "keyword";
+
+export const filterTypeOptions = [
+  { value: "all", label: "すべて" },
+  { value: "title", label: "タイトル" },
+  { value: "author", label: "著者" },
+  { value: "journal", label: "学会書誌名" },
+  { value: "abstract", label: "概要" },
+  { value: "keyword", label: "キーワード" },
+] as const satisfies readonly { value: FilterType; label: string }[];
+
+export type ResearchesPageQuery = {
+  page: number;
+  sort: "newest" | "oldest";
+  filters: Filter[];
+};
 
 export const Researches: FC<ResearchesProps> = ({
   allResearchList,
+  numPerPage,
   query,
   setQuery,
+  pageHref,
 }) => {
-  const {
-    page,
-    setPage,
-    sort,
-    setSort,
-    filters,
-    updateFilter,
-    addFilter,
-    removeFilter,
-    isPassFilter,
-  } = useResearchesFilter(query, setQuery);
+  const { isPassFilter, addFilter, removeFilter, updateFilter } =
+    useResearchesFilter({ query, setQuery, pageHref });
+
+  const { sortCompare, sortSelected, setSort } = useResearchesSort({
+    query,
+    setQuery,
+  });
 
   //TODO webworkerに任せるなりdebounceするなりする方が良いかもしれない
   const filteredResearchList = useMemo(() => {
-    return allResearchList
-      .filter((paper) => isPassFilter(paper))
-      .sort((a, b) => {
-        switch (sort) {
-          case "newest":
-            return (
-              new Date(b.publishDateStr).getTime() -
-              new Date(a.publishDateStr).getTime()
-            );
-          case "oldest":
-            return (
-              new Date(a.publishDateStr).getTime() -
-              new Date(b.publishDateStr).getTime()
-            );
-          default:
-            return 0;
-        }
-      });
-  }, [allResearchList, isPassFilter, sort]);
+    return allResearchList.filter(isPassFilter).sort(sortCompare);
+  }, [allResearchList, isPassFilter, sortCompare]);
 
+  const page = query.page ?? 1;
   const paginatedResearchList = useMemo(() => {
     return filteredResearchList.slice(
       (page - 1) * numPerPage,
       page * numPerPage
     );
-  }, [filteredResearchList, page]);
-
+  }, [filteredResearchList, numPerPage, page]);
   const pageNum = Math.ceil(filteredResearchList.length / numPerPage);
 
   return (
@@ -82,7 +89,7 @@ export const Researches: FC<ResearchesProps> = ({
       filteredResearchNum={filteredResearchList.length}
       filterPanel={
         <ResearchFilterPanel
-          filterItems={filters.map((filterItem, i) => {
+          filterItems={query.filters.map((filterItem, i) => {
             const setFilterItemType = (type: FilterType) => {
               updateFilter(i, {
                 ...filterItem,
@@ -122,7 +129,7 @@ export const Researches: FC<ResearchesProps> = ({
       }
       sortSelect={
         <SortSelect
-          value={sort}
+          value={sortSelected}
           onChange={(value) => {
             setSort(value);
           }}
@@ -162,9 +169,12 @@ export const Researches: FC<ResearchesProps> = ({
           minPage={1}
           maxPage={pageNum}
           currentPage={page}
-          mode={"button"}
-          onPageClick={(page) => {
-            setPage(page);
+          mode={"link"}
+          pageHref={(page) => {
+            return pageHref({
+              ...query,
+              page: page,
+            });
           }}
         />
       }

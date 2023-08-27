@@ -1,133 +1,62 @@
 import { useCallback } from "react";
 
+import {
+  Filter,
+  ResearchesPageQuery,
+} from "@/components/page/researches/Researches";
 import { PartialPaperModel } from "@/models/models";
 
-export const useResearchesFilter = (
-  query: Record<string, string>,
-  setQuery: (value: Record<string, string>) => void
-) => {
-  const page = parseInt(query.page) || 1;
-
-  const setPage = useCallback(
-    (page: number) => {
-      setQuery({
-        ...query,
-        page: page.toString(),
-      });
-    },
-    [query, setQuery]
-  );
-
-  const sort: SortOptionValue = isValidSortOption(query.sort)
-    ? query.sort
-    : "newest";
-  const setSort = useCallback(
-    (sort: SortOptionValue) => {
-      setQuery({
-        ...query,
-        sort,
-      });
-    },
-    [query, setQuery]
-  );
-
-  const filters = parseFilter(query.filter);
+export const useResearchesFilter = ({
+  query,
+  setQuery,
+}: {
+  query: ResearchesPageQuery;
+  setQuery: (query: ResearchesPageQuery) => void;
+  pageHref: (query: ResearchesPageQuery) => string;
+}) => {
   const updateFilter = useCallback(
-    (index: number, value: Filter) => {
-      const newFilters = filters.map((filter, i) =>
-        i === index ? value : filter
-      );
+    (index: number, filterItem: Filter) => {
+      // ページはリセットする
       setQuery({
         ...query,
-        filter: stringifyFilter(newFilters),
+        page: 1,
+        filters: query.filters.map((f, i) => {
+          if (i === index) return filterItem;
+          return f;
+        }),
       });
     },
-    [filters, query, setQuery]
+    [query, setQuery]
   );
 
   const addFilter = useCallback(() => {
-    const type = "all";
-    const value = "";
-
-    const newFilters: Filter[] = [...filters, { type, value }];
+    // ページはリセットしない
     setQuery({
       ...query,
-      filter: stringifyFilter(newFilters),
+      filters: [...query.filters, { type: "all", value: "" }],
     });
-  }, [filters, query, setQuery]);
+  }, [query, setQuery]);
 
   const removeFilter = useCallback(
     (index: number) => {
-      const newFilters = filters.filter((_, i) => i !== index);
+      // ページはリセットする
       setQuery({
         ...query,
-        filter: stringifyFilter(newFilters),
+        page: 1,
+        filters: query.filters.filter((_, i) => i !== index),
       });
     },
-    [filters, query, setQuery]
+    [query, setQuery]
   );
 
-  const isPassFilter = filterResearch(filters);
+  const isPassFilter = filterResearch(query.filters);
 
   return {
-    page,
-    setPage,
-    sort,
-    setSort,
-    filters,
-    updateFilter,
+    isPassFilter,
     addFilter,
     removeFilter,
-    isPassFilter,
+    updateFilter,
   };
-};
-
-const sortOptions = ["newest", "oldest"] as const;
-type SortOptionValue = (typeof sortOptions)[number];
-
-const isValidSortOption = (
-  sort: string | undefined
-): sort is SortOptionValue => {
-  if (!sort) return false;
-  return sortOptions.includes(sort as SortOptionValue);
-};
-
-export const filterTypeOptions = [
-  { value: "all", label: "すべて" },
-  { value: "title", label: "タイトル" },
-  { value: "author", label: "著者" },
-  { value: "journal", label: "学会書誌名" },
-  { value: "abstract", label: "概要" },
-  { value: "keyword", label: "キーワード" },
-] as const;
-
-const validFilterTypes = filterTypeOptions.map((option) => option.value);
-
-export type FilterType = (typeof filterTypeOptions)[number]["value"];
-
-export type Filter = {
-  type: FilterType;
-  value: string;
-};
-
-const isValidFilterType = (type: string | undefined): type is FilterType => {
-  if (!type) return false;
-  return (validFilterTypes as string[]).includes(type);
-};
-
-const parseFilter = (value: string | undefined): Filter[] => {
-  const items = (value ?? "").split(",");
-  return items.map((item) => {
-    const [type, text] = item.split(":");
-    return {
-      type: isValidFilterType(type) ? type : "all",
-      value: text || "",
-    };
-  });
-};
-
-const stringifyFilter = (filters: Filter[]): string => {
-  return filters.map((filter) => `${filter.type}:${filter.value}`).join(",");
 };
 
 const filterResearch =
