@@ -4,6 +4,7 @@ import { Noto_Sans_JP } from "@next/font/google";
 import { NextPage } from "next";
 import { FC, ReactElement, ReactNode } from "react";
 
+import { Analytics } from "@/components/feature/analytics";
 import { Layout } from "src/components/page/layout";
 
 import type { AppProps } from "next/app";
@@ -38,8 +39,11 @@ export const AppWrapper: FC<{ children: ReactNode }> = ({ children }) => {
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => <Layout>{page}</Layout>);
   return (
-    <AppWrapper>
-      {getLayout(<Component {...pageProps} />, pageProps)}
-    </AppWrapper>
+    <>
+      <AppWrapper>
+        {getLayout(<Component {...pageProps} />, pageProps)}
+      </AppWrapper>
+      <Analytics />
+    </>
   );
 }
