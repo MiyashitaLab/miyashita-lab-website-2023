@@ -1,3 +1,5 @@
+const redirects = require("./redirects.json");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -17,6 +19,13 @@ const nextConfig = {
         destination: "/api/asset-paper/:slug",
       },
     ];
+  },
+  redirects: async () => {
+    return [...redirects].map((item) => ({
+      source: item.source,
+      destination: encodeURIComponent(item.destination),
+      permanent: item.permanent,
+    }));
   },
   experimental: {
     scrollRestoration: true,
