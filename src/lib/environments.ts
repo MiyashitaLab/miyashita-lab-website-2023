@@ -20,3 +20,6 @@ export const CONTENTFUL_ENVIRONMENT =
 export const ON_DEMAND_SECRET = validateEnvSet("ON_DEMAND_SECRET");
 
 export const SLACK_WEBHOOK_URL = process.env["SLACK_WEBHOOK_URL"];
+
+export const GOOGLE_ANALYTICS_ID =
+  process.env["NEXT_PUBLIC_GOOGLE_ANALYTICS_ID"];
