@@ -1,7 +1,7 @@
 import Script from "next/script";
 import { FC } from "react";
 
-import { GOOGLE_ANALYTICS_ID } from "@/lib/environments";
+import { GOOGLE_ANALYTICS_ID } from "@/lib/publicEnvironments";
 
 /**
  * Analytics関連のスクリプトを読み込む
