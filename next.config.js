@@ -22,8 +22,8 @@ const nextConfig = {
   },
   redirects: async () => {
     return [...redirects].map((item) => ({
-      source: item.source,
-      destination: encodeURIComponent(item.destination),
+      source: item.source.split('/').map(e=>encodeURIComponent(e)).join('/'),
+      destination: item.destination.split('/').map(e=>encodeURIComponent(e)).join('/'),
       permanent: item.permanent,
     }));
   },
