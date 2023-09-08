@@ -4156,62 +4156,62 @@
   },
   {
     "source": "/5thanniversary/",
-    "destination": "https://event.miyashita.com/anniversary/5th/",
+    "destination": "https://event.miyashita.com/anniversary/5th",
     "permanent": true
   },
   {
     "source": "/allchi/",
-    "destination": "https://event.miyashita.com/勉強会/allchi2012/",
+    "destination": "https://event.miyashita.com/勉強会/allchi2012",
     "permanent": true
   },
   {
     "source": "/homeinteraction/2013/",
-    "destination": "https://event.miyashita.com/homeinteraction/2013/",
+    "destination": "https://event.miyashita.com/homeinteraction/2013",
     "permanent": true
   },
   {
     "source": "/homeinteraction/2014/",
-    "destination": "https://event.miyashita.com/homeinteraction/2014/",
+    "destination": "https://event.miyashita.com/homeinteraction/2014",
     "permanent": true
   },
   {
     "source": "/homeinteraction/2015/",
-    "destination": "https://event.miyashita.com/homeinteraction/2015/",
+    "destination": "https://event.miyashita.com/homeinteraction/2015",
     "permanent": true
   },
   {
     "source": "/uist2015j/",
-    "destination": "https://event.miyashita.com/勉強会/UIST2015/",
+    "destination": "https://event.miyashita.com/勉強会/UIST2015",
     "permanent": true
   },
   {
     "source": "/daishinchoku/2013/",
-    "destination": "https://event.miyashita.com/大進捗/2013/",
+    "destination": "https://event.miyashita.com/大進捗/2013",
     "permanent": true
   },
   {
     "source": "/hoga/2012/",
-    "destination": "https://event.miyashita.com/萌芽/2012/",
+    "destination": "https://event.miyashita.com/萌芽/2012",
     "permanent": true
   },
   {
     "source": "/hoga/2013/",
-    "destination": "https://event.miyashita.com/萌芽/2013/",
+    "destination": "https://event.miyashita.com/萌芽/2013",
     "permanent": true
   },
   {
     "source": "/hoga/2014/",
-    "destination": "https://event.miyashita.com/萌芽/2014/",
+    "destination": "https://event.miyashita.com/萌芽/2014",
     "permanent": true
   },
   {
     "source": "/hoga/2015/",
-    "destination": "https://event.miyashita.com/萌芽/2015/",
+    "destination": "https://event.miyashita.com/萌芽/2015",
     "permanent": true
   },
   {
     "source": "/hoga/2016/",
-    "destination": "https://event.miyashita.com/萌芽/2016/",
+    "destination": "https://event.miyashita.com/萌芽/2016",
     "permanent": true
   }
 ]
