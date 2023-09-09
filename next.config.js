@@ -4,12 +4,12 @@ const encodeRedirectURL = (text) => {
   const regHttp = /^(https?)/
   if (regHttp.test(text)) {
     // 外部リンク
-    const splitIndex = text.indexOf(':')
-    const http = text.substring(0, splitIndex + 1)
-    const url = text.substring(splitIndex + 1)
+    const splitIndex = text.indexOf(':')+1
+    const http = text.substring(0, splitIndex)
+    const url = text.substring(splitIndex)
     return http + encodeRedirectURL(url)
   } else {
-    const separators = /([/ /? =])/g
+    const separators = /([/ /? = &])/g
     return text
       .split(separators)
       .map((e) => {
