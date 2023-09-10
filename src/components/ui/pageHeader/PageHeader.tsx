@@ -25,10 +25,14 @@ export const PageHeader: FC<PageHeaderProps> = ({ logo, logoHref, links }) => {
     setIsOpen(!isOpen);
   };
 
+  const closeHamburger = () => {
+    setIsOpen(false);
+  }
+
   return (
     <header className={"w-full bg-white px-4"}>
       <nav className="mx-auto flex h-full max-w-screen-xl flex-wrap items-center justify-between bg-white py-1">
-        <div className={"flex h-10 items-center"}>
+        <div className={"flex h-10 items-center"} onClick={closeHamburger}>
           <WrapLink href={logoHref}>{logo}</WrapLink>
         </div>
 
