@@ -51,6 +51,7 @@ export const PageHeader: FC<PageHeaderProps> = ({ logo, logoHref, links }) => {
               <li key={href}>
                 <WrapLink href={href}>
                   <div
+                    onClick={handleClickHamburger}
                     className={classNames(
                       "block rounded text-md py-1 pl-2",
                       "border-b border-gray-100",
