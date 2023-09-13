@@ -60,3 +60,5 @@ package.jsonに追加したらここにも書く。
   - @typescript-eslint/parserはこれに含まれている
 - @faker-js/faker
   - story用ダミーデータを生成するのに使う
+- css-loader
+  - cssを読み込むのに使う、特定のページのみに反映させるため

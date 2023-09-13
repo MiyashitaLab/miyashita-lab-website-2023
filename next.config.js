@@ -51,6 +51,19 @@ const nextConfig = {
     scrollRestoration: true,
     largePageDataBytes: 1024 * 1000, //1MB
   },
+  webpack: config => {
+    // 一時的な措置
+    // 'filename' is specific to 'asset/resource' type only, but incompatible with 'asset/inline',
+    // see https://webpack.js.org/guides/asset-modules/#custom-output-filename.
+    // Here we rename generator['asset'] into generator['asset/resource'] to avoid conflicts with inline assets.
+    if (config.module.generator?.asset?.filename) {
+      if (!config.module.generator['asset/resource']) {
+        config.module.generator['asset/resource'] = config.module.generator.asset
+      }
+      delete config.module.generator.asset
+    }
+    return config
+  }
 }
 
 module.exports = nextConfig
