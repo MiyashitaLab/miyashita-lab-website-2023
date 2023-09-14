@@ -20,7 +20,6 @@
     "classnames": "^2.3.2",
     "contentful": "^10.3.4",
     "contentful-management": "^10.39.1",
-    "css-loader": "^6.8.1",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.7",
     "next": "13.4.10",

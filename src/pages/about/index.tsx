@@ -6,12 +6,22 @@ import { GeneralPageModel } from '@/models/models'
 import { fetchPage } from '@/lib/cms/fetchPages'
 import { digestMarkdown } from '@/lib/digestMarkdown'
 
-type Props = GeneralPageModel
+import fs from 'fs'
+import path from 'path'
+
+type Props = {
+  slug: string
+  title: string
+  centering: boolean
+  contentMd: string
+  css: string
+}
 
 const AboutPage: NextPage<Props> = (props) => {
   return (
     <>
       <Meta pageTitle={props.title} pageDescription={digestMarkdown(props.contentMd)} />
+      <style>{props.css}</style>
       <About {...props} />
     </>
   )
@@ -30,7 +40,17 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     }
   }
 
+  const cssPath = path.join(process.cwd(), 'src\\styles\\aboutpage\\about.css')
+  const aboutCSS = fs.readFileSync(cssPath, 'utf-8')
+  const newPageData = {
+    slug: pageData.slug,
+    title: pageData.title,
+    centering: pageData.centering,
+    contentMd: pageData.contentMd,
+    css: aboutCSS,
+  }
+
   return {
-    props: pageData,
+    props: newPageData,
   }
 }
