@@ -40,6 +40,8 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     }
   }
 
+  console.log('cssPath')
+  console.log(process.cwd())
   const cssPath = path.join(process.cwd(), 'src\\styles\\aboutpage\\about.css')
   const aboutCSS = fs.readFileSync(cssPath, 'utf-8')
   const newPageData = {
