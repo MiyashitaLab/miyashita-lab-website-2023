@@ -2,17 +2,20 @@ import "@/styles/globals.css";
 
 import { Noto_Sans_JP } from "@next/font/google";
 import { NextPage } from "next";
+import { useRouter } from 'next/router'
 import { FC, ReactElement, ReactNode } from "react";
 
 import { Analytics } from "@/components/feature/analytics";
 import { Layout } from "src/components/page/layout";
 
 import type { AppProps } from "next/app";
-import { useRouter } from 'next/router'
 import Head from 'next/head'
-import aoscss from '!css-loader!@/styles/aboutpage/aos.css'
-import cdnbCSS from '!css-loader!@/styles/aboutpage/bootstrap.min.css'
-import ThemaAbout from '!css-loader!@/styles/aboutpage/about.css'
+import aoscss from '@/styles/aboutpage/aos.css'
+import cdnbCSS from '@/styles/aboutpage/bootstrap.min.css'
+import ThemaAbout from '@/styles/aboutpage/about.css'
+// import aoscss from '!css-loader!@/styles/aboutpage/aos.css'
+// import cdnbCSS from '!css-loader!@/styles/aboutpage/bootstrap.min.css'
+// import ThemaAbout from '!css-loader!@/styles/aboutpage/about.css'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement, pageProps: P) => ReactNode;

@@ -4,7 +4,7 @@ const encodeRedirectURL = (text) => {
   const regHttp = /^(https?)/
   if (regHttp.test(text)) {
     // 外部リンク
-    const splitIndex = text.indexOf(':')+1
+    const splitIndex = text.indexOf(':') + 1
     const http = text.substring(0, splitIndex)
     const url = text.substring(splitIndex)
     return http + encodeRedirectURL(url)
@@ -62,8 +62,23 @@ const nextConfig = {
       }
       delete config.module.generator.asset
     }
+    // css-loader用に設定
+    // config.module.rules.push(
+      // {
+      //   test: /\.css$/i,
+      //   use: ['css-loader'],
+      // },
+      // {
+      //   test: /(aos|about|bootstrap\.min)\.css$/i,
+      //   use: ['style-loader', 'css-loader'],
+      // },
+      // {
+      //   test: /^((?!aos|about|bootstrap\.min).)*\.css$/i,
+      //   use: ['style-loader'],
+      // },
+    // )
     return config
-  }
+  },
 }
 
 module.exports = nextConfig
