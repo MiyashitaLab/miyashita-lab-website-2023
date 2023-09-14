@@ -4,7 +4,7 @@ const encodeRedirectURL = (text) => {
   const regHttp = /^(https?)/
   if (regHttp.test(text)) {
     // 外部リンク
-    const splitIndex = text.indexOf(':')+1
+    const splitIndex = text.indexOf(':') + 1
     const http = text.substring(0, splitIndex)
     const url = text.substring(splitIndex)
     return http + encodeRedirectURL(url)

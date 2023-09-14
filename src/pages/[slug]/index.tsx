@@ -25,7 +25,9 @@ const GeneralPage: NextPage<Props> = (props) => {
 export default GeneralPage;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const slugs = await fetchPageSlugs();
+  // const slugs = await fetchPageSlugs();
+  // aboutページを個別に作るので除外。戻すときは↑
+  const slugs = (await fetchPageSlugs()).filter(e => e != "about");
 
   return {
     paths: slugs.map((slug) => ({
