@@ -41,7 +41,7 @@ const nextConfig = {
     ]
   },
   redirects: async () => {
-    return [...redirects].filter(e=>e.source==e.destination).map((item) => ({
+    return [...redirects].filter(e=>e.source!==e.destination).map((item) => ({
       source: encodeRedirectURL(item.source),
       destination: encodeRedirectURL(item.destination),
       permanent: item.permanent,
