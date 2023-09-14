@@ -38,7 +38,6 @@ export const AppWrapper: FC<{ children: ReactNode }> = ({ children }) => {
 //ここに書いたものはstorybookでは読み込まれないので注意
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => <Layout>{page}</Layout>);
-
   return (
     <>
       <AppWrapper>
