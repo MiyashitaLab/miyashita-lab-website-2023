@@ -174,7 +174,22 @@ const ipsjQuotation = (
     publicationDate,
     lastPage,
     firstPage,
+    language
   } = paper.fields;
+
+  const authors = paper.fields.author.map((e) => {
+    if (language === 'japanese') {
+      return e?.fields.fullName
+    } else if (language === 'english') {
+      return e?.fields.givenNameEn + ' ' + e?.fields.familyNameEn
+    }
+  })
+  const authorsStr = authors.reduce((accumulator, currentValue, currentIndex) => {
+    if (currentIndex === authors.length - 1 && language === 'english') {
+      const separater = authors.length > 1 ? ', and ' : ' and '
+      return accumulator + separater + currentValue
+    } else return accumulator + ', ' + currentValue
+  })
 
   const pages = () => {
     if (!firstPage || !lastPage) return undefined;
@@ -186,7 +201,7 @@ const ipsjQuotation = (
   const vol = volume ? `Vol.${volume}` : undefined;
   const no = issue ? `No.${issue}` : undefined;
 
-  return [title, journalTitle, vol, no, pages(), year]
+  return authorsStr + ': ' + [title, journalTitle, vol, no, pages(), year]
     .filter((item) => !!item)
     .join(", ");
 };

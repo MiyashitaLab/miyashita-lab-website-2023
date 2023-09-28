@@ -81,7 +81,7 @@ export const ResearchDetail: FC<PaperModel> = ({
                 <AuthorTag
                   key={author.fullName}
                   name={author.fullName}
-                  thumbnail={MemberDefaultImg} //TODO 仮
+                  thumbnail={MemberDefaultImg} //TODO: 仮
                   href={ROUTES.RESEARCH_AUTHOR_FILTERED(author.fullName)}
                 />
               ))}
