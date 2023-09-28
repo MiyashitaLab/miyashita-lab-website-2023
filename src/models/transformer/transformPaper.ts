@@ -186,7 +186,7 @@ const ipsjQuotation = (
   })
   const authorsStr = authors.reduce((accumulator, currentValue, currentIndex) => {
     if (currentIndex === authors.length - 1 && language === 'english') {
-      const separater = authors.length > 1 ? ', and ' : ' and '
+      const separater = authors.length > 2 ? ', and ' : ' and '
       return accumulator + separater + currentValue
     } else return accumulator + ', ' + currentValue
   })
