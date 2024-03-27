@@ -112,7 +112,7 @@ export const WrapImageFill: FC<WrapImageFillProps> = ({
         priority={priority}
         fill
         sizes={sizesSet}
-        className={"object-contain"}
+        className={"object-cover"}
       />
     </div>
   );
