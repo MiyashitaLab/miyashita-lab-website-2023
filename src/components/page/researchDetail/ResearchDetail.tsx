@@ -57,14 +57,8 @@ export const ResearchDetail: FC<PaperModel> = ({
     if (!publication.firstPage || !publication.lastPage) return undefined;
     if (publication.firstPage === publication.lastPage)
       return publication.firstPage;
-    return `${publication.firstPage} - ${publication.lastPage}`;
+    return `${publication.firstPage}-${publication.lastPage}`;
   }, [publication.firstPage, publication.lastPage]);
-
-  const quotation = useMemo(() => {
-    const lastNames = authors.map((author) => author.familyName.ja).join(", ");
-    const year = new Date(publishDateStr).getFullYear();
-    return `${lastNames}. ${title}, ${journalTitle}, Vol.${publication.volume}, No.${publication.issue}, pp.${pages}, ${year}.`;
-  }, [authors, title, journalTitle, publication.volume, publication.issue, pages, publishDateStr]);
 
   return (
     <div>
@@ -123,7 +117,7 @@ export const ResearchDetail: FC<PaperModel> = ({
                 ref={citeTextareaRef}
                 className={"h-full w-full resize-none border-0 bg-transparent"}
                 readOnly
-                value={quotation}
+                value={`${authors.map((author) => `${author.familyName.ja}${author.givenName.ja}`).join(", ")}. ${title}, ${journalTitle}, Vol.${publication.volume}, No.${publication.issue}, pp.${pages}, ${new Date(publishDateStr).getFullYear()}.`}
               />
             </div>
             <div
