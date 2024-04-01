@@ -60,6 +60,23 @@ export const ResearchDetail: FC<PaperModel> = ({
     return `${publication.firstPage}-${publication.lastPage}`;
   }, [publication.firstPage, publication.lastPage]);
 
+  const quotation = useMemo(() => {
+    const authorsString = authors.map((author) => `${author.familyName.ja}${author.givenName.ja}`).join(", ");
+    const year = new Date(publishDateStr).getFullYear();
+
+    const parts = [
+      `${authorsString}.`,
+      title,
+      journalTitle ? `${journalTitle},` : null,
+      publication.volume ? `Vol.${publication.volume},` : null,
+      publication.issue ? `No.${publication.issue},` : null,
+      pages ? `pp.${pages},` : null,
+      `${year}.`,
+    ].filter(Boolean);
+
+    return parts.join(" ");
+  }, [authors, title, journalTitle, publication.volume, publication.issue, pages, publishDateStr]);
+
   return (
     <div>
       {hero && <ResearchHero hero={hero} />}
@@ -117,7 +134,7 @@ export const ResearchDetail: FC<PaperModel> = ({
                 ref={citeTextareaRef}
                 className={"h-full w-full resize-none border-0 bg-transparent"}
                 readOnly
-                value={`${authors.map((author) => `${author.familyName.ja}${author.givenName.ja}`).join(", ")}. ${title}, ${journalTitle}, Vol.${publication.volume}, No.${publication.issue}, pp.${pages}, ${new Date(publishDateStr).getFullYear()}.`}
+                value={quotation}
               />
             </div>
             <div
