@@ -66,7 +66,7 @@ export const ResearchDetail: FC<PaperModel> = ({
 
     const parts = [
       `${authorsString}.`,
-      title,
+      `${title}.`,
       journalTitle ? `${journalTitle},` : null,
       publication.volume ? `Vol.${publication.volume},` : null,
       publication.issue ? `No.${publication.issue},` : null,
