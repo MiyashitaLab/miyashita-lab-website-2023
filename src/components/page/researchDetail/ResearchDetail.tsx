@@ -61,28 +61,28 @@ export const ResearchDetail: FC<PaperModel> = ({
   }, [publication.firstPage, publication.lastPage]);
 
   const quotation = useMemo(() => {
-  const authorsString = authors.map((author) => {
-    if (publication.language === "english") {
-      return `${author.givenName.en} ${author.familyName.en}`;
-    } else {
-      return `${author.familyName.ja}${author.givenName.ja}`;
-    }
-  }).join(", ");
+    const authorsString = authors.map((author) => {
+      if (publication.language === "english") {
+        return `${author.givenName.en} ${author.familyName.en}`;
+      } else {
+        return `${author.familyName.ja}${author.givenName.ja}`;
+      }
+    }).join(", ");
 
-  const year = new Date(publishDateStr).getFullYear();
+    const year = new Date(publishDateStr).getFullYear();
 
-  const parts = [
-    `${authorsString}.`,
-    `${title}.`,
-    journalTitle ? `${journalTitle},` : null,
-    publication.volume ? `Vol.${publication.volume},` : null,
-    publication.issue ? `No.${publication.issue},` : null,
-    pages ? `pp.${pages},` : null,
-    `${year}.`,
-  ].filter(Boolean);
+    const parts = [
+      `${authorsString}.`,
+      `${title}.`,
+      journalTitle ? `${journalTitle},` : null,
+      publication.volume ? `Vol.${publication.volume},` : null,
+      publication.issue ? `No.${publication.issue},` : null,
+      pages ? `pp.${pages},` : null,
+      `${year}.`,
+    ].filter(Boolean);
 
-  return parts.join(" ");
-}, [authors, title, journalTitle, publication.volume, publication.issue, pages, publishDateStr, publication.language]);
+    return parts.join(" ");
+  }, [authors, title, journalTitle, publication.volume, publication.issue, pages, publishDateStr, publication.language]);
 
   return (
     <div>
