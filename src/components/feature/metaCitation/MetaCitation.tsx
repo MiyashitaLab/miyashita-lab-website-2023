@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { FC } from "react";
-
 import { dateToYYYYMMDD } from "@/lib/formatDate";
 import { ROUTES, toPublicUrl } from "@/lib/routes";
 import { AuthorModel, PaperModel } from "@/models/models";
@@ -12,6 +11,7 @@ export type MetaCitationProps = {
 export const MetaCitation: FC<MetaCitationProps> = ({ paper }) => {
   const publishDate = new Date(paper.publishDateStr);
   const date = dateToYYYYMMDD(publishDate, "/");
+
   const lang = {
     english: "en",
     japanese: "ja",
@@ -54,7 +54,7 @@ export const MetaCitation: FC<MetaCitationProps> = ({ paper }) => {
       {paper.pdfUrl && (
         <meta name="citation_pdf_url" content={toPublicUrl(paper.pdfUrl)} />
       )}
-      <meta name="citation_keywords" content={paper.keywords.join("; ")} />
+      <meta name="citation_keywords" content={paper.keywords.length > 0 ? paper.keywords.join("; ") + "." : ""} />
     </Head>
   );
 };
