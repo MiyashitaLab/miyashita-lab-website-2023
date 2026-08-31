@@ -19,7 +19,6 @@ export const ResearchDetail: FC<PaperModel> = ({
   title,
   abstract,
   publishDateStr,
-  language,
   authors,
   type,
   journalTitle,
@@ -63,7 +62,7 @@ export const ResearchDetail: FC<PaperModel> = ({
 
   const quotation = useMemo(() => {
     const authorsString = authors.map((author) => {
-      if (language === "english") {
+      if (publication.language === "english") {
         return `${author.givenName.en} ${author.familyName.en}`;
       } else {
         return `${author.familyName.ja}${author.givenName.ja}`;
