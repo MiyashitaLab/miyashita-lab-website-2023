@@ -19,6 +19,7 @@ export const ResearchDetail: FC<PaperModel> = ({
   title,
   abstract,
   publishDateStr,
+  language,
   authors,
   type,
   journalTitle,
@@ -62,7 +63,7 @@ export const ResearchDetail: FC<PaperModel> = ({
 
   const quotation = useMemo(() => {
     const authorsString = authors.map((author) => {
-      if (publication.language === "english") {
+      if (language === "english") {
         return `${author.givenName.en} ${author.familyName.en}`;
       } else {
         return `${author.familyName.ja}${author.givenName.ja}`;
@@ -82,7 +83,7 @@ export const ResearchDetail: FC<PaperModel> = ({
     ].filter(Boolean);
 
     return parts.join(" ");
-  }, [authors, title, journalTitle, publication.volume, publication.issue, pages, publishDateStr, publication.language]);
+  }, [authors, title, journalTitle, publication.volume, publication.issue, pages, publishDateStr, language]);
 
   return (
     <div>
