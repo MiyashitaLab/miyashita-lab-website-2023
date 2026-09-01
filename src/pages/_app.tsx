@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 
-import { Noto_Sans_JP } from "@next/font/google";
 import { NextPage } from "next";
+import { Noto_Sans_JP } from "next/font/google";
 import { FC, ReactElement, ReactNode } from "react";
 
 import { Analytics } from "@/components/feature/analytics";
