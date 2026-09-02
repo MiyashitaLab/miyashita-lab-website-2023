@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-1. 任意の手段でNode.jsを入れる（v18以上）
+1. 任意の手段でNode.jsを入れる（v24以上）
 https://nodejs.org/ja/
 2. `$ git clone https://github.com/MiyashitaLab/shin-miyashita.com.git`
 3. `$ npm install`
