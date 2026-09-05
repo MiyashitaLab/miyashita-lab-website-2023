@@ -49,3 +49,11 @@ export const Primary: Story = {
     boxWidth: 500,
   },
 };
+
+export const LongResearchTitle: Story = {
+  args: {
+    children:
+      "OpticDesigner：多様な光学レンズ効果をカスタマイズ可能な3Dプリントレンズフィルターデザインシステム",
+    boxWidth: 200,
+  },
+};
