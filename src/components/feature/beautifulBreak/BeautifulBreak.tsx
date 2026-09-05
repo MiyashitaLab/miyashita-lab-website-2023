@@ -15,7 +15,7 @@ export const BeautifulBreak: FC<BeautifulBreakProps> = ({ children }) => {
   const [head, ...rest] = segment(children);
 
   return (
-    <span className={"break-keep"}>
+    <span className={"break-keep [overflow-wrap:anywhere]"}>
       {head}
       {rest.map((unit, i) => (
         <Fragment key={`${unit}-${i}`}>
