@@ -69,6 +69,19 @@ export const fetchPaperIdListByAuthor = async (
   return papers.map((paper) => paper.sys.id);
 };
 
+export const fetchPaperIdListByCopyright = async (
+  copyrightId: string
+): Promise<string[]> => {
+  const queryParam = { "fields.copyright.sys.id": copyrightId };
+  const papers = await fetchAllEntries<TypePaperSkeleton>({
+    content_type: "paper",
+    select: ["sys.id"],
+    ...queryParam,
+  });
+
+  return papers.map((paper) => paper.sys.id);
+};
+
 export const fetchPaper = async (id: string): Promise<PaperModel> => {
   const paperEntry =
     await client.withoutUnresolvableLinks.getEntry<TypePaperSkeleton>(id, {});

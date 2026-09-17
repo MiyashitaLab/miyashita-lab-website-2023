@@ -1,4 +1,5 @@
 export type { TypeAuthor, TypeAuthorFields, TypeAuthorSkeleton } from "./TypeAuthor";
+export type { TypeCopyright, TypeCopyrightFields, TypeCopyrightSkeleton } from "./TypeCopyright";
 export type { TypeMember, TypeMemberFields, TypeMemberSkeleton } from "./TypeMember";
 export type { TypeNews, TypeNewsFields, TypeNewsSkeleton } from "./TypeNews";
 export type { TypePages, TypePagesFields, TypePagesSkeleton } from "./TypePages";

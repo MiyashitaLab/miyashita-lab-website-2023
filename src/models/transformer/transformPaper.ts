@@ -66,7 +66,7 @@ export const transformPaperModel = (
   const entryId = paper.sys.id;
   const {
     publisher,
-    copyrightHolder,
+    copyright,
     pdf,
     volume,
     youtubeUrl,
@@ -80,6 +80,15 @@ export const transformPaperModel = (
   } = paper.fields;
 
   const quotation = ipsjQuotation(paper);
+  const partialPaper = transformPartialPaperModel(paper);
+  const copyrightValue = copyright?.fields.copyright;
+  const copyrightHolder =
+    copyrightValue === "著者"
+      ? partialPaper.authors
+          .map((author) => author.fullName.trim())
+          .filter(Boolean)
+          .join(" / ") || null
+      : copyrightValue ?? null;
 
   const hero: PaperHeroModel | null = (() => {
     if (youtubeUrl) {
@@ -142,7 +151,7 @@ export const transformPaperModel = (
   const pdfAssetId = pdf?.sys.id;
 
   return {
-    ...transformPartialPaperModel(paper),
+    ...partialPaper,
     publication: {
       url: publishUrl ?? null,
       volume: volume ?? null,
@@ -150,7 +159,7 @@ export const transformPaperModel = (
       firstPage: firstPage ?? null,
       lastPage: lastPage ?? null,
       publisher: publisher ?? null,
-      copyrightHolder: copyrightHolder ?? null,
+      copyrightHolder,
       quotation: quotation,
       customMetaList: metaList,
     },
