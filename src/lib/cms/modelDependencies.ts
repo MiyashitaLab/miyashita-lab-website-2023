@@ -1,5 +1,8 @@
 import { fetchMemberSlugByAuthor } from "@/lib/cms/fetchMember";
-import { fetchPaperIdListByAuthor } from "@/lib/cms/fetchPaper";
+import {
+  fetchPaperIdListByAuthor,
+  fetchPaperIdListByCopyright,
+} from "@/lib/cms/fetchPaper";
 import { fetchSnapshotsSlug } from "@/lib/cms/fetchSnapshot";
 import { ROUTES } from "@/lib/routes";
 
@@ -41,6 +44,10 @@ export const modelDependencies = {
   paper: async ({ id, slug }) => {
     //paperはslugを持たない
     return [ROUTES.HOME, ROUTES.RESEARCHES, ROUTES.RESEARCH_DETAIL(id)];
+  },
+  copyright: async ({ id }) => {
+    const paperIdList = await fetchPaperIdListByCopyright(id);
+    return paperIdList.map((paperId) => ROUTES.RESEARCH_DETAIL(paperId));
   },
   project: async ({ id, slug }) => {
     const updatedRoutes = await updatedSlugRoutes(

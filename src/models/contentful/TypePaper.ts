@@ -1,5 +1,6 @@
-import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
 import type { TypeAuthorSkeleton } from "./TypeAuthor";
+import type { TypeCopyrightSkeleton } from "./TypeCopyright";
+import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
 
 export interface TypePaperFields {
     title: EntryFieldTypes.Symbol;
@@ -18,6 +19,7 @@ export interface TypePaperFields {
     lastPage?: EntryFieldTypes.Symbol;
     publisher?: EntryFieldTypes.Symbol;
     copyrightHolder?: EntryFieldTypes.Symbol;
+    copyright?: EntryFieldTypes.EntryLink<TypeCopyrightSkeleton>;
     customMetaList?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
     thumbnail?: EntryFieldTypes.AssetLink;
     youtubeUrl?: EntryFieldTypes.Symbol;

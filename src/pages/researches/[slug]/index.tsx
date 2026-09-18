@@ -27,7 +27,7 @@ const ResearchPage: NextPageWithLayout<Props> = ({ ...props }) => {
 
 ResearchPage.getLayout = (page, pageProps) => {
   return (
-    <Layout copyrightText={pageProps.publication.copyrightHolder ?? undefined}>
+    <Layout copyrightText={pageProps.publication.copyrightHolder ?? "The Authors"}>
       {page}
     </Layout>
   );
