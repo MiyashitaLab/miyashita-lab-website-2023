@@ -81,18 +81,7 @@ export const transformPaperModel = (
 
   const quotation = ipsjQuotation(paper);
   const partialPaper = transformPartialPaperModel(paper);
-  const copyrightValue = copyright?.fields.copyright;
-  const copyrightHolder =
-    copyrightValue === "著者"
-      ? partialPaper.authors
-          .map((author) =>
-            partialPaper.language === "english"
-              ? `${author.givenName.en} ${author.familyName.en}`.trim()
-              : author.fullName.trim()
-          )
-          .filter(Boolean)
-          .join(" / ") || null
-      : copyrightValue ?? null;
+  const copyrightHolder = copyright?.fields.copyright ?? null;
 
   const hero: PaperHeroModel | null = (() => {
     if (youtubeUrl) {

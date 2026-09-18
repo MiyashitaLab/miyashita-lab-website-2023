@@ -33,6 +33,20 @@ export const Primary: Story = {
   },
 };
 
+export const TheAuthors: Story = {
+  args: {
+    ...Primary.args,
+    copyright: "© The Authors",
+  },
+};
+
+export const TheAuthorsMobile: Story = {
+  ...TheAuthors,
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
+  },
+};
+
 // 著作権表示の折り返しを確認するための固定サンプル。
 const manyAuthors = [
   { ja: "山中祥太", en: "Shota Yamanaka" },
