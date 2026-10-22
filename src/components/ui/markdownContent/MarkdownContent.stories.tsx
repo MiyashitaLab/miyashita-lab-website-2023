@@ -1,8 +1,8 @@
-import { StoryObj } from "@storybook/react";
+import { StoryObj } from "@storybook/nextjs";
 
 import { MarkdownContent } from "./MarkdownContent";
 
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/nextjs";
 
 const meta: Meta<typeof MarkdownContent> = {
   title: "MarkdownContent",

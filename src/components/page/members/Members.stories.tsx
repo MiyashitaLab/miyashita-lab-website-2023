@@ -1,12 +1,12 @@
 import { faker } from "@faker-js/faker";
-import { StoryObj } from "@storybook/react";
+import { StoryObj } from "@storybook/nextjs";
 
 import { Members } from "./Members";
 
 import { memberModelMock } from "@/models/mockData";
 import { Layout } from "src/components/page/layout";
 
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/nextjs";
 
 const meta: Meta<typeof Members> = {
   title: "Pages/Members",

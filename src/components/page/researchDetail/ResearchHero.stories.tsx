@@ -1,8 +1,8 @@
-import { StoryObj } from "@storybook/react";
+import { StoryObj } from "@storybook/nextjs";
 
 import { ResearchHero } from "./ResearchHero";
 
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/nextjs";
 
 const meta: Meta<typeof ResearchHero> = {
   title: "Pages/Research/ResearchHero",

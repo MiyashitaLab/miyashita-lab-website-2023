@@ -1,4 +1,4 @@
-import { StoryObj } from "@storybook/react";
+import { StoryObj } from "@storybook/nextjs";
 
 import { ArticleCard } from "./ArticleCard";
 
@@ -7,7 +7,7 @@ import { ArticleCardDescription } from "@/components/ui/articleCardDescription";
 import { Icon } from "@/components/ui/icon";
 import { Label } from "@/components/ui/label";
 
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/nextjs";
 
 const meta: Meta<typeof ArticleCard> = {
   title: "ArticleCard",

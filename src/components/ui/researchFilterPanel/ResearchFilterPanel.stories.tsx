@@ -1,10 +1,10 @@
-import { StoryObj } from "@storybook/react";
+import { StoryObj } from "@storybook/nextjs";
 
 import { ResearchFilterPanel } from "./ResearchFilterPanel";
 
 import { ResearchFilterItem } from "@/components/ui/researchFilterItem";
 
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/nextjs";
 
 const meta: Meta<typeof ResearchFilterPanel> = {
   title: "ResearchFilterPanel",

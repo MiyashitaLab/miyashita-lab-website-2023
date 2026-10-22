@@ -1,4 +1,4 @@
-import { StoryObj } from "@storybook/react";
+import { StoryObj } from "@storybook/nextjs";
 
 import { ArticleCardHorizontal } from "./ArticleCardHorizontal";
 
@@ -8,7 +8,7 @@ import { Icon } from "@/components/ui/icon";
 import { Label } from "@/components/ui/label";
 import { CardDefaultImg } from "@/lib/publicImage";
 
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/nextjs";
 
 const meta: Meta<typeof ArticleCardHorizontal> = {
   title: "ArticleCardHorizontal",

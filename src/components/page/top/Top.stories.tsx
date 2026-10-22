@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { StoryObj } from "@storybook/react";
+import { StoryObj } from "@storybook/nextjs";
 
 import { Top } from "./Top";
 
@@ -10,7 +10,7 @@ import {
   projectModelMock,
 } from "@/models/mockData";
 
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/nextjs";
 
 const meta: Meta<typeof Top> = {
   title: "Pages/Top",

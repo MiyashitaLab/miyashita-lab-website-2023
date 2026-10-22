@@ -1,12 +1,12 @@
 import { faker } from "@faker-js/faker";
-import { StoryObj } from "@storybook/react";
+import { StoryObj } from "@storybook/nextjs";
 
 import { Researches } from "./Researches";
 
 import { Layout } from "@/components/page/layout";
 import { paperModelMock } from "@/models/mockData";
 
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/nextjs";
 
 const meta: Meta<typeof Researches> = {
   title: "Pages/Researches",
@@ -32,6 +32,7 @@ export const Primary: Story = {
     setQuery: (q) => {
       query = q;
     },
+    pageHref: (q) => `/researches?page=${q.page}`,
   },
   render: (args) => (
     <Layout currentTopPath={"/researches"}>

@@ -1,9 +1,9 @@
-import { StoryObj } from "@storybook/react";
+import { StoryObj } from "@storybook/nextjs";
 
 import { Heading } from "./Heading";
 import { Icon } from "../icon";
 
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/nextjs";
 
 const meta: Meta<typeof Heading> = {
   title: "Heading",

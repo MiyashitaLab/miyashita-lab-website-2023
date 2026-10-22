@@ -1,8 +1,8 @@
-import { StoryObj } from "@storybook/react";
+import { StoryObj } from "@storybook/nextjs";
 
 import { PaginationNav } from "./PaginationNav";
 
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/nextjs";
 
 const meta: Meta<typeof PaginationNav> = {
   title: "PaginationNav",

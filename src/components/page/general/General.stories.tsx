@@ -1,10 +1,10 @@
-import { StoryObj } from "@storybook/react";
+import { StoryObj } from "@storybook/nextjs";
 
 import { General } from "./General";
 
 import { Layout } from "src/components/page/layout";
 
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/nextjs";
 
 const meta: Meta<typeof General> = {
   title: "Pages/General",

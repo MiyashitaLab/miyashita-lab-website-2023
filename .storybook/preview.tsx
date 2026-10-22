@@ -1,12 +1,10 @@
 import "../src/styles/globals.css";
 // noinspection ES6PreferShortImport /src外なので@/を使えない
 import { AppWrapper } from "../src/pages/_app";
-import { Preview } from "@storybook/react";
+import { Preview } from "@storybook/nextjs";
 
 export const parameters: Preview["parameters"] = {
-  backgrounds: {
-    default: "light",
-  },
+  backgrounds: {},
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
     matchers: {
@@ -24,3 +22,9 @@ export const decorators: Preview["decorators"] = [
     </AppWrapper>
   ),
 ];
+
+export const initialGlobals = {
+  backgrounds: {
+    value: "light"
+  }
+};
