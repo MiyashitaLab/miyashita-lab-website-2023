@@ -9,4 +9,4 @@ export interface TypeNewsFields {
 }
 
 export type TypeNewsSkeleton = EntrySkeletonType<TypeNewsFields, "news">;
-export type TypeNews<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeNewsSkeleton, Modifiers, Locales>;
+export type TypeNews<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeNewsSkeleton, Modifiers, Locales>;
