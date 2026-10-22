@@ -1,5 +1,4 @@
-import { Entry, EntrySkeletonType } from "contentful";
-import { EntriesQueries } from "contentful/dist/types/types/query";
+import { EntriesQueries, Entry, EntrySkeletonType } from "contentful";
 
 import { client } from "@/lib/cms/contentfulClient";
 

@@ -16,9 +16,18 @@ import { resizeToFitContainer } from "@/lib/resizeToFitContianer";
 
 // /publicに置いても良いけどめんどかったので
 const cMapUrl = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`;
-const pdfJsWorker = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+const pdfJsWorker = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 pdfjs.GlobalWorkerOptions.workerSrc = pdfJsWorker;
+
+// Keep options stable to avoid reloading the document on every render.
+const pdfOptions = {
+  cMapUrl,
+  cMapPacked: true,
+  isEvalSupported: false,
+  standardFontDataUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/standard_fonts/`,
+  wasmUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/wasm/`,
+};
 
 export type PdfSlideProps = {
   pdfUrl: string;
@@ -124,10 +133,7 @@ export const PdfSlide: FC<PdfSlideProps> = ({ pdfUrl, width, height }) => {
     <div className={"h-full w-full"} ref={ref}>
       <Document
         file={pdfUrl}
-        options={{
-          cMapUrl: cMapUrl,
-          cMapPacked: true,
-        }}
+        options={pdfOptions}
         onLoadSuccess={({ numPages }) => {
           console.log("numPages", numPages);
           setNumPages(numPages);

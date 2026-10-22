@@ -23,7 +23,7 @@ type UseMeasureResult<T extends HTMLElement> = [
   UseMeasureRect
 ];
 
-const _useMeasure = <T extends HTMLElement>(): UseMeasureResult<T> => {
+const useMeasureClient = <T extends HTMLElement>(): UseMeasureResult<T> => {
   const [element, ref] = useState<T | null>(null);
   const [rect, setRect] = useState<UseMeasureRect>(defaultState);
 
@@ -55,5 +55,5 @@ const _useMeasure = <T extends HTMLElement>(): UseMeasureResult<T> => {
  */
 export const useMeasure =
   typeof window !== "undefined"
-    ? _useMeasure
+    ? useMeasureClient
     : () => [() => {}, defaultState] as UseMeasureResult<HTMLElement>;
