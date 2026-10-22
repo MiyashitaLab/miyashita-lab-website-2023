@@ -13,7 +13,7 @@
     "generate-contentful-schema": "cf-content-types-generator --spaceId $CONTENTFUL_SPACE_ID --token $CONTENTFUL_ACCESS_TOKEN --v10 --out src/models/contentful"
   },
   "dependencies": {
-    "@types/node": "18.15.11",
+    "@types/node": "22.20.5",
     "@types/react": "18.0.33",
     "@types/react-dom": "18.0.11",
     "cf-content-types-generator": "^2.12.2",
