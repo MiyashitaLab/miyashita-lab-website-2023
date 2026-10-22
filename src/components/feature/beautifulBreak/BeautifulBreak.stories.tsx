@@ -1,9 +1,9 @@
-import { StoryObj } from "@storybook/react";
+import { StoryObj } from "@storybook/nextjs";
 import { FC } from "react";
 
 import { BeautifulBreak, BeautifulBreakProps } from "./BeautifulBreak";
 
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/nextjs";
 
 //シンプルにargsでboxWidthを追加しようとするとTSの型でエラーが出るためこのようにしている
 

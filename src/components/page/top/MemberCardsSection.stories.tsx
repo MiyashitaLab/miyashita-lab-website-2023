@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { StoryObj } from "@storybook/react";
+import { StoryObj } from "@storybook/nextjs";
 
 import {
   MemberCardsSection,
@@ -10,7 +10,7 @@ import { Icon } from "@/components/ui/icon";
 import { MemberCard } from "@/components/ui/memberCard";
 import { memberModelMock } from "@/models/mockData";
 
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/nextjs";
 
 const meta: Meta<typeof MemberCardsSection> = {
   title: "Pages/Top/MemberCardsSection",

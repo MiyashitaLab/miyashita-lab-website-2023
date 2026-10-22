@@ -1,10 +1,10 @@
-import { StoryObj } from "@storybook/react";
+import { StoryObj } from "@storybook/nextjs";
 
 import { ArticleCardDescription } from "./ArticleCardDescription";
 
 import { Icon } from "@/components/ui/icon";
 
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/nextjs";
 
 const meta: Meta<typeof ArticleCardDescription> = {
   title: "ArticleCardDescription",

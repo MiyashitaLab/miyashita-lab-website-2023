@@ -1,11 +1,11 @@
-import { StoryObj } from "@storybook/react";
+import { StoryObj } from "@storybook/nextjs";
 
 import { MemberDetail } from "./MemberDetail";
 
 import { MemberDefaultImg } from "@/lib/publicImage";
 import { Layout } from "src/components/page/layout";
 
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/nextjs";
 
 const meta: Meta<typeof MemberDetail> = {
   title: "Pages/MemberDetail",
