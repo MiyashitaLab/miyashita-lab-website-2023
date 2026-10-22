@@ -8,4 +8,4 @@ export interface TypeTopPageFields {
 }
 
 export type TypeTopPageSkeleton = EntrySkeletonType<TypeTopPageFields, "topPage">;
-export type TypeTopPage<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeTopPageSkeleton, Modifiers, Locales>;
+export type TypeTopPage<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeTopPageSkeleton, Modifiers, Locales>;

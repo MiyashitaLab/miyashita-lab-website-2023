@@ -8,4 +8,4 @@ export interface TypePagesFields {
 }
 
 export type TypePagesSkeleton = EntrySkeletonType<TypePagesFields, "pages">;
-export type TypePages<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypePagesSkeleton, Modifiers, Locales>;
+export type TypePages<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypePagesSkeleton, Modifiers, Locales>;

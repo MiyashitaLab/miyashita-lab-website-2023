@@ -9,4 +9,4 @@ export interface TypeAuthorFields {
 }
 
 export type TypeAuthorSkeleton = EntrySkeletonType<TypeAuthorFields, "author">;
-export type TypeAuthor<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeAuthorSkeleton, Modifiers, Locales>;
+export type TypeAuthor<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeAuthorSkeleton, Modifiers, Locales>;

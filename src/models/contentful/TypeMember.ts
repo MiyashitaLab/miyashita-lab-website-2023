@@ -17,4 +17,4 @@ export interface TypeMemberFields {
 }
 
 export type TypeMemberSkeleton = EntrySkeletonType<TypeMemberFields, "member">;
-export type TypeMember<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeMemberSkeleton, Modifiers, Locales>;
+export type TypeMember<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeMemberSkeleton, Modifiers, Locales>;

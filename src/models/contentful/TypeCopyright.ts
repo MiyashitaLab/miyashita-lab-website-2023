@@ -5,4 +5,4 @@ export interface TypeCopyrightFields {
 }
 
 export type TypeCopyrightSkeleton = EntrySkeletonType<TypeCopyrightFields, "copyright">;
-export type TypeCopyright<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeCopyrightSkeleton, Modifiers, Locales>;
+export type TypeCopyright<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeCopyrightSkeleton, Modifiers, Locales>;

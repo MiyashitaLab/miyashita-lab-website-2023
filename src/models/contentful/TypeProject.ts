@@ -9,4 +9,4 @@ export interface TypeProjectFields {
 }
 
 export type TypeProjectSkeleton = EntrySkeletonType<TypeProjectFields, "project">;
-export type TypeProject<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeProjectSkeleton, Modifiers, Locales>;
+export type TypeProject<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeProjectSkeleton, Modifiers, Locales>;
